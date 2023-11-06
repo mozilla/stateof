@@ -12,18 +12,18 @@
     <meta name="theme-color" content="#ffffff" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Mozilla | Rise 25</title>
+    <title>Mozilla | State of Mozilla</title>
 
-    <meta name="description" content="Mozilla presents 25 visionaries reshaping our digital future." />
-    <meta property="og:title" content="Mozilla | Rise 25" />
-    <meta property="og:description" content="Mozilla presents 25 visionaries reshaping our digital future." />
+    <meta name="description" content="Mozilla was built to make the internet better." />
+    <meta property="og:title" content="Mozilla | State of Mozilla" />
+    <meta property="og:description" content="Mozilla was built to make the internet better." />
     <meta property="og:image" content="/og-image.jpg" />
 
     <script type="text/javascript" src="https://www.bugherd.com/sidebarv2.js?apikey=cltuoorymbo4x7w8iwxbnq" async="true"></script>
   </head>
 
   <body class="flex flex-col min-h-screen">
-    <div class="fixed inset-0 w-full h-full z-0">
+    <div class="fixed inset-0 z-0 w-full h-full">
       <div class="gradient-bottom-left" aria-hidden></div>
       <div class="gradient-top-right" aria-hidden></div>
       <div class="gradient-top-left" aria-hidden></div>
@@ -32,7 +32,7 @@
     <header
       x-data="header()"
       x-ref="header"
-      class="md:sticky relative top-0 pt-9 container flex items-center gap-6 justify-between z-10 transition-opacity duration-300"
+      class="container relative top-0 z-10 flex items-center justify-between gap-6 transition-opacity duration-300 md:sticky pt-9"
     >
       <a href="https://www.mozilla.org/en-US/" class="max-w-[4.625rem] md:max-w-[6.25rem]">
         <img src="/logo-mozilla-reverse.svg" width="162" height="34.656" alt="Mozilla Logo" class="w-full" />
@@ -44,15 +44,15 @@
         height="40"
         class="absolute pt-9 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 max-w-[7.5rem] md:max-w-auto"
       />
-      <button @click="jumpToWinners" type="button" class="text-xs md:text-lg hover:underline font-semibold md:font-normal">See the winners</button>
+      <button type="button" class="text-xs font-semibold md:text-lg hover:underline md:font-normal">CTA</button>
     </header>
 
-    <main x-data="{activeGroup: ''}" class="flex-grow z-10 animate-hero opacity-0 overflow-x-hidden">
+    <main x-data="{activeGroup: ''}" class="z-10 flex-grow overflow-x-hidden opacity-0 animate-hero">
       <section id="hero" x-data="hero()" x-ref="hero" class="container mt-40 mb-24 md:mb-56 md:translate-x-0">
         <h1 class="font-body text-5xl md:text-7xl lg:text-[6.25rem]/[6.875rem] tracking-[-0.04em] font-extrabold max-w-7xl">
-          Mozilla Presents:
+          State of
           <br />
-          25 visionaries reshaping our digital future.
+          Mozilla
         </h1>
       </section>
 
@@ -72,9 +72,9 @@
           </div>
 
           <nav class="transition-opacity duration-300 ease-in-out delay-100" aria-label="Scroll to the different groups of winners">
-            <ul class="flex md:items-center flex-row md:gap-6 gap-3 px-5 md:px-6 md:ml-3">
+            <ul class="flex flex-row gap-3 px-5 md:items-center md:gap-6 md:px-6 md:ml-3">
               <template x-for="(group, index) in $store.winners.groups">
-                <li :key="index" class="flex md:items-center md:gap-6 gap-4 text-white">
+                <li :key="index" class="flex gap-4 text-white md:items-center md:gap-6">
                   <button
                     type="button"
                     @click="jumpTo(group.scrollHash)"
@@ -83,7 +83,7 @@
                     :class="group.scrollHash === activeGroup && 'font-bold underline'"
                     :aria-label="`Scroll to the ${group.title} group of winners`"
                   ></button>
-                  <span x-show="index + 1 != $store.winners.groups.length" class="sm:inline-block hidden">/</span>
+                  <span x-show="index + 1 != $store.winners.groups.length" class="hidden sm:inline-block">/</span>
                 </li>
               </template>
             </ul>
@@ -94,14 +94,14 @@
             x-show="$store.winners"
             x-cloak
             id="winners"
-            class="overflow-x-auto overflow-y-hidden pt-5 scroll-pt-7 pb-3 styled-scroll"
+            class="pt-5 pb-3 overflow-x-auto overflow-y-hidden scroll-pt-7 styled-scroll"
             :class="atBottom ? 'pointer-events-auto' : 'md:pointer-events-none'"
           >
             <ul class="flex items-center gap-2">
-              <li class="w-3 md:w-10 flex-shrink-0">&nbsp;</li>
+              <li class="flex-shrink-0 w-3 md:w-10">&nbsp;</li>
               <template x-for="(group, index) in $store.winners.groups">
                 <li :key="index" class="flex-shrink-0">
-                  <ul class="flex gap-2 flex-shrink-0 items-start">
+                  <ul class="flex items-start flex-shrink-0 gap-2">
                     <li
                       :id="group.scrollHash"
                       x-data="{ visible: false }"
@@ -116,14 +116,14 @@
                           src="/group-bg-gradient.svg"
                           loading="lazy"
                           alt="Soft gradient of oranges, blues, greens, and purples"
-                          class="absolute h-full object-cover inset-0"
+                          class="absolute inset-0 object-cover h-full"
                           :class="`animate-gradient--${group.scrollHash}`"
                         />
                         <img
                           src="/noise-texture.png"
                           loading="lazy"
                           alt="Noisy texture"
-                          class="absolute h-full w-full object-cover inset-0 bg-blend-overlay opacity-30"
+                          class="absolute inset-0 object-cover w-full h-full bg-blend-overlay opacity-30"
                         />
                       </div>
 
@@ -158,7 +158,7 @@
                           class="relative md:max-h-[55vh] group overflow-hidden cursor-pointer w-[20.625rem] aspect-[11/20] winner-slide"
                         >
                           <img
-                            class="w-full h-full object-cover transition-all duration-700 ease-in-out"
+                            class="object-cover w-full h-full transition-all duration-700 ease-in-out"
                             width="330"
                             height="600"
                             loading="lazy"
@@ -166,11 +166,11 @@
                             :alt="`Photo of ${winner.name}`"
                           />
                           <div
-                            class="absolute bottom-0 left-0 z-10 px-6 py-4 w-full flex items-center justify-between md:justify-center peer transition-colors duration-300 group ease-in-out"
+                            class="absolute bottom-0 left-0 z-10 flex items-center justify-between w-full px-6 py-4 transition-colors duration-300 ease-in-out md:justify-center peer group"
                             :class="open ? 'bg-transparent' : 'bg-black/70 hover:bg-black'"
                             :title="`View ${winner.name}'s bio`"
                           >
-                            <span class="text-lg font-bold transition-colors duration-300 text-white" x-text="winner.name"></span>
+                            <span class="text-lg font-bold text-white transition-colors duration-300" x-text="winner.name"></span>
 
                             <span class="relative w-6 h-6 md:hidden">
                               <svg
@@ -206,12 +206,12 @@
                           </div>
 
                           <div
-                            class="absolute inset-0 text-sm font-medium p-5 w-full h-full bg-black/70 transition-opacity duration-300 ease-in-out"
+                            class="absolute inset-0 w-full h-full p-5 text-sm font-medium transition-opacity duration-300 ease-in-out bg-black/70"
                             :class="open ? 'opacity-100 backdrop-blur-sm' : 'opacity-0'"
                           >
                             <div
                               x-html="winner.bio"
-                              class="grid gap-2 transition duration-500 text-left max-h-full winner-slide__copy"
+                              class="grid max-h-full gap-2 text-left transition duration-500 winner-slide__copy"
                               :class="open ? 'opacity-100 delay-200 md:translate-y-0' : 'opacity-0 md:translate-y-4'"
                             ></div>
                           </div>
@@ -221,7 +221,7 @@
                   </ul>
                 </li>
               </template>
-              <li class="w-3 md:w-10 flex-shrink-0">&nbsp;</li>
+              <li class="flex-shrink-0 w-3 md:w-10">&nbsp;</li>
             </ul>
           </div>
         </div>
@@ -231,14 +231,14 @@
     <footer
       x-data="footer()"
       x-ref="footer"
-      class="relative md:fixed md:left-1/2 md:-translate-x-1/2 md:bottom-0 grid gap-6 container z-10 pb-9 transition-opacity duration-300 md:mt-0 mt-9"
+      class="container relative z-10 grid gap-6 transition-opacity duration-300 md:fixed md:left-1/2 md:-translate-x-1/2 md:bottom-0 pb-9 md:mt-0 mt-9"
       :class="atBottom ? 'opacity-100' : 'md:opacity-0'"
     >
       <div>
         <a href="https://www.mozilla.org/en-US/" class="inline-flex hover:underline"> Mozilla </a>
       </div>
 
-      <div class="flex xl:items-center justify-between xl:gap-6 gap-4 xl:flex-row flex-col">
+      <div class="flex flex-col justify-between gap-4 xl:items-center xl:gap-6 xl:flex-row">
         <p class="text-sm">
           Portions of this content are ©1998-2022 by individual mozilla.org contributors. Content available under a Creative Commons license.
         </p>
