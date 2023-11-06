@@ -12,7 +12,7 @@ Simplified stack for a flat, single-page site.
 - [Tailwind CSS](https://tailwindcss.com/) for styling
 - # [Vercel](https://vercel.com/) for deployment
 - [Netlify](https://www.netlify.com/) for deployment
-  > > > > > > > c7c7dd78b3c89042d30f7226b7f73daf901c1daa
+  > > c7c7dd78b3c89042d30f7226b7f73daf901c1daa
 
 ## Local Development
 
