@@ -22,7 +22,7 @@ export default {
         '2xl': '96rem', // 1536px
       },
       fontFamily: {
-        body: ["'Inter'", 'sans-serif'],
+        body: ['Inter', 'sans-serif'],
       },
     },
   },

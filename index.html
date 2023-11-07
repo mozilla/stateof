@@ -12,217 +12,79 @@
     <meta name="theme-color" content="#ffffff" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Mozilla | State of Mozilla</title>
+    <title>The State of Mozilla: 2022 — 2023 Annual Report — Mozilla</title>
 
-    <meta name="description" content="Mozilla was built to make the internet better." />
-    <meta property="og:title" content="Mozilla | State of Mozilla" />
-    <meta property="og:description" content="Mozilla was built to make the internet better." />
+    <meta name="description" content="Every year, in the spirit of openness upon which Mozilla was founded, we share publicly the ways we have protected, fought for and helped advance the internet in service of the people who rely on it every day." />
+    <meta property="og:title" content="The State of Mozilla: 2022 — 2023 Annual Report — Mozilla" />
+    <meta property="og:description" content="Every year, in the spirit of openness upon which Mozilla was founded, we share publicly the ways we have protected, fought for and helped advance the internet in service of the people who rely on it every day." />
     <meta property="og:image" content="/og-image.jpg" />
 
-    <script type="text/javascript" src="https://www.bugherd.com/sidebarv2.js?apikey=cltuoorymbo4x7w8iwxbnq" async="true"></script>
+    <!-- <script type="text/javascript" src="https://www.bugherd.com/sidebarv2.js?apikey=cltuoorymbo4x7w8iwxbnq" async="true"></script> -->
   </head>
 
-  <body class="flex flex-col min-h-screen">
-    <div class="fixed inset-0 z-0 w-full h-full">
-      <div class="gradient-bottom-left" aria-hidden></div>
-      <div class="gradient-top-right" aria-hidden></div>
-      <div class="gradient-top-left" aria-hidden></div>
-    </div>
-
+  <body class="flex flex-col font-body">
     <header
       x-data="header()"
       x-ref="header"
-      class="container relative top-0 z-10 flex items-center justify-between gap-6 transition-opacity duration-300 md:sticky pt-9"
+      class="fixed top-0 left-0 z-20 w-full"
     >
-      <a href="https://www.mozilla.org/en-US/" class="max-w-[4.625rem] md:max-w-[6.25rem]">
-        <img src="/logo-mozilla-reverse.svg" width="162" height="34.656" alt="Mozilla Logo" class="w-full" />
-      </a>
-      <img
-        src="/logo-rise25.svg"
-        alt="Rise25 Logo"
-        width="196"
-        height="40"
-        class="absolute pt-9 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 max-w-[7.5rem] md:max-w-auto"
-      />
-      <button type="button" class="text-xs font-semibold md:text-lg hover:underline md:font-normal">CTA</button>
+      <div class="container flex items-center justify-between gap-6 transition-opacity duration-300 md:sticky pt-9">
+        <a href="https://www.mozilla.org/en-US/" class="w-[100px]">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 99 29" class="w-[100px]">
+            <g fill="#000000" clip-path="url(#header-a)">
+              <path d="M36.9066 12.885c-1.8103 0-2.9378 1.3793-2.9378 3.7675 0 2.1956.9889 3.8842 2.9081 3.8842 1.84 0 3.0467-1.5211 3.0467-3.9401 0-2.5607-1.3453-3.7116-3.017-3.7116Zm48.5195 6.384c0 .8163.3858 1.4656 1.4539 1.4656 1.2612 0 2.6065-.928 2.6907-3.0374-.5739-.0863-1.2067-.1675-1.7855-.1675-1.2612-.0051-2.3591.36-2.3591 1.7393Z" />
+              <path d="M0 0v29h98.9183V0H0Zm28.7804 23.042h-5.1883v-7.1449c0-2.1957-.7121-3.0374-2.1119-3.0374-1.7014 0-2.3891 1.2372-2.3891 3.012v4.4116h1.6473v2.7587H15.555v-7.1449c0-2.1957-.7124-3.0374-2.1119-3.0374-1.7013 0-2.389 1.2372-2.389 3.012v4.4116h2.3593v2.7587H5.8707v-2.7587h1.64694V13.108H5.8707v-2.7586h5.1834v1.9118c.7417-1.3489 2.0326-2.1652 3.7588-2.1652 1.7855 0 3.4275.8722 4.036 2.7282.6873-1.6886 2.0871-2.7282 4.036-2.7282 2.2204 0 4.2535 1.3793 4.2535 4.3862v5.8011h1.6469v2.7587h-.0049Zm7.9875.2787c-3.8133 0-6.4495-2.3885-6.4495-6.4398 0-3.712 2.196-6.7798 6.6425-6.7798 4.4462 0 6.6125 3.0627 6.6125 6.6073 0 4.0516-2.8536 6.6123-6.8055 6.6123Zm19.957-.2787H45.913l-.356-1.9119 6.8055-8.017h-3.8677l-.5491 1.9676-2.5521-.2842.4402-4.4471h10.8663l.2769 1.9118-6.865 8.0221h4.0063l.5785-1.9676 2.7996.2791-.7715 4.4472Zm7.0626 0h-3.7044v-4.5588h3.7044v4.5588Zm0-8.1338h-3.7044v-4.5588h3.7044v4.5588Zm2.3148 8.1338 5.3513-19.35537h3.4869L69.5892 23.042h-3.4869Zm7.1913 0 5.3463-19.35537h3.487L76.7756 23.042h-3.482Zm18.9924.2787c-1.6469 0-2.5521-.9838-2.7154-2.5302-.7121 1.293-1.9733 2.5302-3.9766 2.5302-1.7856 0-3.8133-.9838-3.8133-3.6308 0-3.1236 2.9378-3.8537 5.7622-3.8537.6873 0 1.3994.0304 2.0327.1116v-.4208c0-1.2931-.0298-2.8399-2.0327-2.8399-.7422 0-1.3157.0559-1.8945.3651l-.4006 1.43-2.8239-.3092.4847-2.921c2.166-.9026 3.2642-1.1509 5.2969-1.1509 2.6609 0 4.9114 1.4047 4.9114 4.305v5.5122c0 .7301.2769.9835.8507.9835.163 0 .3313-.0305.5194-.086l.0294 1.9115c-.6676.3701-1.4638.5934-2.2304.5934Z" />
+            </g>
+            <defs>
+              <clipPath id="header-a">
+                <path fill="#fff" d="M0 0h99v29H0z" />
+              </clipPath>
+            </defs>
+          </svg>
+          <span class="sr-only">Go to Mozilla.org</span>
+        </a>
+        <div class="flex items-center gap-[35px]">
+          <a href="#" class="flex items-start justify-start gap-[5px] text-[16px]/[19px] font-medium hover:underline cursor-pointer">
+            Mozilla.org
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14" class="w-[14px] shring-0 translate-y-0.5">
+              <path stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.16667" d="M10.5 7.58333v3.49997A1.1666 1.1666 0 0 1 9.33333 12.25H2.91667A1.16663 1.16663 0 0 1 1.75 11.0833V4.66667A1.16668 1.16668 0 0 1 2.91667 3.5h3.5M8.75 1.75h3.5v3.5M5.83337 8.16667 12.25 1.75" />
+            </svg>
+          </a>
+          <a href="#" class="flex items-start justify-start gap-[5px] text-[16px]/[19px] font-medium hover:underline cursor-pointer">
+            External Link
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14" class="w-[14px] shring-0 translate-y-0.5">
+              <path stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.16667"
+                d="M10.5 7.58333v3.49997A1.1666 1.1666 0 0 1 9.33333 12.25H2.91667A1.16663 1.16663 0 0 1 1.75 11.0833V4.66667A1.16668 1.16668 0 0 1 2.91667 3.5h3.5M8.75 1.75h3.5v3.5M5.83337 8.16667 12.25 1.75" />
+            </svg>
+          </a>
+          <a href="#" class="bg-black text-white text-[16px] font-bold leading-none px-[24px] pt-[13px] pb-[12px] rounded hover:bg-[#86C5C8] transition duration-150 ease-out">CTA</a>
+        </div>
+      </div>
     </header>
 
-    <main x-data="{activeGroup: ''}" class="z-10 flex-grow overflow-x-hidden opacity-0 animate-hero">
-      <section id="hero" x-data="hero()" x-ref="hero" class="container mt-40 mb-24 md:mb-56 md:translate-x-0">
-        <h1 class="font-body text-5xl md:text-7xl lg:text-[6.25rem]/[6.875rem] tracking-[-0.04em] font-extrabold max-w-7xl">
-          State of
-          <br />
-          Mozilla
-        </h1>
-      </section>
+    <main x-data="{activeGroup: ''}" class="z-10">
+      <section class="bg-[#CEEAEB] relative min-h-screen flex items-center">
+        <div class="origin-top absolute top-0 left-1/2 -translate-x-1/2 h-full w-0.5 bg-black"></div>
+        <div class="container flex items-center h-full">
+          <div class="flex items-start justify-start w-5/12">
+            <span class="origin-left -rotate-90 text-[28px] font-medium translate-y-[70px] translate-x-[15px] leading-none">2023</span>
+            <div class="flex flex-col items-start justify-start">
+              <h1 class="text-[96px] leading-none tracking-[-0.96px] text-black font-black mb-0">
+                State of
+                <br />
+                Mozilla
+              </h1>
+              <div class="w-full h-0.5 bg-black mt-[32px] mb-[30px] max-w-[426px]"></div>
+              <h2 class="text-[27px]/[35px]">Mozilla was built to <br>make the internet better</h2>
 
-      <section x-data="slider()" x-ref="sliderParallax" class="relative md:translate-y-[-20%]">
-        <div
-          x-ref="sliderContainer"
-          class="animate-fade-in opacity-0 md:translate-x-[40%] md:h-[calc(100vh+6rem)] flex flex-col justify-center"
-          style="animation-delay: 1000ms"
-        >
-          <div class="mb-5">
-            <h2
-              class="text-[1.5rem]/[1.625rem] tracking-[-0.04em] font-extrabold md:ml-4 transition-opacity duration-300 ease-in-out delay-100 md:px-6 px-5"
-              :class="atBottom ? 'md:opacity-0' : 'opacity-100'"
-            >
-              The Winners
-            </h2>
-          </div>
-
-          <nav class="transition-opacity duration-300 ease-in-out delay-100" aria-label="Scroll to the different groups of winners">
-            <ul class="flex flex-row gap-3 px-5 md:items-center md:gap-6 md:px-6 md:ml-3">
-              <template x-for="(group, index) in $store.winners.groups">
-                <li :key="index" class="flex gap-4 text-white md:items-center md:gap-6">
-                  <button
-                    type="button"
-                    @click="jumpTo(group.scrollHash)"
-                    x-text="group.title"
-                    class="text-sm md:hover:underline md:w-[4.625rem] md:text-center"
-                    :class="group.scrollHash === activeGroup && 'font-bold underline'"
-                    :aria-label="`Scroll to the ${group.title} group of winners`"
-                  ></button>
-                  <span x-show="index + 1 != $store.winners.groups.length" class="hidden sm:inline-block">/</span>
-                </li>
-              </template>
-            </ul>
-          </nav>
-
-          <div
-            x-ref="slider"
-            x-show="$store.winners"
-            x-cloak
-            id="winners"
-            class="pt-5 pb-3 overflow-x-auto overflow-y-hidden scroll-pt-7 styled-scroll"
-            :class="atBottom ? 'pointer-events-auto' : 'md:pointer-events-none'"
-          >
-            <ul class="flex items-center gap-2">
-              <li class="flex-shrink-0 w-3 md:w-10">&nbsp;</li>
-              <template x-for="(group, index) in $store.winners.groups">
-                <li :key="index" class="flex-shrink-0">
-                  <ul class="flex items-start flex-shrink-0 gap-2">
-                    <li
-                      :id="group.scrollHash"
-                      x-data="{ visible: false }"
-                      x-intersect.half="activeGroup = group.scrollHash"
-                      x-intersect.half:enter="visible = true"
-                      x-intersect.half:leave="visible = false"
-                      class="relative w-[20.625rem] md:max-h-[55vh] aspect-[11/20] flex-shrink-0 flex justify-end px-6 py-14 flex-col scroll-m-6 transition duration-300 ease"
-                      :class="visible ? 'opacity-100 md:translate-y-0' : 'opacity-20 md:translate-y-8'"
-                    >
-                      <div class="absolute inset-0 w-full h-full bg-[#F37925] overflow-hidden">
-                        <img
-                          src="/group-bg-gradient.svg"
-                          loading="lazy"
-                          alt="Soft gradient of oranges, blues, greens, and purples"
-                          class="absolute inset-0 object-cover h-full"
-                          :class="`animate-gradient--${group.scrollHash}`"
-                        />
-                        <img
-                          src="/noise-texture.png"
-                          loading="lazy"
-                          alt="Noisy texture"
-                          class="absolute inset-0 object-cover w-full h-full bg-blend-overlay opacity-30"
-                        />
-                      </div>
-
-                      <div class="relative transition-opacity duration-300 ease-in-out delay-100" :class="visible ? 'opacity-100' : 'opacity-0'">
-                        <h2
-                          x-text="`${group.title} →`"
-                          class="text-[2.5rem]/[3rem] tracking-[-0.04em] font-bold text-black bg-group-title p-[0.625rem] mb-9 inline-block transition duration-300 ease-in-out delay-300"
-                          :class="visible ? 'opacity-100 md:translate-y-0' : 'opacity-0 md:translate-y-4'"
-                        ></h2>
-                        <p
-                          x-text="group.description"
-                          class="text-[1.125rem]/[1.375rem] transition duration-300 ease-in-out delay-500"
-                          :class="visible ? 'opacity-100' : 'opacity-0'"
-                        ></p>
-                      </div>
-                    </li>
-                    <template x-for="(winner, index) in group.winners">
-                      <li
-                        :key="`winner-${index}`"
-                        x-data="slide()"
-                        x-intersect.half:enter="visible = true"
-                        x-intersect.half:leave="visible = false"
-                        @mouseenter="openBio(true)"
-                        @mouseleave="openBio(false)"
-                        class="flex-shrink-0"
-                        :class="visible ? 'opacity-100 md:translate-y-0' : 'opacity-40 md:translate-y-8'"
-                      >
-                        <button
-                          x-ref="winnerButton"
-                          @click="open = !open"
-                          type="button"
-                          class="relative md:max-h-[55vh] group overflow-hidden cursor-pointer w-[20.625rem] aspect-[11/20] winner-slide"
-                        >
-                          <img
-                            class="object-cover w-full h-full transition-all duration-700 ease-in-out"
-                            width="330"
-                            height="600"
-                            loading="lazy"
-                            :src="winner.image"
-                            :alt="`Photo of ${winner.name}`"
-                          />
-                          <div
-                            class="absolute bottom-0 left-0 z-10 flex items-center justify-between w-full px-6 py-4 transition-colors duration-300 ease-in-out md:justify-center peer group"
-                            :class="open ? 'bg-transparent' : 'bg-black/70 hover:bg-black'"
-                            :title="`View ${winner.name}'s bio`"
-                          >
-                            <span class="text-lg font-bold text-white transition-colors duration-300" x-text="winner.name"></span>
-
-                            <span class="relative w-6 h-6 md:hidden">
-                              <svg
-                                class="absolute inset-0 transition duration-300"
-                                :class="open ? 'opacity-0' : 'opacity-100 text-black'"
-                                xmlns="http://www.w3.org/2000/svg"
-                                width="24"
-                                height="24"
-                                fill="none"
-                              >
-                                <path
-                                  fill="currentColor"
-                                  d="M12 11a1 1 0 0 0-1 1v4a1 1 0 0 0 2 0v-4a1 1 0 0 0-1-1Zm.38-3.92a1 1 0 0 0-.76 0 1 1 0 0 0-.33.21 1.15 1.15 0 0 0-.21.33 1 1 0 0 0 .21 1.09c.097.088.209.16.33.21A1 1 0 0 0 13 8a1.05 1.05 0 0 0-.29-.71 1 1 0 0 0-.33-.21ZM12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm0 18a8 8 0 1 1 0-16.001A8 8 0 0 1 12 20Z"
-                                />
-                              </svg>
-                              <svg
-                                class="absolute inset-0 transition duration-300"
-                                :class="open ? 'opacity-100' : 'opacity-0 text-white'"
-                                xmlns="http://www.w3.org/2000/svg"
-                                width="24"
-                                height="24"
-                                fill="none"
-                              >
-                                <path
-                                  stroke="currentColor"
-                                  stroke-linecap="round"
-                                  stroke-linejoin="round"
-                                  stroke-width="2"
-                                  d="M18 6 6 18M6 6l12 12"
-                                />
-                              </svg>
-                            </span>
-                          </div>
-
-                          <div
-                            class="absolute inset-0 w-full h-full p-5 text-sm font-medium transition-opacity duration-300 ease-in-out bg-black/70"
-                            :class="open ? 'opacity-100 backdrop-blur-sm' : 'opacity-0'"
-                          >
-                            <div
-                              x-html="winner.bio"
-                              class="grid max-h-full gap-2 text-left transition duration-500 winner-slide__copy"
-                              :class="open ? 'opacity-100 delay-200 md:translate-y-0' : 'opacity-0 md:translate-y-4'"
-                            ></div>
-                          </div>
-                        </button>
-                      </li>
-                    </template>
-                  </ul>
-                </li>
-              </template>
-              <li class="flex-shrink-0 w-3 md:w-10">&nbsp;</li>
-            </ul>
+              <button class="mt-[72px]">
+                <svg width="47" height="48" viewBox="0 0 47 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    d="M46.5455 24.7727L23.6364 47.6818L0.727271 24.7727L5.95454 19.5L19.7955 33.3409L19.7955 0.909086L27.4773 0.909086L27.4773 33.3409L41.2955 19.5L46.5455 24.7727Z"
+                    fill="black" />
+                </svg>
+              </button>
+            </div>
           </div>
         </div>
       </section>
@@ -231,25 +93,41 @@
     <footer
       x-data="footer()"
       x-ref="footer"
-      class="container relative z-10 grid gap-6 transition-opacity duration-300 md:fixed md:left-1/2 md:-translate-x-1/2 md:bottom-0 pb-9 md:mt-0 mt-9"
-      :class="atBottom ? 'opacity-100' : 'md:opacity-0'"
+      class="z-10 transition-opacity duration-300"
     >
-      <div>
-        <a href="https://www.mozilla.org/en-US/" class="inline-flex hover:underline"> Mozilla </a>
-      </div>
-
-      <div class="flex flex-col justify-between gap-4 xl:items-center xl:gap-6 xl:flex-row">
-        <p class="text-sm">
-          Portions of this content are ©1998-2022 by individual mozilla.org contributors. Content available under a Creative Commons license.
-        </p>
-
-        <nav>
-          <ul class="flex items-center gap-6 text-sm">
-            <li><a href="https://www.mozilla.org/en-US/privacy/websites/" class="underline">Website Privacy Notice</a></li>
-            <li><a href="https://www.mozilla.org/en-US/privacy/websites/#cookies" class="underline">Cookies</a></li>
-            <li><a href="https://www.mozilla.org/en-US/about/legal/terms/mozilla/" class="underline">Legal</a></li>
-          </ul>
-        </nav>
+      <div class="container relative grid gap-6 pb-9 pt-[70px]">
+        <div>
+          <a href="https://www.mozilla.org/en-US/" class="inline-flex hover:underline w-[100px]">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 99 29" class="w-[100px]">
+              <g fill="#FFFFFF" clip-path="url(#footer-a)">
+                <path
+                  d="M36.9066 12.885c-1.8103 0-2.9378 1.3793-2.9378 3.7675 0 2.1956.9889 3.8842 2.9081 3.8842 1.84 0 3.0467-1.5211 3.0467-3.9401 0-2.5607-1.3453-3.7116-3.017-3.7116Zm48.5195 6.384c0 .8163.3858 1.4656 1.4539 1.4656 1.2612 0 2.6065-.928 2.6907-3.0374-.5739-.0863-1.2067-.1675-1.7855-.1675-1.2612-.0051-2.3591.36-2.3591 1.7393Z" />
+                <path
+                  d="M0 0v29h98.9183V0H0Zm28.7804 23.042h-5.1883v-7.1449c0-2.1957-.7121-3.0374-2.1119-3.0374-1.7014 0-2.3891 1.2372-2.3891 3.012v4.4116h1.6473v2.7587H15.555v-7.1449c0-2.1957-.7124-3.0374-2.1119-3.0374-1.7013 0-2.389 1.2372-2.389 3.012v4.4116h2.3593v2.7587H5.8707v-2.7587h1.64694V13.108H5.8707v-2.7586h5.1834v1.9118c.7417-1.3489 2.0326-2.1652 3.7588-2.1652 1.7855 0 3.4275.8722 4.036 2.7282.6873-1.6886 2.0871-2.7282 4.036-2.7282 2.2204 0 4.2535 1.3793 4.2535 4.3862v5.8011h1.6469v2.7587h-.0049Zm7.9875.2787c-3.8133 0-6.4495-2.3885-6.4495-6.4398 0-3.712 2.196-6.7798 6.6425-6.7798 4.4462 0 6.6125 3.0627 6.6125 6.6073 0 4.0516-2.8536 6.6123-6.8055 6.6123Zm19.957-.2787H45.913l-.356-1.9119 6.8055-8.017h-3.8677l-.5491 1.9676-2.5521-.2842.4402-4.4471h10.8663l.2769 1.9118-6.865 8.0221h4.0063l.5785-1.9676 2.7996.2791-.7715 4.4472Zm7.0626 0h-3.7044v-4.5588h3.7044v4.5588Zm0-8.1338h-3.7044v-4.5588h3.7044v4.5588Zm2.3148 8.1338 5.3513-19.35537h3.4869L69.5892 23.042h-3.4869Zm7.1913 0 5.3463-19.35537h3.487L76.7756 23.042h-3.482Zm18.9924.2787c-1.6469 0-2.5521-.9838-2.7154-2.5302-.7121 1.293-1.9733 2.5302-3.9766 2.5302-1.7856 0-3.8133-.9838-3.8133-3.6308 0-3.1236 2.9378-3.8537 5.7622-3.8537.6873 0 1.3994.0304 2.0327.1116v-.4208c0-1.2931-.0298-2.8399-2.0327-2.8399-.7422 0-1.3157.0559-1.8945.3651l-.4006 1.43-2.8239-.3092.4847-2.921c2.166-.9026 3.2642-1.1509 5.2969-1.1509 2.6609 0 4.9114 1.4047 4.9114 4.305v5.5122c0 .7301.2769.9835.8507.9835.163 0 .3313-.0305.5194-.086l.0294 1.9115c-.6676.3701-1.4638.5934-2.2304.5934Z" />
+              </g>
+              <defs>
+                <clipPath id="footer-a">
+                  <path fill="#fff" d="M0 0h99v29H0z" />
+                </clipPath>
+              </defs>
+            </svg>
+            <span class="sr-only">Go to Mozilla.org</span>
+          </a>
+        </div>
+  
+        <div class="flex flex-col justify-between gap-4 xl:items-center xl:gap-6 xl:flex-row">
+          <p class="text-sm">
+            Portions of this content are ©1998-2022 by individual mozilla.org contributors. Content available under a Creative Commons license.
+          </p>
+  
+          <nav>
+            <ul class="flex items-center gap-6 text-sm">
+              <li><a href="https://www.mozilla.org/en-US/privacy/websites/" class="underline">Website Privacy Notice</a></li>
+              <li><a href="https://www.mozilla.org/en-US/privacy/websites/#cookies" class="underline">Cookies</a></li>
+              <li><a href="https://www.mozilla.org/en-US/about/legal/terms/mozilla/" class="underline">Legal</a></li>
+            </ul>
+          </nav>
+        </div>
       </div>
     </footer>
 
