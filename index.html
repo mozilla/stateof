@@ -99,19 +99,19 @@
                 style="mix-blend-mode:soft-light" />
             </svg>
             <div class="flex flex-col mt-[40px] w-10/12 self-end">
-              <h3 class="text-[36px]/[37px] font-semibold">Mozilla&apos;s Next Chapter</h3>
+              <h3 class="text-[36px]/[37px] font-semibold" x-html="article.title"></h3>
               <div class="flex items-start justify-start w-full gap-[22px] mt-[40px]">
-                <img src="/public/headshot.png" alt="Head shot of INSERT NAME HERE" width="75" height="75" class="w-[75px] shrink-0"/>
+                <img :src="article.author.image" alt="Head shot of INSERT NAME HERE" width="75" height="75" class="w-[75px] shrink-0"/>
                 <div class="flex flex-col items-start justify-start w-full gap-5">
                   <div class="flex items-center w-full gap-[10px]">
                     <div class="flex flex-col items-start justify-start shrink-0">
-                      <h4 class="text-[16px]/[24px] font-semibold">Mark Surman</h4>
-                      <h5 class="text-[14px]/[21px] font-normal">Job Title</h5>
+                      <h4 class="text-[16px]/[24px] font-semibold" x-html="article.author.name"></h4>
+                      <h5 class="text-[14px]/[21px] font-normal" x-html="article.author.job_title"></h5>
                     </div>
                     <div class="w-full h-0.5 bg-black"></div>
                   </div>
-                  <p class="w-full text-[16px]/[24px]">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse nec augue turpis.</p>
-                  <a href="#" class="flex items-center gap-[5px] group">
+                  <p class="w-full text-[16px]/[24px]" x-html="article.excerpt"></p>
+                  <a :href="article.hash" class="flex items-center gap-[5px] group">
                     <span class="text-[16px]/[28px] font-bold relative">
                       Read
                       <span class="bottom-0 left-0 w-full h-0.5 bg-black absolute transition duration-150 ease-out group-hover:scale-x-0 origin-right"></span>
@@ -129,6 +129,12 @@
         <script>
           function Hero() {
             return {
+              article: null,
+              init() {
+                // get articles from $store.articles that has the lead_article property
+                this.article = this.$store.articles.find(article => article.content.lead_article)?.content;
+              },
+              
               nextSection() {
                 const nextSection = this.$refs.hero.nextElementSibling;
                 console.log(this.$refs.hero.nextElementSibling);

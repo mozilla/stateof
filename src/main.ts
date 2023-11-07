@@ -5,7 +5,17 @@ import persist from '@alpinejs/persist';
 import focus from '@alpinejs/focus';
 
 // data
-import { groups } from './winners';
+// gets all the ts files in the /articles folder and returns them as an array
+// const articles = import.meta.glob('./articles/*.ts');
+const articles = import.meta.globEager('./articles/*.ts');
+const articleContents: any[] = []; // Array to store the contents of each file
+
+for (const modulePath in articles) {
+  if (Object.prototype.hasOwnProperty.call(articles, modulePath)) {
+    const module = articles[modulePath];
+    articleContents.push(module.default || module); // Access the default export or the module itself and add it to the array
+  }
+}
 
 // components
 import hero from './components/hero';
@@ -20,7 +30,7 @@ Alpine.plugin(persist);
 Alpine.plugin(focus);
 
 // Data Store
-Alpine.store('winners', { groups });
+Alpine.store('articles', articleContents);
 
 // Components
 Alpine.data('header', header);
