@@ -22,7 +22,7 @@
     <!-- <script type="text/javascript" src="https://www.bugherd.com/sidebarv2.js?apikey=cltuoorymbo4x7w8iwxbnq" async="true"></script> -->
   </head>
 
-  <body class="flex flex-col font-body">
+  <body class="flex flex-col font-body" x-data :class="{ 'overflow-hidden h-screen' : $store.body.lock }">
     <header
       x-data="header()"
       x-ref="header"
@@ -62,7 +62,7 @@
       </div>
     </header>
 
-    <main x-data="{activeGroup: ''}" class="z-10">
+    <main x-data="modalCheck()" class="z-10">
       <!-- Hero -->
       <section class="bg-[#CEEAEB] relative min-h-screen flex items-end pb-[60px] pt-[100px] overflow-hidden" x-ref="hero" x-data="Hero()">
         <div class="origin-top absolute top-0 left-1/2 -translate-x-1/2 h-full w-0.5 bg-black"></div>
@@ -182,6 +182,44 @@
           </div>
         </div>
       </section>
+
+      <template x-teleport="body">
+        <div class="fixed inset-0 z-50 bg-white" x-show="showModal" @click="closeModal">
+          <span x-html="$store.activeArticle.title"></span>
+        </div>
+      </template>
+
+      <script>
+        function modalCheck() {
+          return {
+            showModal: false,
+            init() {
+              // if window.location.hash is not empty, open the modal
+              if (window.location.hash) {
+                this.openModal(window.location.hash);
+              }
+
+              // Watch if the hash changes
+              window.addEventListener('hashchange', (event) => {
+                if(event.srcElement.location.hash) {
+                  this.openModal(event.srcElement.location.hash);
+                }
+              });
+            },
+            openModal(value) {
+              this.showModal = true;
+              this.$store.body.lock = true;
+              this.$store.activeArticle = this.$store.articles.find(article => article.content.hash === value)?.content;
+            },
+            closeModal() {
+              this.showModal = false;
+              this.$store.body.lock = false;
+              this.$store.activeArticle = null;
+              window.location.hash = '';
+            }
+          }
+        }
+      </script>
     </main>
 
     <footer

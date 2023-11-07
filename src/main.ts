@@ -17,6 +17,7 @@ for (const modulePath in articles) {
   }
 }
 
+
 // components
 import hero from './components/hero';
 import header from './components/header';
@@ -31,6 +32,15 @@ Alpine.plugin(focus);
 
 // Data Store
 Alpine.store('articles', articleContents);
+Alpine.store('activeArticle', {});
+
+Alpine.store('body', {
+	lock: false,
+
+	toggle() {
+		this.lock = !this.lock;
+	}
+});
 
 // Components
 Alpine.data('header', header);
