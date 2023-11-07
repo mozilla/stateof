@@ -63,9 +63,10 @@
     </header>
 
     <main x-data="{activeGroup: ''}" class="z-10">
-      <section class="bg-[#CEEAEB] relative min-h-screen flex items-center">
+      <!-- Hero -->
+      <section class="bg-[#CEEAEB] relative min-h-screen flex items-end pb-[60px] pt-[100px] overflow-hidden" x-ref="hero" x-data="Hero()">
         <div class="origin-top absolute top-0 left-1/2 -translate-x-1/2 h-full w-0.5 bg-black"></div>
-        <div class="container flex items-center h-full">
+        <div class="container flex items-end justify-between h-full">
           <div class="flex items-start justify-start w-5/12">
             <span class="origin-left -rotate-90 text-[28px] font-medium translate-y-[70px] translate-x-[15px] leading-none">2023</span>
             <div class="flex flex-col items-start justify-start">
@@ -77,13 +78,100 @@
               <div class="w-full h-0.5 bg-black mt-[32px] mb-[30px] max-w-[426px]"></div>
               <h2 class="text-[27px]/[35px]">Mozilla was built to <br>make the internet better</h2>
 
-              <button class="mt-[72px]">
+              <button class="mt-[82px] mb-1 transition duration-150 ease-out hover:translate-y-2 cursor-pointer" @click="nextSection()">
                 <svg width="47" height="48" viewBox="0 0 47 48" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path
                     d="M46.5455 24.7727L23.6364 47.6818L0.727271 24.7727L5.95454 19.5L19.7955 33.3409L19.7955 0.909086L27.4773 0.909086L27.4773 33.3409L41.2955 19.5L46.5455 24.7727Z"
                     fill="black" />
                 </svg>
+                <span class="sr-only">Scroll to the next section</span>
               </button>
+            </div>
+          </div>
+          <div class="flex flex-col w-5/12">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 602 345" class="w-[45vw]">
+              <circle cx="172.5" cy="172.5" r="172.5" fill="#79FF97" style="mix-blend-mode:multiply" />
+              <path fill="#EEE" fill-rule="evenodd"
+                d="M518.806 318.239c11.332-6.909 21.908-15.136 31.48-24.582 32.524-32.097 50.797-75.63 50.797-121.021 0-45.392-18.273-88.9247-50.797-121.0214-9.572-9.446-20.148-17.6738-31.48-24.5824V318.239Z"
+                clip-rule="evenodd" style="mix-blend-mode:soft-light" />
+              <path fill="#EEE"
+                d="M344.5 345c46.015 0 90.145-18.174 122.683-50.524C499.721 262.126 518 218.25 518 172.5s-18.279-89.6259-50.817-121.9759C434.645 18.1741 390.515.00002 344.5 0v345Z"
+                style="mix-blend-mode:soft-light" />
+            </svg>
+            <div class="flex flex-col mt-[40px] w-10/12 self-end">
+              <h3 class="text-[36px]/[37px] font-semibold">Mozilla&apos;s Next Chapter</h3>
+              <div class="flex items-start justify-start w-full gap-[22px] mt-[40px]">
+                <img src="/public/headshot.png" alt="Head shot of INSERT NAME HERE" class="w-[75px] shrink-0"/>
+                <div class="flex flex-col items-start justify-start w-full gap-5">
+                  <div class="flex items-center w-full gap-[10px]">
+                    <div class="flex flex-col items-start justify-start shrink-0">
+                      <h4 class="text-[16px]/[24px] font-semibold">Mark Surman</h4>
+                      <h5 class="text-[14px]/[21px] font-normal">Job Title</h5>
+                    </div>
+                    <div class="w-full h-0.5 bg-black"></div>
+                  </div>
+                  <p class="w-full text-[16px]/[24px]">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse nec augue turpis.</p>
+                  <a href="#" class="flex items-center gap-[5px] group">
+                    <span class="text-[16px]/[28px] font-bold relative">
+                      Read
+                      <span class="bottom-0 left-0 w-full h-0.5 bg-black absolute transition duration-150 ease-out group-hover:scale-x-0 origin-right"></span>
+                    </span>
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 13 12" class="w-[14px] transition duration-150 ease-out group-hover:translate-x-1">
+                      <path fill="#000" d="M6.69318.36364 12.4205 6.0909 6.69318 11.8182 5.375 10.5114l3.46023-3.46026H.72727V5.13068h8.10796L5.375 1.67614 6.69318.36364Z" />
+                    </svg>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <script>
+          function Hero() {
+            return {
+              nextSection() {
+                const nextSection = this.$refs.hero.nextElementSibling;
+                console.log(this.$refs.hero.nextElementSibling);
+                window.scrollTo({
+                  top: nextSection.offsetTop,
+                  behavior: 'smooth'
+                });
+              }
+            }
+          }
+        </script>
+      </section>
+
+      <!-- Downloads -->
+      <section class="bg-[#CEEAEB] border-t-2 border-black w-full overflow-hidden">
+        <div class="flex items-stretch justify-center w-full">
+          <div class="container py-4">
+            <div class="flex items-center justify-center gap-[32px]">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 61 61" class="w-[60px]">
+                <rect width="59" height="59" x="1" y="1" stroke="#000" stroke-width="2" rx="29.5" />
+                <path fill="#000"
+                  d="M22.94 30.24a.99982.99982 0 0 0-.3951-.0142.99833.99833 0 0 0-.3697.1399.99811.99811 0 0 0-.2865.2723.99791.99791 0 0 0-.1587.362l-.49 1.94a.99965.99965 0 0 0 .1382.7457A.9999.9999 0 0 0 22 34.12c.2572.0634.5291.0222.756-.1147a.9998.9998 0 0 0 .454-.6153l.49-1.94c.0309-.1294.0358-.2637.0142-.395a1.00182 1.00182 0 0 0-.1399-.3697 1.0011 1.0011 0 0 0-.2723-.2866.99961.99961 0 0 0-.362-.1587Zm17 7.52-4-16a1.00022 1.00022 0 0 0-.3422-.5381A.99986.99986 0 0 0 35 21h-3a.99993.99993 0 0 0-.7071.2929A.99969.99969 0 0 0 31 22v16c0 .2652.1053.5196.2929.7071A.99993.99993 0 0 0 32 39h7c.1519.0008.3019-.033.4388-.0988.1369-.0659.257-.162.3512-.2812a1.0007 1.0007 0 0 0 .2053-.4055c.0364-.1491.038-.3047.0047-.4545h-.06ZM33 37V23h1.22l3.5 14H33Zm-8.6-12.58a.9996.9996 0 0 0-.3923-.0211.99931.99931 0 0 0-.3701.1315.99967.99967 0 0 0-.4576.6196l-.48 1.94a.9999.9999 0 0 0 .73 1.21h.24a.99976.99976 0 0 0 .6342-.2034c.1819-.1383.311-.3347.3658-.5566l.48-1.94a1.00068 1.00068 0 0 0-.1345-.7429A1.00016 1.00016 0 0 0 24.4 24.42ZM25.51 23h2c.2652 0 .5195-.1054.7071-.2929A1.0001 1.0001 0 0 0 28.51 22c0-.2652-.1054-.5196-.2929-.7071A1.00028 1.00028 0 0 0 27.51 21h-2a.99993.99993 0 0 0-.7071.2929A.99969.99969 0 0 0 24.51 22c0 .2652.1053.5196.2929.7071A.99993.99993 0 0 0 25.51 23Zm-3.27 14a1.00724 1.00724 0 0 0-1.6223-.912c-.21.1651-.3459.4068-.3777.672l-.24 1a1.00057 1.00057 0 0 0-.0096.4508c.0312.1491.0961.289.1896.4092a.99858.99858 0 0 0 .3646.2879c.1424.066.2984.0976.4554.0921h1c.2652.0318.5322-.043.7422-.208.2101-.1651.3459-.4068.3778-.672a1.00724 1.00724 0 0 0-.88-1.12ZM28 24.51a.99993.99993 0 0 0-.7071.2929A.99969.99969 0 0 0 27 25.51v2c0 .2652.1053.5196.2929.7071a.99993.99993 0 0 0 1.4142 0A1.0001 1.0001 0 0 0 29 27.51v-2c0-.2652-.1054-.5196-.2929-.7071A1.00028 1.00028 0 0 0 28 24.51Zm0 6a.99993.99993 0 0 0-.7071.2929A.99969.99969 0 0 0 27 31.51v2c0 .2652.1053.5196.2929.7071a.99993.99993 0 0 0 1.4142 0A1.0001 1.0001 0 0 0 29 33.51v-2c0-.2652-.1054-.5196-.2929-.7071A1.00028 1.00028 0 0 0 28 30.51Zm0 6a.99975.99975 0 0 0-.86.49H26a.99993.99993 0 0 0-.7071.2929A.99969.99969 0 0 0 25 38c0 .2652.1053.5196.2929.7071A.99993.99993 0 0 0 26 39h2c.2652 0 .5195-.1054.7071-.2929A1.0001 1.0001 0 0 0 29 38v-.49c0-.2652-.1054-.5196-.2929-.7071A1.00028 1.00028 0 0 0 28 36.51Z" />
+              </svg>
+              <span>2023 Audited Financial Statement</span>
+              <a href="/public/downloads/mozilla-fdn-2021-fs-final-1010.pdf" target="_blank"
+                class="bg-black text-white text-[16px] font-bold leading-none px-[24px] pt-[13px] pb-[12px] rounded hover:bg-[#86C5C8] transition duration-150 ease-out">
+                Download
+              </a>
+            </div>
+          </div>
+          <div class="w-0.5 bg-black h-[100px] shrink-0"></div>
+          <div class="container py-4">
+            <div class="flex items-center justify-center gap-[32px]">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 61 61" class="w-[60px]">
+                <rect width="59" height="59" x="1" y="1" stroke="#000" stroke-width="2" rx="29.5" />
+                <path fill="#000"
+                  d="M25.6 33.18a1.00411 1.00411 0 0 0-1.42 0 1.00411 1.00411 0 0 0 0 1.42l1.06 1.06c.093.0937.2036.1681.3254.2189a.99972.99972 0 0 0 .3846.0769c.132 0 .2627-.0261.3846-.0769.1218-.0508.2324-.1252.3254-.2189.0937-.093.1681-.2036.2189-.3254a.99972.99972 0 0 0 .0769-.3846c0-.132-.0261-.2627-.0769-.3846a1.00189 1.00189 0 0 0-.2189-.3254l-1.06-1.06Zm-3.79-5.4-1.06 1.06a.9101.9101 0 0 0-.19.26c-.144.0695-.2692.1726-.3652.3005-.0959.1279-.1598.277-.1863.4347a.99999.99999 0 0 0 .2815.8748l1.06 1.06c.093.0937.2036.1681.3254.2189a.99972.99972 0 0 0 .3846.0769c.132 0 .2627-.0261.3846-.0769.1218-.0508.2324-.1252.3254-.2189.0937-.093.1681-.2036.2189-.3254a.99972.99972 0 0 0 .0769-.3846c0-.132-.0261-.2627-.0769-.3846a1.00189 1.00189 0 0 0-.2189-.3254l-.36-.35.81-.81a1.0003 1.0003 0 0 0 .2397-.6891.99997.99997 0 0 0-.2921-.6685 1 1 0 0 0-.6686-.2921 1.0002 1.0002 0 0 0-.689.2397Zm4.19.79c-.2652 0-.5196.1054-.7071.2929A1.0001 1.0001 0 0 0 25 29.57v1.5c0 .2652.1054.5196.2929.7071s.4419.2929.7071.2929c.2652 0 .5196-.1054.7071-.2929A1.0001 1.0001 0 0 0 27 31.07v-1.5c0-.2652-.1054-.5196-.2929-.7071A1.0001 1.0001 0 0 0 26 28.57Zm13.71.72-5-5a.999.999 0 0 0-.5132-.2701.99954.99954 0 0 0-.5768.0601c-.1826.075-.3389.2024-.4493.3661A1.00074 1.00074 0 0 0 33 25v10c.001.1974.0604.3901.1707.5539.1104.1637.2667.2911.4493.3661.1187.056.2488.0834.38.08a1.0003 1.0003 0 0 0 .3839-.0742c.1218-.0498.2327-.1231.3261-.2158l5-5c.0937-.093.1681-.2036.2189-.3254A.99972.99972 0 0 0 40.0058 30c0-.132-.0261-.2627-.0769-.3846a1.00189 1.00189 0 0 0-.2189-.3254ZM35 32.59v-5.18L37.59 30 35 32.59ZM30 20c-.2652 0-.5196.1054-.7071.2929A1.0001 1.0001 0 0 0 29 21v18c0 .2652.1054.5196.2929.7071S29.7348 40 30 40c.2652 0 .5196-.1054.7071-.2929A1.0001 1.0001 0 0 0 31 39V21c0-.2652-.1054-.5196-.2929-.7071A1.0001 1.0001 0 0 0 30 20Zm-3.62 4.08a.99954.99954 0 0 0-.5768-.0601.999.999 0 0 0-.5132.2701l-.65.71a.99984.99984 0 0 0-.2908.705c0 .2642.1045.5176.2908.705.1846.1884.4362.2962.7.3a.99935.99935 0 0 0 .45-.11c.1502.0325.3059.0299.455-.0075.1491-.0375.2875-.1088.4046-.2084a1.0012 1.0012 0 0 0 .2703-.3661A.99956.99956 0 0 0 27 25.57V25a1.00074 1.00074 0 0 0-.1707-.5539 1.00043 1.00043 0 0 0-.4493-.3661Z" />
+              </svg>
+              <span>2023 Form 990</span>
+              <a href="/public/downloads/mozilla-fdn-2021-fs-final-1010.pdf" target="_blank"
+                class="bg-black text-white text-[16px] font-bold leading-none px-[24px] pt-[13px] pb-[12px] rounded hover:bg-[#86C5C8] transition duration-150 ease-out">
+                Download
+              </a>
             </div>
           </div>
         </div>
