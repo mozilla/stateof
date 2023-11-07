@@ -9,8 +9,6 @@ import { groups } from './winners';
 
 // components
 import hero from './components/hero';
-import slider from './components/slider';
-import slide from './components/slide';
 import header from './components/header';
 import footer from './components/footer';
 
@@ -27,8 +25,6 @@ Alpine.store('winners', { groups });
 // Components
 Alpine.data('header', header);
 Alpine.data('hero', hero);
-Alpine.data('slider', slider);
-Alpine.data('slide', slide);
 Alpine.data('footer', footer);
 
 // Start Alpine
