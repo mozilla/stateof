@@ -23,6 +23,7 @@ export default {
       },
       fontFamily: {
         body: ['Inter', 'sans-serif'],
+        title: ['Space Grotesk', 'sans-serif'],
       },
     },
   },

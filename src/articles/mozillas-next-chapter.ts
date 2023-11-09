@@ -1,10 +1,10 @@
 export const content: object = {
-  title: 'Mozilla’s Next Chapter',
+  title: 'Why Mozilla is moving into social, what it will look like',
   hash: '#mozillas-next-chapter',
   author: {
-    name: 'Mark Surman',
-    job_title: 'Executive Director, Mozilla Foundation',
-    image: '/public/headshot.png',
+    name: 'Mitchell Baker',
+    job_title: 'Executive Chairwoman & CEO',
+    image: '/headshot.png',
   },
   lead_article: true,
   excerpt: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse nec augue turpis.',

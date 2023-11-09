@@ -44,20 +44,20 @@
           <span class="sr-only">Go to Mozilla.org</span>
         </a>
         <div class="flex items-center gap-[35px]">
-          <a href="#" class="flex items-start justify-start gap-[5px] text-[16px]/[19px] font-medium hover:underline cursor-pointer">
+          <a href="#" class="flex items-start justify-start gap-[5px] text-[16px]/[19px] font-medium hover:underline cursor-pointer font-title">
             Mozilla.org
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14" class="w-[14px] shring-0 translate-y-0.5">
               <path stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.16667" d="M10.5 7.58333v3.49997A1.1666 1.1666 0 0 1 9.33333 12.25H2.91667A1.16663 1.16663 0 0 1 1.75 11.0833V4.66667A1.16668 1.16668 0 0 1 2.91667 3.5h3.5M8.75 1.75h3.5v3.5M5.83337 8.16667 12.25 1.75" />
             </svg>
           </a>
-          <a href="#" class="flex items-start justify-start gap-[5px] text-[16px]/[19px] font-medium hover:underline cursor-pointer">
+          <a href="#" class="flex items-start justify-start gap-[5px] text-[16px]/[19px] font-medium hover:underline cursor-pointer font-title">
             External Link
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14" class="w-[14px] shring-0 translate-y-0.5">
               <path stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.16667"
                 d="M10.5 7.58333v3.49997A1.1666 1.1666 0 0 1 9.33333 12.25H2.91667A1.16663 1.16663 0 0 1 1.75 11.0833V4.66667A1.16668 1.16668 0 0 1 2.91667 3.5h3.5M8.75 1.75h3.5v3.5M5.83337 8.16667 12.25 1.75" />
             </svg>
           </a>
-          <a href="#" class="bg-black text-white text-[16px] font-bold leading-none px-[24px] pt-[13px] pb-[12px] rounded hover:bg-[#86C5C8] transition duration-150 ease-out">CTA</a>
+          <a href="#" class="bg-black text-white text-[16px] font-bold leading-none px-[24px] pt-[13px] pb-[12px] rounded hover:bg-[#86C5C8] transition duration-150 ease-out font-title">CTA</a>
         </div>
       </div>
     </header>
@@ -65,20 +65,20 @@
     <main x-data="modalCheck()" class="z-10">
       <!-- Hero -->
       <section class="bg-[#CEEAEB] relative min-h-screen flex items-end pb-[60px] pt-[100px] overflow-hidden" x-ref="hero" x-data="Hero()">
-        <div class="origin-top absolute top-0 left-1/2 -translate-x-1/2 h-full w-0.5 bg-black"></div>
+        <div class="origin-top absolute top-0 left-1/2 -translate-x-1/2 h-full w-0.5 bg-[#111111]"></div>
         <div class="container flex items-end justify-between h-full">
           <div class="flex items-start justify-start w-5/12">
             <span class="origin-left -rotate-90 text-[28px] font-medium translate-y-[70px] translate-x-[15px] leading-none">2023</span>
-            <div class="flex flex-col items-start justify-start">
-              <h1 class="text-[96px] leading-none tracking-[-0.96px] text-black font-black mb-0">
+            <div class="flex flex-col items-start justify-start w-full">
+              <h1 class="text-[81px] leading-none tracking-[-0.81px] text-[#111111] font-black mb-0 font-title">
                 State of
                 <br />
                 Mozilla
               </h1>
-              <div class="w-full h-0.5 bg-black mt-[32px] mb-[30px] max-w-[426px]"></div>
-              <h2 class="text-[27px]/[35px]">Mozilla was built to <br>make the internet better</h2>
+              <div class="w-full h-0.5 bg-[#111111] mt-[29px] mb-[34px] max-w-[440px]"></div>
+              <h2 class="text-[24px]/[31px] tracking-[.48px] font-title">Mozilla was built to make <br>the internet better</h2>
 
-              <button class="mt-[82px] mb-1 transition duration-150 ease-out hover:translate-y-2 cursor-pointer" @click="nextSection()">
+              <button class="mt-[85px] mb-1 transition duration-150 ease-out hover:translate-y-2 cursor-pointer" @click="nextSection()">
                 <svg width="47" height="48" viewBox="0 0 47 48" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path
                     d="M46.5455 24.7727L23.6364 47.6818L0.727271 24.7727L5.95454 19.5L19.7955 33.3409L19.7955 0.909086L27.4773 0.909086L27.4773 33.3409L41.2955 19.5L46.5455 24.7727Z"
@@ -98,21 +98,20 @@
                 d="M344.5 345c46.015 0 90.145-18.174 122.683-50.524C499.721 262.126 518 218.25 518 172.5s-18.279-89.6259-50.817-121.9759C434.645 18.1741 390.515.00002 344.5 0v345Z"
                 style="mix-blend-mode:soft-light" />
             </svg>
-            <div class="flex flex-col mt-[40px] w-10/12 self-end">
-              <h3 class="text-[36px]/[37px] font-semibold" x-html="article.title"></h3>
+            <div class="flex flex-col mt-[40px] w-10/12 self-end items-start justify-start">
+              <h3 class="text-[37px]/[38px] tracking-[1.08px] font-semibold font-title pr-10" x-html="article.title"></h3>
               <div class="flex items-start justify-start w-full gap-[22px] mt-[40px]">
                 <img :src="article.author.image" alt="Head shot of INSERT NAME HERE" width="75" height="75" class="w-[75px] shrink-0"/>
                 <div class="flex flex-col items-start justify-start w-full gap-5">
                   <div class="flex items-center w-full gap-[10px]">
                     <div class="flex flex-col items-start justify-start shrink-0">
-                      <h4 class="text-[16px]/[24px] font-semibold" x-html="article.author.name"></h4>
-                      <h5 class="text-[14px]/[21px] font-normal" x-html="article.author.job_title"></h5>
+                      <h4 class="text-[16px]/[24px] tracking-[0.64px] font-semibold font-title" x-html="article.author.name"></h4>
+                      <h5 class="text-[14px]/[21px] font-normal font-title" x-html="article.author.job_title"></h5>
                     </div>
                     <div class="w-full h-0.5 bg-black"></div>
                   </div>
-                  <p class="w-full text-[16px]/[24px]" x-html="article.excerpt"></p>
                   <a :href="article.hash" class="flex items-center gap-[5px] group">
-                    <span class="text-[16px]/[28px] font-bold relative">
+                    <span class="text-[16px]/[28px] font-bold relative font-title">
                       Read
                       <span class="bottom-0 left-0 w-full h-0.5 bg-black absolute transition duration-150 ease-out group-hover:scale-x-0 origin-right"></span>
                     </span>
@@ -149,7 +148,7 @@
       </section>
 
       <!-- Downloads -->
-      <section class="bg-[#CEEAEB] border-t-2 border-black w-full overflow-hidden">
+      <section class="bg-[#CEEAEB] border-t-2 border-[#111111] w-full overflow-hidden">
         <div class="relative flex items-stretch justify-center w-full">
           <div class="container px-[60px] py-4">
             <div class="flex items-center w-10/12 mx-auto justify-center gap-[32px]">
@@ -160,7 +159,7 @@
               </svg>
               <span class="grow text-[20px]/[28px] font-normal">2023 Audited Financial Statement</span>
               <a href="/public/downloads/mozilla-fdn-2021-fs-final-1010.pdf" target="_blank"
-                class="bg-black text-white text-[16px] font-bold leading-none px-[24px] pt-[13px] pb-[12px] rounded hover:bg-[#86C5C8] transition duration-150 ease-out">
+                class="bg-black text-white text-[16px] font-title font-bold leading-none px-[24px] pt-[13px] pb-[12px] rounded hover:bg-[#86C5C8] transition duration-150 ease-out">
                 Download
               </a>
             </div>
@@ -175,7 +174,7 @@
               </svg>
               <span class="grow text-[20px]/[28px] font-normal">2023 Form 990</span>
               <a href="/public/downloads/mozilla-fdn-2021-fs-final-1010.pdf" target="_blank"
-                class="bg-black text-white text-[16px] font-bold leading-none px-[24px] pt-[13px] pb-[12px] rounded hover:bg-[#86C5C8] transition duration-150 ease-out">
+                class="bg-black text-white text-[16px] font-title font-bold leading-none px-[24px] pt-[13px] pb-[12px] rounded hover:bg-[#86C5C8] transition duration-150 ease-out">
                 Download
               </a>
             </div>
@@ -184,8 +183,48 @@
       </section>
 
       <template x-teleport="body">
-        <div class="fixed inset-0 z-50 bg-white" x-show="showModal" @click="closeModal">
-          <span x-html="$store.activeArticle.title"></span>
+
+        <div id="modal-container" class="fixed top-0 left-0 z-20 table w-full h-full transform" x-show="showModal" x-cloak>
+          <div class="h-screen overflow-scroll transition duration-500 ease-out bg-white modal-background" :class="showModal ? 'opacity-100' : 'opacity-0'">
+            <div  class="modal w-[90vw] mx-auto block text-[#111111]" @click.outside="closeModal">
+              <div class="relative inline-flex items-center p-8 bg-[#CEEAEB] min-h-screen w-full">
+                <div class="container">
+                  <div class="w-2/3 mx-auto">
+                    <div class="flex flex-col items-start w-7/12">
+                      <div class="flex items-center gap-5 mb-[48px] w-full">
+                        <div class="flex flex-col items-start justify-start shrink-0">
+                          <span class="text-[16px]/[24px] font-semibold" x-html="$store.activeArticle.author.name"></span>
+                          <span class="text-[14px]/[21px] font-normal" x-html="$store.activeArticle.author.job_title"></span>
+                        </div>
+                        <div class="w-full h-0.5 bg-[#111111] max-w-[380px]"></div>
+                      </div>
+                      <h2 class="text-[64px]/[64px] font-bold font-title" x-show="showModal" x-html="$store.activeArticle.title"></h2>
+                      <h3 class="font-title text-[24px]/[31px] tracking-[.48px] font-normal mt-[80px]" x-html="$store.activeArticle.excerpt"></h3>
+                    </div>
+                  </div>
+                </div>
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 427 437" class="absolute bottom-0 right-0 translate-x-[5vw] w-[30vw]">
+                  <g clip-path="url(#a)">
+                    <path fill="#86C5C8" d="M0 200C0 89.5431 89.5431 0 200 0h235v437H0V200Z" />
+                    <rect width="567" height="328" x="44" y="54" fill="#EEE" opacity=".9" rx="164" />
+                  </g>
+                  <defs>
+                    <clipPath id="a">
+                      <path fill="#fff" d="M0 0h435v437H0z" />
+                    </clipPath>
+                  </defs>
+                </svg>
+              </div>
+
+              <div class="bg-[#EEEEEE] py-[95px] block w-full">
+                <div class="container">
+                  <div class="w-2/3 mx-auto modal-body" x-html="$store.activeArticle.body"></div>
+                </div>
+              </div>
+            </div>
+
+              <!-- <div x-html="$store.activeArticle.body"></div> -->
+          </div>
         </div>
       </template>
 
@@ -211,7 +250,7 @@
               this.$store.body.lock = true;
               this.$store.activeArticle = this.$store.articles.find(article => article.content.hash === value)?.content;
             },
-            closeModal() {
+            closeModal() { 
               this.showModal = false;
               this.$store.body.lock = false;
               this.$store.activeArticle = null;

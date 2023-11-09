@@ -13,6 +13,7 @@
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
     -ms-text-size-adjust: 100%;
+    @apply text-[#111111];
 
     @media (min-width: 160em) {
       /* 2560px - widescreen */
