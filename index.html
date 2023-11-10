@@ -197,24 +197,62 @@
       </section>
 
       <template x-teleport="body">
-
         <div id="modal-container" class="fixed top-0 left-0 z-20 table w-full h-full transform" x-show="showModal" x-cloak>
           <div class="h-screen overflow-scroll transition duration-500 ease-out bg-white modal-background" :class="showModal ? 'opacity-100' : 'opacity-0'">
-            <div  class="modal w-[90vw] mx-auto block text-[#111111]" @click.outside="closeModal">
+            <div class="modal w-[90vw] mx-auto block text-[#111111]" @click.outside="closeModal">
+              <template x-if="previousArticle">
+                <a :href="previousArticle.hash" @click="checkIndex" class="fixed left-0 z-20 p-5 -translate-y-1/2 max-w-[230px] bg-white border border-l-0 border-black top-1/2">
+                  <div class="flex items-center gap-5">
+                    <svg width="35" height="35" viewBox="0 0 47 48" fill="none" xmlns="http://www.w3.org/2000/svg" class="rotate-90">
+                      <path d="M46.5455 24.7727L23.6364 47.6818L0.727271 24.7727L5.95454 19.5L19.7955 33.3409L19.7955 0.909086L27.4773 0.909086L27.4773 33.3409L41.2955 19.5L46.5455 24.7727Z" fill="black" />
+                    </svg>
+                    <div class="flex flex-col items-start justify-start gap-[10px]">
+                      <svg width="133" height="100" viewBox="0 0 133 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="0.0795288" width="132.92" height="100" fill="#89D5FF" />
+                        <rect x="51" y="10" width="75" height="80" rx="37.5" fill="#EEEEEE" />
+                      </svg>
+                      <span class="font-title text-[12px]/[12px] font-bold" x-html="previousArticle.title"></span>
+                      <span class="font-title text-[10px]/[10px] font-normal" x-html="previousArticle.author.name"></span>
+                    </div>
+                  </div>
+                </a>
+              </template>
+              
+              <template x-if="nextArticle">
+                <a :href="nextArticle.hash" @click="checkIndex" class="fixed right-0 z-20 p-5 -translate-y-1/2 max-w-[230px] bg-white border border-r-0 border-black top-1/2">
+                  <div class="flex items-center gap-5">
+                    <div class="flex flex-col items-start justify-start gap-[10px]">
+                      <svg width="133" height="100" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 133 100">
+                        <path fill="#CEC2FF" d="M0 0h132.92v100H0z" />
+                        <path fill="#EEE" d="M13 24h53.1176v52H13z" style="mix-blend-mode:multiply" />
+                      </svg>
+                      <span class="font-title text-[12px]/[12px] font-bold" x-html="nextArticle.title"></span>
+                      <span class="font-title text-[10px]/[10px] font-normal" x-html="nextArticle.author.name"></span>
+                    </div>
+                    <svg width="35" height="35" viewBox="0 0 47 48" fill="none" xmlns="http://www.w3.org/2000/svg" class="-rotate-90">
+                      <path
+                        d="M46.5455 24.7727L23.6364 47.6818L0.727271 24.7727L5.95454 19.5L19.7955 33.3409L19.7955 0.909086L27.4773 0.909086L27.4773 33.3409L41.2955 19.5L46.5455 24.7727Z"
+                        fill="black" />
+                    </svg>
+                  </div>
+                </a>
+              </template>
               <div class="relative inline-flex items-center p-8 bg-[#CEEAEB] min-h-screen w-full">
                 <div class="container">
                   <div class="w-2/3 mx-auto">
                     <div class="flex flex-col items-start w-7/12">
-                      <div x-show="$store.activeArticle.author" class="flex items-center gap-5 mb-[48px] w-full">
-                        <div class="flex flex-col items-start justify-start w-full">
-                          <span class="flex items-end gap-[10px] w-full">
-                            <span class="text-[16px]/[24px] tracking-[0.64px] font-semibold font-title shrink-0 inline-block"
-                              x-html="$store.activeArticle.author.name"></span>
-                            <div class="w-full h-0.5 bg-black -translate-y-1.5"></div>
-                          </span>
-                          <span class="text-[14px]/[21px] font-normal font-title" x-html="$store.activeArticle.author.job_title"></span>
+                      <template x-if="$store.activeArticle">
+                        <div class="flex items-center gap-5 mb-[48px] w-full">
+                          <div class="flex flex-col items-start justify-start w-full">
+                            <span class="flex items-end gap-[10px] w-full">
+                              <span class="text-[16px]/[24px] tracking-[0.64px] font-semibold font-title shrink-0 inline-block"
+                                x-html="$store.activeArticle.author.name"></span>
+                              <div class="w-full h-0.5 bg-black -translate-y-1.5"></div>
+                            </span>
+                            <span class="text-[14px]/[21px] font-normal font-title" x-html="$store.activeArticle.author.job_title"></span>
+                          </div>
                         </div>
-                      </div>
+                      </template>
                       
                       <h2 class="text-[64px]/[64px] font-bold font-title" x-show="showModal" x-html="$store.activeArticle.title"></h2>
                       <h3 class="font-title text-[24px]/[31px] tracking-[.48px] font-normal mt-[80px]" x-html="$store.activeArticle.excerpt"></h3>
@@ -249,6 +287,8 @@
           return {
             showModal: false,
             bodyFormat: null,
+            previousArticle: null,
+            nextArticle: null,
             init() {
               // if window.location.hash is not empty, open the modal
               if (window.location.hash) {
@@ -267,6 +307,14 @@
               this.$store.body.lock = true;
               this.$store.activeArticle = this.$store.articles.find(article => article.content.hash === value)?.content;
 
+
+              this.$store.articles.forEach((article, index) => {
+                if (article.content.hash === this.$store.activeArticle.hash) {
+                  this.nextArticle = this.$store.articles[index + 1]?.content;
+                  this.previousArticle = this.$store.articles[index - 1]?.content;
+                }
+              });
+
               if(this.$store.activeArticle.modal_style === 'long') {
                 // find h4 tag in the article body and put a div before it
                 const h4 = this.$store.activeArticle.body.match(/<h4.*?>.*?<\/h4>/g);
@@ -282,6 +330,14 @@
               this.$store.body.lock = false;
               this.$store.activeArticle = null;
               window.location.hash = '';
+            },
+            checkIndex() {
+              this.$store.articles.forEach((article, index) => {
+                if (article.content.hash === this.$store.activeArticle.hash) {
+                  this.nextArticle = this.$store.articles[index + 1]?.content;
+                  this.previousArticle = this.$store.articles[index - 1]?.content;
+                }
+              });
             }
           }
         }
