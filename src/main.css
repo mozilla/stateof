@@ -50,6 +50,15 @@
   .modal-body p {
     @apply text-[16px]/[24px] tracking-[.32px] font-body font-normal mb-[35px];
   }
+
+    .modal-body blockquote {
+      @apply py-10 my-10 border-t border-b border-black inline-flex w-full items-start gap-[30px] pl-[44px];
+    }
+
+    .modal-body blockquote:before {
+      content: open-quote;
+      @apply text-[56px]/[56px] font-title font-bold tracking-[1px];
+    }
 }
 
 @layer components {
