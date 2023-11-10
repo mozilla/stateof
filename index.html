@@ -23,11 +23,7 @@
   </head>
 
   <body class="flex flex-col font-body" x-data :class="{ 'overflow-hidden h-screen' : $store.body.lock }">
-    <header
-      x-data="header()"
-      x-ref="header"
-      class="fixed top-0 left-0 z-20 w-full"
-    >
+    <header x-data="header()" x-ref="header" class="fixed top-0 left-0 z-20 w-full">
       <div class="container flex items-center justify-between gap-6 transition-opacity duration-300 md:sticky pt-9">
         <a href="https://www.mozilla.org/en-US/" class="w-[100px]">
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 99 29" class="w-[100px]">
@@ -237,10 +233,11 @@
                   </div>
                 </a>
               </template>
+              
               <div class="relative inline-flex items-center p-8 bg-[#CEEAEB] min-h-screen w-full">
                 <div class="container">
-                  <div class="w-2/3 mx-auto">
-                    <div class="flex flex-col items-start w-7/12">
+                  <div class="w-3/4 mx-auto">
+                    <div class="flex flex-col items-start w-3/4">
                       <template x-if="$store.activeArticle.author">
                         <div class="flex items-center gap-5 mb-[48px] w-full">
                           <div class="flex flex-col items-start justify-start w-full">
@@ -256,6 +253,10 @@
                       
                       <h2 class="text-[64px]/[64px] font-bold font-title" x-show="showModal" x-html="$store.activeArticle.title"></h2>
                       <h3 class="font-title text-[24px]/[31px] tracking-[.48px] font-normal mt-[80px]" x-html="$store.activeArticle.excerpt"></h3>
+                      
+                      <template x-if="$store.activeArticle.modal_style == 'short'">
+                          <div class=" modal-body" x-html="bodyFormat"></div>
+                      </template>
                     </div>
                   </div>
                 </div>
@@ -272,11 +273,13 @@
                 </svg>
               </div>
 
-              <div class="bg-[#EEEEEE] py-[95px] block w-full">
-                <div class="container">
-                  <div class="w-2/3 mx-auto modal-body" x-html="bodyFormat"></div>
+              <template x-if="$store.activeArticle.modal_style != 'short'">
+                <div class="bg-[#EEEEEE] py-[95px] block w-full">
+                  <div class="container">
+                    <div class="w-2/3 mx-auto modal-body" x-html="bodyFormat"></div>
+                  </div>
                 </div>
-              </div>
+              </template>
             </div>
           </div>
         </div>
