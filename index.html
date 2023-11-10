@@ -205,13 +205,17 @@
                 <div class="container">
                   <div class="w-2/3 mx-auto">
                     <div class="flex flex-col items-start w-7/12">
-                      <div class="flex items-center gap-5 mb-[48px] w-full">
-                        <div class="flex flex-col items-start justify-start shrink-0">
-                          <span class="text-[16px]/[24px] font-semibold" x-html="$store.activeArticle.author.name"></span>
-                          <span class="text-[14px]/[21px] font-normal" x-html="$store.activeArticle.author.job_title"></span>
+                      <div x-show="$store.activeArticle.author" class="flex items-center gap-5 mb-[48px] w-full">
+                        <div class="flex flex-col items-start justify-start w-full">
+                          <span class="flex items-end gap-[10px] w-full">
+                            <span class="text-[16px]/[24px] tracking-[0.64px] font-semibold font-title shrink-0 inline-block"
+                              x-html="$store.activeArticle.author.name"></span>
+                            <div class="w-full h-0.5 bg-black -translate-y-1.5"></div>
+                          </span>
+                          <span class="text-[14px]/[21px] font-normal font-title" x-html="$store.activeArticle.author.job_title"></span>
                         </div>
-                        <div class="w-full h-0.5 bg-[#111111] max-w-[380px]"></div>
                       </div>
+                      
                       <h2 class="text-[64px]/[64px] font-bold font-title" x-show="showModal" x-html="$store.activeArticle.title"></h2>
                       <h3 class="font-title text-[24px]/[31px] tracking-[.48px] font-normal mt-[80px]" x-html="$store.activeArticle.excerpt"></h3>
                     </div>
@@ -232,12 +236,10 @@
 
               <div class="bg-[#EEEEEE] py-[95px] block w-full">
                 <div class="container">
-                  <div class="w-2/3 mx-auto modal-body" x-html="$store.activeArticle.body"></div>
+                  <div class="w-2/3 mx-auto modal-body" x-html="bodyFormat"></div>
                 </div>
               </div>
             </div>
-
-              <!-- <div x-html="$store.activeArticle.body"></div> -->
           </div>
         </div>
       </template>
@@ -246,6 +248,7 @@
         function modalCheck() {
           return {
             showModal: false,
+            bodyFormat: null,
             init() {
               // if window.location.hash is not empty, open the modal
               if (window.location.hash) {
@@ -263,6 +266,16 @@
               this.showModal = true;
               this.$store.body.lock = true;
               this.$store.activeArticle = this.$store.articles.find(article => article.content.hash === value)?.content;
+
+              if(this.$store.activeArticle.modal_style === 'long') {
+                // find h4 tag in the article body and put a div before it
+                const h4 = this.$store.activeArticle.body.match(/<h4.*?>.*?<\/h4>/g);
+                const h4Index = this.$store.activeArticle.body.indexOf(h4[0]);
+                const newBody = this.$store.activeArticle.body.slice(0, h4Index) + '<div class="flex items-start justify-between gap-[70px] mt-[100px]"><div class="relative w-full"><svg class="absolute top-0 right-0 w-[450px]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 457 437"><path fill="#CEC2FF" d="M0 200C0 89.5431 89.5431 0 200 0h257v437H0V200Z" opacity=".5" /><path fill="#CEC2FF" d="M150 200C150 89.5431 239.543 0 350 0h107v308H150V200Z" /></svg></div><div class="w-2/3 shrink-0">' + this.$store.activeArticle.body.slice(h4Index) + '</div></div>';
+                this.bodyFormat = newBody;
+              } else {
+                this.bodyFormat = this.$store.activeArticle.body;
+              }
             },
             closeModal() { 
               this.showModal = false;
