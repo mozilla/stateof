@@ -13,8 +13,13 @@ const articleContents: any[] = []; // Array to store the contents of each file
 for (const modulePath in articles) {
   if (Object.prototype.hasOwnProperty.call(articles, modulePath)) {
     const module = articles[modulePath];
-    articleContents.push(module.default || module); // Access the default export or the module itself and add it to the array
+    articleContents.push(module ? module : null);
   }
+}
+
+interface BodyStore {
+  lock: boolean;
+  toggle(): void;
 }
 
 
@@ -35,11 +40,11 @@ Alpine.store('articles', articleContents);
 Alpine.store('activeArticle', {});
 
 Alpine.store('body', {
-	lock: false,
+  lock: false,
 
-	toggle() {
-		this.lock = !this.lock;
-	}
+  toggle(this: BodyStore) {
+    this.lock = !this.lock;
+  }
 });
 
 // Components
