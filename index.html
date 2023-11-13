@@ -23,7 +23,7 @@
   </head>
 
   <body class="flex flex-col font-body" x-data :class="{ 'overflow-hidden h-screen' : $store.body.lock }">
-    <header x-data="header()" x-ref="header" class="fixed top-0 left-0 z-20 w-full">
+    <header ref="header" class="fixed top-0 left-0 z-20 w-full transition duration-150 ease-out"  x-data="nav()" @scroll.window="revealHeader()">
       <div class="container flex items-center justify-between gap-6 transition-opacity duration-300 md:sticky pt-9">
         <a href="https://www.mozilla.org/en-US/" class="w-[100px]">
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 99 29" class="w-[100px]">
@@ -56,6 +56,38 @@
           <a href="#" class="bg-black text-white text-[16px] font-bold leading-none px-[24px] pt-[13px] pb-[12px] rounded hover:bg-[#86C5C8] transition duration-150 ease-out font-title">CTA</a>
         </div>
       </div>
+      <script>
+        function nav() {
+          return {
+            menuOpen: false,
+            lastScrollTop: null,
+            isScrolled: false,
+            hideHeader: false,
+
+            toggleMenu() {
+              this.menuOpen = !this.menuOpen;
+            },
+            revealHeader() {
+              var lastScroll = window.pageYOffset;
+
+              if (lastScroll > this.lastScrollTop && lastScroll > 200) {
+                this.$el.style.transform = 'translateY(-100%)';
+                this.isScrolled = true;
+                this.hideHeader = true;
+              } else {
+                this.$el.style.transform = 'translateY(0)';
+                this.hideHeader = false;
+              }
+
+              if (lastScroll < 200 && this.isScrolled) {
+                this.isScrolled = false;
+              }
+
+              this.lastScrollTop = lastScroll <= 0 ? 0 : lastScroll;
+            },
+          }
+        }
+      </script>
     </header>
 
     <main x-data="modalCheck()" class="z-10">
