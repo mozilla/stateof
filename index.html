@@ -289,7 +289,7 @@
                     </span>
                     <span class="text-[14px]/[21px] font-normal font-title" x-html="article.author.job_title"></span>
                   </div>
-                  <div class="w-full flex items-center justify-end my-[30px] [&>svg]:w-[48vw]" x-html="article.icon"></div>
+                  <div class="w-full flex items-center justify-end my-[30px]" x-html="article.icon"></div>
                   <h3 class="text-[24px]/[26px] tracking-[.48px] font-bold font-title" x-html="article.title"></h3>
                   <a x-cloak :href="article.hash" class="flex items-center mt-[25px] gap-[5px] group">
                     <span class="text-[16px]/[28px] font-bold relative font-title">
@@ -324,7 +324,7 @@
                 this.articles = this.$store.articles.filter(article => !article.content.lead_article && article.content.title !== this.firstArticle.title).map(article => article.content);
                 
                 // get three articles with the width value of 'third'
-                this.firstRow = this.articles.filter(article => article.width === 'third').slice(0, 3);
+                this.firstRow = this.articles.filter(article => article.width === 'third' && article.title !== this.firstArticle.title).slice(0, 3);
 
                 // get two articles that have the width value of 'half' and not the first article
                 this.secondRow = this.articles.filter(article => article.width === 'half' && article.title !== this.firstArticle.title).slice(0, 2);
@@ -338,6 +338,32 @@
         <div id="modal-container" class="fixed top-0 left-0 z-20 table w-full h-full transform" x-show="showModal" x-cloak>
           <div class="h-screen overflow-scroll transition duration-500 ease-out bg-white modal-background" :class="showModal ? 'opacity-100' : 'opacity-0'">
             <div class="modal w-[90vw] mx-auto block text-[#111111]" @click.outside="closeModal">
+              <div class="container absolute top-0 z-10 -translate-x-1/2 left-1/2 pt-[42px] flex items-center justify-between">
+                <a href="https://www.mozilla.org/en-US/" class="w-[100px]">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 99 29" class="w-[100px]">
+                    <g fill="#000000" clip-path="url(#header-a)">
+                      <path d="M36.9066 12.885c-1.8103 0-2.9378 1.3793-2.9378 3.7675 0 2.1956.9889 3.8842 2.9081 3.8842 1.84 0 3.0467-1.5211 3.0467-3.9401 0-2.5607-1.3453-3.7116-3.017-3.7116Zm48.5195 6.384c0 .8163.3858 1.4656 1.4539 1.4656 1.2612 0 2.6065-.928 2.6907-3.0374-.5739-.0863-1.2067-.1675-1.7855-.1675-1.2612-.0051-2.3591.36-2.3591 1.7393Z" />
+                      <path d="M0 0v29h98.9183V0H0Zm28.7804 23.042h-5.1883v-7.1449c0-2.1957-.7121-3.0374-2.1119-3.0374-1.7014 0-2.3891 1.2372-2.3891 3.012v4.4116h1.6473v2.7587H15.555v-7.1449c0-2.1957-.7124-3.0374-2.1119-3.0374-1.7013 0-2.389 1.2372-2.389 3.012v4.4116h2.3593v2.7587H5.8707v-2.7587h1.64694V13.108H5.8707v-2.7586h5.1834v1.9118c.7417-1.3489 2.0326-2.1652 3.7588-2.1652 1.7855 0 3.4275.8722 4.036 2.7282.6873-1.6886 2.0871-2.7282 4.036-2.7282 2.2204 0 4.2535 1.3793 4.2535 4.3862v5.8011h1.6469v2.7587h-.0049Zm7.9875.2787c-3.8133 0-6.4495-2.3885-6.4495-6.4398 0-3.712 2.196-6.7798 6.6425-6.7798 4.4462 0 6.6125 3.0627 6.6125 6.6073 0 4.0516-2.8536 6.6123-6.8055 6.6123Zm19.957-.2787H45.913l-.356-1.9119 6.8055-8.017h-3.8677l-.5491 1.9676-2.5521-.2842.4402-4.4471h10.8663l.2769 1.9118-6.865 8.0221h4.0063l.5785-1.9676 2.7996.2791-.7715 4.4472Zm7.0626 0h-3.7044v-4.5588h3.7044v4.5588Zm0-8.1338h-3.7044v-4.5588h3.7044v4.5588Zm2.3148 8.1338 5.3513-19.35537h3.4869L69.5892 23.042h-3.4869Zm7.1913 0 5.3463-19.35537h3.487L76.7756 23.042h-3.482Zm18.9924.2787c-1.6469 0-2.5521-.9838-2.7154-2.5302-.7121 1.293-1.9733 2.5302-3.9766 2.5302-1.7856 0-3.8133-.9838-3.8133-3.6308 0-3.1236 2.9378-3.8537 5.7622-3.8537.6873 0 1.3994.0304 2.0327.1116v-.4208c0-1.2931-.0298-2.8399-2.0327-2.8399-.7422 0-1.3157.0559-1.8945.3651l-.4006 1.43-2.8239-.3092.4847-2.921c2.166-.9026 3.2642-1.1509 5.2969-1.1509 2.6609 0 4.9114 1.4047 4.9114 4.305v5.5122c0 .7301.2769.9835.8507.9835.163 0 .3313-.0305.5194-.086l.0294 1.9115c-.6676.3701-1.4638.5934-2.2304.5934Z" />
+                    </g>
+                    <defs>
+                      <clipPath id="header-a">
+                        <path fill="#fff" d="M0 0h99v29H0z" />
+                      </clipPath>
+                    </defs>
+                  </svg>
+                  <span class="sr-only">Go to Mozilla.org</span>
+                </a>
+                <button @click="closeModal" class="inline-flex items-center justify-end gap-[13px] group">
+                  <span class="text-[16px]/[28px] font-bold relative font-title ">
+                    Back
+                    <span
+                      class="bottom-0 left-0 w-full h-0.5 bg-black absolute transition duration-150 ease-out group-hover:scale-x-0 origin-right"></span>
+                  </span>
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="w-[24px] translate-y-0.5">
+                    <path fill="#000" d="m13.41 11.9999 6.3-6.28996a1.00411 1.00411 0 0 0 0-1.42 1.0041 1.0041 0 0 0-1.42 0L12 10.5899 5.71 4.28994a1.0041 1.0041 0 0 0-1.42 1.42l6.3 6.28996-6.3 6.29a1.00027 1.00027 0 0 0-.21889.3255.99942.99942 0 0 0-.07691.3845c0 .1321.02614.2628.07691.3846a.9988.9988 0 0 0 .21889.3254.99777.99777 0 0 0 .32542.2189A.99944.99944 0 0 0 5 20.0057a.99944.99944 0 0 0 .38458-.0769.99777.99777 0 0 0 .32542-.2189l6.29-6.3 6.29 6.3c.093.0938.2036.1682.3254.2189a.99972.99972 0 0 0 .3846.0769c.132 0 .2627-.0261.3846-.0769a.99874.99874 0 0 0 .3254-.2189.99977.99977 0 0 0 .2958-.71c0-.132-.0261-.2627-.0769-.3845a1.00125 1.00125 0 0 0-.2189-.3255l-6.3-6.29Z" />
+                  </svg>
+                </button>
+              </div>
               <template x-if="previousArticle">
                 <a :href="previousArticle.hash" @click="checkIndex" class="fixed left-0 z-20 p-5 -translate-y-1/2 max-w-[230px] bg-white border border-l-0 border-black top-1/2 group">
                   <div class="flex items-center gap-5">
@@ -345,7 +371,7 @@
                       <path d="M46.5455 24.7727L23.6364 47.6818L0.727271 24.7727L5.95454 19.5L19.7955 33.3409L19.7955 0.909086L27.4773 0.909086L27.4773 33.3409L41.2955 19.5L46.5455 24.7727Z" fill="black" />
                     </svg>
                     <div class="flex flex-col items-start justify-start gap-[10px]">
-                      <div class="w-[130px] bg-[#EEEEEE]" x-html="previousArticle.icon"></div>
+                      <div class="w-[130px]" x-html="previousArticle.icon"></div>
                       <span class="font-title text-[12px]/[12px] font-bold" x-html="previousArticle.title"></span>
                       <span class="font-title text-[10px]/[10px] font-normal" x-html="previousArticle.author.name"></span>
                     </div>
@@ -357,7 +383,7 @@
                 <a :href="nextArticle.hash" @click="checkIndex" class="fixed right-0 z-20 p-5 -translate-y-1/2 max-w-[230px] bg-white border border-r-0 border-black top-1/2 group">
                   <div class="flex items-center gap-5">
                     <div class="flex flex-col items-start justify-start gap-[10px]">
-                      <div class="w-[130px] bg-[#EEEEEE]" x-html="nextArticle.icon"></div>
+                      <div class="w-[130px]" x-html="nextArticle.icon"></div>
                       <span class="font-title text-[12px]/[12px] font-bold" x-html="nextArticle.title"></span>
                       <span class="font-title text-[10px]/[10px] font-normal" x-html="nextArticle.author.name"></span>
                     </div>
