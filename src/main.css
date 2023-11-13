@@ -59,6 +59,10 @@
     content: open-quote;
     @apply text-[56px]/[56px] font-title font-bold tracking-[1px];
   }
+
+  .tile:last-child .icon {
+    @apply !justify-start;
+  }
 }
 
 @layer components {

@@ -280,16 +280,19 @@
         <div class="border-t-2 border-black">
           <div class="container px-0 relative flex justify-between gap-[128px]">
             <template x-for="article in secondRow">
-              <div class="relative z-20 flex-[50%] px-6">
+              <div class="relative z-0 w-[calc(50%-64px)] tile">
                 <div class="z-10 flex flex-col items-start justify-start w-full py-[65px]">
                   <div class="flex flex-col items-start justify-start w-full">
                     <span class="flex items-end gap-[10px] w-full">
-                      <span class="text-[16px]/[24px] tracking-[0.64px] font-semibold font-title shrink-0 inline-block" x-html="article.author.name"></span>
+                      <span class="text-[16px]/[24px] tracking-[0.64px] font-semibold font-title shrink-0 inline-block"
+                        x-html="article.author.name"></span>
                       <div class="w-full h-0.5 bg-black -translate-y-1.5"></div>
                     </span>
                     <span class="text-[14px]/[21px] font-normal font-title" x-html="article.author.job_title"></span>
                   </div>
-                  <div class="w-full flex items-center justify-end my-[30px]" x-html="article.icon"></div>
+                  <div class="w-full flex items-end justify-end icon my-[30px]">
+                    <div class="[&>svg]:w-[48vw]" x-html="article.icon"></div>
+                  </div>
                   <h3 class="text-[24px]/[26px] tracking-[.48px] font-bold font-title" x-html="article.title"></h3>
                   <a x-cloak :href="article.hash" class="flex items-center mt-[25px] gap-[5px] group">
                     <span class="text-[16px]/[28px] font-bold relative font-title">
