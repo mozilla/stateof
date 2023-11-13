@@ -23,8 +23,8 @@
   </head>
 
   <body class="flex flex-col font-body" x-data :class="{ 'overflow-hidden h-screen' : $store.body.lock }">
-    <header ref="header" class="fixed top-0 left-0 z-20 w-full transition duration-150 ease-out"  x-data="nav()" @scroll.window="revealHeader()">
-      <div class="container flex items-center justify-between gap-6 transition-opacity duration-300 md:sticky pt-9">
+    <header ref="header" class="fixed top-0 left-0 z-20 w-full transition duration-150 ease-out"  x-data="nav()" @scroll.window="revealHeader()" :class="isScrolled ? 'bg-white' : ''">
+      <div class="container flex items-center justify-between gap-6 transition-opacity duration-300 md:sticky py-9">
         <a href="https://www.mozilla.org/en-US/" class="w-[100px]">
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 99 29" class="w-[100px]">
             <g fill="#000000" clip-path="url(#header-a)">
@@ -79,7 +79,7 @@
                 this.hideHeader = false;
               }
 
-              if (lastScroll < 200 && this.isScrolled) {
+              if (lastScroll < 300 && this.isScrolled) {
                 this.isScrolled = false;
               }
 
