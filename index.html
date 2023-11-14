@@ -493,9 +493,12 @@
                
               },
               dynamicGridWidth() {
-                const grid = document.querySelector('.testimonies__grid');
-                const gridLeft = grid.getBoundingClientRect().left;
-                grid.style.width = `calc(100vw - ${gridLeft}px)`;
+                const grid = document.querySelectorAll('.testimonies__grid');
+
+                grid.forEach(element => {
+                  const gridLeft = element.getBoundingClientRect().left;
+                  element.style.width = `calc(100vw - ${gridLeft}px)`;
+                });
               }
             }
           }
