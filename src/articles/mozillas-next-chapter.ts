@@ -4,7 +4,7 @@ export const content: object = {
   author: {
     name: 'Mitchell Baker',
     job_title: 'Executive Chairwoman & CEO',
-    image: '/headshot.png',
+    image: '/headshots/headshot.png',
   },
   lead_article: true,
   modal_style: 'long',

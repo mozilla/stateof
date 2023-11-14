@@ -24,7 +24,7 @@
 
   <body class="flex flex-col font-body" x-data :class="{ 'overflow-hidden h-screen' : $store.body.lock }">
     <header ref="header" class="fixed top-0 left-0 z-20 w-full transition duration-150 ease-out"  x-data="nav()" @scroll.window="revealHeader()" :class="isScrolled ? 'bg-white' : ''">
-      <div class="container flex items-center justify-between gap-6 transition-opacity duration-300 md:sticky py-9">
+      <div class="container flex items-center justify-between gap-6 transition-opacity duration-300 py-9">
         <a href="https://www.mozilla.org/en-US/" class="w-[100px]">
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 99 29" class="w-[100px]">
             <g fill="#000000" clip-path="url(#header-a)">
@@ -255,7 +255,7 @@
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse nec augue turpis. Cras auctor et ligula nec consequat. Orci varius natoque penatibus et magnis.
                 </p>
                 <div class="flex items-center justify-start w-full gap-[22px] mt-[95px]">
-                  <img src="/headshot.png" alt="Head shot of INSERT NAME HERE" width="75" height="75" class="w-[75px] shrink-0 mix-blend-multiply" />
+                  <img src="/headshots/headshot.png" alt="Head shot of INSERT NAME HERE" width="75" height="75" loading="lazy" class="w-[75px] shrink-0 mix-blend-multiply" />
                   <div class="flex flex-col items-start justify-start w-full gap-5">
                     <div class="flex flex-col items-start justify-start w-full shrink-0">
                       <span class="flex items-end gap-[10px] w-full">
@@ -344,7 +344,6 @@
           </div>
         </div>
 
-
         <script>
           function articles() {
             return {
@@ -363,6 +362,140 @@
 
                 // get two articles that have the width value of 'half' and not the first article
                 this.secondRow = this.articles.filter(article => article.width === 'half' && article.title !== this.firstArticle.title).slice(0, 2);
+              }
+            }
+          }
+        </script>
+      </section>
+
+      <!-- Why Mozilla -->
+      <section class="bg-[#CEEAEB] relative py-[150px] border-t-2 border-black overflow-hidden flex flex-col gap-[120px]" x-data="testimonies()">
+        <div class="absolute top-0 left-0 w-10 h-full bg-white">
+          <div class="w-full h-10 bg-black"></div>
+        </div>
+
+        <div class="container flex items-start justify-start gap-8">
+          <div class="w-1/4">
+            <h2 class="text-[36px]/[38px] font-title font-bold mb-[15px]">Why I <br/>choose Mozilla</h2>
+            <p class="font-body font-normal text-[16px]/[21px] tracking-[.32px]">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse nec augue.</p>
+          </div>
+          <div class="w-1/4">
+            <div class="w-[68vw] grid grid-cols-3 testimonies__grid">
+              <template x-for="item in whyMozilla">
+                <div class="bg-[#EEEEEE] p-[65px] border-2 -mr-0.5 -mb-0.5 border-black">
+                  <div class="flex flex-col items-start justify-start gap-8">
+                    <img :src="item.author.image" :alt="item.author.name" class="object-cover object-center w-full aspect-square grayscale bg-blend-darken" loading="lazy" width="200" height="200">
+                    <h3 x-html="item.author.name" class="text-[24px]/[26px] tracking-[.48px] font-bold font-title"></h3>
+                    <a x-cloak :href="item.hash" class="flex items-center gap-[5px] group">
+                      <span class="text-[16px]/[28px] font-bold relative font-title">
+                        Read
+                        <span class="bottom-0 left-0 w-full h-0.5 bg-black absolute transition duration-150 ease-out group-hover:scale-x-0 origin-right"></span>
+                      </span>
+                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 13 12"
+                        class="w-[14px] transition duration-150 ease-out group-hover:translate-x-1">
+                        <path fill="#000" d="M6.69318.36364 12.4205 6.0909 6.69318 11.8182 5.375 10.5114l3.46023-3.46026H.72727V5.13068h8.10796L5.375 1.67614 6.69318.36364Z" />
+                      </svg>
+                    </a>
+                  </div>
+                </div>
+              </template>
+            </div>
+          </div>
+        </div>
+
+        <div class="container flex items-start justify-start gap-8">
+          <div class="w-1/4">
+            <h2 class="text-[36px]/[38px] font-title font-bold mb-[15px]">Why I act <br/>with Mozilla</h2>
+            <p class="font-body font-normal text-[16px]/[21px] tracking-[.32px]">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse nec augue.</p>
+          </div>
+          <div class="w-1/4">
+            <div class="w-[68vw] border-black grid grid-cols-3 testimonies__grid">
+              <template x-for="item in actMozilla">
+                <div class="bg-[#EEEEEE] p-[65px] border-2 -mr-0.5 -mb-0.5 border-black">
+                  <div class="flex flex-col items-start justify-start gap-8">
+                    <img :src="item.author.image" :alt="item.author.name"
+                      class="object-cover object-center w-full aspect-square grayscale bg-blend-darken" loading="lazy"
+                      width="200" height="200">
+                    <h3 x-html="item.author.name" class="text-[24px]/[26px] tracking-[.48px] font-bold font-title"></h3>
+                    <a x-cloak :href="item.hash" class="flex items-center gap-[5px] group">
+                      <span class="text-[16px]/[28px] font-bold relative font-title">
+                        Read
+                        <span
+                          class="bottom-0 left-0 w-full h-0.5 bg-black absolute transition duration-150 ease-out group-hover:scale-x-0 origin-right"></span>
+                      </span>
+                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 13 12"
+                        class="w-[14px] transition duration-150 ease-out group-hover:translate-x-1">
+                        <path fill="#000"
+                          d="M6.69318.36364 12.4205 6.0909 6.69318 11.8182 5.375 10.5114l3.46023-3.46026H.72727V5.13068h8.10796L5.375 1.67614 6.69318.36364Z" />
+                      </svg>
+                    </a>
+                  </div>
+                </div>
+              </template>
+            </div>
+          </div>
+        </div>
+
+        <div class="container flex items-start justify-start gap-8">
+          <div class="w-1/4">
+            <h2 class="text-[36px]/[38px] font-title font-bold mb-[15px]">Why I build <br/>with Mozilla</h2>
+            <p class="font-body font-normal text-[16px]/[21px] tracking-[.32px]">Lorem ipsum dolor sit amet, consectetur
+              adipiscing elit. Suspendisse nec augue.</p>
+          </div>
+          <div class="w-1/4">
+            <div class="w-[68vw] border-black grid grid-cols-3 testimonies__grid">
+              <template x-for="item in buildMozilla">
+                <div class="bg-[#EEEEEE] p-[65px] border-2 -mr-0.5 -mb-0.5 border-black">
+                  <div class="flex flex-col items-start justify-start gap-8">
+                    <img :src="item.author.image" :alt="item.author.name"
+                      class="object-cover object-center w-full aspect-square grayscale bg-blend-darken" loading="lazy"
+                      width="200" height="200">
+                    <h3 x-html="item.author.name" class="text-[24px]/[26px] tracking-[.48px] font-bold font-title"></h3>
+                    <a x-cloak :href="item.hash" class="flex items-center gap-[5px] group">
+                      <span class="text-[16px]/[28px] font-bold relative font-title">
+                        Read
+                        <span
+                          class="bottom-0 left-0 w-full h-0.5 bg-black absolute transition duration-150 ease-out group-hover:scale-x-0 origin-right"></span>
+                      </span>
+                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 13 12"
+                        class="w-[14px] transition duration-150 ease-out group-hover:translate-x-1">
+                        <path fill="#000"
+                          d="M6.69318.36364 12.4205 6.0909 6.69318 11.8182 5.375 10.5114l3.46023-3.46026H.72727V5.13068h8.10796L5.375 1.67614 6.69318.36364Z" />
+                      </svg>
+                    </a>
+                  </div>
+                </div>
+              </template>
+            </div>
+          </div>
+        </div>
+
+        <script>
+          function testimonies() {
+            return {
+              whyMozilla: null,
+              actMozilla: null,
+              buildMozilla: null,
+
+              init() {
+                // get testimonies tagged with 'choose'
+                this.whyMozilla = this.$store.testimonies.filter(testimony => testimony.content.tag.includes('choose')).map(testimony => testimony.content);
+
+                this.actMozilla = this.$store.testimonies.filter(testimony => testimony.content.tag.includes('act')).map(testimony => testimony.content);
+
+                this.buildMozilla = this.$store.testimonies.filter(testimony => testimony.content.tag.includes('build')).map(testimony => testimony.content);
+
+                this.dynamicGridWidth();
+
+                window.addEventListener('resize', () => {
+                  this.dynamicGridWidth();
+                });
+               
+              },
+              dynamicGridWidth() {
+                const grid = document.querySelector('.testimonies__grid');
+                const gridLeft = grid.getBoundingClientRect().left;
+                grid.style.width = `calc(100vw - ${gridLeft}px)`;
               }
             }
           }

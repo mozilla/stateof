@@ -17,6 +17,16 @@ for (const modulePath in articles) {
   }
 }
 
+const testimonies = import.meta.globEager('./testimonies/*.ts');
+const testimoniesContents: any[] = []; // Array to store the contents of each file
+
+for (const modulePath in testimonies) {
+  if (Object.prototype.hasOwnProperty.call(testimonies, modulePath)) {
+    const module = testimonies[modulePath];
+    testimoniesContents.push(module ? module : null);
+  }
+}
+
 interface BodyStore {
   lock: boolean;
   toggle(): void;
@@ -37,7 +47,10 @@ Alpine.plugin(focus);
 
 // Data Store
 Alpine.store('articles', articleContents);
+Alpine.store('testimonies', testimoniesContents);
+
 Alpine.store('activeArticle', {});
+
 
 Alpine.store('body', {
   lock: false,
