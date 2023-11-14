@@ -609,7 +609,24 @@
                     </div>
                   </div>
                 </div>
-                <div class="absolute bottom-0 right-0 translate-x-[5vw] w-[30vw]" x-html="$store.activeArticle.icon"></div>
+                <template x-if="$store.modalType == 'article'">
+                  <div class="absolute bottom-0 right-0 translate-x-[5vw] w-[30vw]" x-html="$store.activeArticle.icon"></div>
+                </template>
+                <template x-if="$store.modalType == 'testimony'">
+                  <div class="absolute bottom-0 right-0 translate-x-[5vw] w-[30vw]">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 427 437">
+                      <g clip-path="url(#default-icon)">
+                        <path fill="#86C5C8" d="M0 200C0 89.5431 89.5431 0 200 0h235v437H0V200Z" />
+                        <rect width="567" height="328" x="44" y="54" fill="#EEE" opacity=".9" rx="164" />
+                      </g>
+                      <defs>
+                        <clipPath id="default-icon">
+                          <path fill="#fff" d="M0 0h435v437H0z" />
+                        </clipPath>
+                      </defs>
+                    </svg>
+                  </div>
+                </template>
               </div>
 
               <template x-if="$store.activeArticle.modal_style != 'short'">
