@@ -523,8 +523,12 @@
                 this.actMozilla = this.$store.testimonies.filter(testimony => testimony.content.tag.includes('act')).map(testimony => testimony.content);
 
                 this.buildMozilla = this.$store.testimonies.filter(testimony => testimony.content.tag.includes('build')).map(testimony => testimony.content);
+                
+                setTimeout(() => {
+                  this.dynamicGridWidth();
+                }, 10);
 
-                this.dynamicGridWidth();
+                Alpine
 
                 window.addEventListener('resize', () => {
                   this.dynamicGridWidth();
