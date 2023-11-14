@@ -22,7 +22,7 @@
     <!-- <script type="text/javascript" src="https://www.bugherd.com/sidebarv2.js?apikey=cltuoorymbo4x7w8iwxbnq" async="true"></script> -->
   </head>
 
-  <body class="flex flex-col font-body" x-data :class="{ 'overflow-hidden h-screen' : $store.body.lock }">
+  <body class="flex flex-col font-body" x-data x-cloak :class="{ 'overflow-hidden h-screen' : $store.body.lock }">
     <header ref="header" class="fixed top-0 left-0 z-20 w-full transition duration-150 ease-out"  x-data="nav()" @scroll.window="revealHeader()" :class="isScrolled ? 'bg-white' : ''">
       <div class="container flex items-center justify-between gap-6 transition-opacity duration-300 py-9">
         <a href="https://www.mozilla.org/en-US/" class="w-[100px]">
