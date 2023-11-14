@@ -1,7 +1,7 @@
 export const content: object = {
   title: 'Why I joined Mozilla',
   tag: 'choose',
-  hash: '#linda-griffin',
+  hash: '#linda-griffin-2',
   author: {
     name: 'Linda Griffin',
     job_title: 'VP of Public Policy',

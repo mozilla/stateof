@@ -46,6 +46,8 @@ Alpine.plugin(persist);
 Alpine.plugin(focus);
 
 // Data Store
+Alpine.store('modalType', '');
+
 Alpine.store('articles', articleContents);
 Alpine.store('testimonies', testimoniesContents);
 

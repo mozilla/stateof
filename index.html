@@ -369,9 +369,9 @@
       </section>
 
       <!-- Why Mozilla -->
-      <section class="bg-[#CEEAEB] relative py-[150px] border-t-2 border-black overflow-hidden flex flex-col gap-[120px]" x-data="testimonies()">
+      <section class="bg-[#CEEAEB] relative py-[150px] border-t-2 border-black flex flex-col gap-[120px]" x-data="testimonies()">
         <div class="absolute top-0 left-0 w-10 h-full bg-white">
-          <div class="w-full h-10 bg-black"></div>
+          <div x-ref="scrollBar" class="w-full h-10 transition bg-black"></div>
         </div>
 
         <div class="container flex items-start justify-start gap-8">
@@ -380,7 +380,7 @@
             <p class="font-body font-normal text-[16px]/[21px] tracking-[.32px]">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse nec augue.</p>
           </div>
           <div class="w-1/4">
-            <div class="w-[68vw] grid grid-cols-3 testimonies__grid">
+            <div class="w-[68vw] grid grid-cols-3 testimonies__grid overflow-hidden pb-0.5">
               <template x-for="item in whyMozilla">
                 <div class="bg-[#EEEEEE] p-[65px] border-2 -mr-0.5 -mb-0.5 border-black">
                   <div class="flex flex-col items-start justify-start gap-8">
@@ -409,7 +409,7 @@
             <p class="font-body font-normal text-[16px]/[21px] tracking-[.32px]">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse nec augue.</p>
           </div>
           <div class="w-1/4">
-            <div class="w-[68vw] border-black grid grid-cols-3 testimonies__grid">
+            <div class="w-[68vw] border-black grid grid-cols-3 testimonies__grid overflow-hidden pb-0.5">
               <template x-for="item in actMozilla">
                 <div class="bg-[#EEEEEE] p-[65px] border-2 -mr-0.5 -mb-0.5 border-black">
                   <div class="flex flex-col items-start justify-start gap-8">
@@ -443,7 +443,7 @@
               adipiscing elit. Suspendisse nec augue.</p>
           </div>
           <div class="w-1/4">
-            <div class="w-[68vw] border-black grid grid-cols-3 testimonies__grid">
+            <div class="w-[68vw] border-black grid grid-cols-3 testimonies__grid overflow-hidden pb-0.5">
               <template x-for="item in buildMozilla">
                 <div class="bg-[#EEEEEE] p-[65px] border-2 -mr-0.5 -mb-0.5 border-black">
                   <div class="flex flex-col items-start justify-start gap-8">
@@ -490,7 +490,6 @@
                 window.addEventListener('resize', () => {
                   this.dynamicGridWidth();
                 });
-               
               },
               dynamicGridWidth() {
                 const grid = document.querySelectorAll('.testimonies__grid');
@@ -541,11 +540,20 @@
                     <svg width="35" height="35" viewBox="0 0 47 48" fill="none" xmlns="http://www.w3.org/2000/svg" class="transition duration-150 ease-out rotate-90 group-hover:-translate-x-2 shrink-0">
                       <path d="M46.5455 24.7727L23.6364 47.6818L0.727271 24.7727L5.95454 19.5L19.7955 33.3409L19.7955 0.909086L27.4773 0.909086L27.4773 33.3409L41.2955 19.5L46.5455 24.7727Z" fill="black" />
                     </svg>
-                    <div class="flex flex-col items-start justify-start gap-[10px]">
-                      <div class="w-[130px]" x-html="previousArticle.icon"></div>
-                      <span class="font-title text-[12px]/[12px] font-bold" x-html="previousArticle.title"></span>
-                      <span class="font-title text-[10px]/[10px] font-normal" x-html="previousArticle.author.name"></span>
-                    </div>
+                    <template x-if="$store.modalType == 'article'">
+                      <div class="flex flex-col items-start justify-start gap-[10px]">
+                        <div class="w-[130px]" x-html="previousArticle.icon"></div>
+                        <span class="font-title text-[12px]/[12px] font-bold" x-html="previousArticle.title"></span>
+                        <span class="font-title text-[10px]/[10px] font-normal" x-html="nextArticle.author.name"></span>
+                      </div>
+                    </template>
+                    <template x-if="$store.modalType == 'testimony'">
+                      <div class="flex flex-col items-start justify-start gap-[10px]">
+                        <img class="w-[130px] inline-block grayscale mix-blend-darken" :src="previousArticle.author.image" width="130"
+                          height="130" loading="lazy" />
+                        <span class="font-title text-[12px]/[12px] font-bold" x-html="previousArticle.author.name"></span>
+                      </div>
+                    </template>
                   </div>
                 </a>
               </template>
@@ -553,11 +561,19 @@
               <template x-if="nextArticle">
                 <a :href="nextArticle.hash" @click="checkIndex" class="fixed right-0 z-20 p-5 -translate-y-1/2 max-w-[230px] bg-white border border-r-0 border-black top-1/2 group">
                   <div class="flex items-center gap-5">
-                    <div class="flex flex-col items-start justify-start gap-[10px]">
-                      <div class="w-[130px]" x-html="nextArticle.icon"></div>
-                      <span class="font-title text-[12px]/[12px] font-bold" x-html="nextArticle.title"></span>
-                      <span class="font-title text-[10px]/[10px] font-normal" x-html="nextArticle.author.name"></span>
-                    </div>
+                    <template x-if="$store.modalType == 'article'">
+                      <div class="flex flex-col items-start justify-start gap-[10px]">
+                        <div class="w-[130px]" x-html="nextArticle.icon"></div>
+                        <span class="font-title text-[12px]/[12px] font-bold" x-html="nextArticle.title"></span>
+                        <span class="font-title text-[10px]/[10px] font-normal" x-html="nextArticle.author.name"></span>
+                      </div>
+                    </template>
+                    <template x-if="$store.modalType == 'testimony'">
+                      <div class="flex flex-col items-start justify-start gap-[10px]">
+                        <img class="w-[130px] inline-block grayscale mix-blend-darken" :src="nextArticle.author.image" width="130" height="130" loading="lazy" />
+                        <span class="font-title text-[12px]/[12px] font-bold" x-html="nextArticle.author.name"></span>
+                      </div>
+                    </template>
                     <svg width="35" height="35" viewBox="0 0 47 48" fill="none" xmlns="http://www.w3.org/2000/svg" class="duration-150 ease-out -rotate-90 group-hover:translate-x-2 shrink-0">
                       <path
                         d="M46.5455 24.7727L23.6364 47.6818L0.727271 24.7727L5.95454 19.5L19.7955 33.3409L19.7955 0.909086L27.4773 0.909086L27.4773 33.3409L41.2955 19.5L46.5455 24.7727Z"
@@ -631,15 +647,35 @@
             openModal(value) {
               this.showModal = true;
               this.$store.body.lock = true;
-              this.$store.activeArticle = this.$store.articles.find(article => article.content.hash === value)?.content;
+
+              if (this.$store.articles.find(article => article.content.hash === value)?.content) {
+                this.$store.modalType = 'article';
+              } else if (this.$store.testimonies.find(testimony => testimony.content.hash === value)?.content) {
+                this.$store.modalType = 'testimony';
+              } else {
+                this.$store.modalType = null;
+              }
+
+              if(this.$store.modalType === 'article') {
+                this.$store.activeArticle = this.$store.articles.find(article => article.content.hash === value)?.content;
 
 
-              this.$store.articles.forEach((article, index) => {
-                if (article.content.hash === this.$store.activeArticle.hash) {
-                  this.nextArticle = this.$store.articles[index + 1]?.content;
-                  this.previousArticle = this.$store.articles[index - 1]?.content;
-                }
-              });
+                this.$store.articles.forEach((article, index) => {
+                  if (article.content.hash === this.$store.activeArticle.hash) {
+                    this.nextArticle = this.$store.articles[index + 1]?.content;
+                    this.previousArticle = this.$store.articles[index - 1]?.content;
+                  }
+                });
+              } else if (this.$store.modalType === 'testimony') {
+                this.$store.activeArticle = this.$store.testimonies.find(testimony => testimony.content.hash === value)?.content;
+  
+                this.$store.testimonies.forEach((testimony, index) => {
+                  if (testimony.content.hash === this.$store.activeArticle.hash) {
+                    this.nextArticle = this.$store.testimonies[index + 1]?.content;
+                    this.previousArticle = this.$store.testimonies[index - 1]?.content;
+                  }
+                });
+              }
 
               if(this.$store.activeArticle.modal_style === 'long') {
                 // find h4 tag in the article body and put a div before it
