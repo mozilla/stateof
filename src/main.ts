@@ -3,6 +3,7 @@ import Alpine from 'alpinejs';
 import intersect from '@alpinejs/intersect';
 import persist from '@alpinejs/persist';
 import focus from '@alpinejs/focus';
+import Player from '@vimeo/player';
 
 // data
 // gets all the ts files in the /articles folder and returns them as an array
@@ -39,6 +40,7 @@ import header from './components/header';
 import footer from './components/footer';
 
 window.Alpine = Alpine;
+(window as any).Player = Player;
 
 // Plugins
 Alpine.plugin(intersect);

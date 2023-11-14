@@ -367,6 +367,45 @@
         </script>
       </section>
 
+      <!-- Video -->
+      <section class="bg-[#89D5FF] w-full aspect-[2.25] flex items-center border-t-2 border-black relative" x-data="video()">
+        <div class="container relative" x-ref="content">
+          <div class="w-[95%] aspect-[3] bg-[#CEC2FF] mix-blend-multiply absolute top-1/2 left-0 -translate-y-1/2 rounded-full"></div>
+          <div class="w-[462px] aspect-[1.16] bg-[#CEC2FF] mix-blend-multiply absolute top-1/2 right-0 -translate-y-1/2 rounded-full"></div>
+          <img class="w-[400] aspect-[1] absolute top-1/2 right-0 -translate-y-1/2 rounded-full object-cover object-center" src="/video-thumbnail.gif" alt="Video Thumbnail" loading="lazy" width="400" height="400"/>
+          <h2 class="font-title text-[36px]/[38px] tracking-[1.08px] font-bold w-4/12 ml-[65px]">This is the title of a State of Mozilla video</h2>
+          
+          <button @click="play" class="absolute -translate-x-1/2 top-1/2 left-1/2 -translate-y-1/2 w-[66px] text-black hover:text-[#89D5FF] transition duration-150 ease-out">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 66 76">
+              <path fill="currentColor" d="M66 38 0 76V0l66 38Z" />
+            </svg>
+          </button>
+        </div>
+
+        <div class="absolute top-0 left-0 w-full h-full transition duration-300 ease-out bg-black cursor-pointer" :class="!playing ? 'opacity-0 pointer-events-none' : ''">
+          <div id="player" class="w-full h-full [&>iframe]:w-full [&>iframe]:h-full"></div>
+        </div>
+        <script>
+          function video() {
+            return {
+              playing: false,
+
+              play() {
+                const player = new Player('player', {
+                  id: 76979871,
+                  loop: false,
+                  autoplay: true,
+                });
+
+                player.on('play', () => {
+                  this.playing = true;
+                });
+              }
+            }
+          } 
+        </script>
+      </section>
+
       <!-- Why Mozilla -->
       <section class="bg-[#CEEAEB] relative py-[150px] border-t-2 border-black flex flex-col gap-[120px]" x-data="testimonies()">
         <div class="absolute top-0 left-0 w-10 h-full bg-white">
