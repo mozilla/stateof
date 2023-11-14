@@ -649,14 +649,12 @@
             previousArticle: null,
             nextArticle: null,
             init() {
-              // if window.location.hash is not empty, open the modal
               if (window.location.hash) {
                 this.openModal(window.location.hash);
               }
 
-              // Watch if the hash changes
               window.addEventListener('hashchange', (event) => {
-                if(event.srcElement.location.hash) {
+                if (event.srcElement.location.hash) {
                   this.openModal(event.srcElement.location.hash);
                 }
               });
@@ -665,37 +663,39 @@
               this.showModal = true;
               this.$store.body.lock = true;
 
-              if (this.$store.articles.find(article => article.content.hash === value)?.content) {
-                this.$store.modalType = 'article';
-              } else if (this.$store.testimonies.find(testimony => testimony.content.hash === value)?.content) {
-                this.$store.modalType = 'testimony';
-              } else {
-                this.$store.modalType = null;
-              }
+              const articleMatch = this.$store.articles.find(article => article.content.hash === value)?.content;
+              const testimonyMatch = this.$store.testimonies.find(testimony => testimony.content.hash === value)?.content;
 
-              if(this.$store.modalType === 'article') {
-                this.$store.activeArticle = this.$store.articles.find(article => article.content.hash === value)?.content;
+              this.$store.modalType = articleMatch ? 'article' : (testimonyMatch ? 'testimony' : null);
 
+              if (this.$store.modalType === 'article') {
+                this.$store.activeArticle = articleMatch;
 
-                this.$store.articles.forEach((article, index) => {
-                  if (article.content.hash === this.$store.activeArticle.hash) {
-                    this.nextArticle = this.$store.articles[index + 1]?.content;
-                    this.previousArticle = this.$store.articles[index - 1]?.content;
-                  }
-                });
+                this.findAdjacentArticles(this.$store.articles, articleMatch);
               } else if (this.$store.modalType === 'testimony') {
-                this.$store.activeArticle = this.$store.testimonies.find(testimony => testimony.content.hash === value)?.content;
-  
-                this.$store.testimonies.forEach((testimony, index) => {
-                  if (testimony.content.hash === this.$store.activeArticle.hash) {
-                    this.nextArticle = this.$store.testimonies[index + 1]?.content;
-                    this.previousArticle = this.$store.testimonies[index - 1]?.content;
-                  }
-                });
+                this.$store.activeArticle = testimonyMatch;
+
+                this.findAdjacentArticles(this.$store.testimonies, testimonyMatch);
               }
 
-              if(this.$store.activeArticle.modal_style === 'long') {
-                // find h4 tag in the article body and put a div before it
+              this.formatBodyContent();
+            },
+            closeModal() {
+              this.showModal = false;
+              this.$store.body.lock = false;
+              this.$store.activeArticle = null;
+              window.location.hash = '';
+            },
+            checkIndex() {
+              this.findAdjacentArticles(this.$store.articles, this.$store.activeArticle);
+            },
+            findAdjacentArticles(articles, activeArticle) {
+              const currentIndex = articles.findIndex(article => article.content.hash === activeArticle.hash);
+              this.nextArticle = articles[currentIndex + 1]?.content;
+              this.previousArticle = articles[currentIndex - 1]?.content;
+            },
+            formatBodyContent() {
+              if (this.$store.activeArticle.modal_style === 'long') {
                 const h4 = this.$store.activeArticle.body.match(/<h4.*?>.*?<\/h4>/g);
                 const h4Index = this.$store.activeArticle.body.indexOf(h4[0]);
                 const newBody = this.$store.activeArticle.body.slice(0, h4Index) + '<div class="flex items-start justify-between gap-[70px] mt-[100px]"><div class="relative w-full"><svg class="absolute top-0 right-0 w-[450px]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 457 437"><path fill="#CEC2FF" d="M0 200C0 89.5431 89.5431 0 200 0h257v437H0V200Z" opacity=".5" /><path fill="#CEC2FF" d="M150 200C150 89.5431 239.543 0 350 0h107v308H150V200Z" /></svg></div><div class="w-2/3 shrink-0">' + this.$store.activeArticle.body.slice(h4Index) + '</div></div>';
@@ -703,22 +703,8 @@
               } else {
                 this.bodyFormat = this.$store.activeArticle.body;
               }
-            },
-            closeModal() { 
-              this.showModal = false;
-              this.$store.body.lock = false;
-              this.$store.activeArticle = null;
-              window.location.hash = '';
-            },
-            checkIndex() {
-              this.$store.articles.forEach((article, index) => {
-                if (article.content.hash === this.$store.activeArticle.hash) {
-                  this.nextArticle = this.$store.articles[index + 1]?.content;
-                  this.previousArticle = this.$store.articles[index - 1]?.content;
-                }
-              });
             }
-          }
+          };
         }
       </script>
     </main>
