@@ -1,9 +1,9 @@
 export const content: object = {
-  title: 'Why I joined Mozilla',
+  title: 'Why I work for Mozilla',
   tag: 'choose',
-  hash: '#zeke-howard-2',
+  hash: '#shing-suter',
   author: {
-    name: 'Zeke Howard',
+    name: 'Shing Suter',
     job_title: 'Job Title',
     image: '/headshots/zeke-howard.png',
   },

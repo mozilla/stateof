@@ -1,9 +1,9 @@
 export const content: object = {
-  title: 'This is an article title for here',
-  hash: '#this-is-an-article-title-for-here',
+  title: 'Fostering Open Systems, Diversity and Trustworthy AI through Community',
+  hash: '#diversity',
   author: {
-    name: 'Steve Teixeira',
-    job_title: 'Job Title',
+    name: 'Imo & J. Bob',
+    job_title: 'Imo Udom, SVP of Innovation Ecosystems, and J. Bob Alotta, SVP of Global Programs',
     image: null,
   },
   lead_article: false,

@@ -1,11 +1,11 @@
 export const content: object = {
   title: 'Why I joined Mozilla',
   tag: 'act',
-  hash: '#zeke-howard-act-2',
+  hash: '#eric-muhlheim',
   author: {
-    name: 'Zeke Howard',
-    job_title: 'Job Title',
-    image: '/headshots/zeke-howard.png',
+    name: 'Eric Muhlheim',
+    job_title: 'Chief Financial Officer',
+    image: '/headshots/Eric-Muhlheim.jpeg',
   },
   lead_article: true,
   modal_style: 'short',

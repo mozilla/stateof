@@ -1,11 +1,11 @@
 export const content: object = {
   title: 'Why I joined Mozilla',
   tag: 'choose',
-  hash: '#steve-teixeira-2',
+  hash: '#zeke-howard-2',
   author: {
-    name: 'Steve Teixeira',
+    name: 'Orville McDonald',
     job_title: 'Job Title',
-    image: '/headshots/steve-teixeira.png',
+    image: '/headshots/zeke-howard.png',
   },
   lead_article: true,
   modal_style: 'short',

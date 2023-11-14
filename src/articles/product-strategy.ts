@@ -1,10 +1,10 @@
 export const content: object = {
-  title: 'This is an article title for here 2',
-  hash: '#this-is-an-article-title-for-here-2',
+  title: 'A new product strategy for the age of AI and social',
+  hash: '#product-strategy',
   author: {
     name: 'Steve Teixeira',
-    job_title: 'Job Title',
-    image: null,
+    job_title: 'Chief Product Officer',
+    image: '/headshots/Steve_Teixeira.png',
   },
   lead_article: false,
   modal_style: 'short',

@@ -1,10 +1,10 @@
 export const content: object = {
-  title: 'Why I joined Mozilla',
+  title: 'Why I work for Mozilla',
   tag: 'choose',
-  hash: '#zeke-howard-2',
+  hash: '#sulafa-said-silim',
   author: {
-    name: 'Zeke Howard',
-    job_title: 'Job Title',
+    name: 'Sulafa Said-Silim',
+    job_title: 'Sr. Advisor, Diversity Equity Inclusion & Belonging',
     image: '/headshots/zeke-howard.png',
   },
   lead_article: true,

@@ -1,10 +1,10 @@
 export const content: object = {
-  title: 'This is an article title for here 3',
-  hash: '#this-is-an-article-title-for-here-3',
+  title: 'Mozilla’s New Mission for the Age of AI',
+  hash: '#mission',
   author: {
-    name: 'Steve Teixeira',
-    job_title: 'Job Title',
-    image: null,
+    name: 'Mark Surmana',
+    job_title: 'President and Executive Director',
+    image: '/headshots/mark-surman.jpeg',
   },
   lead_article: false,
   modal_style: 'short',

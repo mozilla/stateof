@@ -1,11 +1,11 @@
 export const content: object = {
-  title: 'Why I joined Mozilla',
+  title: 'Why I work for Mozilla',
   tag: 'choose',
-  hash: '#linda-griffin-2',
+  hash: '#suba-vasudevan',
   author: {
-    name: 'Linda Griffin',
-    job_title: 'VP of Public Policy',
-    image: '/headshots/linda-griffin.png',
+    name: 'Suba Vasudevan',
+    job_title: 'SVP of Strategy & Operations',
+    image: '/headshots/Suba-Vasudevan.png',
   },
   lead_article: true,
   modal_style: 'medium',

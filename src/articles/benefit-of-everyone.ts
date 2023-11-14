@@ -1,10 +1,10 @@
 export const content: object = {
-  title: 'This is an article title for here 1',
-  hash: '#this-is-an-article-title-for-here-1',
+  title: 'Creating Open Source AI Tools for the Benefit of Everyone',
+  hash: '#benefit-of-everyone',
   author: {
-    name: 'Steve Teixeira',
-    job_title: 'Job Title',
-    image: null,
+    name: 'Moez Draief',
+    job_title: 'Managing Director of Mozilla.ai',
+    image: '/headshots/Moez-Draief.jpeg',
   },
   lead_article: false,
   modal_style: 'short',
