@@ -135,21 +135,21 @@
 
     <main x-data="modalCheck()" class="z-10">
       <!-- Hero -->
-      <section class="bg-[#CEEAEB] relative min-h-screen flex items-end pb-[60px] pt-[100px] overflow-hidden" x-ref="hero" x-data="Hero()">
-        <div class="origin-top absolute top-0 left-1/2 -translate-x-1/2 h-full w-0.5 bg-[#111111]"></div>
-        <div class="container flex items-end justify-between h-full">
-          <div class="flex items-start justify-start w-5/12">
-            <span class="origin-left -rotate-90 text-[28px] font-medium translate-y-[70px] translate-x-[15px] leading-none">2023</span>
+      <section class="bg-[#CEEAEB] relative md:min-h-screen flex items-start md:pb-[60px] py-[175px] md:pt-[100px] overflow-hidden" x-ref="hero" x-data="Hero()">
+        <div class="origin-top absolute top-0 left-1/2 -translate-x-1/2 h-full w-0.5 bg-[#111111] hidden md:block"></div>
+        <div class="container flex-col items-end justify-between h-full md:flex-row">
+          <div class="flex items-start justify-start w-full md:w-5/12">
+            <span class="origin-left -rotate-90 text-[24px] md:text-[28px] font-medium translate-y-[60px] md:translate-y-[70px] -translate-x-1.5 md:translate-x-[15px] leading-none w-[20px] md:w-auto">2023</span>
             <div class="flex flex-col items-start justify-start w-full">
-              <h1 class="text-[81px] leading-none tracking-[-0.81px] text-[#111111] font-black mb-0 font-title">
+              <h1 class="text-[70px] md:text-[81px] leading-none tracking-[-0.81px] text-[#111111] font-black mb-0 font-title">
                 State of
                 <br />
                 Mozilla
               </h1>
               <div class="w-full h-0.5 bg-[#111111] mt-[29px] mb-[34px] max-w-[440px]"></div>
-              <h2 class="text-[24px]/[31px] tracking-[.48px] font-title">Mozilla was built to make <br>the internet better</h2>
+              <h2 class="text-[24px]/[31px] tracking-[.48px] font-title">Mozilla was built to make <br class="hidden md:inline-block">the internet better</h2>
 
-              <button class="mt-[85px] mb-1 transition duration-150 ease-out hover:translate-y-2 cursor-pointer" @click="nextSection()">
+              <button class="mt-[50px] md:mt-[85px] mb-1 transition duration-150 ease-out hover:translate-y-2 cursor-pointer" @click="nextSection()">
                 <svg width="47" height="48" viewBox="0 0 47 48" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path
                     d="M46.5455 24.7727L23.6364 47.6818L0.727271 24.7727L5.95454 19.5L19.7955 33.3409L19.7955 0.909086L27.4773 0.909086L27.4773 33.3409L41.2955 19.5L46.5455 24.7727Z"
@@ -159,10 +159,11 @@
               </button>
             </div>
           </div>
-          <div class="flex flex-col w-5/12">
-            <div class="w-[45vw]" x-html="article.icon"></div>
-            <div class="flex flex-col mt-[20px] w-10/12 self-end items-start justify-start">
-              <h3 class="text-[37px]/[38px] tracking-[1.08px] font-semibold font-title" x-html="article.title"></h3>
+          <div class="relative flex flex-col w-full mt-[100px] md:mt-0 md:w-5/12">
+            <div class="w-[45vw] hidden md:block" x-html="article.icon"></div>
+            <div class="w-[85vw] absolute left-1/2 -translate-x-[45%] -translate-y-1/2 z-0 -rotate-90 md:hidden" x-html="article.icon"></div>
+            <div class="flex flex-col md:mt-[20px] w-full md:w-10/12 self-end items-start justify-start z-10">
+              <h3 class="text-[36px]/[38px] tracking-[1.08px] font-semibold font-title" x-html="article.title"></h3>
               <div class="flex items-start justify-start w-full gap-[22px] mt-[40px]">
                 <img x-show="article.author" :src="article.author.image" alt="Head shot of INSERT NAME HERE" width="75" height="75" class="w-[75px] shrink-0 mix-blend-multiply"/>
                 <div x-show="article.author" class="flex flex-col items-start justify-start w-full gap-5">
