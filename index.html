@@ -24,8 +24,8 @@
 
   <body class="flex flex-col font-body" x-data x-cloak :class="{ 'overflow-hidden h-screen' : $store.body.lock }">
     <header ref="header" class="fixed top-0 left-0 z-20 w-full transition duration-150 ease-out"  x-data="nav()" @scroll.window="revealHeader()" :class="isScrolled ? 'bg-white' : ''">
-      <div class="container flex items-center justify-between gap-6 transition-opacity duration-300 py-9">
-        <a href="https://www.mozilla.org/en-US/" class="w-[100px]">
+      <div class="container flex items-center justify-between gap-6 py-5 transition-opacity duration-300 md:py-9">
+        <a href="https://www.mozilla.org/en-US/" class="w-[100px] z-10">
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 99 29" class="w-[100px]">
             <g fill="#000000" clip-path="url(#header-a)">
               <path d="M36.9066 12.885c-1.8103 0-2.9378 1.3793-2.9378 3.7675 0 2.1956.9889 3.8842 2.9081 3.8842 1.84 0 3.0467-1.5211 3.0467-3.9401 0-2.5607-1.3453-3.7116-3.017-3.7116Zm48.5195 6.384c0 .8163.3858 1.4656 1.4539 1.4656 1.2612 0 2.6065-.928 2.6907-3.0374-.5739-.0863-1.2067-.1675-1.7855-.1675-1.2612-.0051-2.3591.36-2.3591 1.7393Z" />
@@ -39,7 +39,50 @@
           </svg>
           <span class="sr-only">Go to Mozilla.org</span>
         </a>
-        <div class="flex items-center gap-[35px]">
+        <button class="relative z-10 group md:hidden" type="button" @click="toggleMenu(), $store.body.toggle()">
+          <span class="sr-only">Toggle Menu</span>
+          <div class="flex flex-col justify-between items-end lg:items-start w-[22px] h-[22px] py-[3px]">
+            <span
+              class="bg-black h-[2px] group-hover:bg-primary rounded-full w-full block transition-[width,background-color] duration-150 ease-out"
+              :class="menuOpen ? '!w-0 delay-300' : ''"></span>
+            <span
+              class="bg-black h-[2px] group-hover:bg-primary rounded-full w-full block transition-[width,background-color] duration-150 ease-out"
+              :class="menuOpen ? '!w-0 delay-150' : ''"></span>
+            <span
+              class="bg-black h-[2px] group-hover:bg-primary rounded-full w-full block transition-[width,background-color] duration-150 ease-out"
+              :class="menuOpen ? '!w-0' : ''"></span>
+          </div>
+          <div
+            class="flex flex-col absolute inset-0 justify-center w-0 transition-[width] h-[22px] -translate-y-1 duration-300 ease-in-out"
+            :class="menuOpen ? 'delay-300 !w-[22px]' : ''">
+            <span
+              class="bg-black h-[2px] duration-150 mt-1 rounded-sm w-full block transition-transform absolute left-1/2 -translate-x-1/2 -translate-y-1/2 top-1/2 ease-[cubic-bezier(0.175, 0.885, 0.32, 1.275)]"
+              :class="menuOpen ? ' delay-[550ms] rotate-45' : ''"></span>
+            <span
+              class="bg-black h-[2px] duration-150 mt-1 rounded-sm w-full block absolute left-1/2 transition-transform -translate-x-1/2 -translate-y-1/2 top-1/2 ease-[cubic-bezier(0.175, 0.885, 0.32, 1.275)]"
+              :class="menuOpen ? 'delay-[550ms] -rotate-45' : ''"></span>
+          </div>
+        </button>
+        <div class="absolute top-0 left-0 transition duration-150 ease-out bg-white w-full pt-[80px] pb-[50px] px-6" x-cloak :class="!menuOpen ? '-translate-y-full' : ''">
+          <div class="flex flex-col items-center justify-center gap-[45px]">
+            <div class="w-full h-px bg-black"></div>
+            <a href="#" class="flex items-start justify-start gap-[5px] text-[16px]/[19px] font-medium hover:underline cursor-pointer font-title">
+              Mozilla.org
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14" class="w-[14px] shring-0 translate-y-0.5">
+                <path stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.16667" d="M10.5 7.58333v3.49997A1.1666 1.1666 0 0 1 9.33333 12.25H2.91667A1.16663 1.16663 0 0 1 1.75 11.0833V4.66667A1.16668 1.16668 0 0 1 2.91667 3.5h3.5M8.75 1.75h3.5v3.5M5.83337 8.16667 12.25 1.75" />
+              </svg>
+            </a>
+            <a href="#" class="flex items-start justify-start gap-[5px] text-[16px]/[19px] font-medium hover:underline cursor-pointer font-title">
+              External Link
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14" class="w-[14px] shring-0 translate-y-0.5">
+                <path stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.16667" d="M10.5 7.58333v3.49997A1.1666 1.1666 0 0 1 9.33333 12.25H2.91667A1.16663 1.16663 0 0 1 1.75 11.0833V4.66667A1.16668 1.16668 0 0 1 2.91667 3.5h3.5M8.75 1.75h3.5v3.5M5.83337 8.16667 12.25 1.75" />
+              </svg>
+            </a>
+            <a href="#" class="bg-black text-white text-[16px] font-bold leading-none px-[24px] pt-[13px] pb-[12px] rounded hover:bg-[#86C5C8] transition duration-150 ease-out font-title">CTA</a>
+          </div>
+        </div>
+
+        <div class="hidden md:flex items-center gap-[35px]">
           <a href="#" class="flex items-start justify-start gap-[5px] text-[16px]/[19px] font-medium hover:underline cursor-pointer font-title">
             Mozilla.org
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14" class="w-[14px] shring-0 translate-y-0.5">
