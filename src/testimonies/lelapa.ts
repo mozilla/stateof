@@ -1,11 +1,11 @@
 export const content: object = {
-  title: 'Why I joined Mozilla',
-  tag: 'choose',
-  hash: '#eric-muhlheim',
+  title: 'Why I build with Mozilla',
+  tag: 'build',
+  hash: '#lelapa',
   author: {
-    name: 'Eric Muhlheim',
-    job_title: 'Chief Financial Officer',
-    image: '/headshots/Eric-Muhlheim.jpeg',
+    name: 'Lelapa.AI',
+    job_title: null,
+    image: '/logos/Lelapa.png',
   },
   lead_article: true,
   modal_style: 'short',

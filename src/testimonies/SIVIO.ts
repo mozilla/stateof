@@ -1,11 +1,11 @@
 export const content: object = {
-  title: 'Why I joined Mozilla',
-  tag: 'choose',
-  hash: '#eric-muhlheim',
+  title: "Mozilla’s Africa Innovation Mradi’s 'In Real Life Fund'",
+  tag: 'act',
+  hash: '#sivio',
   author: {
-    name: 'Eric Muhlheim',
-    job_title: 'Chief Financial Officer',
-    image: '/headshots/Eric-Muhlheim.jpeg',
+    name: 'The SIVIO Institute',
+    job_title: null,
+    image: '/logos/sivi-institute.png',
   },
   lead_article: true,
   modal_style: 'short',

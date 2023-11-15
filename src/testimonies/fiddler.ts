@@ -1,11 +1,11 @@
 export const content: object = {
-  title: 'Why I joined Mozilla',
+  title: 'Why I build with Mozilla',
   tag: 'build',
-  hash: '#zeke-howard-build-2',
+  hash: '#fiddler',
   author: {
-    name: 'Zeke Howard',
-    job_title: 'Job Title',
-    image: '/headshots/zeke-howard.png',
+    name: 'Fiddler AI',
+    job_title: null,
+    image: '/logos/fiddler.png',
   },
   lead_article: true,
   modal_style: 'short',

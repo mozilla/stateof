@@ -1,9 +1,9 @@
 export const content: object = {
-  title: 'Why Mozilla is moving into social, what it will look like',
-  hash: '#mozillas-next-chapter',
+  title: 'Mozilla is on a journey to help people reclaim the internet',
+  hash: '#reclaim-the-internet',
   author: {
-    name: 'Mitchell Baker',
-    job_title: 'Executive Chairwoman & CEO',
+    name: 'Mozilla',
+    job_title: null,
     image: '/headshots/headshot.png',
   },
   lead_article: true,

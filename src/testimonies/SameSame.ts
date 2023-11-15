@@ -1,11 +1,11 @@
 export const content: object = {
-  title: 'Why I joined Mozilla',
-  tag: 'build',
-  hash: '#zeke-howard-build',
+  title: "Mozilla’s Africa Innovation Mradi’s 'In Real Life Fund'",
+  tag: 'act',
+  hash: '#samesame-collective',
   author: {
-    name: 'Zeke Howard',
-    job_title: 'Job Title',
-    image: '/headshots/zeke-howard.png',
+    name: 'SameSame Collective',
+    job_title: null,
+    image: '/logos/SameSame.png',
   },
   lead_article: true,
   modal_style: 'short',
