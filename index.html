@@ -259,7 +259,7 @@
         </div>
       </section>
       
-      <!-- Why Articles -->
+      <!-- Articles -->
       <section class="relative w-screen overflow-hidden bg-[#EEEEEE]" x-data="articles()">
         <div class="w-0.5 bg-black h-full shrink-0 absolute left-1/2 -translate-x-1/2 top-0 z-10 hidden md:block"></div>
         <div class="container">
@@ -402,7 +402,7 @@
                       </span>
                       <span class="text-[14px]/[21px] font-normal font-title" x-html="article.author.job_title"></span>
                     </div>
-                    <div class="w-full flex items-center justify-center my-[30px]" x-html="article.icon"></div>
+                    <div class="w-full flex items-center justify-center my-[30px] [&>svg]:w-full" x-html="article.icon"></div>
                     <h3 class="text-[24px]/[26px] tracking-[.48px] font-bold font-title" x-html="article.title"></h3>
                     <a x-cloak :href="article.hash" class="flex items-center mt-[25px] gap-[5px] group">
                       <span class="text-[16px]/[28px] font-bold relative font-title">
@@ -488,17 +488,18 @@
       </section>
 
       <!-- Why Mozilla -->
-      <section class="bg-[#CEEAEB] relative py-[150px] border-t-2 border-black flex flex-col gap-[120px]" x-data="testimonies()">
-        <div class="absolute top-0 left-0 w-10 h-full bg-white">
+      <section class="bg-[#CEEAEB] relative py-[100px] md:py-[150px] border-t-2 border-black flex flex-col gap-[100px] md:gap-[120px]" x-data="testimonies()">
+        <div class="absolute top-0 left-0 hidden w-10 h-full bg-white md:block">
           <div x-ref="scrollBar" class="w-full h-10 transition bg-black"></div>
         </div>
 
-        <div class="container flex items-start justify-start gap-8">
-          <div class="w-1/4">
+        <!-- Choose with Mozilla -->
+        <div class="container flex flex-col items-start justify-start gap-8 px-0 md:px-5 md:flex-row">
+          <div class="w-full px-5 md:px-0 md:w-1/4">
             <h2 class="text-[36px]/[38px] font-title font-bold mb-[15px]">Why I <br/>choose Mozilla</h2>
             <p class="font-body font-normal text-[16px]/[21px] tracking-[.32px]">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse nec augue.</p>
           </div>
-          <div class="w-1/4">
+          <div class="hidden w-1/4 md:block">
             <div class="w-[68vw] grid grid-cols-3 testimonies__grid overflow-hidden pb-0.5">
               <template x-for="item in whyMozilla">
                 <div class="bg-[#EEEEEE] p-[65px] border-2 -mr-0.5 -mb-0.5 border-black">
@@ -520,14 +521,42 @@
               </template>
             </div>
           </div>
+
+          <div class="w-full md:hidden">
+            <div class="relative flex w-full gap-5 px-5 overflow-x-auto snap-x">
+              <template x-for="item in whyMozilla">
+                <div class="bg-[#EEEEEE] p-5 border-1 border-black snap-center shrink-0 w-[75%]">
+                  <div class="flex flex-col items-start justify-start gap-8">
+                    <img :src="item.author.image" :alt="item.author.name"
+                      class="object-cover object-center w-full aspect-square grayscale bg-blend-darken" loading="lazy" width="200"
+                      height="200">
+                    <h3 x-html="item.author.name" class="text-[24px]/[26px] tracking-[.48px] font-bold font-title"></h3>
+                    <a x-cloak :href="item.hash" class="flex items-center gap-[5px] group">
+                      <span class="text-[16px]/[28px] font-bold relative font-title">
+                        Read
+                        <span
+                          class="bottom-0 left-0 w-full h-0.5 bg-black absolute transition duration-150 ease-out group-hover:scale-x-0 origin-right"></span>
+                      </span>
+                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 13 12"
+                        class="w-[14px] transition duration-150 ease-out group-hover:translate-x-1">
+                        <path fill="#000"
+                          d="M6.69318.36364 12.4205 6.0909 6.69318 11.8182 5.375 10.5114l3.46023-3.46026H.72727V5.13068h8.10796L5.375 1.67614 6.69318.36364Z" />
+                      </svg>
+                    </a>
+                  </div>
+                </div>
+              </template>
+            </div>
+          </div>
         </div>
 
-        <div class="container flex items-start justify-start gap-8">
-          <div class="w-1/4">
+        <!-- Act with Mozilla -->
+        <div class="container flex flex-col items-start justify-start gap-8 px-0 md:px-5 md:flex-row">
+          <div class="w-full px-5 md:px-0 md:w-1/4">
             <h2 class="text-[36px]/[38px] font-title font-bold mb-[15px]">Mozilla's Africa Innovation Mradi’s <br/>'In Real Life Fund'</h2>
             <p class="font-body font-normal text-[16px]/[21px] tracking-[.32px]">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse nec augue.</p>
           </div>
-          <div class="w-1/4">
+          <div class="hidden w-1/4 md:block">
             <div class="w-[68vw] border-black grid grid-cols-3 testimonies__grid overflow-hidden pb-0.5">
               <template x-for="item in actMozilla">
                 <div class="bg-[#EEEEEE] p-[65px] border-2 -mr-0.5 -mb-0.5 border-black">
@@ -553,18 +582,73 @@
               </template>
             </div>
           </div>
+
+          <div class="w-full md:hidden">
+            <div class="relative flex w-full gap-5 px-5 overflow-x-auto snap-x">
+              <template x-for="item in actMozilla">
+                <div class="bg-[#EEEEEE] p-5 border-1 border-black snap-center shrink-0 w-[75%]">
+                  <div class="flex flex-col items-start justify-start gap-8">
+                    <img :src="item.author.image" :alt="item.author.name"
+                      class="object-contain object-center w-full aspect-square grayscale bg-blend-darken" loading="lazy" width="200"
+                      height="200">
+                    <h3 x-html="item.author.name" class="text-[24px]/[26px] tracking-[.48px] font-bold font-title"></h3>
+                    <a x-cloak :href="item.hash" class="flex items-center gap-[5px] group">
+                      <span class="text-[16px]/[28px] font-bold relative font-title">
+                        Read
+                        <span
+                          class="bottom-0 left-0 w-full h-0.5 bg-black absolute transition duration-150 ease-out group-hover:scale-x-0 origin-right"></span>
+                      </span>
+                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 13 12"
+                        class="w-[14px] transition duration-150 ease-out group-hover:translate-x-1">
+                        <path fill="#000"
+                          d="M6.69318.36364 12.4205 6.0909 6.69318 11.8182 5.375 10.5114l3.46023-3.46026H.72727V5.13068h8.10796L5.375 1.67614 6.69318.36364Z" />
+                      </svg>
+                    </a>
+                  </div>
+                </div>
+              </template>
+            </div>
+          </div>
         </div>
 
-        <div class="container flex items-start justify-start gap-8">
-          <div class="w-1/4">
+        <!-- Build with Mozilla -->
+        <div class="container flex flex-col items-start justify-start gap-8 px-0 md:px-5 md:flex-row">
+          <div class="w-full px-5 md:px-0 md:w-1/4">
             <h2 class="text-[36px]/[38px] font-title font-bold mb-[15px]">Why I build <br/>with Mozilla</h2>
             <p class="font-body font-normal text-[16px]/[21px] tracking-[.32px]">Lorem ipsum dolor sit amet, consectetur
               adipiscing elit. Suspendisse nec augue.</p>
           </div>
-          <div class="w-1/4">
+          <div class="hidden w-1/4 md:block">
             <div class="w-[68vw] border-black grid grid-cols-3 testimonies__grid overflow-hidden pb-0.5">
               <template x-for="item in buildMozilla">
                 <div class="bg-[#EEEEEE] p-[65px] border-2 -mr-0.5 -mb-0.5 border-black">
+                  <div class="flex flex-col items-start justify-start gap-8">
+                    <img :src="item.author.image" :alt="item.author.name"
+                      class="object-contain object-center w-full aspect-square grayscale bg-blend-darken" loading="lazy"
+                      width="200" height="200">
+                    <h3 x-html="item.author.name" class="text-[24px]/[26px] tracking-[.48px] font-bold font-title"></h3>
+                    <a x-cloak :href="item.hash" class="flex items-center gap-[5px] group">
+                      <span class="text-[16px]/[28px] font-bold relative font-title">
+                        Read
+                        <span
+                          class="bottom-0 left-0 w-full h-0.5 bg-black absolute transition duration-150 ease-out group-hover:scale-x-0 origin-right"></span>
+                      </span>
+                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 13 12"
+                        class="w-[14px] transition duration-150 ease-out group-hover:translate-x-1">
+                        <path fill="#000"
+                          d="M6.69318.36364 12.4205 6.0909 6.69318 11.8182 5.375 10.5114l3.46023-3.46026H.72727V5.13068h8.10796L5.375 1.67614 6.69318.36364Z" />
+                      </svg>
+                    </a>
+                  </div>
+                </div>
+              </template>
+            </div>
+          </div>
+
+          <div class="w-full md:hidden">
+            <div class="relative flex w-full gap-5 px-5 overflow-x-auto snap-x">
+              <template x-for="item in buildMozilla">
+                <div class="bg-[#EEEEEE] p-5 border-1 border-black snap-center shrink-0 w-[75%]">
                   <div class="flex flex-col items-start justify-start gap-8">
                     <img :src="item.author.image" :alt="item.author.name"
                       class="object-contain object-center w-full aspect-square grayscale bg-blend-darken" loading="lazy"
@@ -628,24 +712,24 @@
       </section>
 
       <!-- Links -->
-      <section class="bg-[#CEC2FF] py-[150px]">
-        <div class="container flex items-start justify-between gap-20">
-          <div class="w-1/2">
+      <section class="bg-[#CEC2FF] py-[100px] md:py-[150px]">
+        <div class="container flex flex-col items-start justify-between gap-14 md:gap-20 md:flex-row">
+          <div class="w-full md:w-1/2">
             <h2 class="font-title text-[56px]/[56px] font-bold">Join us in creating a better internet</h2>
-            <p class="font-body text-[20px]/[24px] font-normal mt-4">We know the internet can be better. More joyful. More trustworthy. Safer, and more secure. But we can only get there if we work together. We invite you to join us as this next chapter begins.</p>
+            <p class="font-body text-[20px]/[24px] font-normal mt-10 md:mt-4">We know the internet can be better. More joyful. More trustworthy. Safer, and more secure. But we can only get there if we work together. We invite you to join us as this next chapter begins.</p>
           </div>
-          <div class="flex flex-col items-start justify-start w-1/2 gap-4">
-            <a href="#" class="flex items-center w-full gap-8 pb-4 border-b border-black group">
+          <div class="flex flex-col items-start justify-start w-full gap-4 md:w-1/2">
+            <a href="#" class="flex items-center w-full gap-5 pb-4 border-b border-black md:gap-8 group">
               <div class="w-[65px] h-[65px] mix-blend-multiply shrink-0 rounded-full bg-[#C3C2C2]"></div>
-              <span class="grow text-[24px] font-title font-bold">Donate</span>
+              <span class="grow text-[18px] md:text-[24px] font-title font-bold">Donate</span>
 
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 13 12" class="w-[35px] shrink-0 transition duration-150 ease-out group-hover:translate-x-1">
                 <path fill="#000" d="M6.69318.36364 12.4205 6.0909 6.69318 11.8182 5.375 10.5114l3.46023-3.46026H.72727V5.13068h8.10796L5.375 1.67614 6.69318.36364Z" />
               </svg>
             </a>
-            <a href="#" class="flex items-center w-full gap-8 pb-4 border-b border-black group">
+            <a href="#" class="flex items-center w-full gap-5 pb-4 border-b border-black md:gap-8 group">
               <div class="w-[65px] h-[65px] mix-blend-multiply shrink-0 rounded-full bg-[#C3C2C2]"></div>
-              <span class="grow text-[24px] font-title font-bold">Download Firefox</span>
+              <span class="grow text-[18px] md:text-[24px] font-title font-bold">Download Firefox</span>
             
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 13 12"
                 class="w-[35px] shrink-0 transition duration-150 ease-out group-hover:translate-x-1">
@@ -653,9 +737,9 @@
                   d="M6.69318.36364 12.4205 6.0909 6.69318 11.8182 5.375 10.5114l3.46023-3.46026H.72727V5.13068h8.10796L5.375 1.67614 6.69318.36364Z" />
               </svg>
             </a>
-            <a href="#" class="flex items-center w-full gap-8 pb-4 border-b border-black group">
+            <a href="#" class="flex items-center w-full gap-5 pb-4 border-b border-black md:gap-8 group">
               <div class="w-[65px] h-[65px] mix-blend-multiply shrink-0 rounded-full bg-[#C3C2C2]"></div>
-              <span class="grow text-[24px] font-title font-bold">Join the team</span>
+              <span class="grow text-[18px] md:text-[24px] font-title font-bold">Join the team</span>
             
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 13 12"
                 class="w-[35px] shrink-0 transition duration-150 ease-out group-hover:translate-x-1">
@@ -663,9 +747,9 @@
                   d="M6.69318.36364 12.4205 6.0909 6.69318 11.8182 5.375 10.5114l3.46023-3.46026H.72727V5.13068h8.10796L5.375 1.67614 6.69318.36364Z" />
               </svg>
             </a>
-            <a href="#" class="flex items-center w-full gap-8 pb-4 border-b border-black group">
+            <a href="#" class="flex items-center w-full gap-5 pb-4 border-b border-black md:gap-8 group">
               <div class="w-[65px] h-[65px] mix-blend-multiply shrink-0 rounded-full bg-[#C3C2C2]"></div>
-              <span class="grow text-[24px] font-title font-bold">Subscribe to VPN</span>
+              <span class="grow text-[18px] md:text-[24px] font-title font-bold">Subscribe to VPN</span>
             
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 13 12"
                 class="w-[35px] shrink-0 transition duration-150 ease-out group-hover:translate-x-1">
@@ -673,9 +757,9 @@
                   d="M6.69318.36364 12.4205 6.0909 6.69318 11.8182 5.375 10.5114l3.46023-3.46026H.72727V5.13068h8.10796L5.375 1.67614 6.69318.36364Z" />
               </svg>
             </a>
-            <a href="#" class="flex items-center w-full gap-8 pb-4 border-b border-black group">
+            <a href="#" class="flex items-center w-full gap-5 pb-4 border-b border-black md:gap-8 group">
               <div class="w-[65px] h-[65px] mix-blend-multiply shrink-0 rounded-full bg-[#C3C2C2]"></div>
-              <span class="grow text-[24px] font-title font-bold">Lorem ipsum</span>
+              <span class="grow text-[18px] md:text-[24px] font-title font-bold">Lorem ipsum</span>
             
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 13 12"
                 class="w-[35px] shrink-0 transition duration-150 ease-out group-hover:translate-x-1">
@@ -683,9 +767,9 @@
                   d="M6.69318.36364 12.4205 6.0909 6.69318 11.8182 5.375 10.5114l3.46023-3.46026H.72727V5.13068h8.10796L5.375 1.67614 6.69318.36364Z" />
               </svg>
             </a>
-            <a href="#" class="flex items-center w-full gap-8 pb-4 border-b border-black group">
+            <a href="#" class="flex items-center w-full gap-5 pb-4 border-b border-black md:gap-8 group">
               <div class="w-[65px] h-[65px] mix-blend-multiply shrink-0 rounded-full bg-[#C3C2C2]"></div>
-              <span class="grow text-[24px] font-title font-bold">Join our community</span>
+              <span class="grow text-[18px] md:text-[24px] font-title font-bold">Join our community</span>
             
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 13 12"
                 class="w-[35px] shrink-0 transition duration-150 ease-out group-hover:translate-x-1">
@@ -916,11 +1000,7 @@
       </script>
     </main>
 
-    <footer
-      x-data="footer()"
-      x-ref="footer"
-      class="z-10 transition-opacity duration-300"
-    >
+    <footer x-data="footer()" x-ref="footer" class="z-10 transition-opacity duration-300">
       <div class="container relative grid gap-6 pb-9 pt-[70px]">
         <div>
           <a href="https://www.mozilla.org/en-US/" class="inline-flex hover:underline w-[100px]">
