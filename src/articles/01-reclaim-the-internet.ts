@@ -1,11 +1,7 @@
 export const content: object = {
   title: 'Mozilla is on a journey to help people reclaim the internet',
   hash: '#reclaim-the-internet',
-  author: {
-    name: 'Mozilla',
-    job_title: null,
-    image: '/headshots/headshot.png',
-  },
+  author: null,
   lead_article: true,
   modal_style: 'long',
   excerpt: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse nec augue turpis.',
