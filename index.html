@@ -497,7 +497,7 @@
 
       <!-- Why Mozilla -->
       <section class="bg-[#CEEAEB] relative py-[100px] md:pl-10 md:py-[150px] border-t-2 border-black flex flex-col gap-[100px] md:gap-[120px]" x-data="testimonies()"  x-intersect.margin.-50%="watchScroll">
-        <div x-ref="parentSection" class="absolute top-0 left-0 w-10 h-full bg-white">
+        <div x-ref="parentSection" class="absolute top-0 left-0 hidden w-10 h-full bg-white md:block">
           <div x-ref="translateDiv" class="absolute top-0 left-0 w-full h-10 transition bg-black"></div>
         </div>
 
@@ -999,6 +999,7 @@
               if (!this.showModal) {
                 this.scrollPosition = window.scrollY;
               }
+              
               this.showModal = true;
               this.$store.body.lock = true;
 
