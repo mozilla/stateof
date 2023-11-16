@@ -161,7 +161,7 @@
           </div>
           <div class="relative flex flex-col w-full mt-[100px] md:mt-0 md:w-5/12">
             <div class="w-[45vw] hidden md:block" x-html="article.icon"></div>
-            <div class="w-[85vw] absolute left-1/2 -translate-x-[45%] -translate-y-1/2 z-0 -rotate-90 md:hidden" x-html="article.icon"></div>
+            <div class="w-[85vw] sm:w-[65vw] absolute left-1/2 -translate-x-[45%] -translate-y-1/2 z-0 -rotate-90 md:hidden" x-html="article.icon"></div>
             <div class="flex flex-col md:mt-[20px] w-full md:w-10/12 self-end items-start justify-start z-10">
               <h3 class="text-[36px]/[38px] tracking-[1.08px] font-semibold font-title" x-html="article.title"></h3>
               <div class="flex items-start justify-start w-full gap-[22px] mt-[40px]">
@@ -227,7 +227,7 @@
       <!-- Downloads -->
       <section class="bg-[#CEEAEB] border-t-2 border-b-2 border-[#111111] w-full overflow-hidden">
         <div class="relative flex flex-col items-stretch justify-center w-full md:flex-row">
-          <div class="container px-5 md:px-[60px] py-4 border-b-2 border-black md:flex-row md:border-b-0">
+          <div class="container px-5 md:px-[60px] py-4 md:flex-row">
             <div class="flex items-center w-full md:w-10/12 mx-auto justify-center gap-5 md:gap-[32px]">
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 61 61" class="w-[55px] md:w-[60px] shrink-0">
                 <rect width="59" height="59" x="1" y="1" stroke="#000" stroke-width="2" rx="29.5" />
@@ -241,7 +241,7 @@
               </a>
             </div>
           </div>
-          <div class="w-0.5 bg-black h-full shrink-0 absolute left-1/2 -translate-x-1/2 top-0 hidden md:inline-block"></div>
+          <div class=" w-full h-0.5 md:w-0.5 top-1/2 -translate-y-1/2 bg-black md:h-full shrink-0 absolute left-1/2 -translate-x-1/2 md:-translate-y-0 md:top-0"></div>
           <div class="container px-5 md:px-[60px] py-4">
             <div class="flex items-center w-full md:w-10/12 mx-auto justify-center gap-5 md:gap-[32px]">
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 61 61" class="w-[55px] md:w-[60px] shrink-0">
@@ -392,8 +392,8 @@
           <div class="relative">
             <div class="relative flex w-full px-5 overflow-x-auto snap-x">
               <template x-for="(article, index) in articles" :key="index">
-                <div class="relative z-20 w-[80vw] shrink-0 first:boreder-l-2 border-x border-black snap-center">
-                  <div class="z-10 flex flex-col items-start justify-start w-full py-[65px] px-5">
+                <div class="relative z-20 w-[80vw] max-w-[400px] shrink-0 first:boreder-l-2 border-x border-black snap-center">
+                  <div class="z-10 flex flex-col items-start justify-start w-full py-[65px] px-5 sm:px-10">
                     <div class="flex flex-col items-start justify-start w-full">
                       <span class="flex items-end gap-[10px] w-full">
                         <span class="text-[16px]/[24px] tracking-[0.64px] font-semibold font-title shrink-0 inline-block"
@@ -455,7 +455,7 @@
 
           <img class="w-[38%] md:w-[30%] aspect-[1] absolute top-1/2 right-0 -translate-y-1/2 rounded-full object-cover object-center" src="/video-thumbnail.gif" alt="Video Thumbnail" loading="lazy" width="400" height="400"/>
 
-          <h2 class="font-title text-[16px]/[17px] tracking-[0.48px] md:text-[36px]/[38px] md:tracking-[1.08px] font-bold w-4/12 md:ml-[65px]">This is the title of a State of Mozilla video</h2>
+          <h2 class="font-title text-[16px]/[17px] tracking-[0.48px] sm:text-[36px]/[38px] md:tracking-[1.08px] font-bold w-5/12 sm:ml-10 md:w-4/12 md:ml-[65px]">This is the title of a State of Mozilla video</h2>
           
           <button @click="play" class="absolute -translate-x-1/2 top-1/2 left-1/2 -translate-y-1/2 w-[30px]  md:w-[66px] text-black hover:text-[#89D5FF] transition duration-150 ease-out">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 66 76">
@@ -497,15 +497,15 @@
         </div>
 
         <!-- Choose with Mozilla -->
-        <div class="container flex flex-col items-start justify-start gap-8 px-0 md:px-5 md:flex-row">
-          <div class="w-full px-5 md:px-0 md:w-1/4">
+        <div class="flex flex-col items-start justify-start gap-8 px-0 md:container md:px-5 md:flex-row">
+          <div class="container md:!max-w-none md:mx-0 w-full px-5 md:px-0 md:w-1/4">
             <h2 class="text-[36px]/[38px] font-title font-bold mb-[15px]">Why I <br/>choose Mozilla</h2>
             <p class="font-body font-normal text-[16px]/[21px] tracking-[.32px]">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse nec augue.</p>
           </div>
           <div class="hidden w-1/4 md:block">
             <div class="w-[68vw] grid grid-cols-3 testimonies__grid overflow-hidden pb-0.5">
               <template x-for="item in whyMozilla">
-                <div class="bg-[#EEEEEE] p-[65px] border-2 -mr-0.5 -mb-0.5 border-black">
+                <div class="bg-[#EEEEEE] p-5 xl:p-[65px] border-2 -mr-0.5 -mb-0.5 border-black">
                   <div class="flex flex-col items-start justify-start gap-8">
                     <img :src="item.author.image" :alt="item.author.name" class="object-cover object-center w-full aspect-square grayscale bg-blend-darken" loading="lazy" width="200" height="200">
                     <h3 x-html="item.author.name" class="text-[24px]/[26px] tracking-[.48px] font-bold font-title"></h3>
@@ -526,9 +526,10 @@
           </div>
 
           <div class="w-full md:hidden">
-            <div class="relative flex w-full gap-5 px-5 overflow-x-auto snap-x">
+            <div class="relative flex w-full gap-5 pr-5 overflow-x-auto snap-x">
+              <div class="lead-block shrink-0 snap-center"></div>
               <template x-for="item in whyMozilla">
-                <div class="bg-[#EEEEEE] p-5 border-1 border-black snap-center shrink-0 w-[75%]">
+                <div class="bg-[#EEEEEE] p-5 border-1 border-black snap-center shrink-0 max-w-[300px] w-[75%]">
                   <div class="flex flex-col items-start justify-start gap-8">
                     <img :src="item.author.image" :alt="item.author.name"
                       class="object-cover object-center w-full aspect-square grayscale bg-blend-darken" loading="lazy" width="200"
@@ -554,15 +555,15 @@
         </div>
 
         <!-- Act with Mozilla -->
-        <div class="container flex flex-col items-start justify-start gap-8 px-0 md:px-5 md:flex-row">
-          <div class="w-full px-5 md:px-0 md:w-1/4">
+        <div class="flex flex-col items-start justify-start gap-8 px-0 md:container md:px-5 md:flex-row">
+          <div class="container md:!max-w-none md:mx-0 w-full px-5 md:px-0 md:w-1/4">
             <h2 class="text-[36px]/[38px] font-title font-bold mb-[15px]">Mozilla's Africa Innovation Mradi’s <br/>'In Real Life Fund'</h2>
             <p class="font-body font-normal text-[16px]/[21px] tracking-[.32px]">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse nec augue.</p>
           </div>
           <div class="hidden w-1/4 md:block">
             <div class="w-[68vw] border-black grid grid-cols-3 testimonies__grid overflow-hidden pb-0.5">
               <template x-for="item in actMozilla">
-                <div class="bg-[#EEEEEE] p-[65px] border-2 -mr-0.5 -mb-0.5 border-black">
+                <div class="bg-[#EEEEEE] p-5 xl:p-[65px] border-2 -mr-0.5 -mb-0.5 border-black">
                   <div class="flex flex-col items-start justify-start gap-8">
                     <img :src="item.author.image" :alt="item.author.name"
                       class="object-contain object-center w-full aspect-square grayscale bg-blend-darken" loading="lazy"
@@ -587,13 +588,14 @@
           </div>
 
           <div class="w-full md:hidden">
-            <div class="relative flex w-full gap-5 px-5 overflow-x-auto snap-x">
+            <div class="relative flex w-full gap-5 pr-5 overflow-x-auto snap-x">
+              <div class="lead-block shrink-0 snap-center"></div>
               <template x-for="item in actMozilla">
-                <div class="bg-[#EEEEEE] p-5 border-1 border-black snap-center shrink-0 w-[75%]">
+                <div class="bg-[#EEEEEE] p-5 border-1 border-black snap-center shrink-0 max-w-[300px] w-[75%]">
                   <div class="flex flex-col items-start justify-start gap-8">
                     <img :src="item.author.image" :alt="item.author.name"
-                      class="object-contain object-center w-full aspect-square grayscale bg-blend-darken" loading="lazy" width="200"
-                      height="200">
+                      class="object-contain object-center w-full aspect-square grayscale bg-blend-darken" loading="lazy"
+                      width="200" height="200">
                     <h3 x-html="item.author.name" class="text-[24px]/[26px] tracking-[.48px] font-bold font-title"></h3>
                     <a x-cloak :href="item.hash" class="flex items-center gap-[5px] group">
                       <span class="text-[16px]/[28px] font-bold relative font-title">
@@ -615,8 +617,8 @@
         </div>
 
         <!-- Build with Mozilla -->
-        <div class="container flex flex-col items-start justify-start gap-8 px-0 md:px-5 md:flex-row">
-          <div class="w-full px-5 md:px-0 md:w-1/4">
+        <div class="flex flex-col items-start justify-start gap-8 px-0 md:container md:px-5 md:flex-row">
+          <div class="container md:!max-w-none md:mx-0 w-full px-5 md:px-0 md:w-1/4">
             <h2 class="text-[36px]/[38px] font-title font-bold mb-[15px]">Why I build <br/>with Mozilla</h2>
             <p class="font-body font-normal text-[16px]/[21px] tracking-[.32px]">Lorem ipsum dolor sit amet, consectetur
               adipiscing elit. Suspendisse nec augue.</p>
@@ -624,7 +626,7 @@
           <div class="hidden w-1/4 md:block">
             <div class="w-[68vw] border-black grid grid-cols-3 testimonies__grid overflow-hidden pb-0.5">
               <template x-for="item in buildMozilla">
-                <div class="bg-[#EEEEEE] p-[65px] border-2 -mr-0.5 -mb-0.5 border-black">
+                <div class="bg-[#EEEEEE] p-5 xl:p-[65px] border-2 -mr-0.5 -mb-0.5 border-black">
                   <div class="flex flex-col items-start justify-start gap-8">
                     <img :src="item.author.image" :alt="item.author.name"
                       class="object-contain object-center w-full aspect-square grayscale bg-blend-darken" loading="lazy"
@@ -649,9 +651,10 @@
           </div>
 
           <div class="w-full md:hidden">
-            <div class="relative flex w-full gap-5 px-5 overflow-x-auto snap-x">
+            <div class="relative flex w-full gap-5 pr-5 overflow-x-auto snap-x">
+              <div class="lead-block shrink-0 snap-center"></div>
               <template x-for="item in buildMozilla">
-                <div class="bg-[#EEEEEE] p-5 border-1 border-black snap-center shrink-0 w-[75%]">
+                <div class="bg-[#EEEEEE] p-5 border-1 border-black snap-center shrink-0 max-w-[300px] w-[75%]">
                   <div class="flex flex-col items-start justify-start gap-8">
                     <img :src="item.author.image" :alt="item.author.name"
                       class="object-contain object-center w-full aspect-square grayscale bg-blend-darken" loading="lazy"
@@ -703,10 +706,17 @@
               },
               dynamicGridWidth() {
                 const grid = document.querySelectorAll('.testimonies__grid');
+                const leadBlock = document.querySelectorAll('.lead-block');
 
                 grid.forEach(element => {
                   const gridLeft = element.getBoundingClientRect().left;
                   element.style.width = `calc(100vw - ${gridLeft}px)`;
+                });
+
+                leadBlock.forEach(element => {
+                  // make this the space between the .container and the left side of the screen
+                  const containerLeft = document.querySelector('.container').getBoundingClientRect().left;
+                  element.style.width = `${containerLeft}px`;
                 });
               }
             }
