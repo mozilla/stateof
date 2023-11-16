@@ -60,8 +60,96 @@
     @apply text-[56px]/[56px] font-title font-bold tracking-[1px];
   }
 
+  main.modalActive {
+    animation: scaleBack .5s cubic-bezier(0.165, 0.840, 0.440, 1.000) both;
+    animation-delay: .1s;
+    @apply origin-top;
+  }
+
   .tile:last-child .icon {
     @apply !justify-start;
+  }
+
+  #modal-container {
+    @apply origin-center scale-0;
+  }
+  
+  #modal-container.active {
+    @apply scale-100;
+  }
+
+  #modal-container.active .modal-background {
+    animation: fadeIn .5s cubic-bezier(0.165, 0.840, 0.440, 1.000) both;
+  }
+
+  #modal-container.active .modal {
+    animation: scaleUp .5s cubic-bezier(0.165, 0.840, 0.440, 1.000) both;
+    transform-origin: center;
+    animation-delay: .25s;
+  }
+
+  @keyframes fadeIn {
+    0% {
+      opacity: 0;
+    }
+
+    100% {
+     opacity: .7;
+    }
+  }
+
+  @keyframes fadeOut {
+    0% {
+      opacity: .7;
+    }
+
+    100% {
+      opacity: 0;
+    }
+  }
+
+  @keyframes scaleUp {
+    0% {
+      transform: scale(1.2) translateY(100px);
+      opacity: 0;
+    }
+
+    100% {
+      transform: scale(1) translateY(0);
+      opacity: 1;
+    }
+  }
+
+  @keyframes scaleDown {
+    0% {
+      transform: scale(1) translateY(100px);
+      opacity: 1;
+    }
+
+    100% {
+      transform: scale(.8);
+      opacity: 0;
+    }
+  }
+
+  @keyframes scaleBack {
+    0% {
+      transform: scale(1);
+    }
+
+    100% {
+      transform: scale(.85);
+    }
+  }
+
+  @keyframes scaleForward {
+    0% {
+      transform: scale(.85);
+    }
+
+    100% {
+      transform: scale(1);
+    }
   }
 }
 
