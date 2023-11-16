@@ -80,6 +80,7 @@
 
   #modal-container.active .modal-background {
     animation: fadeIn .5s cubic-bezier(0.165, 0.840, 0.440, 1.000) both;
+    will-change: transform;
   }
 
   #modal-container.active .modal {
@@ -114,10 +115,15 @@
       opacity: 0;
     }
 
-    100% {
+    99% {
       transform: scale(1) translateY(0);
       opacity: 1;
     }
+
+      99% {
+        transform: none;
+        opacity: 1;
+      }
   }
 
   @keyframes scaleDown {
