@@ -9,6 +9,6 @@ export const content: object = {
   },
   lead_article: true,
   modal_style: 'short',
-  excerpt: 'Carlos Torres joined the team in August as Chief Legal Officer.',
-  body: '<blockquote>I was drawn to Mozilla because of its unique voice in technology,” Torres said. “There is no other organization that combines community, product, technology and advocacy to produce trusted innovative products that people love. I’ve always admired Mozilla for its principled, people-focused approach.</blockquote>'
+  excerpt: null,
+  body: '<p>is a non-profit organization dedicated to creating safe spaces for queer youth in the Global South The organization’s mission is to support the mental health and resilience of LGBTQI+ youth living in countries with discriminatory laws and harmful social norms. SameSame Collective focuses on three primary areas: providing access to information, supporting mental health, and linking youth to services. They use mobile technology and platforms like WhatsApp to ensure secure, private access to vital information from various professionals. In terms of mental health support, SameSame works with experts in Cognitive Behavioral Therapy to offer activities that help LGBTQI+ youth tackle depression, anxiety, and the stresses of living in conservative and discriminatory environments.</p>'
 };

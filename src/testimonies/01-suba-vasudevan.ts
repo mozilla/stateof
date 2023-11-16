@@ -1,11 +1,11 @@
 export const content: object = {
-  title: 'Why I joined Mozilla',
+  title: 'Why I work for Mozilla',
   tag: 'choose',
-  hash: '#eric-muhlheim',
+  hash: '#suba-vasudevan',
   author: {
-    name: 'Eric Muhlheim',
-    job_title: 'Chief Financial Officer',
-    image: '/headshots/Eric-Muhlheim.jpeg',
+    name: 'Suba Vasudevan',
+    job_title: 'SVP of Strategy & Operations',
+    image: '/headshots/Suba-Vasudevan.png',
   },
   lead_article: true,
   modal_style: 'short',

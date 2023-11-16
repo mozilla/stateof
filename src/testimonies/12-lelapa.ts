@@ -9,6 +9,6 @@ export const content: object = {
   },
   lead_article: true,
   modal_style: 'short',
-  excerpt: 'Carlos Torres joined the team in August as Chief Legal Officer.',
-  body: '<blockquote>I was drawn to Mozilla because of its unique voice in technology,” Torres said. “There is no other organization that combines community, product, technology and advocacy to produce trusted innovative products that people love. I’ve always admired Mozilla for its principled, people-focused approach.</blockquote>'
+  excerpt: null,
+  body: '<p>Lelapa.AI focuses on building language models for Africa’s most popular languages, aiming to enhance communication and business interactions across the continent. Their product, Vulavula, is currently available in English, Afrikaans, isiZulu, and Sesotho, with plans to expand to other South African and Sub-Saharan languages. The company emphasizes resource efficiency in AI, developing small, powerful models that leverage local talent and resources. Lelapa.AI’s mission is rooted in three principles: Wisdom, Family, and Home. They strive to concentrate Africa’s niche skills in resource efficiency, develop technology for the global family focusing on humanism, and provide a platform for African AI talent to address local and global challenges.</p>'
 };

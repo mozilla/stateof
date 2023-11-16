@@ -1,11 +1,11 @@
 export const content: object = {
   title: 'Why I work for Mozilla',
   tag: 'choose',
-  hash: '#steve-teixeira',
+  hash: '#Leyla-Samiee',
   author: {
-    name: 'Steve Azeka',
-    job_title: 'Program Lead',
-    image: '/headshots/Steven-Azeka.jpeg',
+    name: 'Leyla Samiee',
+    job_title: 'VP of Engineering - Mozilla Social',
+    image: '/headshots/Leyla-Samiee.jpeg',
   },
   lead_article: true,
   modal_style: 'short',

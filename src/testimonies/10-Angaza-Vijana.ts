@@ -9,6 +9,6 @@ export const content: object = {
   },
   lead_article: true,
   modal_style: 'short',
-  excerpt: 'Carlos Torres joined the team in August as Chief Legal Officer.',
-  body: '<blockquote>I was drawn to Mozilla because of its unique voice in technology,” Torres said. “There is no other organization that combines community, product, technology and advocacy to produce trusted innovative products that people love. I’ve always admired Mozilla for its principled, people-focused approach.</blockquote>'
+  excerpt: null,
+  body: '<p>a non-profit organization in Kenya, is dedicated to the socio-economic empowerment of young students, teenage mothers, and vulnerable youth. Their multifaceted approach includes raising funds for digital literacy projects, educating communities on socio-economic issues, advocating for environmental protection, and offering psychosocial support. Key initiatives include improving access to digital education by enhancing local schools’ digital literacy programs, developing community learning pods to foster a sense of belonging, and creating teen wellness groups for emotional well-being.</p>>'
 };

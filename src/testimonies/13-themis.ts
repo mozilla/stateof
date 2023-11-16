@@ -9,6 +9,6 @@ export const content: object = {
   },
   lead_article: true,
   modal_style: 'short',
-  excerpt: 'Carlos Torres joined the team in August as Chief Legal Officer.',
-  body: '<blockquote>I was drawn to Mozilla because of its unique voice in technology,” Torres said. “There is no other organization that combines community, product, technology and advocacy to produce trusted innovative products that people love. I’ve always admired Mozilla for its principled, people-focused approach.</blockquote>'
+  excerpt: null,
+  body: '<p>Themis AI offers a solution to make any machine learning model aware of its mistakes and inconsistencies with just a single line of code. Their proprietary technology, Capsa, is the first uncertainty estimation library compatible with any ML model. ML models can recognize when they are delivering unreliable outputs, ensuring consistent, high-quality results. Themis AI’s approach to AI development emphasizes the importance of reliability and accountability in AI systems.</p>'
 };

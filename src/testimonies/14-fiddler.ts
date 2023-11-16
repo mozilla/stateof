@@ -9,6 +9,6 @@ export const content: object = {
   },
   lead_article: true,
   modal_style: 'short',
-  excerpt: 'Carlos Torres joined the team in August as Chief Legal Officer.',
-  body: '<blockquote>I was drawn to Mozilla because of its unique voice in technology,” Torres said. “There is no other organization that combines community, product, technology and advocacy to produce trusted innovative products that people love. I’ve always admired Mozilla for its principled, people-focused approach.</blockquote>'
+  excerpt: null,
+  body: '<p>Fiddler AI is a company focused on AI Observability, which involves building trust in AI systems through monitoring and explanation. The platform offers standardized practices for Large Language Models (LLMs) and MLOps, providing insights into model performance and explaining predictions. Fiddler AI’s services include model monitoring, analytics, and explainable AI, aimed at delivering high-performance AI while ensuring governance and greater overall safety and security.</p>'
 };
