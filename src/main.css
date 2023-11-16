@@ -51,6 +51,10 @@
     @apply text-[16px]/[24px] tracking-[.32px] font-body font-normal mb-[35px];
   }
 
+  .modal-body p a {
+    @apply underline hover:text-[#89D5FF];
+  }
+
   .modal-body blockquote {
     @apply py-10 my-10 border-t border-b border-black inline-flex w-full items-start gap-5 md:gap-[30px] md:pl-[44px];
   }
