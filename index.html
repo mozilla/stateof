@@ -981,6 +981,7 @@
             bodyFormat: null,
             previousArticle: null,
             nextArticle: null,
+            scrollPosition: 0,
             init() {
               // if window.location.hash is not empty, open the modal
               if (window.location.hash) {
@@ -995,6 +996,9 @@
               });
             },
             openModal(value) {
+              if (!this.showModal) {
+                this.scrollPosition = window.scrollY;
+              }
               this.showModal = true;
               this.$store.body.lock = true;
 
@@ -1042,6 +1046,7 @@
               this.$store.body.lock = false;
               this.$store.activeArticle = null;
               window.location.hash = '';
+              window.scrollTo(0, this.scrollPosition);
             },
             checkIndex() {
               this.$store.articles.forEach((article, index) => {
