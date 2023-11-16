@@ -353,7 +353,7 @@
         
         <!-- Second row of 2 articles -->
         <div class="hidden border-t-2 border-black md:block">
-          <div class="container relative flex justify-between gap-[128px]">
+          <div class="container relative flex justify-between gap-[65px] md:gap-[128px]">
             <template x-for="article in secondRow">
               <div class="relative z-0 w-[calc(50%-64px)] tile">
                 <div class="z-10 flex flex-col items-start justify-start w-full py-[65px]">
@@ -829,7 +829,7 @@
                 </button>
               </div>
               <template x-if="previousArticle">
-                <a :href="previousArticle.hash" @click="checkIndex" class="fixed left-0 z-20 p-5 -translate-y-1/2 max-w-[230px] bg-white border border-l-0 border-black top-1/2 group">
+                <a :href="previousArticle.hash" @click="checkIndex" class="hidden lg:inline-block fixed left-0 z-20 p-5 -translate-y-1/2 max-w-[230px] bg-white border border-l-0 border-black top-1/2 group">
                   <div class="flex items-center gap-5">
                     <svg width="35" height="35" viewBox="0 0 47 48" fill="none" xmlns="http://www.w3.org/2000/svg" class="transition duration-150 ease-out rotate-90 group-hover:-translate-x-2 shrink-0">
                       <path d="M46.5455 24.7727L23.6364 47.6818L0.727271 24.7727L5.95454 19.5L19.7955 33.3409L19.7955 0.909086L27.4773 0.909086L27.4773 33.3409L41.2955 19.5L46.5455 24.7727Z" fill="black" />
@@ -853,7 +853,7 @@
               </template>
               
               <template x-if="nextArticle">
-                <a :href="nextArticle.hash" @click="checkIndex" class="fixed right-0 z-20 p-5 -translate-y-1/2 max-w-[230px] bg-white border border-r-0 border-black top-1/2 group">
+                <a :href="nextArticle.hash" @click="checkIndex" class="hidden lg:inline-block fixed right-0 z-20 p-5 -translate-y-1/2 max-w-[230px] bg-white border border-r-0 border-black top-1/2 group">
                   <div class="flex items-center gap-5">
                     <template x-if="$store.modalType == 'article'">
                       <div class="flex flex-col items-start justify-start gap-[10px]">
@@ -877,10 +877,10 @@
                 </a>
               </template>
               
-              <div class="relative inline-flex items-center p-8 bg-[#CEEAEB] min-h-screen w-full">
+              <div class="relative inline-flex items-start lg:items-center  lg:px-8 bg-[#CEEAEB] px-[65px] py-[175px] lg:py-8 md:min-h-screen w-full overflow-hidden lg:overflow-auto">
                 <div class="container">
-                  <div class="w-3/4 mx-auto">
-                    <div class="flex flex-col items-start w-3/4">
+                  <div class="w-full mx-auto lg:w-3/4">
+                    <div class="flex flex-col items-start lg:w-3/4">
                       <template x-if="$store.activeArticle.author">
                         <div class="flex items-center gap-5 mb-[48px] w-full">
                           <div class="flex flex-col items-start justify-start w-full">
@@ -904,10 +904,10 @@
                   </div>
                 </div>
                 <template x-if="$store.modalType == 'article'">
-                  <div class="absolute bottom-0 right-0 translate-x-[5vw] w-[30vw]" x-html="$store.activeArticle.icon"></div>
+                  <div class="absolute bottom-0 right-0 translate-x-[5vw] md:w-[40vw] lg:w-[30vw" x-html="$store.activeArticle.icon"></div>
                 </template>
                 <template x-if="$store.modalType == 'testimony'">
-                  <div class="absolute bottom-0 right-0 translate-x-[5vw] w-[30vw]">
+                  <div class="absolute bottom-0 right-0 translate-x-[5vw] md:w-[40vw] lg:w-[30vw]">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 427 437">
                       <g clip-path="url(#default-icon)">
                         <path fill="#86C5C8" d="M0 200C0 89.5431 89.5431 0 200 0h235v437H0V200Z" />
@@ -924,9 +924,9 @@
               </div>
 
               <template x-if="$store.activeArticle.modal_style != 'short'">
-                <div class="bg-[#EEEEEE] py-[95px] block w-full">
+                <div class="bg-[#EEEEEE] px-[65px] lg:px-0 py-[95px] block w-full">
                   <div class="container">
-                    <div class="w-2/3 mx-auto modal-body" x-html="bodyFormat"></div>
+                    <div class="mx-auto lg:w-2/3 modal-body" x-html="bodyFormat"></div>
                   </div>
                 </div>
               </template>
