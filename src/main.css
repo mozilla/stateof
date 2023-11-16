@@ -67,6 +67,10 @@
 
 @layer components {
   /* Scrollbar */
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
   .styled-scroll::-webkit-scrollbar {
     width: 6px;
     height: 6px;
