@@ -52,7 +52,7 @@
   }
 
   .modal-body blockquote {
-    @apply py-10 my-10 border-t border-b border-black inline-flex w-full items-start gap-[30px] pl-[44px];
+    @apply py-10 my-10 border-t border-b border-black inline-flex w-full items-start gap-5 md:gap-[30px] md:pl-[44px];
   }
 
   .modal-body blockquote:before {
