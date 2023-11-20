@@ -123,10 +123,10 @@
       opacity: 1;
     }
 
-      99% {
-        transform: none;
-        opacity: 1;
-      }
+    99.5% {
+      transform: none;
+      opacity: 1;
+    }
   }
 
   @keyframes scaleDown {
