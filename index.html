@@ -1261,7 +1261,7 @@
                 </div>
                 
                 
-                <div class="relative flex-col z-10 lg:flex-row inline-flex items-start lg:items-center lg:px-8 bg-[#CEEAEB] md:px-[65px] pt-[150px] md:py-[175px] lg:py-28 md:min-h-screen w-full overflow-hidden lg:overflow-visible">
+                <div class="relative flex-col z-10 lg:flex-row inline-flex items-start lg:items-center lg:px-8 md:px-[65px] pt-[150px] md:py-[175px] lg:py-28 md:min-h-screen w-full overflow-hidden lg:overflow-visible" x-ref="modalHeroBackground">
                   <div class="container">
                     <div class="w-full mx-auto lg:w-3/4">
                       <div class="flex flex-col items-start w-full lg:w-3/4">
@@ -1288,11 +1288,11 @@
                     </div>
                   </div>
                   <template x-if="$store.modalType == 'article'">
-                    <div class="mt-10 md:mt-0 md:absolute bottom-0 right-0 translate-x-[5vw] w-full md:w-[40vw] lg:w-[30vw]" x-html="$store.activeArticle.icon"></div>
+                    <div class="mt-10 md:mt-0 md:absolute bottom-0 right-0 translate-x-[5vw] w-full md:w-[40vw] lg:w-[30vw]" x-ref="modalIcon" x-html="$store.activeArticle.icon"></div>
                   </template>
                   <template x-if="$store.modalType == 'testimony'">
                     <div class="absolute bottom-0 right-0 translate-x-[5vw] md:w-[40vw] lg:w-[30vw]">
-                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 427 437" class="w-full">
+                      <svg xmlns="http://www.w3.org/2000/svg" x-ref="modalIcon" fill="none" viewBox="0 0 427 437" class="w-full">
                         <g clip-path="url(#default-icon)">
                           <path fill="#86C5C8" d="M0 200C0 89.5431 89.5431 0 200 0h235v437H0V200Z" />
                           <rect width="567" height="328" x="44" y="54" fill="#EEE" opacity=".9" rx="164" />
@@ -1347,6 +1347,21 @@
               if (!this.showModal) {
                 this.scrollPosition = window.scrollY;
               }
+
+              // get the fill of the first path in the SVG and make it the background color of the modal hero
+              setTimeout(() => {
+                const svg = this.$refs.modalIcon.querySelector('svg');
+                const path = svg.querySelector('path');
+                let fillColor = path.getAttribute('fill');
+
+                fillColor = this.hexToRGBA(fillColor, 0.3);
+
+                console.log(fillColor)
+
+                this.$refs.modalHeroBackground.style.backgroundColor = fillColor;
+              }, 100);
+
+              
 
               if (window.innerWidth < 768) {
                 setTimeout(() => {
@@ -1445,6 +1460,31 @@
                   this.previousArticle = this.$store.articles[index - 1]?.content;
                 }
               });
+            },
+            hexToRGBA(hex, alpha = 1) {
+              // Remove '#' if present
+              hex = hex.replace('#', '');
+
+              // Check for shorthand hex values and expand them if needed
+              if (hex.length === 3) {
+                hex = hex
+                  .split('')
+                  .map(function (char) {
+                    return char + char;
+                  })
+                  .join('');
+              }
+
+              // Parse the hex values for Red, Green, and Blue
+              const r = parseInt(hex.substring(0, 2), 16);
+              const g = parseInt(hex.substring(2, 4), 16);
+              const b = parseInt(hex.substring(4, 6), 16);
+
+              // Validate alpha value and restrict it between 0 and 1
+              const validatedAlpha = Math.min(1, Math.max(0, alpha));
+
+              // Return RGBA string
+              return `rgba(${r}, ${g}, ${b}, ${validatedAlpha})`;
             }
           }
         }
