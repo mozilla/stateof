@@ -1120,7 +1120,7 @@
                 <!-- Mobile Previous Button -->
                 <template x-if="previousArticle">
                   <a :href="previousArticle.hash" x-ref="mobilePrev" @click="checkIndex" class="lg:hidden absolute w-[10vw] top-0 h-screen opacity-50 flex items-start justify-end">
-                    <div class="relative flex-col shrink-0 lg:flex-row inline-flex items-start w-[80vw] md:px-[65px] pt-[150px] md:py-[175px] overflow-hidden" :style="'background-color:' + getSVGPath(nextArticle.icon)">
+                    <div class="relative flex-col shrink-0 lg:flex-row inline-flex items-start w-[80vw] md:px-[65px] pt-[150px] md:py-[175px] overflow-hidden" :style="'background-color:' + getSVGPath(previousArticle.icon)">
                       <div class="container">
                         <div class="w-full mx-auto lg:w-3/4">
                           <div class="flex flex-col items-start w-full lg:w-3/4">
