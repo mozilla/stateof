@@ -1351,8 +1351,13 @@
               if (window.innerWidth < 768) {
                 setTimeout(() => {
                   this.$refs.modalContainer.style.width = `${this.modalWidth}vw`;
-                  this.$refs.mobilePrev.style.right = `${this.modalWidth}vw`;
-                  this.$refs.mobileNext.style.left = `${this.modalWidth}vw`;
+
+                  if (this.$refs.mobilePrev) {
+                    this.$refs.mobilePrev.style.right = `${this.modalWidth}vw`;
+                  }
+                  if (this.$refs.mobileNext) {
+                    this.$refs.mobileNext.style.left = `${this.modalWidth}vw`;
+                  }
 
                   
                   // watch scroll and change the width of the modal till it reaches 100
@@ -1370,10 +1375,16 @@
                     }
   
                     this.$refs.modalContainer.style.width = `${this.modalWidth}vw`;
-                    this.$refs.mobilePrev.style.right = `${this.modalWidth}vw`;
-                    this.$refs.mobilePrev.style.width = `calc(100vw - ${this.modalNavTileWidth}vw)`;
-                    this.$refs.mobileNext.style.left = `${this.modalWidth}vw`;
-                    this.$refs.mobileNext.style.width = `calc(100vw - ${this.modalNavTileWidth}vw)`;
+
+                    if(this.$refs.mobilePrev) {
+                      this.$refs.mobilePrev.style.right = `${this.modalWidth}vw`;
+                      this.$refs.mobilePrev.style.width = `calc(100vw - ${this.modalNavTileWidth}vw)`;
+                    }
+
+                    if (this.$refs.mobileNext) {
+                      this.$refs.mobileNext.style.left = `${this.modalWidth}vw`;
+                      this.$refs.mobileNext.style.width = `calc(100vw - ${this.modalNavTileWidth}vw)`;
+                    }
                   });
                 }, 200);
               }
