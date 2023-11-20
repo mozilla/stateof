@@ -1005,73 +1005,73 @@
       </section>
 
       <!-- Links -->
-      <section class="bg-[#CEC2FF] py-[100px] md:py-[150px]">
+      <section class="bg-[#CEC2FF] py-[100px] md:py-[150px]" x-data="links()" x-intersect.margin.-300px.once='inView = true'>
         <div class="container flex flex-col items-start justify-between gap-14 md:gap-20 md:flex-row">
-          <div class="w-full md:w-1/2">
+          <div class="w-full transition duration-500 ease-out md:w-1/2" :class="!inView && canAnimate ? 'opacity-0 -translate-x-5' : ''">
             <h2 class="font-title text-[56px]/[56px] font-bold">Join us in creating a better internet</h2>
             <p class="font-body text-[20px]/[24px] font-normal mt-10 md:mt-4">We know the internet can be better. More joyful. More trustworthy. Safer, and more secure. But we can only get there if we work together. We invite you to join us as this next chapter begins.</p>
           </div>
           <div class="flex flex-col items-start justify-start w-full gap-4 md:w-1/2">
-            <a href="#" class="flex items-center w-full gap-5 pb-4 border-b border-black md:gap-8 group">
-              <div class="w-[65px] h-[65px] mix-blend-multiply shrink-0 rounded-full bg-[#C3C2C2]"></div>
-              <span class="grow text-[18px] md:text-[24px] font-title font-bold">Donate</span>
-
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 13 12" class="w-[35px] shrink-0 transition duration-150 ease-out group-hover:translate-x-1">
-                <path fill="#000" d="M6.69318.36364 12.4205 6.0909 6.69318 11.8182 5.375 10.5114l3.46023-3.46026H.72727V5.13068h8.10796L5.375 1.67614 6.69318.36364Z" />
-              </svg>
-            </a>
-            <a href="#" class="flex items-center w-full gap-5 pb-4 border-b border-black md:gap-8 group">
-              <div class="w-[65px] h-[65px] mix-blend-multiply shrink-0 rounded-full bg-[#C3C2C2]"></div>
-              <span class="grow text-[18px] md:text-[24px] font-title font-bold">Download Firefox</span>
-            
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 13 12"
-                class="w-[35px] shrink-0 transition duration-150 ease-out group-hover:translate-x-1">
-                <path fill="#000"
-                  d="M6.69318.36364 12.4205 6.0909 6.69318 11.8182 5.375 10.5114l3.46023-3.46026H.72727V5.13068h8.10796L5.375 1.67614 6.69318.36364Z" />
-              </svg>
-            </a>
-            <a href="#" class="flex items-center w-full gap-5 pb-4 border-b border-black md:gap-8 group">
-              <div class="w-[65px] h-[65px] mix-blend-multiply shrink-0 rounded-full bg-[#C3C2C2]"></div>
-              <span class="grow text-[18px] md:text-[24px] font-title font-bold">Join the team</span>
-            
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 13 12"
-                class="w-[35px] shrink-0 transition duration-150 ease-out group-hover:translate-x-1">
-                <path fill="#000"
-                  d="M6.69318.36364 12.4205 6.0909 6.69318 11.8182 5.375 10.5114l3.46023-3.46026H.72727V5.13068h8.10796L5.375 1.67614 6.69318.36364Z" />
-              </svg>
-            </a>
-            <a href="#" class="flex items-center w-full gap-5 pb-4 border-b border-black md:gap-8 group">
-              <div class="w-[65px] h-[65px] mix-blend-multiply shrink-0 rounded-full bg-[#C3C2C2]"></div>
-              <span class="grow text-[18px] md:text-[24px] font-title font-bold">Subscribe to VPN</span>
-            
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 13 12"
-                class="w-[35px] shrink-0 transition duration-150 ease-out group-hover:translate-x-1">
-                <path fill="#000"
-                  d="M6.69318.36364 12.4205 6.0909 6.69318 11.8182 5.375 10.5114l3.46023-3.46026H.72727V5.13068h8.10796L5.375 1.67614 6.69318.36364Z" />
-              </svg>
-            </a>
-            <a href="#" class="flex items-center w-full gap-5 pb-4 border-b border-black md:gap-8 group">
-              <div class="w-[65px] h-[65px] mix-blend-multiply shrink-0 rounded-full bg-[#C3C2C2]"></div>
-              <span class="grow text-[18px] md:text-[24px] font-title font-bold">Lorem ipsum</span>
-            
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 13 12"
-                class="w-[35px] shrink-0 transition duration-150 ease-out group-hover:translate-x-1">
-                <path fill="#000"
-                  d="M6.69318.36364 12.4205 6.0909 6.69318 11.8182 5.375 10.5114l3.46023-3.46026H.72727V5.13068h8.10796L5.375 1.67614 6.69318.36364Z" />
-              </svg>
-            </a>
-            <a href="#" class="flex items-center w-full gap-5 pb-4 border-b border-black md:gap-8 group">
-              <div class="w-[65px] h-[65px] mix-blend-multiply shrink-0 rounded-full bg-[#C3C2C2]"></div>
-              <span class="grow text-[18px] md:text-[24px] font-title font-bold">Join our community</span>
-            
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 13 12"
-                class="w-[35px] shrink-0 transition duration-150 ease-out group-hover:translate-x-1">
-                <path fill="#000"
-                  d="M6.69318.36364 12.4205 6.0909 6.69318 11.8182 5.375 10.5114l3.46023-3.46026H.72727V5.13068h8.10796L5.375 1.67614 6.69318.36364Z" />
-              </svg>
-            </a>
+            <template x-for="(link, index) in links">
+              <a :href="link.url" class="flex items-center w-full gap-5 pb-4 transition duration-500 ease-out border-b border-black md:gap-8 group" :class="!inView && canAnimate ? 'opacity-0 -translate-x-5' : ''" :style="'transition-delay:' + index + '00ms;'">
+                <div class="w-[65px] h-[65px] shrink-0 rounded-full bg-[#9e94c2] flex items-center justify-center" x-html="link.icon"></div>
+                <span class="grow text-[18px] md:text-[24px] font-title font-bold" x-text="link.title"></span>
+  
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 13 12" class="w-[35px] shrink-0 transition duration-150 ease-out group-hover:translate-x-1">
+                  <path fill="#000" d="M6.69318.36364 12.4205 6.0909 6.69318 11.8182 5.375 10.5114l3.46023-3.46026H.72727V5.13068h8.10796L5.375 1.67614 6.69318.36364Z" />
+                </svg>
+              </a>
+            </template>
           </div>
         </div>
+        <script>
+          function links() {
+            return {
+              inView: false,
+              canAnimate: true,
+              links: [
+                {
+                  icon: '<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 13 12" class= "w-[35px] shrink-0 transition duration-150 ease-out"><path fill="#000" d="M6.69318.36364 12.4205 6.0909 6.69318 11.8182 5.375 10.5114l3.46023-3.46026H.72727V5.13068h8.10796L5.375 1.67614 6.69318.36364Z" /></svg>',
+                  title: 'Donate',
+                  url: '#',
+                },
+                {
+                  icon: '<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 13 12" class= "w-[35px] shrink-0 transition duration-150 ease-out"><path fill="#000" d="M6.69318.36364 12.4205 6.0909 6.69318 11.8182 5.375 10.5114l3.46023-3.46026H.72727V5.13068h8.10796L5.375 1.67614 6.69318.36364Z" /></svg>',
+                  title: 'Download Firefox',
+                  url: '#',
+                },
+                {
+                  icon: '<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 13 12" class= "w-[35px] shrink-0 transition duration-150 ease-out"><path fill="#000" d="M6.69318.36364 12.4205 6.0909 6.69318 11.8182 5.375 10.5114l3.46023-3.46026H.72727V5.13068h8.10796L5.375 1.67614 6.69318.36364Z" /></svg>',
+                  title: 'Join the team',
+                  url: '#',
+                },
+                {
+                  icon: '<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 13 12" class= "w-[35px] shrink-0 transition duration-150 ease-out"><path fill="#000" d="M6.69318.36364 12.4205 6.0909 6.69318 11.8182 5.375 10.5114l3.46023-3.46026H.72727V5.13068h8.10796L5.375 1.67614 6.69318.36364Z" /></svg>',
+                  title: 'Subscribe to VPN',
+                  url: '#',
+                },
+                {
+                  icon: '<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 13 12" class= "w-[35px] shrink-0 transition duration-150 ease-out"><path fill="#000" d="M6.69318.36364 12.4205 6.0909 6.69318 11.8182 5.375 10.5114l3.46023-3.46026H.72727V5.13068h8.10796L5.375 1.67614 6.69318.36364Z" /></svg>',
+                  title: 'Lorem ipsum',
+                  url: '#',
+                },
+                {
+                  icon: '<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 13 12" class= "w-[35px] shrink-0 transition duration-150 ease-out"><path fill="#000" d="M6.69318.36364 12.4205 6.0909 6.69318 11.8182 5.375 10.5114l3.46023-3.46026H.72727V5.13068h8.10796L5.375 1.67614 6.69318.36364Z" /></svg>',
+                  title: 'Join our community',
+                  url: '#',
+                },
+              ],
+
+              init() {
+                // if scroll is below the section when page loads, set inView to 1000 so that it doesn't trigger the animation
+                if (window.scrollY > this.$el.offsetTop) {
+                  this.canAnimate = false;
+                  this.lineInView = true;
+                }
+              }
+            }
+          }
+        </script>
       </section>
 
       <template x-teleport="body">
