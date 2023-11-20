@@ -1,5 +1,5 @@
 export const content: object = {
-  title: 'Why I build with Mozilla',
+  title: 'Building trust in AI systems through monitoring and explanation',
   tag: 'build',
   hash: '#fiddler',
   author: {

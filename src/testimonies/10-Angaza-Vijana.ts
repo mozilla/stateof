@@ -1,5 +1,5 @@
 export const content: object = {
-  title: "Mozilla’s Africa Innovation Mradi’s 'In Real Life Fund'",
+  title: "Dedicated to socio-economic empowerment of young students, teenage mothers, and vulnerable youth",
   tag: 'act',
   hash: '#angaza-vijana',
   author: {

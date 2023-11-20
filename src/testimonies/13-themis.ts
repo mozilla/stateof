@@ -1,5 +1,5 @@
 export const content: object = {
-  title: 'Why I build with Mozilla',
+  title: 'Making any machine learning model aware of its mistakes and inconsistencies',
   tag: 'build',
   hash: '#themeis',
   author: {

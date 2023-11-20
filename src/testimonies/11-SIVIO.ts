@@ -1,5 +1,5 @@
 export const content: object = {
-  title: "Mozilla’s Africa Innovation Mradi’s 'In Real Life Fund'",
+  title: "Contributing to Africa's inclusive socio-economic transformation",
   tag: 'act',
   hash: '#sivio',
   author: {

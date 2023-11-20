@@ -1,5 +1,5 @@
 export const content: object = {
-  title: "Mozilla’s Africa Innovation Mradi’s 'In Real Life Fund'",
+  title: "Creating safe spaces for queer youth in the Global South",
   tag: 'act',
   hash: '#samesame-collective',
   author: {

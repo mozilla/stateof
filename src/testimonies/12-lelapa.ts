@@ -1,5 +1,5 @@
 export const content: object = {
-  title: 'Why I build with Mozilla',
+  title: 'Building language models for Africa’s most popular languages',
   tag: 'build',
   hash: '#lelapa',
   author: {
