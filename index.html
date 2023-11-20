@@ -1120,7 +1120,7 @@
                 <!-- Mobile Previous Button -->
                 <template x-if="previousArticle">
                   <a :href="previousArticle.hash" x-ref="mobilePrev" @click="checkIndex" class="lg:hidden absolute w-[10vw] top-0 h-screen opacity-50 flex items-start justify-end">
-                    <div class="relative flex-col shrink-0 lg:flex-row inline-flex items-start bg-[#E4E4E4] w-[80vw] md:px-[65px] pt-[150px] md:py-[175px] overflow-hidden">
+                    <div class="relative flex-col shrink-0 lg:flex-row inline-flex items-start w-[80vw] md:px-[65px] pt-[150px] md:py-[175px] overflow-hidden" :style="'background-color:' + getSVGPath(nextArticle.icon)">
                       <div class="container">
                         <div class="w-full mx-auto lg:w-3/4">
                           <div class="flex flex-col items-start w-full lg:w-3/4">
@@ -1196,7 +1196,7 @@
                 <!-- Mobile Next Button -->
                 <template x-if="nextArticle">
                   <a :href="nextArticle.hash" @click="checkIndex" x-ref="mobileNext" class="lg:hidden absolute w-[10vw] top-0 overflow-hidden h-screen opacity-50 flex items-start justify-start">
-                    <div class="relative flex-col lg:flex-row inline-flex items-start bg-[#E4E4E4] shrink-0 w-[80vw] md:px-[65px] pt-[150px] md:py-[175px] overflow-hidden">
+                    <div class="relative flex-col lg:flex-row inline-flex items-start shrink-0 w-[80vw] md:px-[65px] pt-[150px] md:py-[175px] overflow-hidden" :style="'background-color:' + getSVGPath(nextArticle.icon)">
                       <div class="container">
                         <div class="w-full mx-auto lg:w-3/4">
                           <div class="flex flex-col items-start w-full lg:w-3/4">
@@ -1226,7 +1226,7 @@
                         </div>
                       </div>
                       <template x-if="$store.modalType == 'article'">
-                        <div class="md:absolute bottom-0 right-0 translate-x-[5vw] w-full md:w-[40vw] lg:w-[30vw]" x-html="nextArticle.icon"></div>
+                        <div class="md:absolute bottom-0 right-0 translate-x-[5vw] w-full md:w-[40vw] lg:w-[30vw] mt-10" x-html="nextArticle.icon"></div>
                       </template>
                     </div>
                   </a>
@@ -1329,7 +1329,7 @@
             nextArticle: null,
             scrollPosition: 0,
             modalWidth: 80,
-            modalNavTileWidth: 86.5,
+            modalNavTileWidth: 85,
             init() {
               // if window.location.hash is not empty, open the modal
               if (window.location.hash) {
@@ -1364,7 +1364,6 @@
               }, 100);
 
               
-
               if (window.innerWidth < 768) {
                 setTimeout(() => {
                   this.$refs.modalContainer.style.width = `${this.modalWidth}vw`;
@@ -1462,6 +1461,17 @@
                   this.previousArticle = this.$store.articles[index - 1]?.content;
                 }
               });
+            },
+            getSVGPath(svg) {
+              // in the string find "<path fill="" and get the value of fill
+              let fillColor = svg.match(/<path fill=".*?"/g)[0].split('"')[1];
+              if (fillColor) {
+                fillColor = this.hexToRGBA(fillColor, 0.3);
+              } else {
+                fillColor = '#EEEEEE';
+              }
+
+              return fillColor;
             },
             hexToRGBA(hex, alpha = 1) {
               // Remove '#' if present
