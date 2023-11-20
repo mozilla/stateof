@@ -19,7 +19,7 @@
     <meta property="og:description" content="Every year, in the spirit of openness upon which Mozilla was founded, we share publicly the ways we have protected, fought for and helped advance the internet in service of the people who rely on it every day." />
     <meta property="og:image" content="/og-image.jpg" />
 
-    <!-- <script type="text/javascript" src="https://www.bugherd.com/sidebarv2.js?apikey=cltuoorymbo4x7w8iwxbnq" async="true"></script> -->
+    <script type="text/javascript" src="https://www.bugherd.com/sidebarv2.js?apikey=hnjpnufbdoj92tf9czp9cq" async="true"></script>
   </head>
 
   <body class="flex flex-col font-body" x-data x-cloak :class="{ 'overflow-hidden h-screen' : $store.body.lock }">
@@ -1086,9 +1086,9 @@
       <template x-teleport="body">
         <div id="modal-container" class="fixed top-0 left-0 z-20 table w-full h-full transform" x-show="showModal" :class="showModal ? 'active' : ''" x-cloak>
           <div class="absolute top-0 left-0 z-0 w-full h-full transition bg-black opacity-0 modal-background"></div>
-          <div class="relative z-20 h-screen overflow-scroll transition duration-500 ease-out" :class="showModal ? 'opacity-100' : 'opacity-0'">
+          <div class="relative z-20 h-screen overflow-x-hidden overflow-y-scroll transition duration-500 ease-out" :class="showModal ? 'opacity-100' : 'opacity-0'" x-ref="modal">
             <div class="relative bg-white modal">
-              <div class="w-[80vw] md:w-[90vw] mx-auto block text-[#111111] relative" @click.outside="closeModal">
+              <div class="md:w-[90vw] mx-auto block text-[#111111] relative" x-ref="modalContainer" @click.outside="closeModal">
                 <template x-if="previousArticle">
                   <a :href="previousArticle.hash" @click="checkIndex"
                     class="hidden lg:block fixed left-0 z-20 p-5 -translate-y-1/2 max-w-[230px] bg-white border border-l-0 border-black top-1/2 group transition duration-500 ease-out" :class="!showModal ? '!opacity-0 !translate-x-full delay-[5s]' : ''">
@@ -1111,6 +1111,55 @@
                           <img class="w-[130px] inline-block grayscale mix-blend-darken" :src="previousArticle.author.image" width="130"
                             height="130" loading="lazy" />
                           <span class="font-title text-[12px]/[12px] font-bold" x-html="previousArticle.author.name"></span>
+                        </div>
+                      </template>
+                    </div>
+                  </a>
+                </template>
+
+                <!-- Mobile Previous Button -->
+                <template x-if="previousArticle">
+                  <a :href="previousArticle.hash" x-ref="mobilePrev" @click="checkIndex" class="lg:hidden absolute w-[10vw] top-0 h-screen opacity-50 flex items-start justify-end">
+                    <div class="relative flex-col shrink-0 lg:flex-row inline-flex items-start bg-[#E4E4E4] w-[80vw] md:px-[65px] pt-[150px] md:py-[175px] overflow-hidden">
+                      <div class="container">
+                        <div class="w-full mx-auto lg:w-3/4">
+                          <div class="flex flex-col items-start w-full lg:w-3/4">
+                            <template x-if="previousArticle.author">
+                              <div class="flex items-center gap-5 mb-[48px] w-full">
+                                <div class="flex flex-col items-start justify-start w-full">
+                                  <span class="flex items-end gap-[10px] w-full">
+                                    <span class="text-[16px]/[24px] tracking-[0.64px] font-semibold font-title shrink-0 inline-block"
+                                      x-html="previousArticle.author.name"></span>
+                                    <div class="w-full h-0.5 bg-black -translate-y-1.5"></div>
+                                  </span>
+                                  <span class="text-[14px]/[21px] font-normal font-title"
+                                    x-html="previousArticle.author.job_title"></span>
+                                </div>
+                              </div>
+                            </template>
+                
+                            <h2 class="text-[36px]/[38px] md:text-[64px]/[64px] font-bold font-title" x-show="showModal"
+                              x-html="previousArticle.title"></h2>
+                            <h3 class="font-title text-[24px]/[31px] tracking-[.48px] font-normal mt-10 md:mt-[80px]" x-html="previousArticle.excerpt"></h3>
+                          </div>
+                        </div>
+                      </div>
+                      <template x-if="$store.modalType == 'article'">
+                        <div class="md:absolute bottom-0 right-0 translate-x-[5vw] w-full md:w-[40vw] lg:w-[30vw]" x-html="previousArticle.icon"></div>
+                      </template>
+                      <template x-if="$store.modalType == 'testimony'">
+                        <div class="absolute bottom-0 right-0 translate-x-[5vw] md:w-[40vw] lg:w-[30vw]">
+                          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 427 437" class="w-full">
+                            <g clip-path="url(#default-icon)">
+                              <path fill="#86C5C8" d="M0 200C0 89.5431 89.5431 0 200 0h235v437H0V200Z" />
+                              <rect width="567" height="328" x="44" y="54" fill="#EEE" opacity=".9" rx="164" />
+                            </g>
+                            <defs>
+                              <clipPath id="default-icon">
+                                <path fill="#fff" d="M0 0h435v437H0z" />
+                              </clipPath>
+                            </defs>
+                          </svg>
                         </div>
                       </template>
                     </div>
@@ -1143,7 +1192,48 @@
                     </div>
                   </a>
                 </template>
-                <div class="container absolute top-0 z-10 -translate-x-1/2 left-1/2 pt-[42px] pb-[20px] flex items-center justify-between bg-white md:bg-transparent">
+
+                <!-- Mobile Next Button -->
+                <template x-if="nextArticle">
+                  <a :href="nextArticle.hash" @click="checkIndex" x-ref="mobileNext" class="lg:hidden absolute w-[10vw] top-0 overflow-hidden h-screen opacity-50 flex items-start justify-start">
+                    <div class="relative flex-col lg:flex-row inline-flex items-start bg-[#E4E4E4] shrink-0 w-[80vw] md:px-[65px] pt-[150px] md:py-[175px] overflow-hidden">
+                      <div class="container">
+                        <div class="w-full mx-auto lg:w-3/4">
+                          <div class="flex flex-col items-start w-full lg:w-3/4">
+                            <template x-if="nextArticle.author">
+                              <div class="flex items-center gap-5 mb-[48px] w-full">
+                                <div class="flex flex-col items-start justify-start w-full">
+                                  <span class="flex items-end gap-[10px] w-full">
+                                    <span class="text-[16px]/[24px] tracking-[0.64px] font-semibold font-title shrink-0 inline-block"
+                                      x-html="nextArticle.author.name"></span>
+                                    <div class="w-full h-0.5 bg-black -translate-y-1.5"></div>
+                                  </span>
+                                  <span class="text-[14px]/[21px] font-normal font-title"
+                                    x-html="nextArticle.author.job_title"></span>
+                                </div>
+                              </div>
+                            </template>
+                    
+                            <h2 class="text-[36px]/[38px] md:text-[64px]/[64px] font-bold font-title" x-show="showModal"
+                              x-html="nextArticle.title"></h2>
+                            <h3 class="font-title text-[24px]/[31px] tracking-[.48px] font-normal mt-10 md:mt-[80px]"
+                              x-html="nextArticle.excerpt"></h3>
+                    
+                            <template x-if="nextArticle.modal_style == 'short'">
+                              <div class=" modal-body" x-html="bodyFormat"></div>
+                            </template>
+                          </div>
+                        </div>
+                      </div>
+                      <template x-if="$store.modalType == 'article'">
+                        <div class="md:absolute bottom-0 right-0 translate-x-[5vw] w-full md:w-[40vw] lg:w-[30vw]" x-html="nextArticle.icon"></div>
+                      </template>
+                    </div>
+                  </a>
+                </template>
+                
+                <!-- Modal Header -->
+                <div class="container absolute top-0 z-20 w-screen -translate-x-1/2 left-1/2 pt-[42px] pb-[20px] flex items-center justify-between bg-white md:bg-transparent">
                   <a href="https://www.mozilla.org/en-US/" class="w-[100px]">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 99 29" class="w-[100px]">
                       <g fill="#000000" clip-path="url(#header-a)">
@@ -1171,7 +1261,7 @@
                 </div>
                 
                 
-                <div class="relative flex-col lg:flex-row inline-flex items-start lg:items-center lg:px-8 bg-[#CEEAEB] md:px-[65px] pt-[150px] md:py-[175px] lg:py-8 md:min-h-screen w-full overflow-hidden lg:overflow-visible">
+                <div class="relative flex-col z-10 lg:flex-row inline-flex items-start lg:items-center lg:px-8 bg-[#CEEAEB] md:px-[65px] pt-[150px] md:py-[175px] lg:py-8 md:min-h-screen w-full overflow-hidden lg:overflow-visible">
                   <div class="container">
                     <div class="w-full mx-auto lg:w-3/4">
                       <div class="flex flex-col items-start w-full lg:w-3/4">
@@ -1198,7 +1288,7 @@
                     </div>
                   </div>
                   <template x-if="$store.modalType == 'article'">
-                    <div class="md:absolute bottom-0 right-0 translate-x-[5vw] w-full md:w-[40vw] lg:w-[30vw]" x-html="$store.activeArticle.icon"></div>
+                    <div class="mt-10 md:mt-0 md:absolute bottom-0 right-0 translate-x-[5vw] w-full md:w-[40vw] lg:w-[30vw]" x-html="$store.activeArticle.icon"></div>
                   </template>
                   <template x-if="$store.modalType == 'testimony'">
                     <div class="absolute bottom-0 right-0 translate-x-[5vw] md:w-[40vw] lg:w-[30vw]">
@@ -1218,7 +1308,7 @@
                 </div>
   
                 <template x-if="$store.activeArticle.modal_style != 'short'">
-                  <div class="bg-[#EEEEEE] md:px-[65px] lg:px-0 py-[95px] block w-full">
+                  <div class="bg-[#EEEEEE] z-10 md:px-[65px] lg:px-0 py-[95px] block w-full">
                     <div class="container">
                       <div class="mx-auto lg:w-2/3 modal-body" x-html="bodyFormat"></div>
                     </div>
@@ -1238,6 +1328,8 @@
             previousArticle: null,
             nextArticle: null,
             scrollPosition: 0,
+            modalWidth: 80,
+            modalNavTileWidth: 86.5,
             init() {
               // if window.location.hash is not empty, open the modal
               if (window.location.hash) {
@@ -1254,6 +1346,36 @@
             openModal(value) {
               if (!this.showModal) {
                 this.scrollPosition = window.scrollY;
+              }
+
+              if (window.innerWidth < 768) {
+                setTimeout(() => {
+                  this.$refs.modalContainer.style.width = `${this.modalWidth}vw`;
+                  this.$refs.mobilePrev.style.right = `${this.modalWidth}vw`;
+                  this.$refs.mobileNext.style.left = `${this.modalWidth}vw`;
+
+                  
+                  // watch scroll and change the width of the modal till it reaches 100
+                  this.$refs.modal.addEventListener('scroll', (el) => {
+                    const scrollPercent = (el.target.scrollTop / (el.target.scrollHeight - el.target.clientHeight)) * 100;
+                    this.modalWidth = 80 + scrollPercent;
+                    this.modalNavTileWidth = 86.5 + scrollPercent;
+                    
+                    if (this.modalWidth > 100) {
+                      this.modalWidth = 100;
+                    }
+                    
+                    if (this.modalWidth < 80) {
+                      this.modalWidth = 80;
+                    }
+  
+                    this.$refs.modalContainer.style.width = `${this.modalWidth}vw`;
+                    this.$refs.mobilePrev.style.right = `${this.modalWidth}vw`;
+                    this.$refs.mobilePrev.style.width = `calc(100vw - ${this.modalNavTileWidth}vw)`;
+                    this.$refs.mobileNext.style.left = `${this.modalWidth}vw`;
+                    this.$refs.mobileNext.style.width = `calc(100vw - ${this.modalNavTileWidth}vw)`;
+                  });
+                }, 200);
               }
               
               this.showModal = true;
