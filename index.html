@@ -25,7 +25,7 @@
   <body class="flex flex-col font-body" x-data x-cloak :class="{ 'overflow-hidden h-screen' : $store.body.lock }">
     <header ref="header" class="fixed top-0 left-0 z-20 w-full transition duration-150 ease-out"  x-data="nav()" @scroll.window="revealHeader()" :class="isScrolled ? 'bg-white' : ''">
       <div class="container flex items-center justify-between gap-6 py-5 transition-opacity duration-300 md:py-9">
-        <a href="https://www.mozilla.org/en-US/" class="w-[100px] z-10">
+        <a href="https://www.mozilla.org/en-US/" x-cloak class="w-[100px] z-10">
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 99 29" class="w-[100px]">
             <g fill="#000000" clip-path="url(#header-a)">
               <path d="M36.9066 12.885c-1.8103 0-2.9378 1.3793-2.9378 3.7675 0 2.1956.9889 3.8842 2.9081 3.8842 1.84 0 3.0467-1.5211 3.0467-3.9401 0-2.5607-1.3453-3.7116-3.017-3.7116Zm48.5195 6.384c0 .8163.3858 1.4656 1.4539 1.4656 1.2612 0 2.6065-.928 2.6907-3.0374-.5739-.0863-1.2067-.1675-1.7855-.1675-1.2612-.0051-2.3591.36-2.3591 1.7393Z" />
@@ -519,11 +519,11 @@
         </div>
 
         <!-- Mobile Articles -->
-        <div class="block md:hidden relative border-y-2 border-black bg-[#EEEEEE] z-20">
+        <div class="block md:hidden relative border-y-2 border-black bg-[#EEEEEE] z-20" x-data="mobileRow"  x-intersect.margin.-175px.once="sectionInView = true">
           <div class="relative">
             <div class="relative flex w-full px-5 overflow-x-auto snap-x snap-mandatory no-scrollbar">
               <template x-for="(article, index) in articles" :key="index">
-                <div class="relative z-20 w-[80vw] max-w-[400px] shrink-0 first:boreder-l-2 border-x border-black snap-center">
+                <div class="relative z-20 w-[80vw] max-w-[400px] shrink-0 first:boreder-l-2 border-x border-black snap-center transition duration-500 ease-out" :class="!sectionInView && canAnimate ? 'opacity-0 translate-x-5' : ''" x-bind:style="'order: ' + index + '; transition-delay:' + index + '00ms;'">
                   <div class="z-10 flex flex-col items-start justify-start w-full py-[65px] px-5 sm:px-10">
                     <div class="flex flex-col items-start justify-start w-full">
                       <span class="flex items-end gap-[10px] w-full">
@@ -551,6 +551,23 @@
                 </div>
               </template>
             </div>
+          </div>
+          <script>
+            function mobileRow() {
+              return {
+                sectionInView: false,
+                canAnimate: true,
+
+                init() {
+                  // if scroll is below the section when page loads, set inView to true so that it doesn't trigger the animation
+                  if (window.scrollY > this.$el.offsetTop) {
+                    this.canAnimate = false;
+                    this.sectionInView = true;
+                  }
+                }
+              }
+            }
+          </script>
           </div>
         </div>
 
@@ -768,8 +785,8 @@
           <div class="w-full md:hidden">
             <div class="relative flex w-full gap-5 pr-5 overflow-x-auto snap-x snap-mandatory no-scrollbar">
               <div class="lead-block shrink-0"></div>
-              <template x-for="item in whyMozilla">
-                <div class="bg-[#EEEEEE] p-5 border-1 border-black snap-center shrink-0 max-w-[300px] w-[75%]">
+              <template x-for="(item, index) in whyMozilla">
+                <div class="bg-[#EEEEEE] p-5 border-1 border-black snap-center shrink-0 max-w-[300px] w-[75%] transition duration-500 ease-out" :class="inView < 1 && canAnimate ? 'opacity-0 translate-x-5' : ''" :style="'transition-delay:' + index + '00ms;'">
                   <div class="flex flex-col items-start justify-start gap-8">
                     <img :src="item.author.image" :alt="item.author.name"
                       class="object-cover object-center w-full aspect-square grayscale bg-blend-darken" loading="lazy" width="200"
@@ -830,8 +847,8 @@
           <div class="w-full md:hidden">
             <div class="relative flex w-full gap-5 pr-5 overflow-x-auto snap-x snap-mandatory no-scrollbar">
               <div class="lead-block shrink-0"></div>
-              <template x-for="item in actMozilla">
-                <div class="bg-[#EEEEEE] p-5 border-1 border-black snap-center shrink-0 max-w-[300px] w-[75%]">
+              <template x-for="(item, index) in actMozilla">
+                <div class="bg-[#EEEEEE] p-5 border-1 border-black snap-center shrink-0 max-w-[300px] w-[75%] transition duration-500 ease-out" :class="inView < 2 && canAnimate ? 'opacity-0 translate-x-5' : ''" :style="'transition-delay:' + index + '00ms;'">
                   <div class="flex flex-col items-start justify-start gap-8">
                     <img :src="item.author.image" :alt="item.author.name"
                       class="object-contain object-center w-full aspect-square grayscale bg-blend-darken" loading="lazy"
@@ -894,8 +911,8 @@
           <div class="w-full md:hidden">
             <div class="relative flex w-full gap-5 pr-5 overflow-x-auto snap-x snap-mandatory no-scrollbar">
               <div class="lead-block shrink-0"></div>
-              <template x-for="item in buildMozilla">
-                <div class="bg-[#EEEEEE] p-5 border-1 border-black snap-center shrink-0 max-w-[300px] w-[75%]">
+              <template x-for="(item, index) in buildMozilla">
+                <div class="bg-[#EEEEEE] p-5 border-1 border-black snap-center shrink-0 max-w-[300px] w-[75%] transition duration-500 ease-out" :class="inView < 3 && canAnimate ? 'opacity-0 translate-x-5' : ''" :style="'transition-delay:' + index + '00ms;'">
                   <div class="flex flex-col items-start justify-start gap-8">
                     <img :src="item.author.image" :alt="item.author.name"
                       class="object-contain object-center w-full aspect-square grayscale bg-blend-darken" loading="lazy"
