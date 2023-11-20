@@ -1,5 +1,5 @@
 export const content: object = {
-  title: 'Bold advocacy for policy and technology changes that serve the people',
+  title: 'Bold advocacy for policy and tech that serves the people',
   hash: '#advocacy',
   author: {
     name: 'Ashley Boyd',
