@@ -741,15 +741,15 @@
         </div>
 
         <!-- Choose with Mozilla -->
-        <div class="flex flex-col items-start justify-start gap-8 px-0 md:container md:px-5 md:flex-row">
-          <div class="container md:!max-w-none md:mx-0 w-full px-5 md:px-0 md:w-1/3 lg:w-1/4">
+        <div class="flex flex-col items-start justify-start gap-8 px-0 md:container md:px-5 md:flex-row" x-intersect.margin.-300px.once='inView = 1'>
+          <div class="container md:!max-w-none md:mx-0 w-full px-5 md:px-0 md:w-1/3 lg:w-1/4 transition duration-500 ease-out" :class="inView < 1 && canAnimate ? 'opacity-0 -translate-y-5' : ''">
             <h2 class="text-[36px]/[38px] font-title font-bold mb-[15px]">Why I <br/>choose Mozilla</h2>
             <p class="font-body font-normal text-[16px]/[21px] tracking-[.32px]">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse nec augue.</p>
           </div>
           <div class="hidden md:w-1/3 lg:w-1/4 md:block">
             <div class="w-[68vw] border-black grid md:grid-cols-2 lg:grid-cols-3 testimonies__grid overflow-hidden pb-0.5">
-              <template x-for="item in whyMozilla">
-                <div class="bg-[#EEEEEE] p-5 xl:p-[65px] border-2 -mr-0.5 -mb-0.5 border-black">
+              <template x-for="(item, index) in whyMozilla">
+                <div class="bg-[#EEEEEE] p-5 xl:p-[65px] border-2 -mr-0.5 -mb-0.5 border-black transition duration-500 ease-out" :class="inView < 1 && canAnimate ? 'opacity-0 scale-90' : ''" :style="'transition-delay:' + index + '00ms;'">
                   <div class="flex flex-col items-start justify-start gap-8">
                     <img :src="item.author.image" :alt="item.author.name"
                       class="object-contain object-center w-full aspect-square grayscale bg-blend-darken" loading="lazy"
@@ -803,15 +803,15 @@
         </div>
 
         <!-- Act with Mozilla -->
-        <div class="flex flex-col items-start justify-start gap-8 px-0 md:container md:px-5 md:flex-row">
-          <div class="container md:!max-w-none md:mx-0 w-full px-5 md:px-0 md:w-1/3 lg:w-1/4">
+        <div class="flex flex-col items-start justify-start gap-8 px-0 md:container md:px-5 md:flex-row" x-intersect.margin.-300px.once='inView = 2'>
+          <div class="container md:!max-w-none md:mx-0 w-full px-5 md:px-0 md:w-1/3 lg:w-1/4 transition duration-500 ease-out" :class="inView < 2 && canAnimate ? 'opacity-0 -translate-y-5' : ''">
             <h2 class="text-[36px]/[38px] font-title font-bold mb-[15px]">Mozilla's Africa Innovation Mradi’s <br/>'In Real Life Fund'</h2>
             <p class="font-body font-normal text-[16px]/[21px] tracking-[.32px]">Mozilla's Africa Innovation Mradi’s 'In Real Life Fund' (IRL Fund) is a transformative initiative aimed at advancing digital and human rights in Africa, with a focus on Eastern and Southern Africa. The inaugural cohort of the IRL Fund, announced on Africa Day in 2023, includes a diverse range of projects. These projects range from creating virtual support networks for LGBTQI+ individuals to programs aimed at equipping women with digital skills. Selected from over 100 applications by a panel of seven expert reviewers, these initiatives demonstrate a strong commitment to fostering movement-building efforts that shape the development, utility, and governance of technologies and their impact on social justice.</p>
           </div>
           <div class="hidden md:w-1/3 lg:w-1/4 md:block">
             <div class="w-[68vw] border-black grid md:grid-cols-2 lg:grid-cols-3 testimonies__grid overflow-hidden pb-0.5">
-              <template x-for="item in actMozilla">
-                <div class="bg-[#EEEEEE] p-5 xl:p-[65px] border-2 -mr-0.5 -mb-0.5 border-black">
+              <template x-for="(item, index) in actMozilla">
+                <div class="bg-[#EEEEEE] p-5 xl:p-[65px] border-2 -mr-0.5 -mb-0.5 border-black transition duration-500 ease-out" :class="inView < 2 && canAnimate ? 'opacity-0 scale-90' : ''" :style="'transition-delay:' + index + '00ms;'">
                   <div class="flex flex-col items-start justify-start gap-8">
                     <img :src="item.author.image" :alt="item.author.name"
                       class="object-contain object-center w-full aspect-square grayscale bg-blend-darken" loading="lazy"
@@ -865,8 +865,8 @@
         </div>
 
         <!-- Build with Mozilla -->
-        <div class="flex flex-col items-start justify-start gap-8 px-0 md:container md:px-5 md:flex-row">
-          <div class="container md:!max-w-none md:mx-0 w-full px-5 md:px-0 md:w-1/3 lg:w-1/4">
+        <div class="flex flex-col items-start justify-start gap-8 px-0 md:container md:px-5 md:flex-row" x-intersect.margin.-300px.once='inView = 3'>
+          <div class="container md:!max-w-none md:mx-0 w-full px-5 md:px-0 md:w-1/3 lg:w-1/4 transition duration-500 ease-out" :class="inView < 3 && canAnimate ? 'opacity-0 -translate-y-5' : ''">
             <h2 class="text-[36px]/[38px] font-title font-bold mb-[15px]">Why I build <br/>with Mozilla</h2>
             <p class="font-body font-normal text-[16px]/[21px] tracking-[.32px]">Mozilla Ventures, an impact fund from Mozilla, represents our strategic initiative to invest in and support innovative startups that align with our core values directly connected to the Mozilla Manifesto. This fund aims to nurture a new
             generation of technology companies that prioritize public benefit alongside profit, thereby fostering a healthier internet ecosystem.</p>
@@ -874,8 +874,8 @@
           </div>
           <div class="hidden md:w-1/3 lg:w-1/4 md:block">
             <div class="w-[68vw] border-black grid md:grid-cols-2 lg:grid-cols-3 testimonies__grid overflow-hidden pb-0.5">
-              <template x-for="item in buildMozilla">
-                <div class="bg-[#EEEEEE] p-5 xl:p-[65px] border-2 -mr-0.5 -mb-0.5 border-black">
+              <template x-for="(item, index) in buildMozilla">
+                <div class="bg-[#EEEEEE] p-5 xl:p-[65px] border-2 -mr-0.5 -mb-0.5 border-black transition duration-500 ease-out" :class="inView < 3 && canAnimate ? 'opacity-0 scale-90' : ''" :style="'transition-delay:' + index + '00ms;'">
                   <div class="flex flex-col items-start justify-start gap-8">
                     <img :src="item.author.image" :alt="item.author.name"
                       class="object-contain object-center w-full aspect-square grayscale bg-blend-darken" loading="lazy"
@@ -934,6 +934,8 @@
               whyMozilla: null,
               actMozilla: null,
               buildMozilla: null,
+              inView: 0,
+              canAnimate: true,
 
               init() {
                 // get testimonies tagged with 'choose'
@@ -942,6 +944,12 @@
                 this.actMozilla = this.$store.testimonies.filter(testimony => testimony.content.tag.includes('act')).map(testimony => testimony.content);
 
                 this.buildMozilla = this.$store.testimonies.filter(testimony => testimony.content.tag.includes('build')).map(testimony => testimony.content);
+
+                // if scroll is below the section when page loads, set inView to 1000 so that it doesn't trigger the animation
+                if (window.scrollY > this.$el.offsetTop) {
+                  this.canAnimate = false;
+                  this.lineInView = 1000;
+                }
                 
                 setTimeout(() => {
                   this.dynamicGridWidth();
