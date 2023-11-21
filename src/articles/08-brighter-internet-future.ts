@@ -2,7 +2,7 @@ export const content: object = {
   title: 'A unique business model custom built to enrich people’s online lives',
   hash: '#enrichment',
   author: {
-    name: 'Eric Muhlheim and Angela Plohman',
+    name: 'Eric Muhlheim & Angela Plohman',
     job_title: 'Chief Financial Officer & Executive Vice President',
     image: '/headshots/Eric-Muhlheim.jpeg',
   },
