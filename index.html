@@ -518,7 +518,7 @@
         </div>
 
         <!-- Last row of 2 articles -->
-        <div class="container" x-data="rowFive()" x-intersect.margin.-175px.once="sectionInView = true">
+        <div class="container hidden md:block" x-data="rowFive()" x-intersect.margin.-175px.once="sectionInView = true">
           <div class="container relative flex justify-between gap-[65px] md:gap-[128px]">
             <template x-for="article in fourthRow">
               <div class="relative z-0 w-[calc(50%-64px)] tile">
@@ -581,7 +581,7 @@
         </div>
 
         <!-- Mobile Articles -->
-        <div class="block md:hidden relative border-y-2 border-black bg-[#EEEEEE] z-20" x-data="mobileRow"  x-intersect.margin.-175px.once="sectionInView = true">
+        <div class="block md:hidden relative border-t-2 border-black bg-[#EEEEEE] z-20" x-data="mobileRow"  x-intersect.margin.-175px.once="sectionInView = true">
           <div class="relative">
             <div class="relative flex w-full px-5 overflow-x-auto snap-x snap-mandatory no-scrollbar">
               <template x-for="(article, index) in articles" :key="index">
