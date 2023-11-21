@@ -1094,7 +1094,7 @@
                 <!-- Mobile Previous Button -->
                 <template x-if="previousArticle">
                   <a :href="previousArticle.hash" x-ref="mobilePrev" @click="checkIndex" class="lg:hidden absolute w-[10vw] top-0 h-screen opacity-50 flex items-start justify-end">
-                    <div class="relative flex-col shrink-0 lg:flex-row inline-flex items-start w-[80vw] md:px-[65px] pt-[150px] md:py-[175px] overflow-hidden" :style="'background-color:' + getSVGPath(previousArticle.icon.square)">
+                    <div class="relative flex-col shrink-0 lg:flex-row inline-flex items-start w-[80vw] md:px-[65px] pt-[150px] md:py-[175px] overflow-hidden" :style="'background-color:' + getSVGPath(previousArticle.icon ? previousArticle.icon.square : placeHolderSVG)">
                       <div class="container">
                         <div class="w-full mx-auto lg:w-3/4">
                           <div class="flex flex-col items-start w-full lg:w-3/4">
@@ -1170,7 +1170,7 @@
                 <!-- Mobile Next Button -->
                 <template x-if="nextArticle">
                   <a :href="nextArticle.hash" @click="checkIndex" x-ref="mobileNext" class="lg:hidden absolute w-[10vw] top-0 overflow-hidden h-screen opacity-50 flex items-start justify-start">
-                    <div class="relative flex-col lg:flex-row inline-flex items-start shrink-0 w-[80vw] md:px-[65px] pt-[150px] md:py-[175px] overflow-hidden" :style="'background-color:' + getSVGPath(nextArticle.icon.square)">
+                    <div class="relative flex-col lg:flex-row inline-flex items-start shrink-0 w-[80vw] md:px-[65px] pt-[150px] md:py-[175px] overflow-hidden" :style="'background-color:' + getSVGPath(nextArticle.icon ? nextArticle.icon.square : placeHolderSVG)">
                       <div class="container">
                         <div class="w-full mx-auto lg:w-3/4">
                           <div class="flex flex-col items-start w-full lg:w-3/4">
@@ -1234,59 +1234,56 @@
                   </button>
                 </div>
                 
-                
-                <div class="relative flex-col z-10 lg:flex-row inline-flex items-start lg:items-center lg:px-8 md:px-[65px] pt-[150px] md:py-[175px] lg:py-28 md:min-h-screen w-full overflow-hidden lg:overflow-visible" x-ref="modalHeroBackground">
-                  <div class="container">
-                    <div class="w-full mx-auto lg:w-3/4">
-                      <div class="flex flex-col items-start w-full lg:w-3/4">
-                        <template x-if="$store.activeArticle.author">
-                          <div class="flex items-center gap-5 mb-[48px] w-full">
-                            <img :src="$store.activeArticle.author.image" alt="Head shot of INSERT NAME HERE" width="75" height="75" loading="lazy" class="w-[75px] shrink-0 mix-blend-multiply grayscale rounded-full" />
-                            <div class="flex flex-col items-start justify-start w-full">
-                              <span class="flex items-end gap-[10px] w-full">
-                                <span class="text-[16px]/[24px] tracking-[0.64px] font-semibold font-title shrink-0 inline-block"
-                                  x-html="$store.activeArticle.author.name"></span>
-                                <div class="w-full h-0.5 bg-black -translate-y-1.5"></div>
-                              </span>
-                              <span class="text-[14px]/[21px] font-normal font-title" x-html="$store.activeArticle.author.job_title"></span>
+                <template x-if="$store.activeArticle.title">
+                  <div class="relative flex-col z-10 lg:flex-row inline-flex items-start lg:items-center lg:px-8 md:px-[65px] pt-[150px] md:py-[175px] lg:py-28 md:min-h-screen w-full overflow-hidden lg:overflow-visible" x-ref="modalHeroBackground">
+                    <div class="container">
+                      <div class="w-full mx-auto lg:w-3/4">
+                        <div class="flex flex-col items-start w-full lg:w-3/4">
+                          <template x-if="$store.activeArticle.author">
+                            <div class="flex items-center gap-5 mb-[48px] w-full">
+                              <template x-if="showAuthorImage">
+                                <div class="relative">
+                                  <img :src="$store.activeArticle.author.image" alt="$store.activeArticle.author.name" width="75" height="75" loading="lazy" class="w-[75px] shrink-0 mix-blend-multiply grayscale rounded-full" />
+                                  <div class="absolute top-0 left-0 w-full h-full bg-black rounded-full opacity-70 mix-blend-soft-light"></div>
+                                </div>
+                              </template>
+                              <div class="flex flex-col items-start justify-start w-full">
+                                <span class="flex items-end gap-[10px] w-full">
+                                  <span class="text-[16px]/[24px] tracking-[0.64px] font-semibold font-title shrink-0 inline-block" x-html="$store.activeArticle.author.name"></span>
+                                  <div class="w-full h-0.5 bg-black -translate-y-1.5"></div>
+                                </span>
+                                <span class="text-[14px]/[21px] font-normal font-title" x-html="$store.activeArticle.author.job_title"></span>
+                              </div>
                             </div>
-                          </div>
-                        </template>
-                        
-                        <h2 class="text-[36px]/[38px] md:text-[64px]/[64px] font-bold font-title" x-show="showModal" x-html="$store.activeArticle.title"></h2>
-                        <h3 class="font-title text-[24px]/[31px] tracking-[.48px] font-normal mt-10 md:mt-[80px]" x-html="$store.activeArticle.excerpt"></h3>
-                        
-                        <template x-if="$store.activeArticle.modal_style == 'short'">
-                            <div class=" modal-body" x-html="bodyFormat"></div>
-                        </template>
+                          </template>
+                          
+                          <h2 class="text-[36px]/[38px] md:text-[64px]/[64px] font-bold font-title" x-show="showModal" x-html="$store.activeArticle.title"></h2>
+                          <h3 class="font-title text-[24px]/[31px] tracking-[.48px] font-normal mt-10 md:mt-[80px]" x-html="$store.activeArticle.excerpt"></h3>
+                          
+                          <template x-if="$store.activeArticle.modal_style == 'short'">
+                              <div class=" modal-body" x-html="bodyFormat"></div>
+                          </template>
+                        </div>
                       </div>
                     </div>
+                    <template x-if="!$store.activeArticle.tag">
+                      <div class="mt-10 md:mt-0 md:absolute bottom-0 right-0 translate-x-[5vw] w-full md:w-[40vw] lg:w-[30vw]" x-ref="modalIcon" x-html=" $store.activeArticle.icon.square"></div>
+                    </template>
+                    <template x-if="$store.activeArticle.tag">
+                      <div class="absolute bottom-0 right-0 translate-x-[5vw] md:w-[40vw] lg:w-[30vw]" x-ref="defaultIcon" x-ref="modalIcon" x-html="placeHolderSVG"></div>
+                    </template>
                   </div>
-                  <template x-if="$store.modalType == 'article'">
-                    <div class="mt-10 md:mt-0 md:absolute bottom-0 right-0 translate-x-[5vw] w-full md:w-[40vw] lg:w-[30vw]" x-ref="modalIcon" x-html="$store.activeArticle.icon.square"></div>
-                  </template>
-                  <template x-if="$store.modalType == 'testimony'">
-                    <div class="absolute bottom-0 right-0 translate-x-[5vw] md:w-[40vw] lg:w-[30vw]">
-                      <svg xmlns="http://www.w3.org/2000/svg" x-ref="modalIcon" fill="none" viewBox="0 0 427 437" class="w-full">
-                        <g clip-path="url(#default-icon)">
-                          <path fill="#86C5C8" d="M0 200C0 89.5431 89.5431 0 200 0h235v437H0V200Z" />
-                          <rect width="567" height="328" x="44" y="54" fill="#EEE" opacity=".9" rx="164" />
-                        </g>
-                        <defs>
-                          <clipPath id="default-icon">
-                            <path fill="#fff" d="M0 0h435v437H0z" />
-                          </clipPath>
-                        </defs>
-                      </svg>
-                    </div>
-                  </template>
-                </div>
-  
-                <template x-if="$store.activeArticle.modal_style != 'short'">
-                  <div class="bg-[#EEEEEE] z-10 md:px-[65px] lg:px-0 py-[95px] block w-full">
-                    <div class="container">
-                      <div class="mx-auto lg:w-2/3 modal-body" x-html="bodyFormat"></div>
-                    </div>
+                </template>
+                
+                <template x-if="$store.activeArticle">
+                  <div>
+                    <template x-if="$store.activeArticle.modal_style != 'short'">
+                      <div class="bg-[#EEEEEE] z-10 md:px-[65px] lg:px-0 py-[95px] block w-full">
+                        <div class="container">
+                          <div class="mx-auto lg:w-2/3 modal-body" x-html="bodyFormat"></div>
+                        </div>
+                      </div>
+                    </template>
                   </div>
                 </template>
               </div>
@@ -1305,16 +1302,22 @@
             scrollPosition: 0,
             modalWidth: 80,
             modalNavTileWidth: 85,
+            showAuthorImage: false,
+            isMobile: window.innerWidth < 768 ? true : false,
+            placeHolderSVG: '<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 427 437" class="w-full">< g clip- path="url(#default-icon)" ><path fill="#86C5C8" d="M0 200C0 89.5431 89.5431 0 200 0h235v437H0V200Z" /><rect width="567" height="328" x="44" y="54" fill="#EEE" opacity=".9" rx="164" /></g><defs><clipPath id="default-icon"><path fill="#fff" d="M0 0h435v437H0z" /></clipPath></defs></svg>',
+
             init() {
               // if window.location.hash is not empty, open the modal
               if (window.location.hash) {
                 this.openModal(window.location.hash);
+                this.checkImage();
               }
 
               // Watch if the hash changes
               window.addEventListener('hashchange', (event) => {
                 if (event.srcElement.location.hash) {
                   this.openModal(event.srcElement.location.hash);
+                  this.checkImage();
                 }
               });
             },
@@ -1325,21 +1328,29 @@
 
               // get the fill of the first path in the SVG and make it the background color of the modal hero
               setTimeout(() => {
-                const svg = this.$refs.modalIcon.querySelector('svg');
+                const svg = this.$refs.modalIcon ? this.$refs.modalIcon.querySelector('svg') : this.placeHolderSVG;
+
+                this.checkImage();
                 
                 if (svg) {
-                  const path = svg.querySelector('path');
-                  let fillColor = path.getAttribute('fill');
-  
-                  fillColor = this.hexToRGBA(fillColor, 0.4);
+                  let fillColor = null;
+                  // if svg is a string
+                  if (typeof svg === 'string') {
+                    fillColor = this.getSVGPath(svg);
+                  } else {
+                    // get the first path in the SVG
+                    const path = svg.querySelector('path');
+                    fillColor = this.hexToRGBA(path.getAttribute('fill'), 0.4);
+                  }
+
                   this.$refs.modalHeroBackground.style.backgroundColor = fillColor;
                 } else {
                   this.$refs.modalHeroBackground.style.backgroundColor = '#CEEAEB';
                 }
-              }, 100);
+              }, 50);
 
-              
-              if (window.innerWidth < 768) {
+              // Mobile animations
+              if (this.isMobile) {
                 setTimeout(() => {
                   this.$refs.modalContainer.style.width = `${this.modalWidth}vw`;
 
@@ -1423,9 +1434,9 @@
               }
             },
             closeModal() {
-              this.showModal = false;
+              this.$store.activeArticle = {};
               this.$store.body.lock = false;
-              this.$store.activeArticle = null;
+              this.showModal = false;
               window.location.hash = '';
               window.scrollTo(0, this.scrollPosition);
             },
@@ -1437,15 +1448,28 @@
                 }
               });
             },
-            getSVGPath(svg) {
-              // in the string find "<path fill="" and get the value of fill
-              let fillColor = svg.match(/<path fill=".*?"/g)[0].split('"')[1];
-              if (fillColor) {
-                fillColor = this.hexToRGBA(fillColor, 0.4);
-              } else {
-                fillColor = '#EEEEEE';
-              }
 
+            checkImage() {
+              if (this.$store.activeArticle.tag === 'act' || this.$store.activeArticle.tag === 'build') {
+                this.showAuthorImage = false;
+              } else {
+                this.showAuthorImage = true;
+              }
+            },
+            getSVGPath(svg) {
+              let fillColor = '#EEEEEE'; // Default color if no match is found
+
+              // find the first 'path' in the string and get the fill color
+              const path = svg.match(/<path.*?>/g);
+              const svgIndex = svg.indexOf(path[0]);
+              const pathFill = path[0].match(/fill="(.*?)"/g);
+              const fillColorIndex = path[0].indexOf(pathFill[0]);
+
+              if (pathFill) {
+                fillColor = pathFill[0].slice(6, -1);
+                fillColor = this.hexToRGBA(fillColor, 0.4);
+              }
+  
               return fillColor;
             },
             hexToRGBA(hex, alpha = 1) {
