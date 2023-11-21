@@ -711,12 +711,14 @@
                 const player = new Player('player', {
                   id: 811383613,
                   loop: false,
-                  autoplay: true,
+                  fullscreen: true,
                   allowfullscreen: true,
                 });
 
-                player.on('play', () => {
+                // when the player is ready, play the video
+                player.ready().then(() => {
                   this.playing = true;
+                  player.play();
                 });
               }
             }
@@ -1093,7 +1095,7 @@
 
                 <!-- Mobile Previous Button -->
                 <template x-if="previousArticle">
-                  <a :href="previousArticle.hash" x-ref="mobilePrev" @click="checkIndex" class="lg:hidden absolute w-[10vw] top-0 h-screen opacity-50 flex items-start justify-end">
+                  <a :href="previousArticle.hash" x-ref="mobilePrev" @click="checkIndex" class="md:hidden absolute w-[10vw] top-0 h-screen opacity-50 flex items-start justify-end">
                     <div class="relative flex-col shrink-0 lg:flex-row inline-flex items-start w-[80vw] md:px-[65px] pt-[150px] md:py-[175px] overflow-hidden" :style="'background-color:' + getSVGPath(previousArticle.icon ? previousArticle.icon.square : placeHolderSVG)">
                       <div class="container">
                         <div class="w-full mx-auto lg:w-3/4">
@@ -1159,7 +1161,7 @@
 
                 <!-- Mobile Next Button -->
                 <template x-if="nextArticle">
-                  <a :href="nextArticle.hash" @click="checkIndex" x-ref="mobileNext" class="lg:hidden absolute w-[10vw] top-0 overflow-hidden h-screen opacity-50 flex items-start justify-start">
+                  <a :href="nextArticle.hash" @click="checkIndex" x-ref="mobileNext" class="md:hidden absolute w-[10vw] top-0 overflow-hidden h-screen opacity-50 flex items-start justify-start">
                     <div class="relative flex-col lg:flex-row inline-flex items-start shrink-0 w-[80vw] md:px-[65px] pt-[150px] md:py-[175px] overflow-hidden" :style="'background-color:' + getSVGPath(nextArticle.icon ? nextArticle.icon.square : placeHolderSVG)">
                       <div class="container">
                         <div class="w-full mx-auto lg:w-3/4">
@@ -1226,7 +1228,7 @@
                 
                 <template x-if="$store.activeArticle.title">
                   <div class="relative flex-col z-10 lg:flex-row inline-flex items-start lg:items-center lg:px-8 md:px-[65px] pt-[150px] md:py-[175px] lg:py-28 md:min-h-screen w-full overflow-hidden lg:overflow-visible" x-ref="modalHeroBackground">
-                    <div class="container">
+                    <div class="container z-10">
                       <div class="w-full mx-auto lg:w-3/4">
                         <div class="flex flex-col items-start w-full lg:w-3/4">
                           <template x-if="$store.activeArticle.author">
@@ -1257,10 +1259,10 @@
                       </div>
                     </div>
                     <template x-if="!$store.activeArticle.tag">
-                      <div class="mt-10 md:mt-0 md:absolute bottom-0 right-0 translate-x-[5vw] w-full md:w-[40vw] lg:w-[30vw]" x-ref="modalIcon" x-html=" $store.activeArticle.icon.square"></div>
+                      <div class="mt-10 md:mt-0 md:absolute bottom-0 right-0 translate-x-[5vw] w-full md:w-[40vw] lg:w-[30vw] z-[-1]" x-ref="modalIcon" x-html=" $store.activeArticle.icon.square"></div>
                     </template>
                     <template x-if="$store.activeArticle.tag">
-                      <div class="mt-10 md:mt-0 md:absolute bottom-0 right-0 translate-x-[5vw] w-full md:w-[40vw] lg:w-[30vw]" x-ref="defaultIcon" x-ref="modalIcon" x-html="placeHolderSVG"></div>
+                      <div class="mt-10 md:mt-0 md:absolute bottom-0 right-0 translate-x-[5vw] w-full md:w-[40vw] lg:w-[30vw] z-[-1]" x-ref="defaultIcon" x-ref="modalIcon" x-html="placeHolderSVG"></div>
                     </template>
                   </div>
                 </template>
