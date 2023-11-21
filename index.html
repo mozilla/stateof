@@ -1095,7 +1095,7 @@
 
                 <!-- Mobile Previous Button -->
                 <template x-if="previousArticle">
-                  <a :href="previousArticle.hash" x-ref="mobilePrev" @click="checkIndex" class="md:hidden absolute w-[10vw] top-0 h-screen opacity-50 flex items-start justify-end">
+                  <a :href="previousArticle.hash" id="previousArticle" x-ref="mobilePrev" @click="checkIndex" class="md:hidden absolute w-[10vw] top-0 h-screen opacity-50 flex items-start justify-end">
                     <div class="relative flex-col shrink-0 lg:flex-row inline-flex items-start w-[80vw] md:px-[65px] pt-[150px] md:py-[175px] overflow-hidden" :style="'background-color:' + getSVGPath(previousArticle.icon ? previousArticle.icon.square : placeHolderSVG)">
                       <div class="container">
                         <div class="w-full mx-auto lg:w-3/4">
@@ -1161,7 +1161,7 @@
 
                 <!-- Mobile Next Button -->
                 <template x-if="nextArticle">
-                  <a :href="nextArticle.hash" @click="checkIndex" x-ref="mobileNext" class="md:hidden absolute w-[10vw] top-0 overflow-hidden h-screen opacity-50 flex items-start justify-start">
+                  <a :href="nextArticle.hash" id="nextArticle" @click="checkIndex" x-ref="mobileNext" class="md:hidden absolute w-[10vw] top-0 overflow-hidden h-screen opacity-50 flex items-start justify-start">
                     <div class="relative flex-col lg:flex-row inline-flex items-start shrink-0 w-[80vw] md:px-[65px] pt-[150px] md:py-[175px] overflow-hidden" :style="'background-color:' + getSVGPath(nextArticle.icon ? nextArticle.icon.square : placeHolderSVG)">
                       <div class="container">
                         <div class="w-full mx-auto lg:w-3/4">
@@ -1170,9 +1170,9 @@
                               <div class="flex items-center gap-5 mb-[48px] w-full">
                                 <div class="flex flex-col items-start justify-start w-full">
                                   <span class="flex items-end gap-[10px] w-full">
-                                    <span class="text-[16px]/[24px] tracking-[0.64px] font-semibold font-title shrink-0 inline-block"
+                                    <span class="text-[16px]/[24px] tracking-[0.64px] font-semibold font-title md:shrink-0 inline-block"
                                       x-html="nextArticle.author.name"></span>
-                                    <div class="w-full h-0.5 bg-black -translate-y-1.5"></div>
+                                    <div class="hidden md:inline-block w-full h-0.5 bg-black -translate-y-1.5"></div>
                                   </span>
                                   <span class="text-[14px]/[21px] font-normal font-title"
                                     x-html="nextArticle.author.job_title"></span>
@@ -1227,7 +1227,7 @@
                 </div>
                 
                 <template x-if="$store.activeArticle.title">
-                  <div class="relative flex-col z-10 lg:flex-row inline-flex items-start lg:items-center lg:px-8 md:px-[65px] pt-[150px] md:py-[175px] lg:py-28 md:min-h-screen w-full overflow-hidden lg:overflow-visible" x-ref="modalHeroBackground">
+                  <div class="relative flex-col z-10 lg:flex-row inline-flex items-start lg:items-center lg:px-8 md:px-[65px] pt-[150px] md:py-[175px] lg:py-28 md:min-h-screen w-full overflow-hidden lg:overflow-visible" id="modalMain" x-ref="modalHeroBackground">
                     <div class="container z-10">
                       <div class="w-full mx-auto lg:w-3/4">
                         <div class="flex flex-col items-start w-full lg:w-3/4">
@@ -1382,7 +1382,7 @@
                       this.$refs.mobileNext.style.width = `calc(100vw - ${this.modalNavTileWidth}vw)`;
                     }
                   });
-                }, 50);
+                }, 1);
               }
               
               this.showModal = true;
@@ -1503,11 +1503,39 @@
                 if (startX !== null) {
                   if (dist > 50) {
                     if(this.previousArticle) {
-                      window.location.hash = this.previousArticle.hash;
+                      this.$refs.mobilePrev.classList.add('transitionIn');
+                      this.$refs.modalHeroBackground.classList.add('transitionInRight');
+                      if (this.nextArticle) {
+                        this.$refs.mobileNext.classList.add('transitionOut');
+                      }
+
+                      setTimeout(() => {
+                        this.$refs.modalHeroBackground.style.backgroundColor = this.getSVGPath(this.previousArticle.icon.square);
+                        window.location.hash = this.previousArticle.hash;
+                        this.$refs.mobilePrev.classList.remove('transitionIn');
+                        this.$refs.modalHeroBackground.classList.remove('transitionInRight');
+                        if (this.nextArticle) {
+                          this.$refs.mobileNext.classList.remove('transitionOut');
+                        }
+                      }, 500);
                     }
                   } else if (dist < -50) {
                     if (this.nextArticle) {
-                      window.location.hash = this.nextArticle.hash;
+                      this.$refs.mobileNext.classList.add('transitionIn');
+                      if (this.previousArticle) {
+                        this.$refs.mobilePrev.classList.add('transitionOut');
+                      }
+                      this.$refs.modalHeroBackground.classList.add('transitionInLeft');
+
+                      setTimeout(() => {
+                        this.$refs.modalHeroBackground.style.backgroundColor = this.getSVGPath(this.nextArticle.icon.square);
+                        window.location.hash = this.nextArticle.hash;
+                        this.$refs.mobileNext.classList.remove('transitionIn');
+                        this.$refs.modalHeroBackground.classList.remove('transitionInLeft');
+                        if(this.previousArticle) {
+                          this.$refs.mobilePrev.classList.remove('transitionOut');
+                        }
+                      }, 500);
                     }
                   }
                   startX = null;
@@ -1520,7 +1548,7 @@
       </script>
     </main>
 
-    <footer x-data="footer()" x-ref="footer" class="z-10 transition-opacity duration-300">
+    <footer class="z-10 transition-opacity duration-300">
       <div class="container relative grid gap-6 pb-9 pt-[70px]">
         <div>
           <a href="https://www.mozilla.org/en-US/" class="inline-flex hover:underline w-[100px]">
@@ -1543,7 +1571,7 @@
   
         <div class="flex flex-col justify-between gap-4 xl:items-center xl:gap-6 xl:flex-row">
           <p class="text-sm">
-            Portions of this content are ©1998-2022 by individual mozilla.org contributors. Content available under a Creative Commons license.
+            Portions of this content are ©1998-2023 by individual mozilla.org contributors. Content available under a Creative Commons license.
           </p>
   
           <nav>

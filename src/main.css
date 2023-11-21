@@ -72,6 +72,27 @@
     @apply text-[56px]/[56px] font-title font-bold tracking-[1px];
   }
 
+  #previousArticle.transitionIn {
+    @apply transition-all duration-500 ease-in-out w-[80vw] left-0 opacity-100 z-20;
+  }
+  #previousArticle.transitionOut {
+    @apply z-20 transition-all duration-500 ease-in-out -translate-x-[80vw] opacity-100;
+  }
+
+  #nextArticle.transitionIn {
+    @apply transition-all duration-500 ease-in-out w-[80vw] -translate-x-[80vw] opacity-100 z-20;
+  }
+  #nextArticle.transitionOut {
+    @apply z-20 transition-all duration-500 ease-in-out translate-x-[80vw] opacity-100;
+  }
+
+  #modalMain.transitionInRight {
+    @apply transition-[transform,opacity] duration-500 ease-in-out translate-x-full opacity-50;
+  }
+  #modalMain.transitionInLeft {
+    @apply transition-[transform,opacity] duration-500 ease-in-out -translate-x-full opacity-50;
+  }
+
   main.modalActive {
     animation: scaleBack .5s cubic-bezier(0.165, 0.840, 0.440, 1.000) both;
     animation-delay: .1s;
