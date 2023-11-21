@@ -1234,7 +1234,7 @@
                           <template x-if="$store.activeArticle.author">
                             <div class="flex items-center gap-5 mb-[48px] w-full">
                               <template x-if="showAuthorImage">
-                                <div class="relative hidden md:inline-block">
+                                <div class="relative hidden md:block">
                                   <img :src="$store.activeArticle.author.image" alt="$store.activeArticle.author.name" width="75" height="75" loading="lazy" class="w-[75px] shrink-0 mix-blend-multiply grayscale rounded-full" />
                                   <div class="absolute top-0 left-0 w-full h-full bg-black rounded-full opacity-40 mix-blend-soft-light"></div>
                                 </div>
@@ -1431,7 +1431,10 @@
               this.showModal = false;
               this.$store.body.lock = false;
               window.location.hash = '';
-              window.scrollTo(0, this.scrollPosition);
+              
+              if (this.scrollPosition != 0) {
+                window.scrollTo(0, this.scrollPosition);
+              }
             },
             checkIndex() {
               this.$store.articles.forEach((article, index) => {
@@ -1505,6 +1508,7 @@
                     if(this.previousArticle) {
                       this.$refs.mobilePrev.classList.add('transitionIn');
                       this.$refs.modalHeroBackground.classList.add('transitionInRight');
+                      
                       if (this.nextArticle) {
                         this.$refs.mobileNext.classList.add('transitionOut');
                       }
@@ -1514,6 +1518,7 @@
                         window.location.hash = this.previousArticle.hash;
                         this.$refs.mobilePrev.classList.remove('transitionIn');
                         this.$refs.modalHeroBackground.classList.remove('transitionInRight');
+                        
                         if (this.nextArticle) {
                           this.$refs.mobileNext.classList.remove('transitionOut');
                         }

@@ -73,7 +73,7 @@
   }
 
   #previousArticle.transitionIn {
-    @apply transition-all duration-500 ease-in-out w-[80vw] left-0 opacity-100 z-20;
+    @apply z-20 transition-all duration-500 ease-in-out w-[80vw] translate-x-[80vw] opacity-100;
   }
   #previousArticle.transitionOut {
     @apply z-20 transition-all duration-500 ease-in-out -translate-x-[80vw] opacity-100;
