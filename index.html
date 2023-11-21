@@ -162,8 +162,8 @@
             </div>
           </div>
           <div class="relative flex flex-col w-full mt-[100px] md:mt-0  md:w-1/2 lg:w-5/12">
-            <div class="w-[50vw] lg:w-[45vw] hidden md:block translate-x-12 lg:translate-x-0 origin-center transition duration-500 ease-out" :class="!inView && canAnimate ? 'scale-95 opacity-0' : ''" x-html="article.icon"></div>
-            <div class="w-[85vw] sm:w-[65vw] absolute left-1/2 -translate-x-[45%] -translate-y-1/2 z-0 -rotate-90 md:hidden transition duration-500 ease-out" :class="!inView && canAnimate ? 'scale-95 opacity-0' : ''" x-html="article.icon"></div>
+            <div class="w-[50vw] lg:w-[45vw] hidden md:block translate-x-12 lg:translate-x-0 origin-center transition duration-500 ease-out" :class="!inView && canAnimate ? 'scale-95 opacity-0' : ''" x-html="article.icon.rect"></div>
+            <div class="w-[85vw] sm:w-[65vw] absolute left-1/2 -translate-x-[45%] -translate-y-1/2 z-0 -rotate-90 md:hidden transition duration-500 ease-out" :class="!inView && canAnimate ? 'scale-95 opacity-0' : ''" x-html="article.icon.rect"></div>
             <div class="flex flex-col md:mt-[20px] w-full md:w-10/12 self-end items-start justify-start z-10">
               <h3 class="text-[36px]/[38px] tracking-[1.08px] font-semibold font-title  transition duration-500 delay-300" x-html="article.title" :class="!inView && canAnimate ? '-translate-x-4 opacity-0' : ''"></h3>
               <div class="flex items-start justify-start w-full gap-[22px] mt-[40px] transition duration-500 delay-500" :class="!inView && canAnimate ? '-translate-x-4 opacity-0' : ''">
@@ -288,14 +288,13 @@
               <div class="z-10 flex flex-col items-start justify-start w-full py-[65px] md:pr-[65px]">
                 <div class="flex flex-col items-start justify-start w-full">
                   <span class="flex items-end gap-[10px] w-full">
-                    <span class="text-[16px]/[24px] tracking-[0.64px] font-semibold font-title shrink-0 inline-block transition duration-500 ease-out" :class="!sectionInView && canAnimate ? 'opacity-0 -translate-x-4' : ''"
-                      x-html="firstArticle.author.name"></span>
+                    <span class="text-[16px]/[24px] tracking-[0.64px] font-semibold font-title shrink-0 inline-block transition duration-500 ease-out" :class="!sectionInView && canAnimate ? 'opacity-0 -translate-x-4' : ''" x-html="firstArticle.author.name"></span>
                     <div class="w-full h-0.5 bg-black -translate-y-1.5 transition duration-300 ease-out delay-100 origin-left" :class="!sectionInView && canAnimate ? 'scale-x-0' : ''"></div>
                   </span>
                   <span class="text-[14px]/[21px] font-normal font-title transition duration-500 ease-out delay-100" :class="!sectionInView && canAnimate ? 'opacity-0 -translate-x-4' : ''" x-html="firstArticle.author.job_title"></span>
                 </div>
                 <div class="w-full flex items-end justify-end my-[30px] transition duration-500 ease-out" :class="!sectionInView && canAnimate ? 'opacity-0 scale-95' : ''">
-                  <div class="[&>svg]:w-[100vw] [&>svg]:md:w-[48vw]" x-html="firstArticle.icon"></div>
+                  <div class="[&>svg]:w-[100vw] [&>svg]:md:w-[58vw]" x-html="firstArticle.icon.rect"></div>
                 </div>
                 <h3 class="text-[24px]/[26px] tracking-[.48px] font-bold font-title transition duration-500 ease-out delay-300" :class="!sectionInView && canAnimate ? 'opacity-0 -translate-x-4' : ''" x-html="firstArticle.title"></h3>
 
@@ -367,7 +366,7 @@
                       </span>
                       <span class="text-[14px]/[21px] font-normal font-title" x-html="article.author.job_title"></span>
                     </div>
-                    <div class="w-full flex items-center justify-center my-[30px] [&>svg]:w-full" x-html="article.icon"></div>
+                    <div class="w-full flex items-center justify-center my-[30px] [&>svg]:w-full" x-html="article.icon.square"></div>
                     <h3 class="text-[24px]/[26px] tracking-[.48px] font-bold font-title" x-html="article.title"></h3>
                     <a x-cloak :href="article.hash" class="flex items-center mt-[25px] gap-[5px] group">
                       <span class="text-[16px]/[28px] font-bold relative font-title">
@@ -422,7 +421,7 @@
                     <span class="text-[14px]/[21px] font-normal font-title transition duration-500 ease-out delay-100" :class="!sectionInView && canAnimate ? 'opacity-0 -translate-x-4' : ''" x-html="article.author.job_title"></span>
                   </div>
                   <div class="w-full flex items-end justify-end icon my-[30px] transition duration-500 ease-out" :class="!sectionInView && canAnimate ? 'opacity-0 scale-95' : ''">
-                    <div class="[&>svg]:w-[48vw]" x-html="article.icon"></div>
+                    <div class="[&>svg]:w-[48vw]" x-html="article.icon.rect"></div>
                   </div>
                   <h3 class="text-[24px]/[26px] tracking-[.48px] font-bold font-title transition duration-500 ease-out delay-300" :class="!sectionInView && canAnimate ? 'opacity-0 -translate-x-4' : ''" x-html="article.title"></h3>
 
@@ -478,7 +477,7 @@
                       </span>
                       <span class="text-[14px]/[21px] font-normal font-title" x-html="article.author.job_title"></span>
                     </div>
-                    <div class="w-full flex items-center justify-center my-[30px] [&>svg]:w-full" x-html="article.icon"></div>
+                    <div class="w-full flex items-center justify-center my-[30px] [&>svg]:w-full" x-html="article.icon.square"></div>
                     <h3 class="text-[24px]/[26px] tracking-[.48px] font-bold font-title" x-html="article.title"></h3>
                     <a x-cloak :href="article.hash" class="flex items-center mt-[25px] gap-[5px] group">
                       <span class="text-[16px]/[28px] font-bold relative font-title">
@@ -518,6 +517,69 @@
           </script>
         </div>
 
+        <!-- Last row of 2 articles -->
+        <div class="container" x-data="rowFive()" x-intersect.margin.-175px.once="sectionInView = true">
+          <div class="container relative flex justify-between gap-[65px] md:gap-[128px]">
+            <template x-for="article in fourthRow">
+              <div class="relative z-0 w-[calc(50%-64px)] tile">
+                <div class="z-10 flex flex-col items-start justify-start w-full py-[65px]">
+                  <div class="flex flex-col items-start justify-start w-full">
+                    <span class="flex items-end gap-[10px] w-full">
+                      <span
+                        class="text-[16px]/[24px] tracking-[0.64px] font-semibold font-title shrink-0 inline-block transition duration-500 ease-out"
+                        :class="!sectionInView && canAnimate ? 'opacity-0 -translate-x-4' : ''"
+                        x-html="article.author.name"></span>
+                      <div class="w-full h-0.5 bg-black -translate-y-1.5 transition duration-300 ease-out delay-100 origin-left"
+                        :class="!sectionInView && canAnimate ? 'scale-x-0' : ''"></div>
+                    </span>
+                    <span class="text-[14px]/[21px] font-normal font-title transition duration-500 ease-out delay-100"
+                      :class="!sectionInView && canAnimate ? 'opacity-0 -translate-x-4' : ''"
+                      x-html="article.author.job_title"></span>
+                  </div>
+                  <div class="w-full flex items-end justify-end icon my-[30px] transition duration-500 ease-out"
+                    :class="!sectionInView && canAnimate ? 'opacity-0 scale-95' : ''">
+                    <div class="[&>svg]:w-[48vw]" x-html="article.icon.rect"></div>
+                  </div>
+                  <h3 class="text-[24px]/[26px] tracking-[.48px] font-bold font-title transition duration-500 ease-out delay-300"
+                    :class="!sectionInView && canAnimate ? 'opacity-0 -translate-x-4' : ''" x-html="article.title"></h3>
+          
+                  <div class="duration-500 ease-out inline-blocktransition delay-[400ms]"
+                    :class="!sectionInView && canAnimate ? 'opacity-0 -translate-x-4' : ''">
+                    <a x-cloak :href="article.hash" class="flex items-center mt-[25px] gap-[5px] group">
+                      <span class="text-[16px]/[28px] font-bold relative font-title">
+                        Read
+                        <span
+                          class="bottom-0 left-0 w-full h-0.5 bg-black absolute transition duration-150 ease-out group-hover:scale-x-0 origin-right"></span>
+                      </span>
+                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 13 12"
+                        class="w-[14px] transition duration-150 ease-out group-hover:translate-x-1">
+                        <path fill="#000"
+                          d="M6.69318.36364 12.4205 6.0909 6.69318 11.8182 5.375 10.5114l3.46023-3.46026H.72727V5.13068h8.10796L5.375 1.67614 6.69318.36364Z" />
+                      </svg>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </template>
+          </div>
+          <script>
+            function rowFive() {
+              return {
+                sectionInView: false,
+                canAnimate: true,
+
+                init() {
+                  // if scroll is below the section when page loads, set inView to true so that it doesn't trigger the animation
+                  if (window.scrollY > this.$el.offsetTop) {
+                    this.canAnimate = false;
+                    this.sectionInView = true;
+                  }
+                }
+              }
+            }
+          </script>
+        </div>
+
         <!-- Mobile Articles -->
         <div class="block md:hidden relative border-y-2 border-black bg-[#EEEEEE] z-20" x-data="mobileRow"  x-intersect.margin.-175px.once="sectionInView = true">
           <div class="relative">
@@ -533,7 +595,7 @@
                       </span>
                       <span class="text-[14px]/[21px] font-normal font-title" x-html="article.author.job_title"></span>
                     </div>
-                    <div class="w-full flex items-center justify-center my-[30px] [&>svg]:w-full" x-html="article.icon"></div>
+                    <div class="w-full flex items-center justify-center my-[30px] [&>svg]:w-full" x-html="article.icon.square"></div>
                     <h3 class="text-[24px]/[26px] tracking-[.48px] font-bold font-title" x-html="article.title"></h3>
                     <a x-cloak :href="article.hash" class="flex items-center mt-[25px] gap-[5px] group">
                       <span class="text-[16px]/[28px] font-bold relative font-title">
@@ -571,91 +633,6 @@
           </div>
         </div>
 
-        <!-- Last Lead Article -->
-        <div class="container" x-data="rowFive()" x-intersect.margin.-175px.once="sectionInView = true">
-          <div class="grid grid-cols-12">
-            <div class="relative flex items-center justify-start col-span-12 py-[60px] md:py-10 md:col-span-6">
-              <div
-                class="bg-[#a8f8ba] absolute top-0 right-1/2 translate-x-1/2 md:-translate-x-0 md:right-0 w-screen md:w-[50vw] h-full z-[1] border-b-2 border-black md:border-b-0 transition duration-500 ease-out delay-100" :class="!sectionInView && canAnimate ? 'opacity-0' : ''">
-              </div>
-        
-              <div class="relative z-10 flex-col items-end justify-start w-full pl-10 md:w-11/12 lg:w-3/4">
-                <span class="absolute top-0 left-0 font-body text-[56px]/[55px] font-bold lg:-translate-x-10 ransition duration-500 ease-out delay-200" :class="!sectionInView && canAnimate ? 'opacity-0 -translate-x-4' : ''">“</span>
-                <p class="font-title text-[24px]/[31px] font-normal tracking-[.48px] transition duration-500 ease-out delay-200" :class="!sectionInView && canAnimate ? 'opacity-0 -translate-y-4' : ''">
-                  That openness and willingness to put the safety and interests of people first is how we built the trust we now
-                  enjoy. And it is how we will approach new opportunities to set better standards for the internet.
-                </p>
-                <div class="bg-[#a8f8ba] flex items-center justify-start w-full gap-[22px] mt-[95px] transition duration-500 ease-out delay-[400ms]" :class="!sectionInView && canAnimate ? 'opacity-0' : ''">
-                  <img src="/headshots/mitchell-baker.jpg" alt="Head shot of INSERT NAME HERE" width="75" height="75" loading="lazy" class="w-[75px] shrink-0 mix-blend-multiply grayscale rounded-full" />
-                  <div class="flex flex-col items-start justify-start w-full gap-5">
-                    <div class="flex flex-col items-start justify-start w-full shrink-0">
-                      <span class="flex items-end gap-[10px] w-full">
-                        <h4 class="text-[16px]/[24px] tracking-[0.64px] font-semibold font-title shrink-0 inline-block">Mitchell Baker</h4>
-                      </span>
-                      <h5 class="text-[14px]/[21px] font-normal font-title">CEO</h5>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="relative z-0 col-span-12 md:col-span-6">
-              <div class="z-10 flex flex-col items-start justify-start w-full py-[65px] md:pl-[65px]">
-                <div class="flex flex-col items-start justify-start w-full">
-                  <span class="flex items-end gap-[10px] w-full">
-                    <span
-                      class="text-[16px]/[24px] tracking-[0.64px] font-semibold font-title shrink-0 inline-block transition duration-500 ease-out"
-                      :class="!sectionInView && canAnimate ? 'opacity-0 -translate-x-4' : ''"
-                      x-html="lastArticle.author.name"></span>
-                    <div class="w-full h-0.5 bg-black -translate-y-1.5 transition duration-300 ease-out delay-100 origin-left"
-                      :class="!sectionInView && canAnimate ? 'scale-x-0' : ''"></div>
-                  </span>
-                  <span class="text-[14px]/[21px] font-normal font-title transition duration-500 ease-out delay-100"
-                    :class="!sectionInView && canAnimate ? 'opacity-0 -translate-x-4' : ''"
-                    x-html="lastArticle.author.job_title"></span>
-                </div>
-                <div class="w-full flex items-end justify-start my-[30px] transition duration-500 ease-out"
-                  :class="!sectionInView && canAnimate ? 'opacity-0 scale-95' : ''">
-                  <div class="[&>svg]:w-[100vw] [&>svg]:md:w-[48vw]" x-html="lastArticle.icon"></div>
-                </div>
-                <h3 class="text-[24px]/[26px] tracking-[.48px] font-bold font-title transition duration-500 ease-out delay-300"
-                  :class="!sectionInView && canAnimate ? 'opacity-0 -translate-x-4' : ''" x-html="lastArticle.title"></h3>
-            
-                <div class="duration-500 ease-out inline-blocktransition delay-[400ms]"
-                  :class="!sectionInView && canAnimate ? 'opacity-0 -translate-x-4' : ''">
-                  <a x-cloak :href="lastArticle.hash" class="flex items-center mt-[25px] gap-[5px] group">
-                    <span class="text-[16px]/[28px] font-bold relative font-title">
-                      Read
-                      <span
-                        class="bottom-0 left-0 w-full h-0.5 bg-black absolute transition duration-150 ease-out group-hover:scale-x-0 origin-right"></span>
-                    </span>
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 13 12"
-                      class="w-[14px] transition duration-150 ease-out group-hover:translate-x-1">
-                      <path fill="#000"
-                        d="M6.69318.36364 12.4205 6.0909 6.69318 11.8182 5.375 10.5114l3.46023-3.46026H.72727V5.13068h8.10796L5.375 1.67614 6.69318.36364Z" />
-                    </svg>
-                  </a>
-                </div>
-              </div>
-            </div>
-          <script>
-            function rowFive() {
-              return {
-                sectionInView: false,
-                canAnimate: true,
-
-                init() {
-                  // if scroll is below the section when page loads, set inView to true so that it doesn't trigger the animation
-                  if (window.scrollY > this.$el.offsetTop) {
-                    this.canAnimate = false;
-                    this.sectionInView = true;
-                  }
-                }
-              }
-            }
-          </script>
-        </div>
-
         <script>
           function articles() {
             return {
@@ -665,6 +642,7 @@
               firstRow: null,
               secondRow: null,
               thirdRow: null,
+              fourthRow: null,
 
               init() {
                 this.firstArticle = this.$store.articles.find(article => !article.content.lead_article)?.content;
@@ -682,6 +660,11 @@
 
                 // get three articles that have the width value of 'third' and not in this.firstRow
                 this.thirdRow = this.articles.filter(article => article.width === 'third' && article.title !== this.firstArticle.title && !this.firstRow.includes(article)).slice(0, 3);
+
+                // get two articles that have the width value of 'half' and not in this.firstRow or this.secondRow
+                this.fourthRow = this.articles.filter(article => article.width === 'half' && article.title !== this.firstArticle.title && !this.firstRow.includes(article) && !this.secondRow.includes(article)).slice(0, 2);
+
+                console.log(this.firstRow);
               }
             }
           }
@@ -1101,7 +1084,7 @@
                       </svg>
                       <template x-if="$store.modalType == 'article'">
                         <div class="flex flex-col items-start justify-start gap-[10px]">
-                          <div class="w-[130px]" x-html="previousArticle.icon"></div>
+                          <div class="w-[130px]" x-html="previousArticle.icon.rect"></div>
                           <span class="font-title text-[12px]/[12px] font-bold" x-html="previousArticle.title"></span>
                           <span class="font-title text-[10px]/[10px] font-normal" x-html="nextArticle.author.name"></span>
                         </div>
@@ -1120,7 +1103,7 @@
                 <!-- Mobile Previous Button -->
                 <template x-if="previousArticle">
                   <a :href="previousArticle.hash" x-ref="mobilePrev" @click="checkIndex" class="lg:hidden absolute w-[10vw] top-0 h-screen opacity-50 flex items-start justify-end">
-                    <div class="relative flex-col shrink-0 lg:flex-row inline-flex items-start w-[80vw] md:px-[65px] pt-[150px] md:py-[175px] overflow-hidden" :style="'background-color:' + getSVGPath(previousArticle.icon)">
+                    <div class="relative flex-col shrink-0 lg:flex-row inline-flex items-start w-[80vw] md:px-[65px] pt-[150px] md:py-[175px] overflow-hidden" :style="'background-color:' + getSVGPath(previousArticle.icon.square)">
                       <div class="container">
                         <div class="w-full mx-auto lg:w-3/4">
                           <div class="flex flex-col items-start w-full lg:w-3/4">
@@ -1145,7 +1128,7 @@
                         </div>
                       </div>
                       <template x-if="$store.modalType == 'article'">
-                        <div class="md:absolute bottom-0 right-0 translate-x-[5vw] w-full md:w-[40vw] lg:w-[30vw]" x-html="previousArticle.icon"></div>
+                        <div class="md:absolute bottom-0 right-0 translate-x-[5vw] w-full md:w-[40vw] lg:w-[30vw]" x-html="previousArticle.icon.square"></div>
                       </template>
                       <template x-if="$store.modalType == 'testimony'">
                         <div class="absolute bottom-0 right-0 translate-x-[5vw] md:w-[40vw] lg:w-[30vw]">
@@ -1171,7 +1154,7 @@
                     <div class="flex items-center gap-5">
                       <template x-if="$store.modalType == 'article'">
                         <div class="flex flex-col items-start justify-start gap-[10px]">
-                          <div class="w-[130px]" x-html="nextArticle.icon"></div>
+                          <div class="w-[130px]" x-html="nextArticle.icon.rect"></div>
                           <span class="font-title text-[12px]/[12px] font-bold" x-html="nextArticle.title"></span>
                           <span class="font-title text-[10px]/[10px] font-normal" x-html="nextArticle.author.name"></span>
                         </div>
@@ -1196,7 +1179,7 @@
                 <!-- Mobile Next Button -->
                 <template x-if="nextArticle">
                   <a :href="nextArticle.hash" @click="checkIndex" x-ref="mobileNext" class="lg:hidden absolute w-[10vw] top-0 overflow-hidden h-screen opacity-50 flex items-start justify-start">
-                    <div class="relative flex-col lg:flex-row inline-flex items-start shrink-0 w-[80vw] md:px-[65px] pt-[150px] md:py-[175px] overflow-hidden" :style="'background-color:' + getSVGPath(nextArticle.icon)">
+                    <div class="relative flex-col lg:flex-row inline-flex items-start shrink-0 w-[80vw] md:px-[65px] pt-[150px] md:py-[175px] overflow-hidden" :style="'background-color:' + getSVGPath(nextArticle.icon.square)">
                       <div class="container">
                         <div class="w-full mx-auto lg:w-3/4">
                           <div class="flex flex-col items-start w-full lg:w-3/4">
@@ -1226,7 +1209,7 @@
                         </div>
                       </div>
                       <template x-if="$store.modalType == 'article'">
-                        <div class="md:absolute bottom-0 right-0 translate-x-[5vw] w-full md:w-[40vw] lg:w-[30vw] mt-10" x-html="nextArticle.icon"></div>
+                        <div class="md:absolute bottom-0 right-0 translate-x-[5vw] w-full md:w-[40vw] lg:w-[30vw] mt-10" x-html="nextArticle.icon.square"></div>
                       </template>
                     </div>
                   </a>
@@ -1288,7 +1271,7 @@
                     </div>
                   </div>
                   <template x-if="$store.modalType == 'article'">
-                    <div class="mt-10 md:mt-0 md:absolute bottom-0 right-0 translate-x-[5vw] w-full md:w-[40vw] lg:w-[30vw]" x-ref="modalIcon" x-html="$store.activeArticle.icon"></div>
+                    <div class="mt-10 md:mt-0 md:absolute bottom-0 right-0 translate-x-[5vw] w-full md:w-[40vw] lg:w-[30vw]" x-ref="modalIcon" x-html="$store.activeArticle.icon.square"></div>
                   </template>
                   <template x-if="$store.modalType == 'testimony'">
                     <div class="absolute bottom-0 right-0 translate-x-[5vw] md:w-[40vw] lg:w-[30vw]">
@@ -1356,7 +1339,7 @@
                   const path = svg.querySelector('path');
                   let fillColor = path.getAttribute('fill');
   
-                  fillColor = this.hexToRGBA(fillColor, 0.3);
+                  fillColor = this.hexToRGBA(fillColor, 0.4);
                   this.$refs.modalHeroBackground.style.backgroundColor = fillColor;
                 } else {
                   this.$refs.modalHeroBackground.style.backgroundColor = '#CEEAEB';
@@ -1466,7 +1449,7 @@
               // in the string find "<path fill="" and get the value of fill
               let fillColor = svg.match(/<path fill=".*?"/g)[0].split('"')[1];
               if (fillColor) {
-                fillColor = this.hexToRGBA(fillColor, 0.3);
+                fillColor = this.hexToRGBA(fillColor, 0.4);
               } else {
                 fillColor = '#EEEEEE';
               }
