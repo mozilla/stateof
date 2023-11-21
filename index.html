@@ -672,14 +672,14 @@
       </section>
 
       <!-- Video -->
-      <section class="bg-[#89D5FF] w-full aspect-[1.25] px-4 md:aspect-[1.8] lg:aspect-[2.25] flex items-center border-t-2 border-black relative" x-data="video()">
+      <section class="bg-[#89D5FF] w-full aspect-[1.25] px-4 md:aspect-[1.8] lg:aspect-[2.25] flex items-center border-t-2 border-black relative z-0" x-data="video()">
         <div class="container relative" x-ref="content" x-intersect.margin.-175px.once="inView = true">
-          <div class="w-[95%] aspect-[2] lg:aspect-[3] bg-[#CEC2FF] mix-blend-multiply absolute top-1/2 left-0 -translate-y-1/2 rounded-full transition duration-300 ease-out" :class="!inView && canAnimate ? 'opacity-0' : ''"></div>
-          <div class="w-[44%] lg:w-[35%] aspect-[1.16] bg-[#CEC2FF] mix-blend-multiply absolute top-1/2 right-0 -translate-y-1/2 rounded-full transition duration-300 ease-out delay-300" :class="!inView && canAnimate ? 'opacity-0 -translate-x-5': ''"></div>
+          <div class="w-[95%] aspect-[2] lg:aspect-[3] bg-[#6fa2ff] absolute top-1/2 left-0 -translate-y-1/2 rounded-full transition duration-300 ease-out z-[-1]" :class="!inView && canAnimate ? 'opacity-0' : ''"></div>
+          <div class="w-[44%] lg:w-[35%] aspect-[1.16] bg-[#5a7bff] absolute top-1/2 right-0 -translate-y-1/2 rounded-full transition duration-300 ease-out delay-300 z-[-1]" :class="!inView && canAnimate ? 'opacity-0 -translate-x-5': ''"></div>
 
           <img class="w-[38%] lg:w-[30%] aspect-[1] absolute top-1/2 right-0 -translate-y-1/2 rounded-full object-cover object-center transition duration-300 ease-out delay-[400ms]" :class="!inView && canAnimate ? 'opacity-0 -translate-x-5' : ''" src="/video-thumbnail.gif" alt="Video Thumbnail" loading="lazy" width="400" height="400"/>
 
-          <h2 class="font-title text-[16px]/[17px] tracking-[0.48px] sm:text-[36px]/[38px] md:tracking-[1.08px] font-bold w-5/12 sm:ml-10 md:w-4/12 md:ml-[65px] transition duration-300 ease-out delay-200" :class="!inView && canAnimate ? 'opacity-0 -translate-x-5' : ''">This is the title of a State of Mozilla video</h2>
+          <h2 class="font-title text-[16px]/[17px] tracking-[0.48px] sm:text-[36px]/[38px] md:tracking-[1.08px] font-bold w-5/12 sm:ml-10 md:w-4/12 md:ml-[65px] transition duration-300 ease-out delay-200 z-10" :class="!inView && canAnimate ? 'opacity-0 -translate-x-5' : ''">This is the title of a State of Mozilla video</h2>
           
           <div class="absolute -translate-x-1/2 top-1/2 left-1/2 -translate-y-1/2 w-[30px]  md:w-[66px] transition duration-300 ease-out delay-500" :class="!inView && canAnimate ? 'opacity-0 scale-90' : ''">
             <button @click="play" class=" text-black hover:text-[#89D5FF] transition duration-150 ease-out hover:scale-110 w-full">
@@ -729,7 +729,7 @@
       <!-- Why Mozilla -->
       <section class="bg-[#CEEAEB] relative py-[100px] md:pl-10 md:py-[150px] border-t-2 border-black flex flex-col gap-[100px] md:gap-[120px]" x-data="testimonies()"  x-intersect.margin.-50%="watchScroll">
         <div x-ref="parentSection" class="absolute top-0 left-0 hidden w-10 h-full bg-white md:block">
-          <div x-ref="translateDiv" class="absolute top-0 left-0 w-full h-10 transition bg-black"></div>
+          <div x-ref="translateDiv" class="absolute top-0 left-0 w-full h-10 bg-black"></div>
         </div>
 
         <!-- Choose with Mozilla -->
