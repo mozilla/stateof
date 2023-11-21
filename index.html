@@ -1104,9 +1104,9 @@
                               <div class="flex items-center gap-5 mb-[48px] w-full">
                                 <div class="flex flex-col items-start justify-start w-full">
                                   <span class="flex items-end gap-[10px] w-full">
-                                    <span class="text-[16px]/[24px] tracking-[0.64px] font-semibold font-title shrink-0 inline-block"
+                                    <span class="text-[16px]/[24px] tracking-[0.64px] font-semibold font-title md:shrink-0 inline-block"
                                       x-html="previousArticle.author.name"></span>
-                                    <div class="w-full h-0.5 bg-black -translate-y-1.5"></div>
+                                    <div class="hidden md:inline-block w-full h-0.5 bg-black -translate-y-1.5"></div>
                                   </span>
                                   <span class="text-[14px]/[21px] font-normal font-title"
                                     x-html="previousArticle.author.job_title"></span>
@@ -1118,7 +1118,7 @@
                               x-html="previousArticle.title"></h2>
                             <h3 class="font-title text-[24px]/[31px] tracking-[.48px] font-normal mt-10 md:mt-[80px]" x-html="previousArticle.excerpt"></h3>
 
-                            <template x-if="nextArticle.modal_style == 'short'">
+                            <template x-if="previousArticle.modal_style == 'short'">
                               <div class=" modal-body" x-html="bodyFormat"></div>
                             </template>
                           </div>
@@ -1234,15 +1234,15 @@
                           <template x-if="$store.activeArticle.author">
                             <div class="flex items-center gap-5 mb-[48px] w-full">
                               <template x-if="showAuthorImage">
-                                <div class="relative">
+                                <div class="relative hidden md:inline-block">
                                   <img :src="$store.activeArticle.author.image" alt="$store.activeArticle.author.name" width="75" height="75" loading="lazy" class="w-[75px] shrink-0 mix-blend-multiply grayscale rounded-full" />
                                   <div class="absolute top-0 left-0 w-full h-full bg-black rounded-full opacity-40 mix-blend-soft-light"></div>
                                 </div>
                               </template>
                               <div class="flex flex-col items-start justify-start w-full">
                                 <span class="flex items-end gap-[10px] w-full">
-                                  <span class="text-[16px]/[24px] tracking-[0.64px] font-semibold font-title shrink-0 inline-block" x-html="$store.activeArticle.author.name"></span>
-                                  <div class="w-full h-0.5 bg-black -translate-y-1.5"></div>
+                                  <span class="text-[16px]/[24px] tracking-[0.64px] font-semibold font-title md:shrink-0 inline-block" x-html="$store.activeArticle.author.name"></span>
+                                  <div class="hidden md:inline-block w-full h-0.5 bg-black -translate-y-1.5"></div>
                                 </span>
                                 <span class="text-[14px]/[21px] font-normal font-title" x-html="$store.activeArticle.author.job_title"></span>
                               </div>
@@ -1343,6 +1343,8 @@
 
               // Mobile animations
               if (this.isMobile) {
+                this.swipeModals();
+                
                 setTimeout(() => {
                   this.$refs.modalContainer.style.width = `${this.modalWidth}vw`;
 
@@ -1487,6 +1489,31 @@
 
               // Return RGBA string
               return `rgba(${r}, ${g}, ${b}, ${validatedAlpha})`;
+            },
+            swipeModals() {
+              window.addEventListener('touchstart', (e) => {
+                startX = e.touches[0].clientX;
+              });
+              window.addEventListener('touchmove', (e) => {
+                if (startX !== null) {
+                  dist = e.touches[0].clientX - startX;
+                }
+              });
+              window.addEventListener('touchend', () => {
+                if (startX !== null) {
+                  if (dist > 50) {
+                    if(this.previousArticle) {
+                      window.location.hash = this.previousArticle.hash;
+                    }
+                  } else if (dist < -50) {
+                    if (this.nextArticle) {
+                      window.location.hash = this.nextArticle.hash;
+                    }
+                  }
+                  startX = null;
+                  dist = 0;
+                }
+              });
             }
           }
         }
