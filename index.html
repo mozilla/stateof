@@ -805,7 +805,7 @@
                 <div class="bg-[#EEEEEE] p-5 xl:p-[65px] border-2 -mr-0.5 -mb-0.5 border-black transition duration-500 ease-out" :class="inView < 2 && canAnimate ? 'opacity-0 scale-90' : ''" :style="'transition-delay:' + index + '00ms;'">
                   <div class="flex flex-col items-start justify-start gap-8">
                     <img :src="item.author.image" :alt="item.author.name"
-                      class="object-contain object-center w-full aspect-square grayscale bg-blend-darken" loading="lazy"
+                      class="object-contain object-center w-full aspect-square grayscale bg-blend-darken max-w-[200px] self-center" loading="lazy"
                       width="200" height="200">
                     <h3 x-html="item.author.name" class="text-[24px]/[26px] tracking-[.48px] font-bold font-title"></h3>
                     <a x-cloak :href="item.hash" class="flex items-center gap-[5px] group">

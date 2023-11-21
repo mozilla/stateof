@@ -55,6 +55,14 @@
     @apply underline hover:text-[#89D5FF];
   }
 
+  .modal-body ul {
+    @apply list-disc pl-3 mb-[35px];
+  }
+
+  .modal-body li {
+    @apply mb-3 last:mb-0 text-[16px]/[24px] tracking-[.32px] font-body font-normal;
+  }
+
   .modal-body blockquote {
     @apply py-10 my-10 border-t border-b border-black inline-flex w-full items-start gap-5 md:gap-[30px] md:pl-[44px];
   }
