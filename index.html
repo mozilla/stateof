@@ -25,7 +25,7 @@
   <body class="flex flex-col font-body" x-data x-cloak :class="{ 'overflow-hidden h-screen' : $store.body.lock }">
     <header ref="header" class="fixed top-0 left-0 z-20 w-full transition duration-150 ease-out"  x-data="nav()" @scroll.window="revealHeader()" :class="isScrolled ? 'bg-white' : ''">
       <div class="container flex items-center justify-between gap-6 py-5 transition-opacity duration-300 md:py-9">
-        <a href="#" x-cloak class="w-[100px] z-10">
+        <a href="/" x-cloak class="w-[100px] z-10">
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 99 29" class="w-[100px]">
             <g fill="#000000" clip-path="url(#header-a)">
               <path d="M36.9066 12.885c-1.8103 0-2.9378 1.3793-2.9378 3.7675 0 2.1956.9889 3.8842 2.9081 3.8842 1.84 0 3.0467-1.5211 3.0467-3.9401 0-2.5607-1.3453-3.7116-3.017-3.7116Zm48.5195 6.384c0 .8163.3858 1.4656 1.4539 1.4656 1.2612 0 2.6065-.928 2.6907-3.0374-.5739-.0863-1.2067-.1675-1.7855-.1675-1.2612-.0051-2.3591.36-2.3591 1.7393Z" />
@@ -1208,7 +1208,7 @@
                 
                 <!-- Modal Header -->
                 <div class="container absolute top-0 z-20 w-screen -translate-x-1/2 left-1/2 pt-[42px] pb-[20px] flex items-center justify-between bg-white md:bg-transparent">
-                  <a href="https://www.mozilla.org/en-US/" class="w-[100px]">
+                  <a href="/" class="w-[100px]">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 99 29" class="w-[100px]">
                       <g fill="#000000" clip-path="url(#header-a)">
                         <path d="M36.9066 12.885c-1.8103 0-2.9378 1.3793-2.9378 3.7675 0 2.1956.9889 3.8842 2.9081 3.8842 1.84 0 3.0467-1.5211 3.0467-3.9401 0-2.5607-1.3453-3.7116-3.017-3.7116Zm48.5195 6.384c0 .8163.3858 1.4656 1.4539 1.4656 1.2612 0 2.6065-.928 2.6907-3.0374-.5739-.0863-1.2067-.1675-1.7855-.1675-1.2612-.0051-2.3591.36-2.3591 1.7393Z" />
