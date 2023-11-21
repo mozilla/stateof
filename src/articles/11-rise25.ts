@@ -4,7 +4,7 @@ export const content: object = {
   author: {
     name: 'Moez Draief',
     job_title: 'Managing Director of Mozilla.ai',
-    image: '/headshots/Eric-Muhlheim.jpeg',
+    image: '/headshots/Moez-Draief.jpeg',
   },
   lead_article: false,
   modal_style: 'medium',

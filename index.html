@@ -294,7 +294,7 @@
                   <span class="text-[14px]/[21px] font-normal font-title transition duration-500 ease-out delay-100" :class="!sectionInView && canAnimate ? 'opacity-0 -translate-x-4' : ''" x-html="firstArticle.author.job_title"></span>
                 </div>
                 <div class="w-full flex items-end justify-end my-[30px] transition duration-500 ease-out will-change-[opacity]" :class="!sectionInView && canAnimate ? 'opacity-0 scale-95' : ''">
-                  <div class="[&>svg]:w-[100vw] [&>svg]:md:w-[58vw]" x-html="firstArticle.icon.rect"></div>
+                  <div class="[&>svg]:w-[100vw] [&>svg]:md:w-[46.7vw]" x-html="firstArticle.icon.rect"></div>
                 </div>
                 <h3 class="text-[24px]/[26px] tracking-[.48px] font-bold font-title transition duration-500 ease-out delay-300" :class="!sectionInView && canAnimate ? 'opacity-0 -translate-x-4' : ''" x-html="firstArticle.title"></h3>
 
@@ -421,7 +421,7 @@
                     <span class="text-[14px]/[21px] font-normal font-title transition duration-500 ease-out delay-100" :class="!sectionInView && canAnimate ? 'opacity-0 -translate-x-4' : ''" x-html="article.author.job_title"></span>
                   </div>
                   <div class="w-full flex items-end justify-end icon my-[30px] transition duration-500 ease-out will-change-[opacity]" :class="!sectionInView && canAnimate ? 'opacity-0 scale-95' : ''">
-                    <div class="[&>svg]:w-[48vw]" x-html="article.icon.rect"></div>
+                    <div class="[&>svg]:w-[46.7vw]" x-html="article.icon.rect"></div>
                   </div>
                   <h3 class="text-[24px]/[26px] tracking-[.48px] font-bold font-title transition duration-500 ease-out delay-300" :class="!sectionInView && canAnimate ? 'opacity-0 -translate-x-4' : ''" x-html="article.title"></h3>
 
@@ -538,7 +538,7 @@
                   </div>
                   <div class="w-full flex items-end justify-end icon my-[30px] transition duration-500 ease-out will-change-[opacity]"
                     :class="!sectionInView && canAnimate ? 'opacity-0 scale-95' : ''">
-                    <div class="[&>svg]:w-[48vw]" x-html="article.icon.rect"></div>
+                    <div class="[&>svg]:w-[47vw]" x-html="article.icon.rect"></div>
                   </div>
                   <h3 class="text-[24px]/[26px] tracking-[.48px] font-bold font-title transition duration-500 ease-out delay-300"
                     :class="!sectionInView && canAnimate ? 'opacity-0 -translate-x-4' : ''" x-html="article.title"></h3>
@@ -1241,6 +1241,7 @@
                       <div class="flex flex-col items-start w-full lg:w-3/4">
                         <template x-if="$store.activeArticle.author">
                           <div class="flex items-center gap-5 mb-[48px] w-full">
+                            <img :src="$store.activeArticle.author.image" alt="Head shot of INSERT NAME HERE" width="75" height="75" loading="lazy" class="w-[75px] shrink-0 mix-blend-multiply grayscale rounded-full" />
                             <div class="flex flex-col items-start justify-start w-full">
                               <span class="flex items-end gap-[10px] w-full">
                                 <span class="text-[16px]/[24px] tracking-[0.64px] font-semibold font-title shrink-0 inline-block"

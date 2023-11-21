@@ -4,7 +4,7 @@ export const content: object = {
   author: {
     name: 'Imo Udom & J. Bob Alotta',
     job_title: 'SVP of Innovation Ecosystems and SVP of Global Programs',
-    image: '/headshots/Eric-Muhlheim.jpeg',
+    image: '/headshots/Imo-Udom.jpeg',
   },
   lead_article: false,
   modal_style: 'medium',
