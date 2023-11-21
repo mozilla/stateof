@@ -1119,7 +1119,7 @@
                             <h3 class="font-title text-[24px]/[31px] tracking-[.48px] font-normal mt-10 md:mt-[80px]" x-html="previousArticle.excerpt"></h3>
 
                             <template x-if="previousArticle.modal_style == 'short'">
-                              <div class=" modal-body" x-html="bodyFormat"></div>
+                              <div class=" modal-body" x-html="previousArticle.body"></div>
                             </template>
                           </div>
                         </div>
@@ -1186,7 +1186,7 @@
                               x-html="nextArticle.excerpt"></h3>
                     
                             <template x-if="nextArticle.modal_style == 'short'">
-                              <div class=" modal-body" x-html="bodyFormat"></div>
+                              <div class="modal-body" x-html="nextArticle.body"></div>
                             </template>
                           </div>
                         </div>
@@ -1510,7 +1510,7 @@
                       }
 
                       setTimeout(() => {
-                        this.$refs.modalHeroBackground.style.backgroundColor = this.getSVGPath(this.previousArticle.icon.square);
+                        this.$refs.modalHeroBackground.style.backgroundColor = this.getSVGPath(this.previousArticle.icon ? this.previousArticle.icon.square : this.placeHolderSVG);
                         window.location.hash = this.previousArticle.hash;
                         this.$refs.mobilePrev.classList.remove('transitionIn');
                         this.$refs.modalHeroBackground.classList.remove('transitionInRight');
@@ -1528,7 +1528,7 @@
                       this.$refs.modalHeroBackground.classList.add('transitionInLeft');
 
                       setTimeout(() => {
-                        this.$refs.modalHeroBackground.style.backgroundColor = this.getSVGPath(this.nextArticle.icon.square);
+                        this.$refs.modalHeroBackground.style.backgroundColor = this.getSVGPath(this.nextArticle.icon ? this.nextArticle.icon.square : this.placeHolderSVG);
                         window.location.hash = this.nextArticle.hash;
                         this.$refs.mobileNext.classList.remove('transitionIn');
                         this.$refs.modalHeroBackground.classList.remove('transitionInLeft');
