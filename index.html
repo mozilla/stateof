@@ -1115,27 +1115,17 @@
                             <h2 class="text-[36px]/[38px] md:text-[64px]/[64px] font-bold font-title" x-show="showModal"
                               x-html="previousArticle.title"></h2>
                             <h3 class="font-title text-[24px]/[31px] tracking-[.48px] font-normal mt-10 md:mt-[80px]" x-html="previousArticle.excerpt"></h3>
+
+                            <template x-if="nextArticle.modal_style == 'short'">
+                              <div class=" modal-body" x-html="bodyFormat"></div>
+                            </template>
                           </div>
                         </div>
                       </div>
                       <template x-if="$store.modalType == 'article'">
                         <div class="md:absolute bottom-0 right-0 translate-x-[5vw] w-full md:w-[40vw] lg:w-[30vw]" x-html="previousArticle.icon.square"></div>
                       </template>
-                      <template x-if="$store.modalType == 'testimony'">
-                        <div class="absolute bottom-0 right-0 translate-x-[5vw] md:w-[40vw] lg:w-[30vw]">
-                          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 427 437" class="w-full">
-                            <g clip-path="url(#default-icon)">
-                              <path fill="#86C5C8" d="M0 200C0 89.5431 89.5431 0 200 0h235v437H0V200Z" />
-                              <rect width="567" height="328" x="44" y="54" fill="#EEE" opacity=".9" rx="164" />
-                            </g>
-                            <defs>
-                              <clipPath id="default-icon">
-                                <path fill="#fff" d="M0 0h435v437H0z" />
-                              </clipPath>
-                            </defs>
-                          </svg>
-                        </div>
-                      </template>
+                      <div class="md:absolute bottom-0 right-0 translate-x-[5vw] w-full md:w-[40vw] lg:w-[30vw]" x-html="placeHolderSVG"></div>
                     </div>
                   </a>
                 </template>
@@ -1244,7 +1234,7 @@
                               <template x-if="showAuthorImage">
                                 <div class="relative">
                                   <img :src="$store.activeArticle.author.image" alt="$store.activeArticle.author.name" width="75" height="75" loading="lazy" class="w-[75px] shrink-0 mix-blend-multiply grayscale rounded-full" />
-                                  <div class="absolute top-0 left-0 w-full h-full bg-black rounded-full opacity-70 mix-blend-soft-light"></div>
+                                  <div class="absolute top-0 left-0 w-full h-full bg-black rounded-full opacity-40 mix-blend-soft-light"></div>
                                 </div>
                               </template>
                               <div class="flex flex-col items-start justify-start w-full">
@@ -1270,7 +1260,7 @@
                       <div class="mt-10 md:mt-0 md:absolute bottom-0 right-0 translate-x-[5vw] w-full md:w-[40vw] lg:w-[30vw]" x-ref="modalIcon" x-html=" $store.activeArticle.icon.square"></div>
                     </template>
                     <template x-if="$store.activeArticle.tag">
-                      <div class="absolute bottom-0 right-0 translate-x-[5vw] md:w-[40vw] lg:w-[30vw]" x-ref="defaultIcon" x-ref="modalIcon" x-html="placeHolderSVG"></div>
+                      <div class="mt-10 md:mt-0 md:absolute bottom-0 right-0 translate-x-[5vw] w-full md:w-[40vw] lg:w-[30vw]" x-ref="defaultIcon" x-ref="modalIcon" x-html="placeHolderSVG"></div>
                     </template>
                   </div>
                 </template>
@@ -1434,9 +1424,8 @@
               }
             },
             closeModal() {
-              this.$store.activeArticle = {};
-              this.$store.body.lock = false;
               this.showModal = false;
+              this.$store.body.lock = false;
               window.location.hash = '';
               window.scrollTo(0, this.scrollPosition);
             },
