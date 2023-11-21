@@ -1436,8 +1436,8 @@
             checkIndex() {
               this.$store.articles.forEach((article, index) => {
                 if (article.content.hash === this.$store.activeArticle.hash) {
-                  this.nextArticle = this.$store.articles[index + 1]?.content;
-                  this.previousArticle = this.$store.articles[index - 1]?.content;
+                  this.nextArticle = this.$store.articles[index + 1]?.content ? this.$store.articles[index + 1]?.content : null;
+                  this.previousArticle = this.$store.articles[index - 1]?.content ? this.$store.articles[index - 1]?.content : null;
                 }
               });
             },
