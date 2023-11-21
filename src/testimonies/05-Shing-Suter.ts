@@ -5,7 +5,7 @@ export const content: object = {
   author: {
     name: 'Shing Suter',
     job_title: 'Job Title',
-    image: '/headshots/zeke-howard.png',
+    image: '/headshots/shing-placeholder.png',
   },
   lead_article: true,
   modal_style: 'short',
