@@ -34,11 +34,6 @@ interface BodyStore {
 }
 
 
-// components
-import hero from './components/hero';
-import header from './components/header';
-import footer from './components/footer';
-
 window.Alpine = Alpine;
 (window as any).Player = Player;
 
@@ -63,11 +58,6 @@ Alpine.store('body', {
     this.lock = !this.lock;
   }
 });
-
-// Components
-Alpine.data('header', header);
-Alpine.data('hero', hero);
-Alpine.data('footer', footer);
 
 // Start Alpine
 Alpine.start();

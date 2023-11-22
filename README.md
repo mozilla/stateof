@@ -25,8 +25,8 @@ npm run dev
 ```
 
 - `index.html` file is the entrypoint for the site.
-- `src/winners.ts` contains winners, categories, and groups.
-- `src/components` directory contains all the Alpine.js components. Each component is a single file. Components are imported into `main.ts`.
+- `src/articles` contains content for articles.
+- `src/testimonies` contains "Why Mozilla" content.
 - `src/styles` directory contains all the Tailwind CSS styles.
 - `src/assets` directory contains all the static assets.
 
