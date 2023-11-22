@@ -3,3 +3,36 @@
   command = "npm run build"
   [build.environment]
     NETLIFY_NEXT_PLUGIN_SKIP = "true"
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    X-Frame-Options = "DENY"
+    X-XSS-Protection = "1; mode=block"
+    Cache-Control = "public,max-age=600"
+
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "max-age=31536000,public,immutable"
+
+[[headers]]
+  for = "/fonts/*"
+  [headers.values]
+    Cache-Control = "max-age=86400,public"
+
+[[headers]]
+  for = "/headshots/*"
+  [headers.values]
+    Cache-Control = "max-age=86400,public"
+
+[[headers]]
+  for = "/logos/*"
+  [headers.values]
+    Cache-Control = "max-age=86400,public"
+
+[[headers]]
+  for = "/downloads/*"
+  [headers.values]
+    Cache-Control = "max-age=86400,public"
