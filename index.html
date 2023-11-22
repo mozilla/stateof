@@ -283,7 +283,7 @@
         <div class="container" x-data="rowOne()" x-intersect.margin.-175px.once="sectionInView = true">
           <div class="grid grid-cols-12">
             <div class="relative z-0 col-span-12 md:col-span-6">
-              <div class="z-10 flex flex-col items-start justify-start w-full py-[65px] md:pr-[65px]">
+              <a :href="firstArticle.hash" class="z-10 no-underline group flex flex-col items-start justify-start w-full py-[65px] md:pr-[65px]">
                 <div class="flex flex-col items-start justify-start w-full">
                   <span class="flex items-end gap-[10px] w-full">
                     <span class="text-[16px]/[24px] tracking-[0.64px] font-semibold font-title shrink-0 inline-block transition duration-500 ease-out" :class="!sectionInView && canAnimate ? 'opacity-0 -translate-x-4' : ''" x-html="firstArticle.author.name"></span>
@@ -291,13 +291,13 @@
                   </span>
                   <span class="text-[14px]/[21px] font-normal font-title transition duration-500 ease-out delay-100" :class="!sectionInView && canAnimate ? 'opacity-0 -translate-x-4' : ''" x-html="firstArticle.author.job_title"></span>
                 </div>
-                <div class="w-full flex items-end justify-end my-[30px] transition duration-500 ease-out will-change-[opacity]" :class="!sectionInView && canAnimate ? 'opacity-0 scale-95' : ''">
-                  <div class="[&>svg]:w-[100vw] [&>svg]:md:w-[46.7vw]" x-html="firstArticle.icon.rect"></div>
+                <div class="w-full flex items-end justify-end my-[30px] transition duration-500 ease-out will-change-[opacity] " :class="!sectionInView && canAnimate ? 'opacity-0 scale-95' : ''">
+                  <div class="[&>svg]:w-[100vw] [&>svg]:md:w-[46.7vw] [&>svg]:group-hover:drop-shadow-xl [&>svg]:group-hover:scale-105 [&>svg]:transition [&>svg]:duration-500 [&>svg]:ease-out" x-html="firstArticle.icon.rect"></div>
                 </div>
                 <h3 class="text-[24px]/[26px] tracking-[.48px] font-bold font-title transition duration-500 ease-out delay-300" :class="!sectionInView && canAnimate ? 'opacity-0 -translate-x-4' : ''" x-html="firstArticle.title"></h3>
 
                 <div class="duration-500 ease-out inline-blocktransition delay-[400ms]" :class="!sectionInView && canAnimate ? 'opacity-0 -translate-x-4' : ''">
-                  <a x-cloak :href="firstArticle.hash" class="flex items-center mt-[25px] gap-[5px] group">
+                  <div x-cloak class="flex items-center mt-[25px] gap-[5px]">
                     <span class="text-[16px]/[28px] font-bold relative font-title">
                       Read
                       <span
@@ -306,9 +306,9 @@
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 13 12" class="w-[14px] transition duration-150 ease-out group-hover:translate-x-1">
                       <path fill="#000" d="M6.69318.36364 12.4205 6.0909 6.69318 11.8182 5.375 10.5114l3.46023-3.46026H.72727V5.13068h8.10796L5.375 1.67614 6.69318.36364Z" />
                     </svg>
-                  </a>
+                  </div>
                 </div>
-              </div>
+              </a>
             </div>
             <div class="relative flex items-center justify-end col-span-12 py-[60px] md:py-10 md:col-span-6">
               <div class="bg-[#89D5FF] absolute top-0 left-1/2 -translate-x-1/2 md:-translate-x-0 md:left-0 w-screen md:w-[50vw] h-full z-[1] border-t-2 border-black md:border-t-0 transition duration-500 ease-out delay-100" :class="!sectionInView && canAnimate ? 'opacity-0' : ''"></div>
@@ -355,7 +355,7 @@
             <div class="flex justify-between md:gap-[25px] lg:gap-[65px]">
               <template x-for="(article, index) in firstRow" :key="index">
                 <div class="relative z-20 flex-[33%] transition duration-500 ease-out will-change-[opacity]" :class="!sectionInView && canAnimate ? 'opacity-0 scale-95' : ''" x-bind:style="'order: ' + index + '; transition-delay:' + index + '00ms;'">
-                  <div class="z-10 flex flex-col items-start justify-start w-full py-[65px]">
+                  <a :href="article.hash" class="z-10 flex flex-col items-start justify-start w-full py-[65px] group">
                     <div class="flex flex-col items-start justify-start w-full">
                       <span class="flex items-end gap-[10px] w-full">
                         <span class="text-[16px]/[24px] tracking-[0.64px] font-semibold font-title shrink-0 inline-block"
@@ -364,9 +364,9 @@
                       </span>
                       <span class="text-[14px]/[21px] font-normal font-title" x-html="article.author.job_title"></span>
                     </div>
-                    <div class="w-full flex items-center justify-center my-[30px] [&>svg]:w-full" x-html="article.icon.square"></div>
+                    <div class="w-full flex items-center justify-center my-[30px] [&>svg]:w-full [&>svg]:transition [&>svg]:group-hover:scale-105 [&>svg]:group-hover:drop-shadow-xl [&>svg]:duration-500 [&>svg]:ease-out" x-html="article.icon.square"></div>
                     <h3 class="text-[24px]/[26px] tracking-[.48px] font-bold font-title" x-html="article.title"></h3>
-                    <a x-cloak :href="article.hash" class="flex items-center mt-[25px] gap-[5px] group">
+                    <div x-cloak class="flex items-center mt-[25px] gap-[5px]">
                       <span class="text-[16px]/[28px] font-bold relative font-title">
                         Read
                         <span
@@ -377,8 +377,8 @@
                         <path fill="#000"
                           d="M6.69318.36364 12.4205 6.0909 6.69318 11.8182 5.375 10.5114l3.46023-3.46026H.72727V5.13068h8.10796L5.375 1.67614 6.69318.36364Z" />
                       </svg>
-                    </a>
-                  </div>
+                    </div>
+                  </a>
                 </div>
               </template>
               <div class="w-0.5 order-[0] bg-black shrink-0 top-0 z-10"></div>
@@ -409,7 +409,7 @@
           <div class="container relative flex justify-between gap-[65px] md:gap-[128px]">
             <template x-for="article in secondRow">
               <div class="relative z-0 w-[calc(50%-64px)] tile">
-                <div class="z-10 flex flex-col items-start justify-start w-full py-[65px]">
+                <a :href="article.hash" class="z-10 flex flex-col items-start justify-start w-full py-[65px] group">
                   <div class="flex flex-col items-start justify-start w-full">
                     <span class="flex items-end gap-[10px] w-full">
                       <span class="text-[16px]/[24px] tracking-[0.64px] font-semibold font-title shrink-0 inline-block transition duration-500 ease-out" :class="!sectionInView && canAnimate ? 'opacity-0 -translate-x-4' : ''"
@@ -419,12 +419,13 @@
                     <span class="text-[14px]/[21px] font-normal font-title transition duration-500 ease-out delay-100" :class="!sectionInView && canAnimate ? 'opacity-0 -translate-x-4' : ''" x-html="article.author.job_title"></span>
                   </div>
                   <div class="w-full flex items-end justify-end icon my-[30px] transition duration-500 ease-out will-change-[opacity]" :class="!sectionInView && canAnimate ? 'opacity-0 scale-95' : ''">
-                    <div class="[&>svg]:w-[46.7vw]" x-html="article.icon.rect"></div>
+                    <div class="[&>svg]:w-[46.7vw] [&>svg]:group-hover:drop-shadow-xl [&>svg]:group-hover:scale-105 [&>svg]:transition [&>svg]:duration-500
+                    [&>svg]:ease-out" x-html="article.icon.rect"></div>
                   </div>
                   <h3 class="text-[24px]/[26px] tracking-[.48px] font-bold font-title transition duration-500 ease-out delay-300" :class="!sectionInView && canAnimate ? 'opacity-0 -translate-x-4' : ''" x-html="article.title"></h3>
 
                   <div class="duration-500 ease-out inline-blocktransition delay-[400ms]" :class="!sectionInView && canAnimate ? 'opacity-0 -translate-x-4' : ''">
-                    <a x-cloak :href="article.hash" class="flex items-center mt-[25px] gap-[5px] group">
+                    <div x-cloak class="flex items-center mt-[25px] gap-[5px]">
                       <span class="text-[16px]/[28px] font-bold relative font-title">
                         Read
                         <span
@@ -435,9 +436,9 @@
                         <path fill="#000"
                           d="M6.69318.36364 12.4205 6.0909 6.69318 11.8182 5.375 10.5114l3.46023-3.46026H.72727V5.13068h8.10796L5.375 1.67614 6.69318.36364Z" />
                       </svg>
-                    </a>
+                    </div>
                   </div>
-                </div>
+                </a>
               </div>
             </template>
           </div>
@@ -466,7 +467,7 @@
             <div class="flex justify-between md:gap-[25px] lg:gap-[65px]">
               <template x-for="(article, index) in thirdRow" :key="index">
                 <div class="relative z-20 flex-[33%] transition duration-500 ease-out will-change-[opacity]" :class="!sectionInView && canAnimate ? 'opacity-0 scale-95' : ''" x-bind:style="'order: ' + index + '; transition-delay:' + index + '00ms;'">
-                  <div class="z-10 flex flex-col items-start justify-start w-full py-[65px]">
+                  <a :href="article.hash" class="z-10 flex flex-col items-start justify-start w-full py-[65px] group">
                     <div class="flex flex-col items-start justify-start w-full">
                       <span class="flex items-end gap-[10px] w-full">
                         <span class="text-[16px]/[24px] tracking-[0.64px] font-semibold font-title shrink-0 inline-block"
@@ -475,9 +476,11 @@
                       </span>
                       <span class="text-[14px]/[21px] font-normal font-title" x-html="article.author.job_title"></span>
                     </div>
-                    <div class="w-full flex items-center justify-center my-[30px] [&>svg]:w-full" x-html="article.icon.square"></div>
+                    <div
+                      class="w-full flex items-center justify-center my-[30px] [&>svg]:w-full [&>svg]:transition [&>svg]:group-hover:scale-105 [&>svg]:group-hover:drop-shadow-xl [&>svg]:duration-500 [&>svg]:ease-out"
+                      x-html="article.icon.square"></div>
                     <h3 class="text-[24px]/[26px] tracking-[.48px] font-bold font-title" x-html="article.title"></h3>
-                    <a x-cloak :href="article.hash" class="flex items-center mt-[25px] gap-[5px] group">
+                    <div x-cloak class="flex items-center mt-[25px] gap-[5px]">
                       <span class="text-[16px]/[28px] font-bold relative font-title">
                         Read
                         <span
@@ -488,8 +491,8 @@
                         <path fill="#000"
                           d="M6.69318.36364 12.4205 6.0909 6.69318 11.8182 5.375 10.5114l3.46023-3.46026H.72727V5.13068h8.10796L5.375 1.67614 6.69318.36364Z" />
                       </svg>
-                    </a>
-                  </div>
+                    </div>
+                  </a>
                 </div>
               </template>
               <div class="w-0.5 order-[0] bg-black shrink-0 top-0 z-10"></div>
@@ -520,7 +523,7 @@
           <div class="relative flex justify-between gap-[65px] md:gap-[128px]">
             <template x-for="article in fourthRow">
               <div class="relative z-0 w-[calc(50%-64px)] tile flex items-center">
-                <div class="z-10 flex flex-col items-start justify-start w-full py-[65px]">
+                <a :href="article.hash" class="z-10 flex flex-col items-start justify-start w-full py-[65px] group">
                   <div class="flex flex-col items-start justify-start w-full">
                     <template x-if="article.author">
                       <span class="flex items-end gap-[10px] w-full">
@@ -536,14 +539,15 @@
                   </div>
                   <div class="w-full flex items-end justify-end icon my-[30px] transition duration-500 ease-out will-change-[opacity]"
                     :class="!sectionInView && canAnimate ? 'opacity-0 scale-95' : ''">
-                    <div class="[&>svg]:w-[47vw]" x-html="article.icon.rect"></div>
+                    <div class="[&>svg]:w-[47vw] [&>svg]:group-hover:drop-shadow-xl [&>svg]:group-hover:scale-105 [&>svg]:transition [&>svg]:duration-500
+                    [&>svg]:ease-out" x-html="article.icon.rect"></div>
                   </div>
                   <h3 class="text-[24px]/[26px] tracking-[.48px] font-bold font-title transition duration-500 ease-out delay-300"
                     :class="!sectionInView && canAnimate ? 'opacity-0 -translate-x-4' : ''" x-html="article.title"></h3>
           
                   <div class="duration-500 ease-out inline-blocktransition delay-[400ms]"
                     :class="!sectionInView && canAnimate ? 'opacity-0 -translate-x-4' : ''">
-                    <a x-cloak :href="article.hash" class="flex items-center mt-[25px] gap-[5px] group">
+                    <div x-cloak class="flex items-center mt-[25px] gap-[5px]">
                       <span class="text-[16px]/[28px] font-bold relative font-title">
                         Read
                         <span
@@ -554,9 +558,9 @@
                         <path fill="#000"
                           d="M6.69318.36364 12.4205 6.0909 6.69318 11.8182 5.375 10.5114l3.46023-3.46026H.72727V5.13068h8.10796L5.375 1.67614 6.69318.36364Z" />
                       </svg>
-                    </a>
+                    </div>
                   </div>
-                </div>
+                </a>
               </div>
             </template>
           </div>
@@ -584,15 +588,17 @@
             <div class="relative flex w-full px-5 overflow-x-auto snap-x snap-mandatory no-scrollbar">
               <template x-for="(article, index) in articles" :key="index">
                 <div class="relative z-20 w-[80vw] max-w-[400px] shrink-0 first:boreder-l-2 border-x border-black snap-center transition duration-500 ease-out will-change-[opacity]" :class="!sectionInView && canAnimate ? 'opacity-0 translate-x-5' : ''" x-bind:style="'order: ' + index + '; transition-delay:' + index + '00ms;'">
-                  <div class="z-10 flex flex-col items-start justify-start w-full py-[65px] px-5 sm:px-10">
-                    <div class="flex flex-col items-start justify-start w-full">
-                      <span class="flex items-end gap-[10px] w-full">
-                        <span class="text-[16px]/[24px] tracking-[0.64px] font-semibold font-title shrink-0 inline-block"
-                          x-html="article.author.name"></span>
-                        <div class="w-full h-0.5 bg-black -translate-y-1.5"></div>
-                      </span>
-                      <span class="text-[14px]/[21px] font-normal font-title" x-html="article.author.job_title"></span>
-                    </div>
+                  <div class="z-10 flex flex-col items-start h-full justify-center w-full py-[65px] px-5 sm:px-10">
+                    <template x-if="article.author">
+                      <div class="flex flex-col items-start justify-start w-full">
+                        <span class="flex items-end gap-[10px] w-full">
+                          <span class="text-[16px]/[24px] tracking-[0.64px] font-semibold font-title shrink-0 inline-block"
+                            x-html="article.author.name"></span>
+                          <div class="w-full h-0.5 bg-black -translate-y-1.5"></div>
+                        </span>
+                        <span class="text-[14px]/[21px] font-normal font-title" x-html="article.author.job_title"></span>
+                      </div>
+                    </template>
                     <div class="w-full flex items-center justify-center my-[30px] [&>svg]:w-full" x-html="article.icon.square"></div>
                     <h3 class="text-[24px]/[26px] tracking-[.48px] font-bold font-title" x-html="article.title"></h3>
                     <a x-cloak :href="article.hash" class="flex items-center mt-[25px] gap-[5px] group">
