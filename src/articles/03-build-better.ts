@@ -1,6 +1,6 @@
 export const content: object = {
   title: 'A shared mission, a pivotal moment to build a better internet',
-  hash: '#build',
+  hash: '#build-better',
   author: {
     name: 'Mitchell Baker',
     job_title: 'CEO',
