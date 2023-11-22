@@ -1553,7 +1553,7 @@
             },
 
             checkImage() {
-              if (this.$store.activeArticle.tag === 'act' || this.$store.activeArticle.tag === 'build') {
+              if (this.$store.activeArticle.tag === 'act' || this.$store.activeArticle.tag === 'build' || this.$store.activeArticle.author.image == null) {
                 this.showAuthorImage = false;
               } else {
                 this.showAuthorImage = true;

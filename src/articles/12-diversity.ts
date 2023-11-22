@@ -1,7 +1,11 @@
 export const content: object = {
   title: 'Growing the Diversity, Experience, and Impact of the Foundation Board',
   hash: '#diversity',
-  author: null,
+  author: {
+    name: 'Mozilla',
+    job_title: null,
+    image: null,
+  },
   lead_article: false,
   modal_style: 'medium',
   icon: {
