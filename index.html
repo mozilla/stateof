@@ -844,13 +844,13 @@
           <div class="hidden md:w-1/3 lg:w-1/4 md:block">
             <div class="w-[68vw] border-black grid md:grid-cols-2 lg:grid-cols-3 testimonies__grid overflow-hidden pb-0.5">
               <template x-for="(item, index) in whyMozilla">
-                <div class="bg-[#EEEEEE] p-5 xl:p-[65px] border-2 -mr-0.5 -mb-0.5 border-black transition duration-500 ease-out" :class="inView < 1 && canAnimate ? 'opacity-0 scale-90' : ''" :style="'transition-delay:' + index + '00ms;'">
+                <a :href="item.hash" class="bg-[#EEEEEE] p-5 xl:p-[65px] border-2 -mr-0.5 -mb-0.5 border-black transition duration-500 ease-out group" :class="inView < 1 && canAnimate ? 'opacity-0 scale-90' : ''" :style="'transition-delay:' + index + '00ms;'">
                   <div class="flex flex-col items-start justify-start gap-8">
                     <img :src="item.author.image" :alt="item.author.name"
-                      class="object-contain object-center w-full aspect-square grayscale bg-blend-darken" loading="lazy"
+                      class="object-contain object-center w-full transition duration-500 ease-out aspect-square grayscale bg-blend-darken group-hover:scale-105 group-hover:drop-shadow-lg" loading="lazy"
                       width="200" height="200">
                     <h3 x-html="item.author.name" class="text-[24px]/[26px] tracking-[.48px] font-bold font-title"></h3>
-                    <a x-cloak :href="item.hash" class="flex items-center gap-[5px] group">
+                    <div x-cloak :href="item.hash" class="flex items-center gap-[5px]">
                       <span class="text-[16px]/[28px] font-bold relative font-title">
                         Read
                         <span
@@ -861,9 +861,9 @@
                         <path fill="#000"
                           d="M6.69318.36364 12.4205 6.0909 6.69318 11.8182 5.375 10.5114l3.46023-3.46026H.72727V5.13068h8.10796L5.375 1.67614 6.69318.36364Z" />
                       </svg>
-                    </a>
+                    </div>
                   </div>
-                </div>
+                </a>
               </template>
             </div>
           </div>
@@ -872,13 +872,13 @@
             <div class="relative flex w-full gap-5 pr-5 overflow-x-auto snap-x snap-mandatory no-scrollbar">
               <div class="lead-block shrink-0"></div>
               <template x-for="(item, index) in whyMozilla">
-                <div class="bg-[#EEEEEE] p-5 border-1 border-black snap-center shrink-0 max-w-[300px] w-[75%] transition duration-500 ease-out" :class="inView < 1 && canAnimate ? 'opacity-0 translate-x-5' : ''" :style="'transition-delay:' + index + '00ms;'">
+                <a :href="item.hash" class="bg-[#EEEEEE] p-5 border-1 border-black snap-center shrink-0 max-w-[300px] w-[75%] transition duration-500 ease-out group" :class="inView < 1 && canAnimate ? 'opacity-0 translate-x-5' : ''" :style="'transition-delay:' + index + '00ms;'">
                   <div class="flex flex-col items-start justify-start gap-8">
                     <img :src="item.author.image" :alt="item.author.name"
-                      class="object-cover object-center w-full aspect-square grayscale bg-blend-darken" loading="lazy" width="200"
+                      class="object-cover object-center w-full transition duration-500 ease-out aspect-square grayscale bg-blend-darken group-hover:scale-105 group-hover:drop-shadow-lg" loading="lazy" width="200"
                       height="200">
                     <h3 x-html="item.author.name" class="text-[24px]/[26px] tracking-[.48px] font-bold font-title"></h3>
-                    <a x-cloak :href="item.hash" class="flex items-center gap-[5px] group">
+                    <div x-cloak  class="flex items-center gap-[5px]">
                       <span class="text-[16px]/[28px] font-bold relative font-title">
                         Read
                         <span
@@ -889,9 +889,9 @@
                         <path fill="#000"
                           d="M6.69318.36364 12.4205 6.0909 6.69318 11.8182 5.375 10.5114l3.46023-3.46026H.72727V5.13068h8.10796L5.375 1.67614 6.69318.36364Z" />
                       </svg>
-                    </a>
+                    </div>
                   </div>
-                </div>
+                </a>
               </template>
             </div>
           </div>
@@ -906,13 +906,13 @@
           <div class="hidden md:w-1/3 lg:w-1/4 md:block">
             <div class="w-[68vw] border-black grid md:grid-cols-2 lg:grid-cols-3 testimonies__grid overflow-hidden pb-0.5">
               <template x-for="(item, index) in actMozilla">
-                <div class="bg-[#EEEEEE] p-5 xl:p-[65px] border-2 -mr-0.5 -mb-0.5 border-black transition duration-500 ease-out" :class="inView < 2 && canAnimate ? 'opacity-0 scale-90' : ''" :style="'transition-delay:' + index + '00ms;'">
+                <a :href="item.hash" class="bg-[#EEEEEE] p-5 xl:p-[65px] border-2 -mr-0.5 -mb-0.5 border-black transition duration-500 ease-out group" :class="inView < 2 && canAnimate ? 'opacity-0 scale-90' : ''" :style="'transition-delay:' + index + '00ms;'">
                   <div class="flex flex-col items-start justify-start gap-8">
                     <img :src="item.author.image" :alt="item.author.name"
-                      class="object-contain object-center w-full aspect-square grayscale bg-blend-darken max-w-[200px] self-center" loading="lazy"
+                      class="object-contain object-center w-full aspect-square grayscale bg-blend-darken max-w-[200px] self-center transition duration-500 ease-out group-hover:scale-105 group-hover:drop-shadow-lg" loading="lazy"
                       width="200" height="200">
                     <h3 x-html="item.author.name" class="text-[24px]/[26px] tracking-[.48px] font-bold font-title"></h3>
-                    <a x-cloak :href="item.hash" class="flex items-center gap-[5px] group">
+                    <div x-cloak class="flex items-center gap-[5px]">
                       <span class="text-[16px]/[28px] font-bold relative font-title">
                         Read
                         <span
@@ -923,9 +923,9 @@
                         <path fill="#000"
                           d="M6.69318.36364 12.4205 6.0909 6.69318 11.8182 5.375 10.5114l3.46023-3.46026H.72727V5.13068h8.10796L5.375 1.67614 6.69318.36364Z" />
                       </svg>
-                    </a>
+                    </div>
                   </div>
-                </div>
+                </a>
               </template>
             </div>
           </div>
@@ -934,13 +934,13 @@
             <div class="relative flex w-full gap-5 pr-5 overflow-x-auto snap-x snap-mandatory no-scrollbar">
               <div class="lead-block shrink-0"></div>
               <template x-for="(item, index) in actMozilla">
-                <div class="bg-[#EEEEEE] p-5 border-1 border-black snap-center shrink-0 max-w-[300px] w-[75%] transition duration-500 ease-out" :class="inView < 2 && canAnimate ? 'opacity-0 translate-x-5' : ''" :style="'transition-delay:' + index + '00ms;'">
+                <a :href="item.hash" class="bg-[#EEEEEE] p-5 border-1 border-black snap-center shrink-0 max-w-[300px] w-[75%] transition duration-500 ease-out" :class="inView < 2 && canAnimate ? 'opacity-0 translate-x-5' : ''" :style="'transition-delay:' + index + '00ms;'">
                   <div class="flex flex-col items-start justify-start gap-8">
                     <img :src="item.author.image" :alt="item.author.name"
                       class="object-contain object-center w-full aspect-square grayscale bg-blend-darken" loading="lazy"
                       width="200" height="200">
                     <h3 x-html="item.author.name" class="text-[24px]/[26px] tracking-[.48px] font-bold font-title"></h3>
-                    <a x-cloak :href="item.hash" class="flex items-center gap-[5px] group">
+                    <div x-cloak :href="item.hash" class="flex items-center gap-[5px]">
                       <span class="text-[16px]/[28px] font-bold relative font-title">
                         Read
                         <span
@@ -951,9 +951,9 @@
                         <path fill="#000"
                           d="M6.69318.36364 12.4205 6.0909 6.69318 11.8182 5.375 10.5114l3.46023-3.46026H.72727V5.13068h8.10796L5.375 1.67614 6.69318.36364Z" />
                       </svg>
-                    </a>
+                    </div>
                   </div>
-                </div>
+                </a>
               </template>
             </div>
           </div>
@@ -969,13 +969,15 @@
           <div class="hidden md:w-1/3 lg:w-1/4 md:block">
             <div class="w-[68vw] border-black grid md:grid-cols-2 lg:grid-cols-3 testimonies__grid overflow-hidden pb-0.5">
               <template x-for="(item, index) in buildMozilla">
-                <div class="bg-[#EEEEEE] p-5 xl:p-[65px] border-2 -mr-0.5 -mb-0.5 border-black transition duration-500 ease-out" :class="inView < 3 && canAnimate ? 'opacity-0 scale-90' : ''" :style="'transition-delay:' + index + '00ms;'">
+                <a :href="item.hash"
+                  class="bg-[#EEEEEE] p-5 xl:p-[65px] border-2 -mr-0.5 -mb-0.5 border-black transition duration-500 ease-out group"
+                  :class="inView < 1 && canAnimate ? 'opacity-0 scale-90' : ''" :style="'transition-delay:' + index + '00ms;'">
                   <div class="flex flex-col items-start justify-start gap-8">
                     <img :src="item.author.image" :alt="item.author.name"
-                      class="object-contain object-center w-full aspect-square grayscale bg-blend-darken" loading="lazy"
-                      width="200" height="200">
+                      class="object-contain object-center w-full transition duration-500 ease-out aspect-square grayscale bg-blend-darken group-hover:scale-105 group-hover:drop-shadow-lg"
+                      loading="lazy" width="200" height="200">
                     <h3 x-html="item.author.name" class="text-[24px]/[26px] tracking-[.48px] font-bold font-title"></h3>
-                    <a x-cloak :href="item.hash" class="flex items-center gap-[5px] group">
+                    <div x-cloak :href="item.hash" class="flex items-center gap-[5px]">
                       <span class="text-[16px]/[28px] font-bold relative font-title">
                         Read
                         <span
@@ -986,9 +988,9 @@
                         <path fill="#000"
                           d="M6.69318.36364 12.4205 6.0909 6.69318 11.8182 5.375 10.5114l3.46023-3.46026H.72727V5.13068h8.10796L5.375 1.67614 6.69318.36364Z" />
                       </svg>
-                    </a>
+                    </div>
                   </div>
-                </div>
+                </a>
               </template>
             </div>
           </div>
@@ -997,13 +999,15 @@
             <div class="relative flex w-full gap-5 pr-5 overflow-x-auto snap-x snap-mandatory no-scrollbar">
               <div class="lead-block shrink-0"></div>
               <template x-for="(item, index) in buildMozilla">
-                <div class="bg-[#EEEEEE] p-5 border-1 border-black snap-center shrink-0 max-w-[300px] w-[75%] transition duration-500 ease-out" :class="inView < 3 && canAnimate ? 'opacity-0 translate-x-5' : ''" :style="'transition-delay:' + index + '00ms;'">
+                <a :href="item.hash"
+                  class="bg-[#EEEEEE] p-5 border-1 border-black snap-center shrink-0 max-w-[300px] w-[75%] transition duration-500 ease-out group"
+                  :class="inView < 1 && canAnimate ? 'opacity-0 translate-x-5' : ''" :style="'transition-delay:' + index + '00ms;'">
                   <div class="flex flex-col items-start justify-start gap-8">
                     <img :src="item.author.image" :alt="item.author.name"
-                      class="object-contain object-center w-full aspect-square grayscale bg-blend-darken" loading="lazy"
-                      width="200" height="200">
+                      class="object-cover object-center w-full transition duration-500 ease-out aspect-square grayscale bg-blend-darken group-hover:scale-105 group-hover:drop-shadow-lg"
+                      loading="lazy" width="200" height="200">
                     <h3 x-html="item.author.name" class="text-[24px]/[26px] tracking-[.48px] font-bold font-title"></h3>
-                    <a x-cloak :href="item.hash" class="flex items-center gap-[5px] group">
+                    <div x-cloak class="flex items-center gap-[5px]">
                       <span class="text-[16px]/[28px] font-bold relative font-title">
                         Read
                         <span
@@ -1014,9 +1018,9 @@
                         <path fill="#000"
                           d="M6.69318.36364 12.4205 6.0909 6.69318 11.8182 5.375 10.5114l3.46023-3.46026H.72727V5.13068h8.10796L5.375 1.67614 6.69318.36364Z" />
                       </svg>
-                    </a>
+                    </div>
                   </div>
-                </div>
+                </a>
               </template>
             </div>
           </div>
