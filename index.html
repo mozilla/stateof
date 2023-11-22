@@ -1435,6 +1435,7 @@
               this.showModal = false;
               this.$store.body.lock = false;
               window.location.hash = '';
+              this.$store.activeArticle = null;
               
               if (this.scrollPosition != 0) {
                 window.scrollTo(0, this.scrollPosition);
