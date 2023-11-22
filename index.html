@@ -1131,7 +1131,7 @@
                       <template x-if="$store.modalType == 'article'">
                         <div class="md:absolute bottom-0 right-0 translate-x-[5vw] w-full md:w-[40vw] lg:w-[30vw]" x-html="previousArticle.icon.square"></div>
                       </template>
-                      <div class="md:absolute bottom-0 right-0 translate-x-[5vw] w-full md:w-[40vw] lg:w-[30vw]" x-html="placeHolderSVG"></div>
+                      <div class="md:absolute bottom-0 right-0 translate-x-[5vw] w-full md:w-[40vw] lg:w-[30vw] mt-10" x-html="placeHolderSVG"></div>
                     </div>
                   </a>
                 </template>
@@ -1165,7 +1165,7 @@
 
                 <!-- Mobile Next Button -->
                 <template x-if="nextArticle">
-                  <a :href="nextArticle.hash" id="nextArticle" @click="checkIndex" x-ref="mobileNext" class="md:hidden absolute w-[10vw] top-0 overflow-hidden h-screen opacity-50 flex items-start justify-start">
+                  <a :href="nextArticle.hash" id="nextArticle" @click="checkIndex" x-ref="mobileNext" class="md:hidden absolute w-[80vw] top-0 overflow-hidden h-screen opacity-50 flex items-start justify-start">
                     <div class="relative flex-col lg:flex-row inline-flex items-start shrink-0 w-[80vw] md:px-[65px] pt-[150px] md:py-[175px] overflow-hidden" :style="'background-color:' + getSVGPath(nextArticle.icon ? nextArticle.icon.square : placeHolderSVG)">
                       <div class="container">
                         <div class="w-full mx-auto lg:w-3/4">
