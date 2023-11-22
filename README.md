@@ -1,6 +1,6 @@
 # Rise25
 
-Website for announcing Mozilla's Rise 25 competition winners
+Website for the 2023 State of Mozilla competition winners
 
 ## Stack
 
