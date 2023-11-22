@@ -159,9 +159,9 @@
               </div>
             </div>
           </div>
-          <div class="relative flex flex-col w-full mt-[100px] md:mt-0  md:w-1/2 lg:w-5/12">
-            <div class="w-[50vw] mb-6 hidden md:block translate-x-12 lg:translate-x-0 origin-center transition duration-500 ease-out will-change-transform" :class="!inView && canAnimate ? 'scale-95 opacity-0' : ''" x-html="article.icon.rect"></div>
-            <div class="w-[85vw] sm:w-[65vw] absolute left-1/2 -translate-x-[45%] -translate-y-1/2 z-0 -rotate-90 md:hidden transition duration-500 ease-out" :class="!inView && canAnimate ? 'scale-95 opacity-0' : ''" x-html="article.icon.rect"></div>
+          <a :href="article.hash" class="relative flex flex-col w-full mt-[100px] md:mt-0  md:w-1/2 lg:w-5/12 group">
+            <div class="w-[50vw] mb-6 hidden md:block translate-x-12 lg:translate-x-0 origin-center transition duration-500 ease-out will-change-transform [&>svg]:group-hover:drop-shadow-xl [&>svg]:group-hover:scale-105 [&>svg]:transition [&>svg]:duration-500 [&>svg]:ease-out" :class="!inView && canAnimate ? 'scale-95 opacity-0' : ''" x-html="article.icon.rect"></div>
+            <div class="w-[85vw] sm:w-[55vw] absolute left-1/2 -translate-x-[35%] -translate-y-1/2 z-0 md:hidden transition duration-500 ease-out" :class="!inView && canAnimate ? 'scale-95 opacity-0' : ''" x-html="article.icon.square"></div>
             <div class="flex flex-col md:mt-[20px] w-full md:w-10/12 self-end items-start justify-start z-10">
               <h3 class="text-[36px]/[38px] tracking-[1.08px] font-semibold font-title  transition duration-500 delay-300" x-html="article.title" :class="!inView && canAnimate ? '-translate-x-4 opacity-0' : ''"></h3>
               <div class="flex items-start justify-start w-full gap-[22px] mt-[40px] transition duration-500 delay-500" :class="!inView && canAnimate ? '-translate-x-4 opacity-0' : ''">
@@ -179,7 +179,7 @@
                       <h5 class="text-[14px]/[21px] font-normal font-title" x-html="article.author.job_title"></h5>
                     </div>
   
-                    <a :href="article.hash" class="flex items-center gap-[5px] group">
+                    <div class="flex items-center gap-[5px]">
                       <span class="text-[16px]/[28px] font-bold relative font-title">
                         Read
                         <span class="bottom-0 left-0 w-full h-0.5 bg-black absolute transition duration-150 ease-out group-hover:scale-x-0 origin-right"></span>
@@ -187,11 +187,11 @@
                       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 13 12" class="w-[14px] transition duration-150 ease-out group-hover:translate-x-1">
                         <path fill="#000" d="M6.69318.36364 12.4205 6.0909 6.69318 11.8182 5.375 10.5114l3.46023-3.46026H.72727V5.13068h8.10796L5.375 1.67614 6.69318.36364Z" />
                       </svg>
-                    </a>
+                    </div>
                   </div>
                 </template>
 
-                <a x-show="!article.author" x-cloak :href="article.hash" class="flex items-center gap-[5px] group">
+                <div x-show="!article.author" x-cloak class="flex items-center gap-[5px]">
                   <span class="text-[16px]/[28px] font-bold relative font-title">
                     Read
                     <span
@@ -202,10 +202,10 @@
                     <path fill="#000"
                       d="M6.69318.36364 12.4205 6.0909 6.69318 11.8182 5.375 10.5114l3.46023-3.46026H.72727V5.13068h8.10796L5.375 1.67614 6.69318.36364Z" />
                   </svg>
-                </a>
+                </div>
               </div>
             </div>
-          </div>
+          </a>
         </div>
 
         <script>
