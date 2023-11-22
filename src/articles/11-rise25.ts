@@ -1,11 +1,7 @@
 export const content: object = {
   title: 'Rise25 honorees',
   hash: '#rise25',
-  author: {
-    name: 'Moez Draief',
-    job_title: 'Managing Director of Mozilla.ai',
-    image: '/headshots/Moez-Draief.jpeg',
-  },
+  author: null,
   lead_article: false,
   modal_style: 'medium',
   icon: {

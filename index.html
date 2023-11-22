@@ -67,18 +67,17 @@
           <div class="flex flex-col items-center justify-center gap-[45px]">
             <div class="w-full h-px bg-black"></div>
             <a href="https://www.mozilla.org/en-US/" class="flex items-start justify-start gap-[5px] text-[16px]/[19px] font-medium hover:underline cursor-pointer font-title">
-              Mozilla.org
+              mozilla.org
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14" class="w-[14px] shring-0 translate-y-0.5">
                 <path stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.16667" d="M10.5 7.58333v3.49997A1.1666 1.1666 0 0 1 9.33333 12.25H2.91667A1.16663 1.16663 0 0 1 1.75 11.0833V4.66667A1.16668 1.16668 0 0 1 2.91667 3.5h3.5M8.75 1.75h3.5v3.5M5.83337 8.16667 12.25 1.75" />
               </svg>
             </a>
-            <a href="#" class="flex items-start justify-start gap-[5px] text-[16px]/[19px] font-medium hover:underline cursor-pointer font-title">
-              External Link
+            <a href="http://foundation.mozilla.org/" class="flex items-start justify-start gap-[5px] text-[16px]/[19px] font-medium hover:underline cursor-pointer font-title">
+              foundation.mozilla.org
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14" class="w-[14px] shring-0 translate-y-0.5">
                 <path stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.16667" d="M10.5 7.58333v3.49997A1.1666 1.1666 0 0 1 9.33333 12.25H2.91667A1.16663 1.16663 0 0 1 1.75 11.0833V4.66667A1.16668 1.16668 0 0 1 2.91667 3.5h3.5M8.75 1.75h3.5v3.5M5.83337 8.16667 12.25 1.75" />
               </svg>
             </a>
-            <a href="#" class="bg-black text-white text-[16px] font-bold leading-none px-[24px] pt-[13px] pb-[12px] rounded hover:bg-[#86C5C8] transition duration-150 ease-out font-title">CTA</a>
           </div>
         </div>
 
@@ -521,20 +520,20 @@
         <div class="container hidden md:block" x-data="rowFive()" x-intersect.margin.-175px.once="sectionInView = true">
           <div class="relative flex justify-between gap-[65px] md:gap-[128px]">
             <template x-for="article in fourthRow">
-              <div class="relative z-0 w-[calc(50%-64px)] tile">
+              <div class="relative z-0 w-[calc(50%-64px)] tile flex items-center">
                 <div class="z-10 flex flex-col items-start justify-start w-full py-[65px]">
                   <div class="flex flex-col items-start justify-start w-full">
-                    <span class="flex items-end gap-[10px] w-full">
-                      <span
-                        class="text-[16px]/[24px] tracking-[0.64px] font-semibold font-title shrink-0 inline-block transition duration-500 ease-out"
-                        :class="!sectionInView && canAnimate ? 'opacity-0 -translate-x-4' : ''"
-                        x-html="article.author.name"></span>
-                      <div class="w-full h-0.5 bg-black -translate-y-1.5 transition duration-300 ease-out delay-100 origin-left"
-                        :class="!sectionInView && canAnimate ? 'scale-x-0' : ''"></div>
-                    </span>
-                    <span class="text-[14px]/[21px] font-normal font-title transition duration-500 ease-out delay-100"
-                      :class="!sectionInView && canAnimate ? 'opacity-0 -translate-x-4' : ''"
-                      x-html="article.author.job_title"></span>
+                    <template x-if="article.author">
+                      <span class="flex items-end gap-[10px] w-full">
+                        <span
+                          class="text-[16px]/[24px] tracking-[0.64px] font-semibold font-title shrink-0 inline-block transition duration-500 ease-out"
+                          :class="!sectionInView && canAnimate ? 'opacity-0 -translate-x-4' : ''"
+                          x-html="article.author.name"></span>
+                        <div class="w-full h-0.5 bg-black -translate-y-1.5 transition duration-300 ease-out delay-100 origin-left"
+                          :class="!sectionInView && canAnimate ? 'scale-x-0' : ''"></div>
+                      </span>
+                      <span class="text-[14px]/[21px] font-normal font-title transition duration-500 ease-out delay-100" :class="!sectionInView && canAnimate ? 'opacity-0 -translate-x-4' : ''" x-html="article.author.job_title"></span>
+                    </template>
                   </div>
                   <div class="w-full flex items-end justify-end icon my-[30px] transition duration-500 ease-out will-change-[opacity]"
                     :class="!sectionInView && canAnimate ? 'opacity-0 scale-95' : ''">
