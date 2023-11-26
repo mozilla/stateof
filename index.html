@@ -1341,9 +1341,26 @@
                           <template x-if="$store.activeArticle.author">
                             <div class="flex items-center gap-5 mb-[48px] w-full">
                               <template x-if="showAuthorImage">
-                                <div class="relative hidden md:block">
-                                  <img :src="$store.activeArticle.author.image" alt="$store.activeArticle.author.name" width="75" height="75" loading="lazy" class="w-[75px] shrink-0 mix-blend-multiply grayscale rounded-full" />
-                                  <div class="absolute top-0 left-0 w-full h-full bg-black rounded-full opacity-40 mix-blend-soft-light"></div>
+                                <div class="items-start hidden md:flex">
+                                  <template x-if="$store.activeArticle.author.multiple">
+                                    <template x-for="image in $store.activeArticle.author.image">
+                                      <div class="overflow-hidden bg-white rounded-full first:z-10 -mr-4 w-[75px] shrink-0">
+                                        <div class="relative w-[75px] shrink-0 -mr-4 first:z-10 !bg-opacity-100 modal-author-image">
+                                          <img :src="image" alt="$store.activeArticle.author.name" width="75" height="75" loading="lazy" class=" w-fulll mix-blend-multiply grayscale"/>
+                                          <div class="absolute top-0 left-0 w-full h-full bg-black opacity-40 mix-blend-soft-light"></div>
+                                        </div>
+                                      </div>
+                                    </template>
+                                  </template> 
+                                  <template x-if="!$store.activeArticle.author.multiple">
+                                    <div class="overflow-hidden bg-white rounded-full first:z-10 -mr-4 w-[75px] shrink-0">
+                                      <div class="relative w-[75px] shrink-0 -mr-4 first:z-10 !bg-opacity-100 modal-author-image">
+                                        <img :src="$store.activeArticle.author.image" alt="$store.activeArticle.author.name" width="75" height="75" loading="lazy"
+                                          class=" w-fulll mix-blend-multiply grayscale" />
+                                        <div class="absolute top-0 left-0 w-full h-full bg-black opacity-40 mix-blend-soft-light"></div>
+                                      </div>
+                                    </div>
+                                  </template>
                                 </div>
                               </template>
                               <div class="flex flex-col items-start justify-start w-full">
@@ -1443,8 +1460,14 @@
                   }
 
                   this.$refs.modalHeroBackground.style.backgroundColor = fillColor;
+                  this.$refs.modal.querySelectorAll('.modal-author-image').forEach((image) => {
+                    image.style.backgroundColor = fillColor;
+                  });
                 } else {
                   this.$refs.modalHeroBackground.style.backgroundColor = '#CEEAEB';
+                  this.$refs.modal.querySelectorAll('.modal-author-image').forEach((image) => {
+                    image.style.backgroundColor = '#CEEAEB';
+                  });
                 }
               }, 50);
 

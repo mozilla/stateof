@@ -4,7 +4,11 @@ export const content: object = {
   author: {
     name: 'Imo Udom & J. Bob Alotta',
     job_title: 'SVP of Innovation Ecosystems and SVP of Global Programs',
-    image: '/headshots/Imo-Udom.jpeg',
+    multiple: true,
+    image: [
+      '/headshots/Imo-Udom.jpeg',
+      '/headshots/J-Bob-Alotta.jpeg'
+    ]
   },
   lead_article: false,
   modal_style: 'medium',
