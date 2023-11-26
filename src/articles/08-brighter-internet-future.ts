@@ -4,7 +4,11 @@ export const content: object = {
   author: {
     name: 'Eric Muhlheim & Angela Plohman',
     job_title: 'Chief Financial Officer & Executive Vice President',
-    image: '/headshots/Eric-Muhlheim.jpeg',
+    multiple: true,
+    image: [
+      '/headshots/Eric-Muhlheim.jpeg',
+      '/headshots/angela-plohman.jpg'
+    ]
   },
   lead_article: false,
   modal_style: 'medium',

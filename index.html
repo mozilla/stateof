@@ -1344,7 +1344,7 @@
                                 <div class="items-start hidden md:flex">
                                   <template x-if="$store.activeArticle.author.multiple">
                                     <template x-for="image in $store.activeArticle.author.image">
-                                      <div class="overflow-hidden bg-white rounded-full first:z-10 -mr-4 w-[75px] shrink-0">
+                                      <div class="overflow-hidden bg-white rounded-full first:z-10 -mr-3 last:mr-0 w-[75px] shrink-0">
                                         <div class="relative w-[75px] shrink-0 -mr-4 first:z-10 !bg-opacity-100 modal-author-image">
                                           <img :src="image" alt="$store.activeArticle.author.name" width="75" height="75" loading="lazy" class=" w-fulll mix-blend-multiply grayscale"/>
                                           <div class="absolute top-0 left-0 w-full h-full bg-black opacity-40 mix-blend-soft-light"></div>
@@ -1353,7 +1353,7 @@
                                     </template>
                                   </template> 
                                   <template x-if="!$store.activeArticle.author.multiple">
-                                    <div class="overflow-hidden bg-white rounded-full first:z-10 -mr-4 w-[75px] shrink-0">
+                                    <div class="overflow-hidden bg-white rounded-full first:z-10 w-[75px] shrink-0">
                                       <div class="relative w-[75px] shrink-0 -mr-4 first:z-10 !bg-opacity-100 modal-author-image">
                                         <img :src="$store.activeArticle.author.image" alt="$store.activeArticle.author.name" width="75" height="75" loading="lazy"
                                           class=" w-fulll mix-blend-multiply grayscale" />
