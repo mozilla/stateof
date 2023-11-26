@@ -751,7 +751,8 @@
                 // Get the last article
                 this.lastArticle = this.$store.articles[this.$store.articles.length - 1].content;
 
-                this.articles = this.$store.articles.filter(article => !article.content.lead_article && article.content.title !== this.firstArticle.title).map(article => article.content);
+                // get all articles that are not the first or last article
+                this.articles = this.$store.articles.filter(article => article.title !== this.firstArticle.title && article.title !== this.lastArticle.title);
                 
                 // get three articles with the width value of 'third'
                 this.firstRow = this.articles.filter(article => article.width === 'third' && article.title !== this.firstArticle.title).slice(0, 3);
