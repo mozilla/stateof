@@ -4,7 +4,7 @@ export const content: object = {
   author: {
     name: 'Lindsey Shepard',
     job_title: 'CMO',
-    image: '/headshots/linda-griffin.png',
+    image: '/headshots/lindsey-shepard.jpg',
   },
   lead_article: false,
   modal_style: 'medium',
