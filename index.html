@@ -1112,7 +1112,7 @@
           </div>
           <div class="flex flex-col items-start justify-start w-full gap-5 md:w-1/2">
             <template x-for="(link, index) in links">
-              <a :href="link.url" class="flex items-center w-full gap-5 pb-5 transition duration-500 ease-out border-b border-black md:gap-8 group" :class="!inView && canAnimate ? 'opacity-0 -translate-x-5' : ''" :style="'transition-delay:' + index + '00ms;'">
+              <a :href="link.url" target="_blank" class="flex items-center w-full gap-5 pb-5 transition duration-500 ease-out border-b border-black md:gap-8 group" :class="!inView && canAnimate ? 'opacity-0 -translate-x-5' : ''" :style="'transition-delay:' + index + '00ms;'">
                 <span class="grow text-[18px] md:text-[24px] font-title font-bold" x-text="link.title"></span>
   
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 13 12" class="w-[35px] shrink-0 transition duration-150 ease-out group-hover:translate-x-1">
