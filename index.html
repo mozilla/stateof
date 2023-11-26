@@ -1518,6 +1518,22 @@
               this.showModal = true;
               this.$store.body.lock = true;
 
+              // watch if the esc key is pressed and close the modal
+              window.addEventListener('keydown', (event) => {
+                if (event.key === 'Escape' && this.showModal) {
+                  this.closeModal();
+                }
+              });
+
+              // if the left or right arrow key is pressed, go to the next or previous article
+              window.addEventListener('keydown', (event) => {
+                if (event.key === 'ArrowLeft' && this.previousArticle && this.showModal) {
+                  window.location.hash = this.previousArticle.hash;
+                } else if (event.key === 'ArrowRight' && this.nextArticle && this.showModal) {
+                  window.location.hash = this.nextArticle.hash;
+                }
+              });
+
               if (this.$store.articles.find(article => article.content.hash === value)?.content) {
                 this.$store.modalType = 'article';
               } else if (this.$store.testimonies.find(testimony => testimony.content.hash === value)?.content) {
