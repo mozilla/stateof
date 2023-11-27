@@ -1176,7 +1176,7 @@
           <div class="absolute top-0 left-0 z-0 w-full h-full transition bg-black opacity-0 modal-background"></div>
           <div class="relative z-20 h-screen overflow-x-hidden overflow-y-scroll transition duration-500 ease-out" :class="showModal ? 'opacity-100' : 'opacity-0'" x-ref="modal">
             <div class="relative bg-white modal">
-              <div class="md:w-[90vw] mx-auto block text-[#111111] relative" x-ref="modalContainer" @click.outside="closeModal">
+              <div class="md:w-[90vw] mx-auto block text-[#111111] relative origin-top" x-ref="modalContainer" @click.outside="closeModal">
                 <template x-if="previousArticle">
                   <a :href="previousArticle.hash" @click="checkIndex"
                     class="hidden lg:block fixed left-0 z-20 p-5 -translate-y-1/2 max-w-[230px] bg-white border border-l-0 border-black top-1/2 group transition duration-500 ease-out" :class="!showModal ? '!opacity-0 !translate-x-full delay-[5s]' : ''">
@@ -1239,7 +1239,22 @@
                       <template x-if="$store.modalType == 'article'">
                         <div class="md:absolute bottom-0 right-0 translate-x-[5vw] w-full md:w-[40vw] lg:w-[30vw]" x-html="previousArticle.icon.square"></div>
                       </template>
-                      <div class="md:absolute bottom-0 right-0 translate-x-[5vw] w-full md:w-[40vw] lg:w-[30vw] mt-10" x-html="placeHolderSVG"></div>
+                      
+                      <template x-if="previousArticle.tag && previousArticle.tag == 'choose'">
+                        <div
+                          class="md:absolute bottom-0 right-0 translate-x-[5vw] w-full md:w-[40vw] lg:w-[30vw] mt-10 rounded-tl-[200px] aspect-square overflow-hidden bg-white"
+                          x-ref="modalIcon">
+                          <div class="bg-[#b3dbde] w-full h-full">
+                            <img :src="previousArticle.author.image" alt="previousArticle.author-title" width="100%" height="100%" loading="lazy"
+                              class="object-cover object-center w-full h-full grayscale mix-blend-multiply" />
+                          </div>
+                        </div>
+                      </template>
+                      
+                      <template x-if="previousArticle.tag && previousArticle.tag != 'choose'">
+                        <div class="md:absolute bottom-0 right-0 translate-x-[5vw] w-full md:w-[40vw] lg:w-[30vw] mt-10" x-ref="defaultIcon"
+                          x-ref="modalIcon" x-html="placeHolderSVG"></div>
+                      </template>
                     </div>
                   </a>
                 </template>
@@ -1306,6 +1321,21 @@
                       <template x-if="$store.modalType == 'article'">
                         <div class="md:absolute bottom-0 right-0 translate-x-[5vw] w-full md:w-[40vw] lg:w-[30vw] mt-10" x-html="nextArticle.icon.square"></div>
                       </template>
+                      <template x-if="nextArticle.tag && nextArticle.tag == 'choose'">
+                        <div
+                          class="md:absolute bottom-0 right-0 translate-x-[5vw] w-full md:w-[40vw] lg:w-[30vw] mt-10 rounded-tl-[200px] aspect-square overflow-hidden bg-white"
+                          x-ref="modalIcon">
+                          <div class="bg-[#b3dbde] w-full h-full">
+                            <img :src="nextArticle.author.image" alt="nextArticle.author-title" width="100%" height="100%"
+                              loading="lazy" class="object-cover object-center w-full h-full grayscale mix-blend-multiply" />
+                          </div>
+                        </div>
+                      </template>
+                      
+                      <template x-if="nextArticle.tag && nextArticle.tag != 'choose'">
+                        <div class="md:absolute bottom-0 right-0 translate-x-[5vw] w-full md:w-[40vw] lg:w-[30vw] mt-10"
+                          x-ref="defaultIcon" x-ref="modalIcon" x-html="placeHolderSVG"></div>
+                      </template>
                     </div>
                   </a>
                 </template>
@@ -1338,84 +1368,86 @@
                   </button>
                 </div>
                 
-                <template x-if="$store.activeArticle.title">
-                  <div class="relative flex-col z-10 lg:flex-row inline-flex items-start lg:items-center lg:px-8 md:px-[65px] pt-[150px] md:py-[175px] lg:py-28 md:min-h-screen w-full overflow-hidden lg:overflow-visible" id="modalMain" x-ref="modalHeroBackground">
-                    <div class="container z-10">
-                      <div class="w-full mx-auto lg:w-3/4">
-                        <div class="flex flex-col items-start w-full lg:w-3/4">
-                          <template x-if="$store.activeArticle.author">
-                            <div class="flex items-center gap-5 mb-[48px] w-full">
-                              <template x-if="showAuthorImage">
-                                <div class="items-start hidden md:flex">
-                                  <template x-if="$store.activeArticle.author.multiple">
-                                    <template x-for="image in $store.activeArticle.author.image">
-                                      <div class="overflow-hidden bg-white rounded-full first:z-10 -mr-3 last:mr-0 w-[75px] shrink-0">
+                <div class="origin-top" x-ref="activeModal">
+                  <template x-if="$store.activeArticle.title">
+                    <div class="relative flex-col z-10 lg:flex-row inline-flex items-start lg:items-center lg:px-8 md:px-[65px] pt-[150px] md:py-[175px] lg:py-28 md:min-h-screen w-full overflow-hidden lg:overflow-visible" id="modalMain" x-ref="modalHeroBackground">
+                      <div class="container z-10">
+                        <div class="w-full mx-auto lg:w-3/4">
+                          <div class="flex flex-col items-start w-full lg:w-3/4">
+                            <template x-if="$store.activeArticle.author">
+                              <div class="flex items-center gap-5 mb-[48px] w-full">
+                                <template x-if="showAuthorImage">
+                                  <div class="items-start hidden md:flex">
+                                    <template x-if="$store.activeArticle.author.multiple">
+                                      <template x-for="image in $store.activeArticle.author.image">
+                                        <div class="overflow-hidden bg-white rounded-full first:z-10 -mr-3 last:mr-0 w-[75px] shrink-0">
+                                          <div class="relative w-[75px] shrink-0 -mr-4 first:z-10 !bg-opacity-100 modal-author-image">
+                                            <img :src="image" alt="$store.activeArticle.author.name" width="75" height="75" loading="lazy" class=" w-fulll mix-blend-multiply grayscale"/>
+                                            <div class="absolute top-0 left-0 w-full h-full bg-black opacity-40 mix-blend-soft-light"></div>
+                                          </div>
+                                        </div>
+                                      </template>
+                                    </template> 
+                                    <template x-if="!$store.activeArticle.author.multiple">
+                                      <div class="overflow-hidden bg-white rounded-full first:z-10 w-[75px] shrink-0">
                                         <div class="relative w-[75px] shrink-0 -mr-4 first:z-10 !bg-opacity-100 modal-author-image">
-                                          <img :src="image" alt="$store.activeArticle.author.name" width="75" height="75" loading="lazy" class=" w-fulll mix-blend-multiply grayscale"/>
+                                          <img :src="$store.activeArticle.author.image" alt="$store.activeArticle.author.name" width="75" height="75" loading="lazy"
+                                            class=" w-fulll mix-blend-multiply grayscale" />
                                           <div class="absolute top-0 left-0 w-full h-full bg-black opacity-40 mix-blend-soft-light"></div>
                                         </div>
                                       </div>
                                     </template>
-                                  </template> 
-                                  <template x-if="!$store.activeArticle.author.multiple">
-                                    <div class="overflow-hidden bg-white rounded-full first:z-10 w-[75px] shrink-0">
-                                      <div class="relative w-[75px] shrink-0 -mr-4 first:z-10 !bg-opacity-100 modal-author-image">
-                                        <img :src="$store.activeArticle.author.image" alt="$store.activeArticle.author.name" width="75" height="75" loading="lazy"
-                                          class=" w-fulll mix-blend-multiply grayscale" />
-                                        <div class="absolute top-0 left-0 w-full h-full bg-black opacity-40 mix-blend-soft-light"></div>
-                                      </div>
-                                    </div>
-                                  </template>
+                                  </div>
+                                </template>
+                                <div class="flex flex-col items-start justify-start w-full">
+                                  <span class="flex items-end gap-[10px] w-full">
+                                    <span class="text-[16px]/[24px] tracking-[0.64px] font-semibold font-title md:shrink-0 inline-block" x-html="$store.activeArticle.author.name"></span>
+                                    <div class="hidden md:inline-block w-full h-0.5 bg-black -translate-y-1.5"></div>
+                                  </span>
+                                  <span class="text-[14px]/[21px] font-normal font-title" x-html="$store.activeArticle.author.job_title"></span>
                                 </div>
-                              </template>
-                              <div class="flex flex-col items-start justify-start w-full">
-                                <span class="flex items-end gap-[10px] w-full">
-                                  <span class="text-[16px]/[24px] tracking-[0.64px] font-semibold font-title md:shrink-0 inline-block" x-html="$store.activeArticle.author.name"></span>
-                                  <div class="hidden md:inline-block w-full h-0.5 bg-black -translate-y-1.5"></div>
-                                </span>
-                                <span class="text-[14px]/[21px] font-normal font-title" x-html="$store.activeArticle.author.job_title"></span>
                               </div>
-                            </div>
-                          </template>
-                          
-                          <h2 class="text-[36px]/[38px] md:text-[64px]/[64px] font-bold font-title" x-show="showModal" x-html="$store.activeArticle.title"></h2>
-                          <h3 class="font-title text-[24px]/[31px] tracking-[.48px] font-normal mt-10 md:mt-[80px]" x-html="$store.activeArticle.excerpt"></h3>
-                          
-                          <template x-if="$store.activeArticle.modal_style == 'short'">
-                              <div class=" modal-body" x-html="bodyFormat"></div>
-                          </template>
+                            </template>
+                            
+                            <h2 class="text-[36px]/[38px] md:text-[64px]/[64px] font-bold font-title" x-show="showModal" x-html="$store.activeArticle.title"></h2>
+                            <h3 class="font-title text-[24px]/[31px] tracking-[.48px] font-normal mt-10 md:mt-[80px]" x-html="$store.activeArticle.excerpt"></h3>
+                            
+                            <template x-if="$store.activeArticle.modal_style == 'short'">
+                                <div class=" modal-body" x-html="bodyFormat"></div>
+                            </template>
+                          </div>
                         </div>
                       </div>
+                      <template x-if="!$store.activeArticle.tag">
+                        <div class="mt-10 md:mt-0 md:absolute bottom-0 right-0 translate-x-[5vw] w-full md:w-[40vw] lg:w-[30vw] z-[-1]" x-ref="modalIcon" x-html="$store.activeArticle.icon.square"></div>
+                      </template>
+                      <template x-if="$store.activeArticle.tag && $store.activeArticle.tag == 'choose'">
+                        <div class="mt-10 md:mt-0 md:absolute bottom-0 right-0 translate-x-[5vw] w-full md:w-[40vw] lg:w-[30vw] z-[-1] rounded-tl-[200px] aspect-square overflow-hidden bg-white" x-ref="modalIcon">
+                          <div class="bg-[#b3dbde] w-full h-full">
+                            <img :src="$store.activeArticle.author.image" alt="$store.activeArticle.author-title" width="100%" height="100%" loading="lazy" class="object-cover object-center w-full h-full grayscale mix-blend-multiply" />
+                          </div>
+                        </div>
+                      </template>
+  
+                      <template x-if="$store.activeArticle.tag && $store.activeArticle.tag != 'choose'">
+                        <div class="mt-10 md:mt-0 md:absolute bottom-0 right-0 translate-x-[5vw] w-full md:w-[40vw] lg:w-[30vw] z-[-1]"
+                          x-ref="defaultIcon" x-ref="modalIcon" x-html="placeHolderSVG"></div>
+                      </template>
                     </div>
-                    <template x-if="!$store.activeArticle.tag">
-                      <div class="mt-10 md:mt-0 md:absolute bottom-0 right-0 translate-x-[5vw] w-full md:w-[40vw] lg:w-[30vw] z-[-1]" x-ref="modalIcon" x-html="$store.activeArticle.icon.square"></div>
-                    </template>
-                    <template x-if="$store.activeArticle.tag && $store.activeArticle.tag == 'choose'">
-                      <div class="mt-10 md:mt-0 md:absolute bottom-0 right-0 translate-x-[5vw] w-full md:w-[40vw] lg:w-[30vw] z-[-1] rounded-tl-[200px] aspect-square overflow-hidden bg-white" x-ref="modalIcon">
-                        <div class="bg-[#b3dbde] w-full h-full">
-                          <img :src="$store.activeArticle.author.image" alt="$store.activeArticle.author-title" width="100%" height="100%" loading="lazy" class="object-cover object-center w-full h-full grayscale mix-blend-multiply" />
+                  </template>
+                  
+                  <template x-if="$store.activeArticle">
+                    <div>
+                      <template x-if="$store.activeArticle.modal_style != 'short'">
+                        <div class="bg-[#EEEEEE] z-10 md:px-[65px] lg:px-0 py-[95px] block w-full">
+                          <div class="container">
+                            <div class="mx-auto md:px-5 lg:w-3/4 modal-body" x-html="bodyFormat"></div>
+                          </div>
                         </div>
-                      </div>
-                    </template>
-
-                    <template x-if="$store.activeArticle.tag && $store.activeArticle.tag != 'choose'">
-                      <div class="mt-10 md:mt-0 md:absolute bottom-0 right-0 translate-x-[5vw] w-full md:w-[40vw] lg:w-[30vw] z-[-1]"
-                        x-ref="defaultIcon" x-ref="modalIcon" x-html="placeHolderSVG"></div>
-                    </template>
-                  </div>
-                </template>
-                
-                <template x-if="$store.activeArticle">
-                  <div>
-                    <template x-if="$store.activeArticle.modal_style != 'short'">
-                      <div class="bg-[#EEEEEE] z-10 md:px-[65px] lg:px-0 py-[95px] block w-full">
-                        <div class="container">
-                          <div class="px-5 mx-auto lg:w-3/4 modal-body" x-html="bodyFormat"></div>
-                        </div>
-                      </div>
-                    </template>
-                  </div>
-                </template>
+                      </template>
+                    </div>
+                  </template>
+                </div>
               </div>
             </div>
           </div>
@@ -1430,8 +1462,8 @@
             previousArticle: null,
             nextArticle: null,
             scrollPosition: 0,
-            modalWidth: 80,
-            modalNavTileWidth: 85,
+            modalWidth: .8,
+            modalWhiteSpace: 90,
             showAuthorImage: false,
             isMobile: window.innerWidth < 768 ? true : false,
             placeHolderSVG: '<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 427 437" class="w-full">< g clip- path="url(#default-icon)" ><path fill="#86C5C8" d="M0 200C0 89.5431 89.5431 0 200 0h235v437H0V200Z" /><rect width="567" height="328" x="44" y="54" fill="#EEE" opacity=".9" rx="164" /></g><defs><clipPath id="default-icon"><path fill="#fff" d="M0 0h435v437H0z" /></clipPath></defs></svg>',
@@ -1490,40 +1522,47 @@
                 this.swipeModals();
                 
                 setTimeout(() => {
-                  this.$refs.modalContainer.style.width = `${this.modalWidth}vw`;
+                  this.$refs.activeModal.style.transform = `scale(${this.modalWidth})`;
 
                   if (this.$refs.mobilePrev) {
-                    this.$refs.mobilePrev.style.right = `${this.modalWidth}vw`;
+                    this.$refs.mobilePrev.style.right = `${this.modalWhiteSpace}vw`;
                   }
                   if (this.$refs.mobileNext) {
-                    this.$refs.mobileNext.style.left = `${this.modalWidth}vw`;
+                    this.$refs.mobileNext.style.left = `${this.modalWhiteSpace}vw`;
                   }
 
                   
                   // watch scroll and change the width of the modal till it reaches 100
                   this.$refs.modal.addEventListener('scroll', (el) => {
-                    const scrollPercent = (el.target.scrollTop / (el.target.scrollHeight - el.target.clientHeight)) * 100;
-                    this.modalWidth = 80 + scrollPercent;
-                    this.modalNavTileWidth = 86.5 + scrollPercent;
+                    const scrollPercent = (el.target.scrollTop / (el.target.scrollHeight - el.target.clientHeight));
+                    let whiteSpace = (el.target.scrollTop / (el.target.scrollHeight - el.target.clientHeight)) * 100;
+                    this.modalWidth = .8 + scrollPercent;
+                    whiteSpace = this.modalWhiteSpace + (whiteSpace / 2);
                     
-                    if (this.modalWidth > 100) {
-                      this.modalWidth = 100;
+                    if (this.modalWidth > 1) {
+                      this.modalWidth = 1;
                     }
                     
-                    if (this.modalWidth < 80) {
-                      this.modalWidth = 80;
+                    if (this.modalWidth < .8) {
+                      this.modalWidth = .8;
+                    }
+
+                    if (whiteSpace > 100) {
+                      whiteSpace = 100;
+                    }
+
+                    if (whiteSpace < this.modalWhiteSpace) {
+                      whiteSpace = this.modalWhiteSpace;
                     }
   
-                    this.$refs.modalContainer.style.width = `${this.modalWidth}vw`;
+                    this.$refs.activeModal.style.transform = `scale(${this.modalWidth})`;
 
                     if(this.$refs.mobilePrev) {
-                      this.$refs.mobilePrev.style.right = `${this.modalWidth}vw`;
-                      this.$refs.mobilePrev.style.width = `calc(100vw - ${this.modalNavTileWidth}vw)`;
+                      this.$refs.mobilePrev.style.right = `${whiteSpace}vw`;
                     }
 
                     if (this.$refs.mobileNext) {
-                      this.$refs.mobileNext.style.left = `${this.modalWidth}vw`;
-                      this.$refs.mobileNext.style.width = `calc(100vw - ${this.modalNavTileWidth}vw)`;
+                      this.$refs.mobileNext.style.left = `${whiteSpace}vw`;
                     }
                   });
                 }, 1);
