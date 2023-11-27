@@ -347,8 +347,8 @@
         <!-- Get first quote block -->
         <div class="container" x-data="rowOne()" x-intersect.margin.-175px.once="sectionInView = true">
           <div class="grid grid-cols-12">
-            <div class="relative z-0 col-span-12 md:col-span-6">
-              <a :href="firstArticle.hash" class="z-10 no-underline group flex flex-col items-start justify-start w-full py-[65px] md:pr-[65px]">
+            <div class="relative z-0 hidden col-span-12 md:col-span-6 md:block">
+              <a :href="firstArticle.hash" class=" z-10 no-underline group flex flex-col items-start justify-start w-full py-[65px] md:pr-[65px]">
                 <div class="flex flex-col items-start justify-start w-full">
                   <span class="flex items-end gap-[10px] w-full">
                     <span class="text-[16px]/[24px] tracking-[0.64px] font-semibold font-title shrink-0 inline-block transition duration-500 ease-out" :class="!sectionInView && canAnimate ? 'opacity-0 -translate-x-4' : ''" x-html="firstArticle.author.name"></span>
@@ -376,7 +376,7 @@
               </a>
             </div>
             <div class="relative flex items-center justify-end col-span-12 py-[60px] md:py-10 md:col-span-6">
-              <div class="bg-[#89D5FF] absolute top-0 left-1/2 -translate-x-1/2 md:-translate-x-0 md:left-0 w-screen md:w-[50vw] h-full z-[1] border-t-2 border-black md:border-t-0 transition duration-500 ease-out delay-100" :class="!sectionInView && canAnimate ? 'opacity-0' : ''"></div>
+              <div class="bg-[#89D5FF] absolute top-0 left-1/2 -translate-x-1/2 md:-translate-x-0 md:left-0 w-screen md:w-[50vw] h-full z-[1] transition duration-500 ease-out delay-100" :class="!sectionInView && canAnimate ? 'opacity-0' : ''"></div>
               <div class="relative z-10 flex-col items-end justify-start w-full pl-10 transition ease-out delay-500 md:w-11/12 lg:w-3/4">
                 <span class="absolute top-0 left-0 font-body text-[56px]/[55px] font-bold lg:-translate-x-10 transition duration-500 ease-out delay-200" :class="!sectionInView && canAnimate ? 'opacity-0 -translate-x-4' : ''">“</span>
                 <p class="font-title text-[24px]/[31px] font-normal tracking-[.48px] transition duration-500 ease-out delay-200" :class="!sectionInView && canAnimate ? 'opacity-0 -translate-y-4' : ''">
@@ -476,7 +476,7 @@
         </div>
 
         <!-- Mobile Articles -->
-        <div class="block md:hidden relative border-t-2 border-black bg-[#EEEEEE] z-20" x-data="mobileRow"
+        <div class="block md:hidden relative border-y-2 border-black bg-[#EEEEEE] z-20" x-data="mobileRow"
           x-intersect.margin.-175px.once="sectionInView = true">
           <div class="relative">
             <div class="relative flex w-full px-5 overflow-x-auto snap-x snap-mandatory no-scrollbar">
@@ -575,9 +575,8 @@
                 </div>
               </div>
         
-              <div class="relative z-0 col-span-12 md:col-span-6">
-                <a :href="lastArticle.hash"
-                  class="z-10 no-underline group flex flex-col items-start justify-start w-full py-[65px] md:pl-[65px]">
+              <div class="relative z-0 hidden col-span-12 md:col-span-6 md:block">
+                <a :href="lastArticle.hash" class="z-10 no-underline group flex flex-col items-start justify-start w-full py-[65px] md:pl-[65px]">
                   <template x-if="lastArticle.author">
                     <div class="flex flex-col items-start justify-start w-full">
                       <span class="flex items-end gap-[10px] w-full">
@@ -723,8 +722,10 @@
                 // get the next article with the width value of 'half' that is not the first article
                 this.lastArticle = this.$store.articles.filter(article => article.content.width === 'half' && article.content.title !== this.firstArticle.title)[0].content;
 
-                // get all articles that are not the first or last article
-                this.articles = this.$store.articles.filter(article => !article.content.lead_article && article.content.title !== this.firstArticle.title && article.content.title !== this.lastArticle.title).map(article => article.content);
+                //get the first article in $store.articles
+
+                // get all articles except the first article in the array
+                this.articles = this.$store.articles.map(article => article.content).slice(1);
                 
                 // get three articles with the width value of 'third'
                 this.firstRow = this.articles.filter(article => article.width === 'third' && article.title !== this.firstArticle.title).slice(0, 3);
