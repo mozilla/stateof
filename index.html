@@ -752,10 +752,13 @@
                 this.lastArticle = this.$store.articles[this.$store.articles.length - 1].content;
 
                 // get all articles that are not the first or last article
-                this.articles = this.$store.articles.filter(article => article.title !== this.firstArticle.title && article.title !== this.lastArticle.title);
+                this.articles = this.$store.articles.filter(article => !article.content.lead_article && article.content.title !== this.firstArticle.title && article.content.title !== this.lastArticle.title).map(article => article.content);
+
                 
                 // get three articles with the width value of 'third'
                 this.firstRow = this.articles.filter(article => article.width === 'third' && article.title !== this.firstArticle.title).slice(0, 3);
+
+                console.log(this.firstRow);
 
                 // get two articles that have the width value of 'half' and not the first article
                 this.secondRow = this.articles.filter(article => article.width === 'half' && article.title !== this.firstArticle.title).slice(0, 2);
@@ -765,9 +768,6 @@
 
                 // get two articles that have the width value of 'half' and not in this.firstRow or this.secondRow
                 this.fourthRow = this.articles.filter(article => article.width === 'half' && article.title !== this.firstArticle.title && !this.firstRow.includes(article) && !this.secondRow.includes(article)).slice(0, 2);
-
-                // Get the last article
-                this.lastArticle = this.$store.articles[this.$store.articles.length - 1].content;
               }
             }
           }
