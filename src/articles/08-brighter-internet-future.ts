@@ -1,5 +1,5 @@
 export const content: object = {
-  title: 'A unique business model custom built to enrich people’s online lives',
+  title: 'A unique business model custom-built to enrich people’s online lives',
   hash: '#enrichment',
   author: {
     name: 'Eric Muhlheim & Angela Plohman',

@@ -1,5 +1,5 @@
 export const content: object = {
-  title: 'Mozilla crusades for a trustworthy digital world',
+  title: 'Growing our capabilities to respond to new challenges across the internet',
   hash: '#mission',
   author: {
     name: 'Mark Surman',

@@ -1,5 +1,5 @@
 export const content: object = {
-  title: 'From secure, private web browsing to safe social media, we’ve got you covered',
+  title: 'Delivering products to support our Mission',
   hash: '#product-strategy',
   author: {
     name: 'Steve Teixeira',

@@ -1,5 +1,5 @@
 export const content: object = {
-  title: 'Growing the Diversity, Experience, and Impact of the Foundation Board',
+  title: 'Expanding our Board to create the internet we want',
   hash: '#diversity',
   author: {
     name: 'Mozilla',

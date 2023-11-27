@@ -1,5 +1,5 @@
 export const content: object = {
-  title: 'Mozilla is on a journey to help people reclaim the internet',
+  title: 'Internet by the people, for the people',
   hash: '#reclaim-the-internet',
   author: null,
   lead_article: true,
