@@ -1753,7 +1753,7 @@
               event.preventDefault();
               this.showContent = false;
               // get article by url
-              const article = this.$store.articles.find(article => article.content.hash === url)?.content;
+              const article = this.$store.articles.find(article => article.content.hash === url)?.content ? this.$store.articles.find(article => article.content.hash === url)?.content : this.$store.testimonies.find(article => article.content.hash === url)?.content;
               setTimeout(() => {
                 window.location.hash = article.hash;
                 setTimeout(() => {
