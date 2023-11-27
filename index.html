@@ -1152,20 +1152,19 @@
                         <path
                           d="M46.5455 24.7727L23.6364 47.6818L0.727271 24.7727L5.95454 19.5L19.7955 33.3409L19.7955 0.909086L27.4773 0.909086L27.4773 33.3409L41.2955 19.5L46.5455 24.7727Z" fill="black" />
                       </svg>
-                      <template x-if="$store.modalType == 'article'">
-                        <div class="flex flex-col items-start justify-start gap-[10px]">
+                      <div class="flex flex-col items-start justify-start gap-[10px]">
+                        <template x-if="previousArticle && previousArticle.icon">
                           <div class="w-[130px]" x-html="previousArticle.icon.rect"></div>
-                          <span class="font-title text-[12px]/[12px] font-bold" x-html="previousArticle.title"></span>
-                          <span class="font-title text-[10px]/[10px] font-normal" x-html="previousArticle.author.name"></span>
-                        </div>
-                      </template>
-                      <template x-if="$store.modalType == 'testimony'">
-                        <div class="flex flex-col items-start justify-start gap-[10px]">
+                        </template>
+                        <template x-if="previousArticle && !previousArticle.icon">
                           <img class="w-[130px] inline-block grayscale mix-blend-darken" :src="previousArticle.author.image" width="130"
                             height="130" loading="lazy" />
-                          <span class="font-title text-[12px]/[12px] font-bold" x-html="previousArticle.author.name"></span>
-                        </div>
-                      </template>
+                        </template>
+                        <span class="font-title text-[12px]/[12px] font-bold" x-html="previousArticle.title"></span>
+                        <template x-if="previousArticle && previousArticle.author">
+                          <span class="font-title text-[10px]/[10px] font-normal" x-html="previousArticle.author.name"></span>
+                        </template>
+                      </div>
                     </div>
                   </a>
                 </template>
@@ -1238,20 +1237,19 @@
                 <template x-if="nextArticle">
                   <a :href="nextArticle.hash" @click="checkIndex, transitionModals(nextArticle.hash)" class="hidden lg:block fixed right-0 z-20 p-5 -translate-y-1/2 max-w-[230px] bg-white border border-r-0 border-black top-1/2 group transition duration-500 ease-out" :class="!showModal ? '!opacity-0 !translate-x-full delay-[5s]' : ''">
                     <div class="flex items-center gap-5">
-                      <template x-if="$store.modalType == 'article'">
-                        <div class="flex flex-col items-start justify-start gap-[10px]">
+                      <div class="flex flex-col items-start justify-start gap-[10px]">
+                        <template x-if="nextArticle.icon">
                           <div class="w-[130px]" x-html="nextArticle.icon.rect"></div>
-                          <span class="font-title text-[12px]/[12px] font-bold" x-html="nextArticle.title"></span>
+                        </template>
+                        <template x-if="!nextArticle.icon">
+                          <img class="w-[130px] inline-block grayscale mix-blend-darken" :src="nextArticle.author.image" width="130" height="130"
+                            loading="lazy" />
+                        </template>
+                        <span class="font-title text-[12px]/[12px] font-bold" x-html="nextArticle.title"></span>
+                        <template x-if="nextArticle.author">
                           <span class="font-title text-[10px]/[10px] font-normal" x-html="nextArticle.author.name"></span>
-                        </div>
-                      </template>
-                      <template x-if="$store.modalType == 'testimony'">
-                        <div class="flex flex-col items-start justify-start gap-[10px]">
-                          <img class="w-[130px] inline-block grayscale mix-blend-darken" :src="nextArticle.author.image" width="130"
-                            height="130" loading="lazy" />
-                          <span class="font-title text-[12px]/[12px] font-bold" x-html="nextArticle.author.name"></span>
-                        </div>
-                      </template>
+                        </template>
+                      </div>
                       <svg width="35" height="35" viewBox="0 0 47 48" fill="none" xmlns="http://www.w3.org/2000/svg"
                         class="duration-150 ease-out -rotate-90 group-hover:translate-x-2 shrink-0">
                         <path
@@ -1356,16 +1354,16 @@
                 </div>
                 
                 <div class="origin-top" x-ref="activeModal">
-                  <template x-if="$store.activeArticle.title">
+                  <template x-if="$store.activeArticle && $store.activeArticle.title">
                     <div class="relative flex-col z-10 lg:flex-row inline-flex items-start lg:items-center lg:px-8 md:px-[65px] pt-[150px] md:py-[175px] lg:py-28 md:min-h-screen w-full overflow-hidden md:overflow-visible md:transition-colors duration-300 ease-out" id="modalMain" x-ref="modalHeroBackground">
                       <div class="container z-10">
                         <div class="w-full mx-auto lg:w-3/4">
                           <div class="flex flex-col items-start w-full lg:w-3/4">
-                            <template x-if="$store.activeArticle.author">
+                            <template x-if="$store.activeArticle && $store.activeArticle.author">
                               <div class="flex items-center gap-5 mb-[48px] w-full">
-                                <template x-if="showAuthorImage">
+                                <template x-if="$store.activeArticle && $store.activeArticle.author && showAuthorImage">
                                   <div class="items-start hidden transition duration-500 ease-out md:flex" :class="!showContent ? 'opacity-0 -translate-x-4 !delay-0 !duration-100' : ''">
-                                    <template x-if="$store.activeArticle.author.multiple">
+                                    <template x-if="$store.activeArticle && $store.activeArticle.author.multiple">
                                       <template x-for="image in $store.activeArticle.author.image">
                                         <div class="overflow-hidden bg-white rounded-full first:z-10 -mr-3 last:mr-0 w-[75px] shrink-0">
                                           <div class="relative w-[75px] shrink-0 -mr-4 first:z-10 !bg-opacity-100 modal-author-image">
@@ -1375,7 +1373,7 @@
                                         </div>
                                       </template>
                                     </template> 
-                                    <template x-if="!$store.activeArticle.author.multiple">
+                                    <template x-if="$store.activeArticle && $store.activeArticle.author && !$store.activeArticle.author.multiple">
                                       <div class="overflow-hidden bg-white rounded-full first:z-10 w-[75px] shrink-0">
                                         <div class="relative w-[75px] shrink-0 -mr-4 first:z-10 !bg-opacity-100 modal-author-image">
                                           <img :src="$store.activeArticle.author.image" alt="$store.activeArticle.author.name" width="75" height="75" loading="lazy"
@@ -1405,13 +1403,13 @@
                           </div>
                         </div>
                       </div>
-                      <template x-if="!$store.activeArticle.tag">
+                      <template x-if="$store.activeArticle && $store.activeArticle.icon && !$store.activeArticle.tag">
                         <div class="mt-10 md:mt-0 md:absolute bottom-0 right-0 translate-x-[10vw] w-full md:w-[55vw] lg:w-[30vw] z-[-1] origin-center transition duration-500 delay-[400ms] ease-out" :class="!showContent ? 'opacity-0  scale-90  !delay-0 !duration-100' : ''" x-ref="modalIcon" x-html="$store.activeArticle.icon.square"></div>
                       </template>
-                      <template x-if="$store.activeArticle.tag && $store.activeArticle.tag == 'choose' || $store.activeArticle.tag && $store.activeArticle.tag == 'build'">
+                      <template x-if="$store.activeArticle && $store.activeArticle.tag">
                         <div class="mt-10 md:mt-0 md:absolute bottom-0 right-0 translate-x-[5vw] w-full md:w-[60vw] lg:w-[30vw] z-[-1] rounded-tl-[200px] aspect-square overflow-hidden bg-white origin-center transition duration-500 delay-[400ms] ease-out" :class="!showContent ? 'opacity-0  scale-90  !delay-0 !duration-100' : ''"  x-ref="modalIcon">
                           <div class="bg-[#b3dbde] w-full h-full">
-                            <img :src="$store.activeArticle.author.image" alt="$store.activeArticle.author-title" width="100%" height="100%" loading="lazy" class="object-cover object-center w-full h-full grayscale mix-blend-multiply" />
+                            <img :src="$store.activeArticle.author.image" alt="$store.activeArticle.author.name" width="100%" height="100%" loading="lazy" class="object-cover object-center w-full h-full grayscale mix-blend-multiply" />
                           </div>
                         </div>
                       </template>
@@ -1421,7 +1419,7 @@
                           class="mt-10 md:mt-0 md:absolute bottom-0 right-0 translate-x-[5vw] w-full md:w-[60vw] lg:w-[30vw] z-[-1] rounded-tl-[200px] aspect-square overflow-hidden bg-white origin-center transition duration-500 delay-[400ms] ease-out"
                           :class="!showContent ? 'opacity-0  scale-90  !delay-0 !duration-100' : ''" x-ref="modalIcon">
                           <div class="bg-[#b3dbde] w-full h-full">
-                            <img :src="$store.activeArticle.image" alt="$store.activeArticle.author-title" width="100%" height="100%"
+                            <img :src="$store.activeArticle.image" alt="$store.activeArticle.author.name" width="100%" height="100%"
                               loading="lazy" class="object-cover object-center w-full h-full grayscale mix-blend-multiply" />
                           </div>
                         </div>
@@ -1460,7 +1458,6 @@
             showAuthorImage: false,
             showContent: false,
             isMobile: window.innerWidth < 768 ? true : false,
-            placeHolderSVG: '<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 427 437" class="w-full">< g clip- path="url(#default-icon)" ><path fill="#86C5C8" d="M0 200C0 89.5431 89.5431 0 200 0h235v437H0V200Z" /><rect width="567" height="328" x="44" y="54" fill="#EEE" opacity=".9" rx="164" /></g><defs><clipPath id="default-icon"><path fill="#fff" d="M0 0h435v437H0z" /></clipPath></defs></svg>',
 
             init() {
               // if window.location.hash is not empty, open the modal
@@ -1484,10 +1481,12 @@
 
               // get the fill of the first path in the SVG and make it the background color of the modal hero
               setTimeout(() => {
-                const svg = this.$refs.modalIcon ? this.$refs.modalIcon.querySelector('svg') : this.placeHolderSVG;
+                const svg = this.$refs.modalIcon ? this.$refs.modalIcon.querySelector('svg') : null;
                 this.showContent = true;
 
                 this.checkImage();
+
+                console.log(svg);
                 
                 if (svg) {
                   let fillColor = null;
