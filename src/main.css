@@ -40,11 +40,11 @@
   }
 
   .modal-body h3 {
-    @apply text-[24px]/[31px] tracking-[.48px] font-title font-bold mb-[35px];
-  }
-
-  .modal-body h4 {
     @apply text-[36px]/[38px] font-title font-medium mb-[35px];
+  }
+  
+  .modal-body h4 {
+    @apply text-[24px]/[31px] tracking-[.48px] font-title font-bold mb-[35px];
   }
 
   .modal-body p {

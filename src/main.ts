@@ -3,7 +3,7 @@ import Alpine from 'alpinejs';
 import intersect from '@alpinejs/intersect';
 import persist from '@alpinejs/persist';
 import focus from '@alpinejs/focus';
-import Player from '@vimeo/player';
+
 
 // data
 // gets all the ts files in the /articles folder and returns them as an array
@@ -35,7 +35,6 @@ interface BodyStore {
 
 
 window.Alpine = Alpine;
-(window as any).Player = Player;
 
 // Plugins
 Alpine.plugin(intersect);
