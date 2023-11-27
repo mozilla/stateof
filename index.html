@@ -471,7 +471,7 @@
                   <a :href="article.hash" class="z-10 flex flex-col items-start justify-start w-full py-[65px] group">
                     <div class="flex flex-col items-start justify-start w-full">
                       <span class="flex items-end gap-[10px] w-full">
-                        <span class="text-[16px]/[24px] tracking-[0.64px] font-semibold font-title shrink-0 inline-block"
+                        <span class="text-[16px]/[24px] tracking-[0.64px] font-semibold font-title shrink-0 max-w-[100%] inline-block"
                           x-html="article.author.name"></span>
                         <div class="w-full h-0.5 bg-black -translate-y-1.5"></div>
                       </span>
@@ -1440,7 +1440,7 @@
                       <template x-if="$store.activeArticle.modal_style != 'short'">
                         <div class="bg-[#EEEEEE] z-10 md:px-[65px] lg:px-0 py-[95px] block w-full">
                           <div class="container">
-                            <div class="mx-auto md:px-5 lg:w-3/4 modal-body" x-html="bodyFormat"></div>
+                            <div class="mx-auto lg:px-5 lg:w-3/4 modal-body" x-html="bodyFormat"></div>
                           </div>
                         </div>
                       </template>
