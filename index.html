@@ -1251,8 +1251,19 @@
                           </div>
                         </div>
                       </template>
+
+                      <template x-if="previousArticle.tag && previousArticle.tag == 'act'">
+                        <div
+                          class="md:absolute bottom-0 right-0 translate-x-[5vw] w-full md:w-[40vw] lg:w-[30vw] mt-10 rounded-tl-[200px] aspect-square overflow-hidden bg-white"
+                          x-ref="modalIcon">
+                          <div class="bg-[#b3dbde] w-full h-full">
+                            <img :src="previousArticle.image" alt="previousArticle.author-title" width="100%" height="100%"
+                              loading="lazy" class="object-cover object-center w-full h-full grayscale mix-blend-multiply" />
+                          </div>
+                        </div>
+                      </template>
                       
-                      <template x-if="previousArticle.tag && previousArticle.tag != 'choose'">
+                      <template x-if="previousArticle.tag && previousArticle.tag == 'build'">
                         <div class="md:absolute bottom-0 right-0 translate-x-[5vw] w-full md:w-[40vw] lg:w-[30vw] mt-10" x-ref="defaultIcon"
                           x-ref="modalIcon" x-html="placeHolderSVG"></div>
                       </template>
@@ -1332,8 +1343,19 @@
                           </div>
                         </div>
                       </template>
+
+                      <template x-if="nextArticle.tag && nextArticle.tag == 'act'">
+                        <div
+                          class="md:absolute bottom-0 right-0 translate-x-[5vw] w-full md:w-[40vw] lg:w-[30vw] mt-10 rounded-tl-[200px] aspect-square overflow-hidden bg-white"
+                          x-ref="modalIcon">
+                          <div class="bg-[#b3dbde] w-full h-full">
+                            <img :src="nextArticle.image" alt="nextArticle.author-title" width="100%" height="100%" loading="lazy"
+                              class="object-cover object-center w-full h-full grayscale mix-blend-multiply" />
+                          </div>
+                        </div>
+                      </template>
                       
-                      <template x-if="nextArticle.tag && nextArticle.tag != 'choose'">
+                      <template x-if="nextArticle.tag && nextArticle.tag == 'build'">
                         <div class="md:absolute bottom-0 right-0 translate-x-[5vw] w-full md:w-[40vw] lg:w-[30vw] mt-10"
                           x-ref="defaultIcon" x-ref="modalIcon" x-html="placeHolderSVG"></div>
                       </template>
@@ -1429,8 +1451,19 @@
                           </div>
                         </div>
                       </template>
+
+                      <template x-if="$store.activeArticle.tag && $store.activeArticle.tag == 'act'">
+                        <div
+                          class="mt-10 md:mt-0 md:absolute bottom-0 right-0 translate-x-[5vw] w-full md:w-[60vw] lg:w-[30vw] z-[-1] rounded-tl-[200px] aspect-square overflow-hidden bg-white origin-center transition duration-500 delay-[400ms] ease-out"
+                          :class="!showContent ? 'opacity-0  scale-90  !delay-0 !duration-100' : ''" x-ref="modalIcon">
+                          <div class="bg-[#b3dbde] w-full h-full">
+                            <img :src="$store.activeArticle.image" alt="$store.activeArticle.author-title" width="100%" height="100%"
+                              loading="lazy" class="object-cover object-center w-full h-full grayscale mix-blend-multiply" />
+                          </div>
+                        </div>
+                      </template>
   
-                      <template x-if="$store.activeArticle.tag && $store.activeArticle.tag != 'choose'">
+                      <template x-if="$store.activeArticle.tag && $store.activeArticle.tag == 'build'">
                         <div class="mt-10 md:mt-0 md:absolute bottom-0 right-0 translate-x-[5vw] w-full md:w-[40vw] lg:w-[30vw] z-[-1] origin-center transition duration-500 delay-[400ms] ease-out" :class="!showContent ? 'opacity-0  scale-90  !delay-0 !duration-100' : ''" 
                           x-ref="defaultIcon" x-ref="modalIcon" x-html="placeHolderSVG"></div>
                       </template>
