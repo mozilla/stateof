@@ -1207,8 +1207,8 @@
 
                 <!-- Mobile Previous Button -->
                 <template x-if="previousArticle">
-                  <a :href="previousArticle.hash" id="previousArticle" x-ref="mobilePrev" @click="checkIndex" class="md:hidden absolute w-[10vw] top-0 h-screen opacity-50 flex items-start justify-end">
-                    <div class="relative flex-col shrink-0 lg:flex-row inline-flex items-start w-[80vw] md:px-[65px] pt-[150px] md:py-[175px] overflow-hidden" :style="'background-color:' + getSVGPath(previousArticle.icon ? previousArticle.icon.square : placeHolderSVG)">
+                  <a :href="previousArticle.hash" id="previousArticle" x-ref="mobilePrev" @click="checkIndex" class="md:hidden absolute w-[100vw] scale-[.8] origin-top-right top-0 h-screen opacity-50 flex items-start justify-end">
+                    <div class="relative flex-col shrink-0 lg:flex-row inline-flex items-start w-full md:px-[65px] pt-[150px] md:py-[175px] overflow-hidden" :style="'background-color:' + getSVGPath(previousArticle.icon ? previousArticle.icon.square : placeHolderSVG)">
                       <div class="container">
                         <div class="w-full mx-auto lg:w-3/4">
                           <div class="flex flex-col items-start w-full lg:w-3/4">
@@ -1237,7 +1237,7 @@
                         </div>
                       </div>
                       <template x-if="$store.modalType == 'article'">
-                        <div class="md:absolute bottom-0 right-0 translate-x-[5vw] w-full md:w-[40vw] lg:w-[30vw]" x-html="previousArticle.icon.square"></div>
+                        <div class="md:absolute bottom-0 right-0 translate-x-[5vw] w-full md:w-[40vw] lg:w-[30vw] mt-10" x-html="previousArticle.icon.square"></div>
                       </template>
                       
                       <template x-if="previousArticle.tag && previousArticle.tag == 'choose'">
@@ -1288,8 +1288,8 @@
 
                 <!-- Mobile Next Button -->
                 <template x-if="nextArticle">
-                  <a :href="nextArticle.hash" id="nextArticle" @click="checkIndex" x-ref="mobileNext" class="md:hidden absolute w-[80vw] top-0 overflow-hidden h-screen opacity-50 flex items-start justify-start">
-                    <div class="relative flex-col lg:flex-row inline-flex items-start shrink-0 w-[80vw] md:px-[65px] pt-[150px] md:py-[175px] overflow-hidden" :style="'background-color:' + getSVGPath(nextArticle.icon ? nextArticle.icon.square : placeHolderSVG)">
+                  <a :href="nextArticle.hash" id="nextArticle" @click="checkIndex" x-ref="mobileNext" class="md:hidden absolute w-[100vw] scale-[.8] origin-top-left top-0 overflow-hidden h-screen opacity-50 flex items-start justify-start">
+                    <div class="relative flex-col w-full lg:flex-row inline-flex items-start shrink-0 md:px-[65px] pt-[150px] md:py-[175px] overflow-hidden" :style="'background-color:' + getSVGPath(nextArticle.icon ? nextArticle.icon.square : placeHolderSVG)">
                       <div class="container">
                         <div class="w-full mx-auto lg:w-3/4">
                           <div class="flex flex-col items-start w-full lg:w-3/4">
@@ -1535,7 +1535,7 @@
                   // watch scroll and change the width of the modal till it reaches 100
                   this.$refs.modal.addEventListener('scroll', (el) => {
                     const scrollPercent = (el.target.scrollTop / (el.target.scrollHeight - el.target.clientHeight));
-                    let whiteSpace = (el.target.scrollTop / (el.target.scrollHeight - el.target.clientHeight)) * 100;
+                    let whiteSpace = scrollPercent * 100;
                     this.modalWidth = .8 + scrollPercent;
                     whiteSpace = this.modalWhiteSpace + (whiteSpace / 2);
                     
@@ -1722,7 +1722,7 @@
                         if (this.nextArticle) {
                           this.$refs.mobileNext.classList.remove('transitionOut');
                         }
-                      }, 500);
+                      }, 300);
                     }
                   } else if (dist < -50) {
                     if (this.nextArticle) {
@@ -1740,7 +1740,7 @@
                         if(this.previousArticle) {
                           this.$refs.mobilePrev.classList.remove('transitionOut');
                         }
-                      }, 500);
+                      }, 300);
                     }
                   }
                   startX = null;
