@@ -1172,7 +1172,7 @@
                 <!-- Mobile Previous Button -->
                 <template x-if="previousArticle">
                   <a :href="previousArticle.hash" id="previousArticle" x-ref="mobilePrev" @click="checkIndex" class="md:hidden absolute w-[100vw] scale-[.8] origin-top-right top-0 h-screen opacity-50 flex items-start justify-end">
-                    <div class="relative flex-col shrink-0 lg:flex-row inline-flex items-start w-full md:px-[65px] pt-[150px] md:py-[175px] overflow-hidden" :style="'background-color:' + getSVGPath(previousArticle.icon ? previousArticle.icon.square : placeHolderSVG)">
+                    <div class="relative flex-col shrink-0 lg:flex-row inline-flex items-start w-full md:px-[65px] pt-[150px] md:py-[175px] overflow-hidden" :style="'background-color:' + getSVGPath(previousArticle.icon ? previousArticle.icon.square : null)">
                       <div class="container">
                         <div class="w-full mx-auto lg:w-3/4">
                           <div class="flex flex-col items-start w-full lg:w-3/4">
@@ -1225,11 +1225,6 @@
                           </div>
                         </div>
                       </template>
-                      
-                      <template x-if="previousArticle.tag && previousArticle.tag == 'build'">
-                        <div class="md:absolute bottom-0 right-0 translate-x-[5vw] w-full md:w-[40vw] lg:w-[30vw] mt-10" x-ref="defaultIcon"
-                          x-ref="modalIcon" x-html="placeHolderSVG"></div>
-                      </template>
                     </div>
                   </a>
                 </template>
@@ -1263,7 +1258,7 @@
                 <!-- Mobile Next Button -->
                 <template x-if="nextArticle">
                   <a :href="nextArticle.hash" id="nextArticle" @click="checkIndex" x-ref="mobileNext" class="md:hidden absolute w-[100vw] scale-[.8] origin-top-left top-0 overflow-hidden h-screen opacity-50 flex items-start justify-start">
-                    <div class="relative flex-col w-full lg:flex-row inline-flex items-start shrink-0 md:px-[65px] pt-[150px] md:py-[175px] overflow-hidden" :style="'background-color:' + getSVGPath(nextArticle.icon ? nextArticle.icon.square : placeHolderSVG)">
+                    <div class="relative flex-col w-full lg:flex-row inline-flex items-start shrink-0 md:px-[65px] pt-[150px] md:py-[175px] overflow-hidden" :style="'background-color:' + getSVGPath(nextArticle.icon ? nextArticle.icon.square : null)">
                       <div class="container">
                         <div class="w-full mx-auto lg:w-3/4">
                           <div class="flex flex-col items-start w-full lg:w-3/4">
@@ -1315,11 +1310,6 @@
                               class="object-cover object-center w-full h-full grayscale mix-blend-multiply" />
                           </div>
                         </div>
-                      </template>
-                      
-                      <template x-if="nextArticle.tag && nextArticle.tag == 'build'">
-                        <div class="md:absolute bottom-0 right-0 translate-x-[5vw] w-full md:w-[40vw] lg:w-[30vw] mt-10"
-                          x-ref="defaultIcon" x-ref="modalIcon" x-html="placeHolderSVG"></div>
                       </template>
                     </div>
                   </a>
@@ -1386,10 +1376,14 @@
                                 </template>
                                 <div class="flex flex-col items-start justify-start w-full">
                                   <span class="flex items-end gap-[10px] w-full">
-                                    <span class="text-[16px]/[24px] tracking-[0.64px] font-semibold font-title md:shrink-0 inline-block transition duration-500 ease-out delay-100" :class="!showContent ? 'opacity-0  !delay-0 !duration-100' : ''" x-html="$store.activeArticle.author.name"></span>
+                                    <template x-if="$store.activeArticle && $store.activeArticle.author">
+                                      <span class="text-[16px]/[24px] tracking-[0.64px] font-semibold font-title md:shrink-0 inline-block transition duration-500 ease-out delay-100" :class="!showContent ? 'opacity-0  !delay-0 !duration-100' : ''" x-html="$store.activeArticle.author.name"></span>
+                                    </template>
                                     <div class="hidden md:inline-block w-full h-0.5 bg-black -translate-y-1.5 transition duration-500 ease-out delay-100 origin-left" :class="!showContent ? ' scale-x-0  !delay-0 !duration-100' : ''"></div>
                                   </span>
-                                  <span class="text-[14px]/[21px] font-normal font-title transition duration-500 ease-out delay-150" :class="!showContent ? 'opacity-0  !delay-0 !duration-100' : ''" x-html="$store.activeArticle.author.job_title"></span>
+                                  <template x-if="$store.activeArticle && $store.activeArticle.author">
+                                    <span class="text-[14px]/[21px] font-normal font-title transition duration-500 ease-out delay-150" :class="!showContent ? 'opacity-0  !delay-0 !duration-100' : ''" x-html="$store.activeArticle.author.job_title"></span>
+                                  </template>
                                 </div>
                               </div>
                             </template>
@@ -1397,16 +1391,18 @@
                             <h2 class="text-[36px]/[38px] md:text-[64px]/[64px] font-bold font-title transition duration-500 delay-200 ease-out" :class="!showContent ? 'opacity-0 -translate-x-4 !duration-100 !delay-0' : ''" x-show="showModal" x-html="$store.activeArticle.title"></h2>
                             <h3 class="font-title text-[24px]/[31px] tracking-[.48px] font-normal mt-10 md:mt-[80px] mb-10 transition duration-500 delay-300 ease-out" :class="!showContent ? 'opacity-0 -translate-x-4  !delay-0 !duration-100' : ''" x-html="$store.activeArticle.excerpt"></h3>
                             
-                            <template x-if="$store.activeArticle.modal_style == 'short'">
-                                <div class="transition duration-500 ease-out delay-300" :class="!showContent ? 'opacity-0 -translate-x-4  !delay-0 !duration-100' : ''" x-html="bodyFormat"></div>
+                            <template x-if="$store.activeArticle && $store.activeArticle.modal_style == 'short'">
+                                <div class="transition duration-500 ease-out delay-300" :class="!showContent ? 'opacity-0 -translate-x-4  !delay-0 !duration-100' : ''" x-html="$store.activeArticle.body"></div>
                             </template>
                           </div>
                         </div>
                       </div>
                       <template x-if="$store.activeArticle && $store.activeArticle.icon && !$store.activeArticle.tag">
-                        <div class="mt-10 md:mt-0 md:absolute bottom-0 right-0 translate-x-[10vw] w-full md:w-[55vw] lg:w-[30vw] z-[-1] origin-center transition duration-500 delay-[400ms] ease-out" :class="!showContent ? 'opacity-0  scale-90  !delay-0 !duration-100' : ''" x-ref="modalIcon" x-html="$store.activeArticle.icon.square"></div>
+                        <template x-if="$store.activeArticle && $store.activeArticle.icon">
+                          <div class="mt-10 md:mt-0 md:absolute bottom-0 right-0 translate-x-[10vw] w-full md:w-[55vw] lg:w-[30vw] z-[-1] origin-center transition duration-500 delay-[400ms] ease-out" :class="!showContent ? 'opacity-0  scale-90  !delay-0 !duration-100' : ''" x-ref="modalIcon" x-html="$store.activeArticle.icon.square"></div>
+                        </template>
                       </template>
-                      <template x-if="$store.activeArticle && $store.activeArticle.tag">
+                      <template x-if="$store.activeArticle && $store.activeArticle.tag && $store.activeArticle.tag == 'choose'">
                         <div class="mt-10 md:mt-0 md:absolute bottom-0 right-0 translate-x-[5vw] w-full md:w-[60vw] lg:w-[30vw] z-[-1] rounded-tl-[200px] aspect-square overflow-hidden bg-white origin-center transition duration-500 delay-[400ms] ease-out" :class="!showContent ? 'opacity-0  scale-90  !delay-0 !duration-100' : ''"  x-ref="modalIcon">
                           <div class="bg-[#b3dbde] w-full h-full">
                             <img :src="$store.activeArticle.author.image" alt="$store.activeArticle.author.name" width="100%" height="100%" loading="lazy" class="object-cover object-center w-full h-full grayscale mix-blend-multiply" />
@@ -1432,7 +1428,9 @@
                       <template x-if="$store.activeArticle.modal_style != 'short'">
                         <div class="bg-[#EEEEEE] z-10 md:px-[65px] lg:px-0 py-[95px] block w-full">
                           <div class="container">
-                            <div class="mx-auto lg:px-5 lg:w-3/4 modal-body" x-html="$store.activeArticle.body"></div>
+                            <template x-if="$store.activeArticle && $store.activeArticle.body">
+                              <div class="mx-auto lg:px-5 lg:w-3/4 modal-body" x-html="$store.activeArticle.body"></div>
+                            </template>
                           </div>
                         </div>
                       </template>
@@ -1634,8 +1632,10 @@
               }
             },
             getSVGPath(svg) {
-              let fillColor = '#EEEEEE'; // Default color if no match is found
-
+              let fillColor = '#CEEAEB'; // Default color if no match is found
+              if (!svg) {
+                return fillColor;
+              }
               // find the first 'path' in the string and get the fill color
               const path = svg.match(/<path.*?>/g);
               const svgIndex = svg.indexOf(path[0]);
@@ -1695,7 +1695,7 @@
                       }
 
                       setTimeout(() => {
-                        this.$refs.modalHeroBackground.style.backgroundColor = this.getSVGPath(this.previousArticle.icon ? this.previousArticle.icon.square : this.placeHolderSVG);
+                        this.$refs.modalHeroBackground.style.backgroundColor = this.getSVGPath(this.previousArticle.icon ? this.previousArticle.icon.square : null);
                         window.location.hash = this.previousArticle.hash;
                         this.$refs.mobilePrev.classList.remove('transitionIn');
                         this.$refs.modalHeroBackground.classList.remove('transitionInRight');
@@ -1714,7 +1714,7 @@
                       this.$refs.modalHeroBackground.classList.add('transitionInLeft');
 
                       setTimeout(() => {
-                        this.$refs.modalHeroBackground.style.backgroundColor = this.getSVGPath(this.nextArticle.icon ? this.nextArticle.icon.square : this.placeHolderSVG);
+                        this.$refs.modalHeroBackground.style.backgroundColor = this.getSVGPath(this.nextArticle.icon ? this.nextArticle.icon.square : null);
                         window.location.hash = this.nextArticle.hash;
                         this.$refs.mobileNext.classList.remove('transitionIn');
                         this.$refs.modalHeroBackground.classList.remove('transitionInLeft');
