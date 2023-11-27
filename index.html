@@ -593,9 +593,9 @@
                     <template x-if="article.author">
                       <div class="flex flex-col items-start justify-start w-full">
                         <span class="flex items-end gap-[10px] w-full">
-                          <span class="text-[16px]/[24px] tracking-[0.64px] font-semibold font-title shrink-0 inline-block"
+                          <span class="text-[16px]/[24px] tracking-[0.64px] font-semibold font-title shrink-0 max-w-[80%] inline-block"
                             x-html="article.author.name"></span>
-                          <div class="w-full h-0.5 bg-black -translate-y-1.5"></div>
+                          <div class="w-full shrink h-0.5 bg-black -translate-y-1.5"></div>
                         </span>
                         <span class="text-[14px]/[21px] font-normal font-title" x-html="article.author.job_title"></span>
                       </div>
@@ -1184,8 +1184,7 @@
                       <svg width="35" height="35" viewBox="0 0 47 48" fill="none" xmlns="http://www.w3.org/2000/svg"
                         class="transition duration-150 ease-out rotate-90 group-hover:-translate-x-2 shrink-0">
                         <path
-                          d="M46.5455 24.7727L23.6364 47.6818L0.727271 24.7727L5.95454 19.5L19.7955 33.3409L19.7955 0.909086L27.4773 0.909086L27.4773 33.3409L41.2955 19.5L46.5455 24.7727Z"
-                          fill="black" />
+                          d="M46.5455 24.7727L23.6364 47.6818L0.727271 24.7727L5.95454 19.5L19.7955 33.3409L19.7955 0.909086L27.4773 0.909086L27.4773 33.3409L41.2955 19.5L46.5455 24.7727Z" fill="black" />
                       </svg>
                       <template x-if="$store.modalType == 'article'">
                         <div class="flex flex-col items-start justify-start gap-[10px]">
