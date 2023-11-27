@@ -283,6 +283,68 @@
       <!-- Articles -->
       <section class="relative w-screen overflow-hidden bg-[#EEEEEE]" x-data="articles()">
         <div class="w-0.5 bg-black h-full shrink-0 absolute left-1/2 -translate-x-1/2 top-0 z-10 hidden md:block"></div>
+        
+        <!-- First row of 3 articles -->
+        <div class="hidden md:block relative border-b-2 border-black bg-[#EEEEEE] z-20" x-data="rowTwo()"
+          x-intersect.margin.-300px.once="sectionInView = true">
+          <div class="container relative">
+            <div class="flex justify-between md:gap-[25px] lg:gap-[65px]">
+              <template x-for="(article, index) in firstRow" :key="index">
+                <div class="relative z-20 flex-[33%] transition duration-500 ease-out will-change-[opacity]"
+                  :class="!sectionInView && canAnimate ? 'opacity-0 scale-95' : ''"
+                  x-bind:style="'order: ' + index + '; transition-delay:' + index + '00ms;'">
+                  <a :href="article.hash" class="z-10 flex flex-col items-start justify-start w-full py-[65px] group">
+                    <div class="flex flex-col items-start justify-start w-full">
+                      <span class="flex items-end gap-[10px] w-full">
+                        <span class="text-[16px]/[24px] tracking-[0.64px] font-semibold font-title shrink-0 inline-block"
+                          x-html="article.author.name"></span>
+                        <div class="w-full h-0.5 bg-black -translate-y-1.5"></div>
+                      </span>
+                      <span class="text-[14px]/[21px] font-normal font-title" x-html="article.author.job_title"></span>
+                    </div>
+                    <div
+                      class="w-full flex items-center justify-center my-[30px] [&>svg]:w-full [&>svg]:transition [&>svg]:group-hover:scale-105 [&>svg]:group-hover:drop-shadow-xl [&>svg]:duration-500 [&>svg]:ease-out"
+                      x-html="article.icon.square"></div>
+                    <h3 class="text-[24px]/[26px] tracking-[.48px] font-bold font-title" x-html="article.title"></h3>
+                    <div x-cloak class="flex items-center mt-[25px] gap-[5px]">
+                      <span class="text-[16px]/[28px] font-bold relative font-title">
+                        Read
+                        <span
+                          class="bottom-0 left-0 w-full h-0.5 bg-black absolute transition duration-150 ease-out group-hover:scale-x-0 origin-right"></span>
+                      </span>
+                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 13 12"
+                        class="w-[14px] transition duration-150 ease-out group-hover:translate-x-1">
+                        <path fill="#000"
+                          d="M6.69318.36364 12.4205 6.0909 6.69318 11.8182 5.375 10.5114l3.46023-3.46026H.72727V5.13068h8.10796L5.375 1.67614 6.69318.36364Z" />
+                      </svg>
+                    </div>
+                  </a>
+                </div>
+              </template>
+              <div class="w-0.5 order-[0] bg-black shrink-0 top-0 z-10"></div>
+              <div class="w-0.5 order-1 bg-black shrink-0 top-0 z-10"></div>
+            </div>
+          </div>
+        
+          <script>
+            function rowTwo() {
+              return {
+                sectionInView: false,
+                canAnimate: true,
+
+                init() {
+                  // if scroll is below the section when page loads, set inView to true so that it doesn't trigger the animation
+                  if (window.scrollY > this.$el.offsetTop) {
+                    this.canAnimate = false;
+                    this.sectionInView = true;
+                  }
+                }
+              }
+            }
+          </script>
+        </div>
+
+        <!-- Get first quote block -->
         <div class="container" x-data="rowOne()" x-intersect.margin.-175px.once="sectionInView = true">
           <div class="grid grid-cols-12">
             <div class="relative z-0 col-span-12 md:col-span-6">
@@ -352,128 +414,20 @@
           </script>
         </div>
         
-        <!-- First row of 3 articles -->
-        <div class="hidden md:block relative border-t-2 border-black bg-[#EEEEEE] z-20" x-data="rowTwo()" x-intersect.margin.-300px.once="sectionInView = true">
-          <div class="container relative">
-            <div class="flex justify-between md:gap-[25px] lg:gap-[65px]">
-              <template x-for="(article, index) in firstRow" :key="index">
-                <div class="relative z-20 flex-[33%] transition duration-500 ease-out will-change-[opacity]" :class="!sectionInView && canAnimate ? 'opacity-0 scale-95' : ''" x-bind:style="'order: ' + index + '; transition-delay:' + index + '00ms;'">
-                  <a :href="article.hash" class="z-10 flex flex-col items-start justify-start w-full py-[65px] group">
-                    <div class="flex flex-col items-start justify-start w-full">
-                      <span class="flex items-end gap-[10px] w-full">
-                        <span class="text-[16px]/[24px] tracking-[0.64px] font-semibold font-title shrink-0 inline-block"
-                          x-html="article.author.name"></span>
-                        <div class="w-full h-0.5 bg-black -translate-y-1.5"></div>
-                      </span>
-                      <span class="text-[14px]/[21px] font-normal font-title" x-html="article.author.job_title"></span>
-                    </div>
-                    <div class="w-full flex items-center justify-center my-[30px] [&>svg]:w-full [&>svg]:transition [&>svg]:group-hover:scale-105 [&>svg]:group-hover:drop-shadow-xl [&>svg]:duration-500 [&>svg]:ease-out" x-html="article.icon.square"></div>
-                    <h3 class="text-[24px]/[26px] tracking-[.48px] font-bold font-title" x-html="article.title"></h3>
-                    <div x-cloak class="flex items-center mt-[25px] gap-[5px]">
-                      <span class="text-[16px]/[28px] font-bold relative font-title">
-                        Read
-                        <span
-                          class="bottom-0 left-0 w-full h-0.5 bg-black absolute transition duration-150 ease-out group-hover:scale-x-0 origin-right"></span>
-                      </span>
-                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 13 12"
-                        class="w-[14px] transition duration-150 ease-out group-hover:translate-x-1">
-                        <path fill="#000"
-                          d="M6.69318.36364 12.4205 6.0909 6.69318 11.8182 5.375 10.5114l3.46023-3.46026H.72727V5.13068h8.10796L5.375 1.67614 6.69318.36364Z" />
-                      </svg>
-                    </div>
-                  </a>
-                </div>
-              </template>
-              <div class="w-0.5 order-[0] bg-black shrink-0 top-0 z-10"></div>
-              <div class="w-0.5 order-1 bg-black shrink-0 top-0 z-10"></div>
-            </div>
-          </div>
-
-          <script>
-            function rowTwo() {
-              return {
-                sectionInView: false,
-                canAnimate: true,
-
-                init() {
-                  // if scroll is below the section when page loads, set inView to true so that it doesn't trigger the animation
-                  if (window.scrollY > this.$el.offsetTop) {
-                    this.canAnimate = false;
-                    this.sectionInView = true;
-                  }
-                }
-              }
-            }
-          </script>
-        </div>
-        
-        <!-- Second row of 2 articles -->
-        <div class="hidden border-t-2 border-black md:block" x-data="rowThree()" x-intersect.margin.-300px.once="sectionInView = true">
-          <div class="container relative flex justify-between gap-[65px] md:gap-[128px]">
-            <template x-for="article in secondRow">
-              <div class="relative z-0 w-[calc(50%-64px)] tile">
-                <a :href="article.hash" class="z-10 flex flex-col items-start justify-start w-full py-[65px] group">
-                  <div class="flex flex-col items-start justify-start w-full">
-                    <span class="flex items-end gap-[10px] w-full">
-                      <span class="text-[16px]/[24px] tracking-[0.64px] font-semibold font-title shrink-0 inline-block transition duration-500 ease-out" :class="!sectionInView && canAnimate ? 'opacity-0 -translate-x-4' : ''"
-                        x-html="article.author.name"></span>
-                      <div class="w-full h-0.5 bg-black -translate-y-1.5 transition duration-300 ease-out delay-100 origin-left" :class="!sectionInView && canAnimate ? 'scale-x-0' : ''"></div>
-                    </span>
-                    <span class="text-[14px]/[21px] font-normal font-title transition duration-500 ease-out delay-100" :class="!sectionInView && canAnimate ? 'opacity-0 -translate-x-4' : ''" x-html="article.author.job_title"></span>
-                  </div>
-                  <div class="w-full flex items-end justify-end icon my-[30px] transition duration-500 ease-out will-change-[opacity]" :class="!sectionInView && canAnimate ? 'opacity-0 scale-95' : ''">
-                    <div class="[&>svg]:w-[46.7vw] [&>svg]:group-hover:drop-shadow-xl [&>svg]:group-hover:scale-105 [&>svg]:transition [&>svg]:duration-500
-                    [&>svg]:ease-out" x-html="article.icon.rect"></div>
-                  </div>
-                  <h3 class="text-[24px]/[26px] tracking-[.48px] font-bold font-title transition duration-500 ease-out delay-300" :class="!sectionInView && canAnimate ? 'opacity-0 -translate-x-4' : ''" x-html="article.title"></h3>
-
-                  <div class="duration-500 ease-out inline-blocktransition delay-[400ms]" :class="!sectionInView && canAnimate ? 'opacity-0 -translate-x-4' : ''">
-                    <div x-cloak class="flex items-center mt-[25px] gap-[5px]">
-                      <span class="text-[16px]/[28px] font-bold relative font-title">
-                        Read
-                        <span
-                          class="bottom-0 left-0 w-full h-0.5 bg-black absolute transition duration-150 ease-out group-hover:scale-x-0 origin-right"></span>
-                      </span>
-                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 13 12"
-                        class="w-[14px] transition duration-150 ease-out group-hover:translate-x-1">
-                        <path fill="#000"
-                          d="M6.69318.36364 12.4205 6.0909 6.69318 11.8182 5.375 10.5114l3.46023-3.46026H.72727V5.13068h8.10796L5.375 1.67614 6.69318.36364Z" />
-                      </svg>
-                    </div>
-                  </div>
-                </a>
-              </div>
-            </template>
-          </div>
-
-          <script>
-            function rowThree() {
-              return {
-                sectionInView: false,
-                canAnimate: true,
-
-                init() {
-                  // if scroll is below the section when page loads, set inView to true so that it doesn't trigger the animation
-                  if (window.scrollY > this.$el.offsetTop) {
-                    this.canAnimate = false;
-                    this.sectionInView = true;
-                  }
-                }
-              }
-            }
-          </script>
-        </div>
-
         <!-- Second row of 3 articles -->
-        <div class="hidden md:block relative border-t-2 border-b-2 border-black bg-[#EEEEEE] z-20" x-data="rowFour()" x-intersect.margin.-300px.once="sectionInView = true">
+        <div class="hidden md:block relative border-t-2 border-b-2 border-black bg-[#EEEEEE] z-20" x-data="rowFour()"
+          x-intersect.margin.-300px.once="sectionInView = true">
           <div class="container relative">
             <div class="flex justify-between md:gap-[25px] lg:gap-[65px]">
               <template x-for="(article, index) in thirdRow" :key="index">
-                <div class="relative z-20 flex-[33%] transition duration-500 ease-out will-change-[opacity]" :class="!sectionInView && canAnimate ? 'opacity-0 scale-95' : ''" x-bind:style="'order: ' + index + '; transition-delay:' + index + '00ms;'">
+                <div class="relative z-20 flex-[33%] transition duration-500 ease-out will-change-[opacity]"
+                  :class="!sectionInView && canAnimate ? 'opacity-0 scale-95' : ''"
+                  x-bind:style="'order: ' + index + '; transition-delay:' + index + '00ms;'">
                   <a :href="article.hash" class="z-10 flex flex-col items-start justify-start w-full py-[65px] group">
                     <div class="flex flex-col items-start justify-start w-full">
                       <span class="flex items-end gap-[10px] w-full">
-                        <span class="text-[16px]/[24px] tracking-[0.64px] font-semibold font-title shrink-0 max-w-[100%] inline-block"
+                        <span
+                          class="text-[16px]/[24px] tracking-[0.64px] font-semibold font-title shrink-0 max-w-[100%] inline-block"
                           x-html="article.author.name"></span>
                         <div class="w-full h-0.5 bg-black -translate-y-1.5"></div>
                       </span>
@@ -502,7 +456,7 @@
               <div class="w-0.5 order-1 bg-black shrink-0 top-0 z-10"></div>
             </div>
           </div>
-
+        
           <script>
             function rowFour() {
               return {
@@ -521,33 +475,74 @@
           </script>
         </div>
 
-        <!-- Last row of 2 articles -->
-        <div class="container hidden md:block" x-data="rowFive()" x-intersect.margin.-175px.once="sectionInView = true">
-          <div class="relative flex justify-between gap-[65px] md:gap-[128px]">
-            <template x-for="article in fourthRow">
-              <div class="relative z-0 w-[calc(50%-64px)] tile flex items-center">
-                <a :href="article.hash" class="z-10 flex flex-col items-start justify-start w-full py-[65px] group">
-                  <div class="flex flex-col items-start justify-start w-full">
-                    <template x-if="article.author">
+        <!-- Get second quote block -->
+        <div>
+          <div class="container" x-data="lastRow()" x-intersect.margin.-175px.once="sectionInView = true">
+            <div class="grid grid-cols-12">
+              <div class="relative flex items-center justify-start col-span-12 py-[60px] md:py-10 md:col-span-6">
+                <div
+                  class="bg-[#ddecbc] absolute top-0 right-1/2 translate-x-1/2 md:-translate-x-0 md:right-0 w-screen md:w-[50vw] h-full z-[1] md:border-t-0">
+                </div>
+        
+                <div class="relative z-10 flex-col items-end justify-start w-full pl-10 md:w-11/12 lg:w-3/4">
+                  <span
+                    class="absolute top-0 left-0 font-body text-[56px]/[55px] font-bold lg:-translate-x-10 transition duration-500 ease-out delay-100"
+                    :class="!sectionInView && canAnimate ? 'opacity-0' : ''">“</span>
+                  <p class="font-title text-[24px]/[31px] font-normal tracking-[.48px] transition duration-500 ease-out delay-200"
+                    :class="!sectionInView && canAnimate ? 'opacity-0 -translate-y-4' : ''">
+                    That openness and willingness to put the safety and interests of people first is how we built the trust we
+                    now enjoy.
+                    And it is how we will approach new opportunities to set better standards for the internet.
+                  </p>
+                  <div
+                    class="flex items-center justify-start w-full gap-[22px] mt-[95px] transition duration-500 ease-out delay-[400ms] bg-[#ddecbc]"
+                    :class="!sectionInView && canAnimate ? 'opacity-0' : ''">
+                    <img src="/headshots/mitchell-baker.jpg" alt="Head shot of Mitchell Baker" width="75" height="75"
+                      loading="lazy" class="w-[75px] shrink-0 mix-blend-multiply grayscale rounded-full" />
+                    <div class="flex flex-col items-start justify-start w-full gap-5">
+                      <div class="flex flex-col items-start justify-start w-full shrink-0">
+                        <span class="flex items-end gap-[10px] w-full">
+                          <h4 class="text-[16px]/[24px] tracking-[0.64px] font-semibold font-title shrink-0 inline-block">
+                            Mitchell Baker
+                          </h4>
+                        </span>
+                        <h5 class="text-[14px]/[21px] font-normal font-title">CEO</h5>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+        
+              <div class="relative z-0 col-span-12 md:col-span-6">
+                <a :href="lastArticle.hash"
+                  class="z-10 no-underline group flex flex-col items-start justify-start w-full py-[65px] md:pl-[65px]">
+                  <template x-if="lastArticle.author">
+                    <div class="flex flex-col items-start justify-start w-full">
                       <span class="flex items-end gap-[10px] w-full">
                         <span
                           class="text-[16px]/[24px] tracking-[0.64px] font-semibold font-title shrink-0 inline-block transition duration-500 ease-out"
                           :class="!sectionInView && canAnimate ? 'opacity-0 -translate-x-4' : ''"
-                          x-html="article.author.name"></span>
-                        <div class="w-full h-0.5 bg-black -translate-y-1.5 transition duration-300 ease-out delay-100 origin-left"
+                          x-html="lastArticle.author.name"></span>
+                        <div
+                          class="w-full h-0.5 bg-black -translate-y-1.5 transition duration-300 ease-out delay-100 origin-left"
                           :class="!sectionInView && canAnimate ? 'scale-x-0' : ''"></div>
                       </span>
-                      <span class="text-[14px]/[21px] font-normal font-title transition duration-500 ease-out delay-100" :class="!sectionInView && canAnimate ? 'opacity-0 -translate-x-4' : ''" x-html="article.author.job_title"></span>
-                    </template>
-                  </div>
-                  <div class="w-full flex items-end justify-end icon my-[30px] transition duration-500 ease-out will-change-[opacity]"
+                      <span class="text-[14px]/[21px] font-normal font-title transition duration-500 ease-out delay-100"
+                        :class="!sectionInView && canAnimate ? 'opacity-0 -translate-x-4' : ''"
+                        x-html="lastArticle.author.job_title"></span>
+                    </div>
+                  </template>
+                  <div
+                    class="w-full flex items-end justify-start my-[30px] transition duration-500 ease-out will-change-[opacity] "
                     :class="!sectionInView && canAnimate ? 'opacity-0 scale-95' : ''">
-                    <div class="[&>svg]:w-[47vw] [&>svg]:group-hover:drop-shadow-xl [&>svg]:group-hover:scale-105 [&>svg]:transition [&>svg]:duration-500
-                    [&>svg]:ease-out" x-html="article.icon.rect"></div>
+                    <div
+                      class="[&>svg]:w-[100vw] [&>svg]:md:w-[46.7vw] [&>svg]:group-hover:drop-shadow-xl [&>svg]:group-hover:scale-105 [&>svg]:transition [&>svg]:duration-500 [&>svg]:ease-out"
+                      x-html="lastArticle.icon.rect"></div>
                   </div>
-                  <h3 class="text-[24px]/[26px] tracking-[.48px] font-bold font-title transition duration-500 ease-out delay-300"
-                    :class="!sectionInView && canAnimate ? 'opacity-0 -translate-x-4' : ''" x-html="article.title"></h3>
-          
+                  <h3
+                    class="text-[24px]/[26px] tracking-[.48px] font-bold font-title transition duration-500 ease-out delay-300"
+                    :class="!sectionInView && canAnimate ? 'opacity-0 -translate-x-4' : ''" x-html="lastArticle.title"></h3>
+        
                   <div class="duration-500 ease-out inline-blocktransition delay-[400ms]"
                     :class="!sectionInView && canAnimate ? 'opacity-0 -translate-x-4' : ''">
                     <div x-cloak class="flex items-center mt-[25px] gap-[5px]">
@@ -565,8 +560,69 @@
                   </div>
                 </a>
               </div>
-            </template>
+            </div>
           </div>
+          <script>
+            function lastRow() {
+              return {
+                sectionInView: false,
+                canAnimate: true,
+
+                init() {
+                  // if scroll is below the section when page loads, set inView to true so that it doesn't trigger the animation
+                  if (window.scrollY > this.$el.offsetTop) {
+                    this.canAnimate = false;
+                    this.sectionInView = true;
+                  }
+                }
+              }
+            }
+          </script>
+        </div>
+        
+        <!-- Last row of 3 articles -->
+        <div class="hidden md:block relative border-t-2 border-b-2 border-black bg-[#EEEEEE] z-20" x-data="rowFive()"
+          x-intersect.margin.-300px.once="sectionInView = true">
+          <div class="container relative">
+            <div class="flex justify-between md:gap-[25px] lg:gap-[65px]">
+              <template x-for="(article, index) in fourthRow" :key="index">
+                <div class="relative z-20 flex-[33%] transition duration-500 ease-out will-change-[opacity]"
+                  :class="!sectionInView && canAnimate ? 'opacity-0 scale-95' : ''"
+                  x-bind:style="'order: ' + index + '; transition-delay:' + index + '00ms;'">
+                  <a :href="article.hash" class="z-10 flex flex-col items-start justify-start w-full py-[65px] group">
+                    <div class="flex flex-col items-start justify-start w-full">
+                      <span class="flex items-end gap-[10px] w-full">
+                        <span
+                          class="text-[16px]/[24px] tracking-[0.64px] font-semibold font-title shrink-0 max-w-[100%] inline-block"
+                          x-html="article.author.name"></span>
+                        <div class="w-full h-0.5 bg-black -translate-y-1.5"></div>
+                      </span>
+                      <span class="text-[14px]/[21px] font-normal font-title" x-html="article.author.job_title"></span>
+                    </div>
+                    <div
+                      class="w-full flex items-center justify-center my-[30px] [&>svg]:w-full [&>svg]:transition [&>svg]:group-hover:scale-105 [&>svg]:group-hover:drop-shadow-xl [&>svg]:duration-500 [&>svg]:ease-out"
+                      x-html="article.icon.square"></div>
+                    <h3 class="text-[24px]/[26px] tracking-[.48px] font-bold font-title" x-html="article.title"></h3>
+                    <div x-cloak class="flex items-center mt-[25px] gap-[5px]">
+                      <span class="text-[16px]/[28px] font-bold relative font-title">
+                        Read
+                        <span
+                          class="bottom-0 left-0 w-full h-0.5 bg-black absolute transition duration-150 ease-out group-hover:scale-x-0 origin-right"></span>
+                      </span>
+                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 13 12"
+                        class="w-[14px] transition duration-150 ease-out group-hover:translate-x-1">
+                        <path fill="#000"
+                          d="M6.69318.36364 12.4205 6.0909 6.69318 11.8182 5.375 10.5114l3.46023-3.46026H.72727V5.13068h8.10796L5.375 1.67614 6.69318.36364Z" />
+                      </svg>
+                    </div>
+                  </a>
+                </div>
+              </template>
+              <div class="w-0.5 order-[0] bg-black shrink-0 top-0 z-10"></div>
+              <div class="w-0.5 order-1 bg-black shrink-0 top-0 z-10"></div>
+            </div>
+          </div>
+        
           <script>
             function rowFive() {
               return {
@@ -640,101 +696,6 @@
           </div>
         </div>
 
-        <!-- Last Lead Article -->
-        <div class="border-t-2 border-black">
-          <div class="container"  x-data="lastRow()" x-intersect.margin.-175px.once="sectionInView = true">
-            <div class="grid grid-cols-12">
-              <div class="relative flex items-center justify-start col-span-12 py-[60px] md:py-10 md:col-span-6">
-                <div
-                  class="bg-[#ddecbc] absolute top-0 right-1/2 translate-x-1/2 md:-translate-x-0 md:right-0 w-screen md:w-[50vw] h-full z-[1] md:border-t-0">
-                </div>
-          
-                <div class="relative z-10 flex-col items-end justify-start w-full pl-10 md:w-11/12 lg:w-3/4">
-                  <span class="absolute top-0 left-0 font-body text-[56px]/[55px] font-bold lg:-translate-x-10 transition duration-500 ease-out delay-100" :class="!sectionInView && canAnimate ? 'opacity-0' : ''">“</span>
-                  <p class="font-title text-[24px]/[31px] font-normal tracking-[.48px] transition duration-500 ease-out delay-200" :class="!sectionInView && canAnimate ? 'opacity-0 -translate-y-4' : ''">
-                    That openness and willingness to put the safety and interests of people first is how we built the trust we now enjoy.
-                    And it is how we will approach new opportunities to set better standards for the internet.
-                  </p>
-                  <div
-                    class="flex items-center justify-start w-full gap-[22px] mt-[95px] transition duration-500 ease-out delay-[400ms] bg-[#ddecbc]"
-                    :class="!sectionInView && canAnimate ? 'opacity-0' : ''">
-                    <img src="/headshots/mitchell-baker.jpg" alt="Head shot of Mitchell Baker" width="75" height="75" loading="lazy" class="w-[75px] shrink-0 mix-blend-multiply grayscale rounded-full" />
-                    <div class="flex flex-col items-start justify-start w-full gap-5">
-                      <div class="flex flex-col items-start justify-start w-full shrink-0">
-                        <span class="flex items-end gap-[10px] w-full">
-                          <h4 class="text-[16px]/[24px] tracking-[0.64px] font-semibold font-title shrink-0 inline-block">Mitchell Baker
-                          </h4>
-                        </span>
-                        <h5 class="text-[14px]/[21px] font-normal font-title">CEO</h5>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            
-              <div class="relative z-0 col-span-12 md:col-span-6">
-                <a :href="lastArticle.hash"
-                  class="z-10 no-underline group flex flex-col items-start justify-start w-full py-[65px] md:pl-[65px]">
-                  <template x-if="lastArticle.author">
-                    <div class="flex flex-col items-start justify-start w-full">
-                      <span class="flex items-end gap-[10px] w-full">
-                        <span
-                          class="text-[16px]/[24px] tracking-[0.64px] font-semibold font-title shrink-0 inline-block transition duration-500 ease-out"
-                          :class="!sectionInView && canAnimate ? 'opacity-0 -translate-x-4' : ''"
-                          x-html="lastArticle.author.name"></span>
-                        <div class="w-full h-0.5 bg-black -translate-y-1.5 transition duration-300 ease-out delay-100 origin-left"
-                          :class="!sectionInView && canAnimate ? 'scale-x-0' : ''"></div>
-                      </span>
-                      <span class="text-[14px]/[21px] font-normal font-title transition duration-500 ease-out delay-100"
-                        :class="!sectionInView && canAnimate ? 'opacity-0 -translate-x-4' : ''"
-                        x-html="lastArticle.author.job_title"></span>
-                    </div>
-                  </template>
-                  <div class="w-full flex items-end justify-start my-[30px] transition duration-500 ease-out will-change-[opacity] "
-                    :class="!sectionInView && canAnimate ? 'opacity-0 scale-95' : ''">
-                    <div
-                      class="[&>svg]:w-[100vw] [&>svg]:md:w-[46.7vw] [&>svg]:group-hover:drop-shadow-xl [&>svg]:group-hover:scale-105 [&>svg]:transition [&>svg]:duration-500 [&>svg]:ease-out"
-                      x-html="lastArticle.icon.rect"></div>
-                  </div>
-                  <h3 class="text-[24px]/[26px] tracking-[.48px] font-bold font-title transition duration-500 ease-out delay-300"
-                    :class="!sectionInView && canAnimate ? 'opacity-0 -translate-x-4' : ''" x-html="lastArticle.title"></h3>
-                
-                  <div class="duration-500 ease-out inline-blocktransition delay-[400ms]"
-                    :class="!sectionInView && canAnimate ? 'opacity-0 -translate-x-4' : ''">
-                    <div x-cloak class="flex items-center mt-[25px] gap-[5px]">
-                      <span class="text-[16px]/[28px] font-bold relative font-title">
-                        Read
-                        <span
-                          class="bottom-0 left-0 w-full h-0.5 bg-black absolute transition duration-150 ease-out group-hover:scale-x-0 origin-right"></span>
-                      </span>
-                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 13 12"
-                        class="w-[14px] transition duration-150 ease-out group-hover:translate-x-1">
-                        <path fill="#000"
-                          d="M6.69318.36364 12.4205 6.0909 6.69318 11.8182 5.375 10.5114l3.46023-3.46026H.72727V5.13068h8.10796L5.375 1.67614 6.69318.36364Z" />
-                      </svg>
-                    </div>
-                  </div>
-                </a>
-              </div>
-            </div>
-          </div>
-          <script>
-            function lastRow() {
-              return {
-                sectionInView: false,
-                canAnimate: true,
-
-                init() {
-                  // if scroll is below the section when page loads, set inView to true so that it doesn't trigger the animation
-                  if (window.scrollY > this.$el.offsetTop) {
-                    this.canAnimate = false;
-                    this.sectionInView = true;
-                  }
-                }
-              }
-            }
-          </script>
-        </div>
 
         <script>
           function articles() {
@@ -748,7 +709,8 @@
               fourthRow: null,
 
               init() {
-                this.firstArticle = this.$store.articles.find(article => !article.content.lead_article)?.content;
+                // Get the first article that has the width value of 'half'
+                this.firstArticle = this.$store.articles.filter(article => article.content.width === 'half')[0].content;
 
                 // Get the last article
                 this.lastArticle = this.$store.articles[this.$store.articles.length - 1].content;
@@ -765,8 +727,8 @@
                 // get three articles that have the width value of 'third' and not in this.firstRow
                 this.thirdRow = this.articles.filter(article => article.width === 'third' && article.title !== this.firstArticle.title && !this.firstRow.includes(article)).slice(0, 3);
 
-                // get two articles that have the width value of 'half' and not in this.firstRow or this.secondRow
-                this.fourthRow = this.articles.filter(article => article.width === 'half' && article.title !== this.firstArticle.title && !this.firstRow.includes(article) && !this.secondRow.includes(article)).slice(0, 2);
+                // get three articles that have the width value of 'third' and not in this.firstRow or this.thirdRow
+                this.fourthRow = this.articles.filter(article => article.width === 'third' && article.title !== this.firstArticle.title && !this.firstRow.includes(article) && !this.thirdRow.includes(article)).slice(0, 3);
               }
             }
           }
