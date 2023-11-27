@@ -1388,10 +1388,19 @@
                       </div>
                     </div>
                     <template x-if="!$store.activeArticle.tag">
-                      <div class="mt-10 md:mt-0 md:absolute bottom-0 right-0 translate-x-[5vw] w-full md:w-[40vw] lg:w-[30vw] z-[-1]" x-ref="modalIcon" x-html=" $store.activeArticle.icon.square"></div>
+                      <div class="mt-10 md:mt-0 md:absolute bottom-0 right-0 translate-x-[5vw] w-full md:w-[40vw] lg:w-[30vw] z-[-1]" x-ref="modalIcon" x-html="$store.activeArticle.icon.square"></div>
                     </template>
-                    <template x-if="$store.activeArticle.tag">
-                      <div class="mt-10 md:mt-0 md:absolute bottom-0 right-0 translate-x-[5vw] w-full md:w-[40vw] lg:w-[30vw] z-[-1]" x-ref="defaultIcon" x-ref="modalIcon" x-html="placeHolderSVG"></div>
+                    <template x-if="$store.activeArticle.tag && $store.activeArticle.tag == 'choose'">
+                      <div class="mt-10 md:mt-0 md:absolute bottom-0 right-0 translate-x-[5vw] w-full md:w-[40vw] lg:w-[30vw] z-[-1] rounded-tl-[200px] aspect-square overflow-hidden bg-white" x-ref="modalIcon">
+                        <div class="bg-[#b3dbde] w-full h-full">
+                          <img :src="$store.activeArticle.author.image" alt="$store.activeArticle.author-title" width="100%" height="100%" loading="lazy" class="object-cover object-center w-full h-full grayscale mix-blend-multiply" />
+                        </div>
+                      </div>
+                    </template>
+
+                    <template x-if="$store.activeArticle.tag && $store.activeArticle.tag != 'choose'">
+                      <div class="mt-10 md:mt-0 md:absolute bottom-0 right-0 translate-x-[5vw] w-full md:w-[40vw] lg:w-[30vw] z-[-1]"
+                        x-ref="defaultIcon" x-ref="modalIcon" x-html="placeHolderSVG"></div>
                     </template>
                   </div>
                 </template>
@@ -1598,7 +1607,7 @@
             },
 
             checkImage() {
-              if (this.$store.activeArticle.tag === 'act' || this.$store.activeArticle.tag === 'build' || this.$store.activeArticle.author == null || this.$store.activeArticle.author.image == null) {
+              if (this.$store.activeArticle.tag === 'act' || this.$store.activeArticle.tag === 'build' || this.$store.activeArticle.tag === 'choose' || this.$store.activeArticle.author == null || this.$store.activeArticle.author.image == null) {
                 this.showAuthorImage = false;
               } else {
                 this.showAuthorImage = true;
