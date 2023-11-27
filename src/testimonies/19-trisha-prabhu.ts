@@ -1,5 +1,5 @@
 export const content: object = {
-  title: 'NEED TITLE',
+  title: 'Rise25 honoree',
   tag: 'build',
   hash: '#trisha-prabhu',
   author: {
