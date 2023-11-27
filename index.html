@@ -1432,7 +1432,7 @@
                       <template x-if="$store.activeArticle.modal_style != 'short'">
                         <div class="bg-[#EEEEEE] z-10 md:px-[65px] lg:px-0 py-[95px] block w-full">
                           <div class="container">
-                            <div class="mx-auto lg:px-5 lg:w-3/4 modal-body" x-html="bodyFormat"></div>
+                            <div class="mx-auto lg:px-5 lg:w-3/4 modal-body" x-html="$store.activeArticle.body"></div>
                           </div>
                         </div>
                       </template>
@@ -1449,7 +1449,6 @@
         function modalCheck() {
           return {
             showModal: false,
-            bodyFormat: null,
             previousArticle: null,
             nextArticle: null,
             scrollPosition: 0,
@@ -1485,8 +1484,6 @@
                 this.showContent = true;
 
                 this.checkImage();
-
-                console.log(svg);
                 
                 if (svg) {
                   let fillColor = null;
@@ -1608,16 +1605,6 @@
                     this.previousArticle = this.$store.testimonies[index - 1]?.content;
                   }
                 });
-              }
-
-              if (this.$store.activeArticle.modal_style === 'long') {
-                // find h4 tag in the article body and put a div before it
-                const h4 = this.$store.activeArticle.body.match(/<h4.*?>.*?<\/h4>/g);
-                const h4Index = this.$store.activeArticle.body.indexOf(h4[0]);
-                const newBody = this.$store.activeArticle.body.slice(0, h4Index) + '<div class="flex flex-col md:flex-row items-start justify-between gap-[70px] mt-[100px]"><div class="relative w-full"><svg class="md:absolute top-0 right-0 w-full translate-x-5 md:translate-z-0 md:w-[450px]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 457 437"><path fill="#CEC2FF" d="M0 200C0 89.5431 89.5431 0 200 0h257v437H0V200Z" opacity=".5" /><path fill="#CEC2FF" d="M150 200C150 89.5431 239.543 0 350 0h107v308H150V200Z" /></svg></div><div class="md:w-2/3 shrink-0">' + this.$store.activeArticle.body.slice(h4Index) + '</div></div>';
-                this.bodyFormat = newBody;
-              } else {
-                this.bodyFormat = this.$store.activeArticle.body;
               }
             },
             closeModal() {
