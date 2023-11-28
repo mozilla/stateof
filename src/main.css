@@ -14,6 +14,7 @@
     text-rendering: optimizeLegibility;
     -ms-text-size-adjust: 100%;
     @apply text-[#111111];
+    @apply selection:bg-[#777777] selection:text-white;
 
     @media (min-width: 160em) {
       /* 2560px - widescreen */
@@ -91,6 +92,9 @@
   }
   #modalMain.transitionInLeft {
     @apply transition-[transform,opacity] duration-300 ease-in-out -translate-x-full opacity-50;
+  }
+  #modalMain.stopTransition {
+    @apply !duration-0;
   }
 
   main.modalActive {

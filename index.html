@@ -752,7 +752,7 @@
 
           <!-- <img class="w-[38%] lg:w-[30%] aspect-[1] absolute top-1/2 right-0 -translate-y-1/2 rounded-full object-cover object-center transition duration-300 ease-out delay-[400ms]" :class="!inView && canAnimate ? 'opacity-0 -translate-x-5' : ''" src="/video-thumbnail.gif" alt="Video Thumbnail" loading="lazy" width="400" height="400"/> -->
 
-          <h2 class="font-title text-[16px]/[17px] tracking-[0.48px] sm:text-[36px]/[38px] md:tracking-[1.08px] font-bold w-5/12 sm:ml-10 md:w-4/12 md:ml-[65px] transition duration-300 ease-out delay-200 z-10" :class="!inView && canAnimate ? 'opacity-0 -translate-x-5' : ''">This is the title of a State of Mozilla video</h2>
+          <h2 class="font-title text-[16px]/[17px] tracking-[0.48px] sm:text-[36px]/[38px] md:tracking-[1.08px] font-bold w-5/12 sm:ml-10 md:w-4/12 md:ml-[65px] transition duration-300 ease-out delay-200 z-10" :class="!inView && canAnimate ? 'opacity-0 -translate-x-5' : ''">A message from Eric Muhlheim & Angela Plohman</h2>
           
           <div class="absolute -translate-x-1/2 top-1/2 left-1/2 -translate-y-1/2 w-[30px]  md:w-[66px] transition duration-300 ease-out delay-500" :class="!inView && canAnimate ? 'opacity-0 scale-90' : ''">
             <button @click="play" class=" text-black hover:text-[#89D5FF] transition duration-150 ease-out hover:scale-110 w-full">
@@ -1172,7 +1172,7 @@
 
                 <!-- Mobile Previous Button -->
                 <template x-if="previousArticle">
-                  <a :href="previousArticle.hash" id="previousArticle" x-ref="mobilePrev" @click="checkIndex" class="md:hidden absolute w-[100vw] scale-[.8] origin-top-right top-0 h-screen opacity-50 flex items-start justify-end">
+                  <a :href="previousArticle.hash" id="previousArticle" x-ref="mobilePrev" @click="checkIndex, mobileTransitionModals('left')" class="md:hidden absolute w-[100vw] scale-[.8] origin-top-right top-0 h-screen opacity-50 flex items-start justify-end">
                     <div class="relative flex-col shrink-0 lg:flex-row inline-flex items-start w-full md:px-[65px] pt-[150px] md:py-[175px] overflow-hidden" :style="'background-color:' + getSVGPath(previousArticle.icon ? previousArticle.icon.square : null)">
                       <div class="container">
                         <div class="w-full mx-auto lg:w-3/4">
@@ -1191,24 +1191,29 @@
                               </div>
                             </template>
                 
-                            <h2 class="text-[36px]/[38px] md:text-[64px]/[64px] font-bold font-title" x-show="showModal"
+                            <h2 class="text-[36px]/[38px] md:text-[64px]/[64px] font-bold font-title transition duration-500 delay-200 ease-out"
+                              :class="!showContent ? 'opacity-0 -translate-x-4 !duration-100 !delay-0' : ''" x-show="showModal"
                               x-html="previousArticle.title"></h2>
-                            <h3 class="font-title text-[24px]/[31px] tracking-[.48px] font-normal mt-10 md:mt-[80px]" x-html="previousArticle.excerpt"></h3>
-
-                            <template x-if="previousArticle.modal_style == 'short'">
-                              <div class=" modal-body" x-html="previousArticle.body"></div>
+                            <h3
+                              class="font-title text-[24px]/[31px] tracking-[.48px] font-normal mt-10 md:mt-[80px] mb-10 transition duration-500 delay-300 ease-out"
+                              :class="!showContent ? 'opacity-0 -translate-x-4  !delay-0 !duration-100' : ''" x-html="previousArticle.excerpt">
+                            </h3>
+                            
+                            <template x-if="previousArticle && previousArticle.modal_style == 'short'">
+                              <div class="transition duration-500 ease-out delay-300"
+                                :class="!showContent ? 'opacity-0 -translate-x-4 !delay-0 !duration-100' : ''" x-html="previousArticle.body">
+                              </div>
                             </template>
                           </div>
                         </div>
                       </div>
-                      <template x-if="$store.modalType == 'article'">
-                        <div class="md:absolute bottom-0 right-0 translate-x-[5vw] w-full md:w-[40vw] lg:w-[30vw] mt-10" x-html="previousArticle.icon.square"></div>
+                      <template x-if="previousArticle.icon">
+                        <div class="md:absolute bottom-0 right-0 translate-x-[10vw] w-full md:w-[40vw] lg:w-[30vw] mt-10" x-html="previousArticle.icon.square"></div>
                       </template>
                       
                       <template x-if="previousArticle.tag && previousArticle.tag == 'choose'">
                         <div
-                          class="md:absolute bottom-0 right-0 translate-x-[5vw] w-full md:w-[40vw] lg:w-[30vw] mt-10 rounded-tl-[200px] aspect-square overflow-hidden bg-white"
-                          x-ref="modalIcon">
+                          class="md:absolute bottom-0 right-0 translate-x-[5vw] w-full md:w-[40vw] lg:w-[30vw] mt-10 rounded-tl-[200px] aspect-square overflow-hidden bg-white">
                           <div class="bg-[#b3dbde] w-full h-full">
                             <img :src="previousArticle.author.image" alt="previousArticle.author-title" width="100%" height="100%" loading="lazy"
                               class="object-cover object-center w-full h-full grayscale mix-blend-multiply" />
@@ -1218,8 +1223,7 @@
 
                       <template x-if="previousArticle.tag && previousArticle.tag == 'act'">
                         <div
-                          class="md:absolute bottom-0 right-0 translate-x-[5vw] w-full md:w-[40vw] lg:w-[30vw] mt-10 rounded-tl-[200px] aspect-square overflow-hidden bg-white"
-                          x-ref="modalIcon">
+                          class="md:absolute bottom-0 right-0 translate-x-[5vw] w-full md:w-[40vw] lg:w-[30vw] mt-10 rounded-tl-[200px] aspect-square overflow-hidden bg-white">
                           <div class="bg-[#b3dbde] w-full h-full">
                             <img :src="previousArticle.image" alt="previousArticle.author-title" width="100%" height="100%"
                               loading="lazy" class="object-cover object-center w-full h-full grayscale mix-blend-multiply" />
@@ -1258,7 +1262,7 @@
 
                 <!-- Mobile Next Button -->
                 <template x-if="nextArticle">
-                  <a :href="nextArticle.hash" id="nextArticle" @click="checkIndex" x-ref="mobileNext" class="md:hidden absolute w-[100vw] scale-[.8] origin-top-left top-0 overflow-hidden h-screen opacity-50 flex items-start justify-start">
+                  <a :href="nextArticle.hash" id="nextArticle" @click="checkIndex, mobileTransitionModals('right')" x-ref="mobileNext" class="md:hidden absolute w-[100vw] scale-[.8] origin-top-left top-0 overflow-hidden h-screen opacity-50 flex items-start justify-start">
                     <div class="relative flex-col w-full lg:flex-row inline-flex items-start shrink-0 md:px-[65px] pt-[150px] md:py-[175px] overflow-hidden" :style="'background-color:' + getSVGPath(nextArticle.icon ? nextArticle.icon.square : null)">
                       <div class="container">
                         <div class="w-full mx-auto lg:w-3/4">
@@ -1277,24 +1281,27 @@
                               </div>
                             </template>
                     
-                            <h2 class="text-[36px]/[38px] md:text-[64px]/[64px] font-bold font-title" x-show="showModal"
+                            <h2 class="text-[36px]/[38px] md:text-[64px]/[64px] font-bold font-title transition duration-500 delay-200 ease-out"
+                              :class="!showContent ? 'opacity-0 -translate-x-4 !duration-100 !delay-0' : ''" x-show="showModal"
                               x-html="nextArticle.title"></h2>
-                            <h3 class="font-title text-[24px]/[31px] tracking-[.48px] font-normal mt-10 md:mt-[80px]"
-                              x-html="nextArticle.excerpt"></h3>
-                    
-                            <template x-if="nextArticle.modal_style == 'short'">
-                              <div class="modal-body" x-html="nextArticle.body"></div>
+                            <h3 class="font-title text-[24px]/[31px] tracking-[.48px] font-normal mt-10 md:mt-[80px] mb-10 transition duration-500 delay-300 ease-out"
+                              :class="!showContent ? 'opacity-0 -translate-x-4  !delay-0 !duration-100' : ''" x-html="nextArticle.excerpt">
+                            </h3>
+                            
+                            <template x-if="nextArticle && nextArticle.modal_style == 'short'">
+                              <div class="transition duration-500 ease-out delay-300"
+                                :class="!showContent ? 'opacity-0 -translate-x-4 !delay-0 !duration-100' : ''" x-html="nextArticle.body">
+                              </div>
                             </template>
                           </div>
                         </div>
                       </div>
-                      <template x-if="$store.modalType == 'article'">
-                        <div class="md:absolute bottom-0 right-0 translate-x-[5vw] w-full md:w-[40vw] lg:w-[30vw] mt-10" x-html="nextArticle.icon.square"></div>
+                      <template x-if="nextArticle.icon">
+                        <div class="md:absolute bottom-0 right-0 translate-x-[10vw] w-full md:w-[40vw] lg:w-[30vw] mt-10" x-html="nextArticle.icon.square"></div>
                       </template>
                       <template x-if="nextArticle.tag && nextArticle.tag == 'choose'">
                         <div
-                          class="md:absolute bottom-0 right-0 translate-x-[5vw] w-full md:w-[40vw] lg:w-[30vw] mt-10 rounded-tl-[200px] aspect-square overflow-hidden bg-white"
-                          x-ref="modalIcon">
+                          class="md:absolute bottom-0 right-0 translate-x-[5vw] w-full md:w-[40vw] lg:w-[30vw] mt-10 rounded-tl-[200px] aspect-square overflow-hidden bg-white">
                           <div class="bg-[#b3dbde] w-full h-full">
                             <img :src="nextArticle.author.image" alt="nextArticle.author-title" width="100%" height="100%"
                               loading="lazy" class="object-cover object-center w-full h-full grayscale mix-blend-multiply" />
@@ -1304,8 +1311,7 @@
 
                       <template x-if="nextArticle.tag && nextArticle.tag == 'act'">
                         <div
-                          class="md:absolute bottom-0 right-0 translate-x-[5vw] w-full md:w-[40vw] lg:w-[30vw] mt-10 rounded-tl-[200px] aspect-square overflow-hidden bg-white"
-                          x-ref="modalIcon">
+                          class="md:absolute bottom-0 right-0 translate-x-[5vw] w-full md:w-[40vw] lg:w-[30vw] mt-10 rounded-tl-[200px] aspect-square overflow-hidden bg-white">
                           <div class="bg-[#b3dbde] w-full h-full">
                             <img :src="nextArticle.image" alt="nextArticle.author-title" width="100%" height="100%" loading="lazy"
                               class="object-cover object-center w-full h-full grayscale mix-blend-multiply" />
@@ -1393,7 +1399,7 @@
                             <h3 class="font-title text-[24px]/[31px] tracking-[.48px] font-normal mt-10 md:mt-[80px] mb-10 transition duration-500 delay-300 ease-out" :class="!showContent ? 'opacity-0 -translate-x-4  !delay-0 !duration-100' : ''" x-html="$store.activeArticle.excerpt"></h3>
                             
                             <template x-if="$store.activeArticle && $store.activeArticle.modal_style == 'short'">
-                                <div class="transition duration-500 ease-out delay-300" :class="!showContent ? 'opacity-0 -translate-x-4  !delay-0 !duration-100' : ''" x-html="$store.activeArticle.body"></div>
+                              <div class="transition duration-500 ease-out delay-300" :class="!showContent ? 'opacity-0 -translate-x-4 !delay-0 !duration-100' : ''" x-html="$store.activeArticle.body"></div>
                             </template>
                           </div>
                         </div>
@@ -1404,7 +1410,7 @@
                         </template>
                       </template>
                       <template x-if="$store.activeArticle && $store.activeArticle.tag && $store.activeArticle.tag == 'choose' || $store.activeArticle.tag == 'build'">
-                        <div class="mt-10 md:mt-0 md:absolute bottom-0 right-0 translate-x-[5vw] w-full md:w-[60vw] lg:w-[30vw] z-[-1] rounded-tl-[200px] aspect-square overflow-hidden bg-white origin-center transition duration-500 delay-[400ms] ease-out" :class="!showContent ? 'opacity-0  scale-90  !delay-0 !duration-100' : ''"  x-ref="modalIcon">
+                        <div class="mt-10 md:mt-0 md:absolute bottom-0 right-0 translate-x-[5vw] w-full md:w-[60vw] lg:w-[30vw] z-[-1] rounded-tl-[200px] aspect-square overflow-hidden bg-white origin-center transition duration-500 delay-[400ms] ease-out" :class="!showContent ? 'opacity-0  scale-90  !delay-0 !duration-100' : ''" >
                           <div class="bg-[#b3dbde] w-full h-full">
                             <img :src="$store.activeArticle.author.image" alt="$store.activeArticle.author.name" width="100%" height="100%" loading="lazy" class="object-cover object-center w-full h-full grayscale mix-blend-multiply" />
                           </div>
@@ -1414,7 +1420,7 @@
                       <template x-if="$store.activeArticle.tag && $store.activeArticle.tag == 'act'">
                         <div
                           class="mt-10 md:mt-0 md:absolute bottom-0 right-0 translate-x-[5vw] w-full md:w-[60vw] lg:w-[30vw] z-[-1] rounded-tl-[200px] aspect-square overflow-hidden bg-white origin-center transition duration-500 delay-[400ms] ease-out"
-                          :class="!showContent ? 'opacity-0  scale-90  !delay-0 !duration-100' : ''" x-ref="modalIcon">
+                          :class="!showContent ? 'opacity-0  scale-90  !delay-0 !duration-100' : ''">
                           <div class="bg-[#b3dbde] w-full h-full">
                             <img :src="$store.activeArticle.image" alt="$store.activeArticle.author.name" width="100%" height="100%"
                               loading="lazy" class="object-cover object-center w-full h-full grayscale mix-blend-multiply" />
@@ -1473,6 +1479,23 @@
               });
             },
             openModal(value) {
+              // if the value is in $store.articles, set the active article to the value, as well as the nextArticle and previousArticle
+              this.$store.articles.forEach((article) => {
+                if (article.content.hash === value) {
+                  this.$store.activeArticle = article.content;
+                  this.checkIndex();
+                }
+              });
+
+              // if the value is in $store.testimonies, set the active article to the value, as well as the nextArticle and previousArticle
+              this.$store.testimonies.forEach((article) => {
+                if (article.content.hash === value) {
+                  this.$store.activeArticle = article.content;
+                  this.checkIndex();
+                }
+              });
+
+              
               if (!this.showModal) {
                 this.scrollPosition = window.scrollY;
               }
@@ -1505,7 +1528,7 @@
                     image.style.backgroundColor = '#CEEAEB';
                   });
                 }
-              }, 50);
+              }, 100);
 
               // Mobile animations
               if (this.isMobile) {
@@ -1571,40 +1594,13 @@
               // if the left or right arrow key is pressed, go to the next or previous article
               window.addEventListener('keydown', (event) => {
                 if (event.key === 'ArrowLeft' && this.previousArticle && this.showModal) {
-                  window.location.hash = this.previousArticle.hash;
+                  this.transitionModals(this.previousArticle.hash);
                 } else if (event.key === 'ArrowRight' && this.nextArticle && this.showModal) {
-                  window.location.hash = this.nextArticle.hash;
+                  this.transitionModals(this.nextArticle.hash);
                 }
               });
 
-              if (this.$store.articles.find(article => article.content.hash === value)?.content) {
-                this.$store.modalType = 'article';
-              } else if (this.$store.testimonies.find(testimony => testimony.content.hash === value)?.content) {
-                this.$store.modalType = 'testimony';
-              } else {
-                this.$store.modalType = null;
-              }
-
-              if (this.$store.modalType === 'article') {
-                this.$store.activeArticle = this.$store.articles.find(article => article.content.hash === value)?.content;
-
-
-                this.$store.articles.forEach((article, index) => {
-                  if (article.content.hash === this.$store.activeArticle.hash) {
-                    this.nextArticle = this.$store.articles[index + 1]?.content;
-                    this.previousArticle = this.$store.articles[index - 1]?.content;
-                  }
-                });
-              } else if (this.$store.modalType === 'testimony') {
-                this.$store.activeArticle = this.$store.testimonies.find(testimony => testimony.content.hash === value)?.content;
-
-                this.$store.testimonies.forEach((testimony, index) => {
-                  if (testimony.content.hash === this.$store.activeArticle.hash) {
-                    this.nextArticle = this.$store.testimonies[index + 1]?.content;
-                    this.previousArticle = this.$store.testimonies[index - 1]?.content;
-                  }
-                });
-              }
+              
             },
             closeModal() {
               this.showModal = false;
@@ -1621,6 +1617,13 @@
                 if (article.content.hash === this.$store.activeArticle.hash) {
                   this.nextArticle = this.$store.articles[index + 1]?.content ? this.$store.articles[index + 1]?.content : null;
                   this.previousArticle = this.$store.articles[index - 1]?.content ? this.$store.articles[index - 1]?.content : null;
+                }
+              });
+
+              this.$store.testimonies.forEach((article, index) => {
+                if (article.content.hash === this.$store.activeArticle.hash) {
+                  this.nextArticle = this.$store.testimonies[index + 1]?.content ? this.$store.testimonies[index + 1]?.content : null;
+                  this.previousArticle = this.$store.testimonies[index - 1]?.content ? this.$store.testimonies[index - 1]?.content : null;
                 }
               });
             },
@@ -1687,43 +1690,9 @@
               window.addEventListener('touchend', () => {
                 if (startX !== null) {
                   if (dist > 50) {
-                    if(this.previousArticle) {
-                      this.$refs.mobilePrev.classList.add('transitionIn');
-                      this.$refs.modalHeroBackground.classList.add('transitionInRight');
-                      
-                      if (this.nextArticle) {
-                        this.$refs.mobileNext.classList.add('transitionOut');
-                      }
-
-                      setTimeout(() => {
-                        this.$refs.modalHeroBackground.style.backgroundColor = this.getSVGPath(this.previousArticle.icon ? this.previousArticle.icon.square : null);
-                        window.location.hash = this.previousArticle.hash;
-                        this.$refs.mobilePrev.classList.remove('transitionIn');
-                        this.$refs.modalHeroBackground.classList.remove('transitionInRight');
-                        
-                        if (this.nextArticle) {
-                          this.$refs.mobileNext.classList.remove('transitionOut');
-                        }
-                      }, 300);
-                    }
+                    this.mobileTransitionModals('left');
                   } else if (dist < -50) {
-                    if (this.nextArticle) {
-                      this.$refs.mobileNext.classList.add('transitionIn');
-                      if (this.previousArticle) {
-                        this.$refs.mobilePrev.classList.add('transitionOut');
-                      }
-                      this.$refs.modalHeroBackground.classList.add('transitionInLeft');
-
-                      setTimeout(() => {
-                        this.$refs.modalHeroBackground.style.backgroundColor = this.getSVGPath(this.nextArticle.icon ? this.nextArticle.icon.square : null);
-                        window.location.hash = this.nextArticle.hash;
-                        this.$refs.mobileNext.classList.remove('transitionIn');
-                        this.$refs.modalHeroBackground.classList.remove('transitionInLeft');
-                        if(this.previousArticle) {
-                          this.$refs.mobilePrev.classList.remove('transitionOut');
-                        }
-                      }, 300);
-                    }
+                    this.mobileTransitionModals('right');
                   }
                   startX = null;
                   dist = 0;
@@ -1741,6 +1710,54 @@
                   this.showContent = true;
                 }, 100);
               }, 200);
+            },
+            mobileTransitionModals(direction) {
+              if(direction == 'left') {
+                if (this.previousArticle) {
+                  this.$refs.mobilePrev.classList.add('transitionIn');
+                  this.$refs.modalHeroBackground.classList.add('transitionInRight');
+
+                  if (this.nextArticle) {
+                    this.$refs.mobileNext.classList.add('transitionOut');
+                  }
+
+                  setTimeout(() => {
+                    this.$refs.modalHeroBackground.style.backgroundColor = this.getSVGPath(this.previousArticle.icon ? this.previousArticle.icon.square : null);
+                    window.location.hash = this.previousArticle.hash;
+                    this.$refs.mobilePrev.classList.remove('transitionIn');
+                    this.$refs.modalHeroBackground.classList.remove('transitionInRight');
+                    this.$refs.modalHeroBackground.classList.add('stopTransition');
+
+                    if (this.nextArticle) {
+                      this.$refs.mobileNext.classList.remove('transitionOut');
+                    }
+                  }, 300);
+                }
+              }
+              if (direction == 'right') {
+                if (this.nextArticle) {
+                  this.$refs.mobileNext.classList.add('transitionIn');
+                  if (this.previousArticle) {
+                    this.$refs.mobilePrev.classList.add('transitionOut');
+                  }
+                  this.$refs.modalHeroBackground.classList.add('transitionInLeft');
+
+                  setTimeout(() => {
+                    this.$refs.modalHeroBackground.style.backgroundColor = this.getSVGPath(this.nextArticle.icon ? this.nextArticle.icon.square : null);
+                    window.location.hash = this.nextArticle.hash;
+                    this.$refs.mobileNext.classList.remove('transitionIn');
+                    this.$refs.modalHeroBackground.classList.remove('transitionInLeft');
+                    this.$refs.modalHeroBackground.classList.add('stopTransition');
+                    if (this.previousArticle) {
+                      this.$refs.mobilePrev.classList.remove('transitionOut');
+                    }
+                  }, 300);
+                }
+              }
+              
+              setTimeout(() => {
+                this.$refs.modalHeroBackground.classList.remove('stopTransition');
+              }, 310);
             }
           }
         }
