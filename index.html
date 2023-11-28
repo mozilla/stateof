@@ -1146,7 +1146,7 @@
             <div class="relative bg-white modal">
               <div class="md:w-[90vw] mx-auto block text-[#111111] relative origin-top" x-ref="modalContainer" @click.outside="closeModal">
                 <!-- Modal Header -->
-                <div class="container absolute top-0 z-20 w-screen -translate-x-1/2 left-1/2 pt-[42px] pb-[20px] flex items-center justify-between bg-white md:bg-transparent">
+                <div class="container absolute top-0 z-20 w-screen md:w-full -translate-x-1/2 left-1/2 pt-[42px] pb-[20px] flex items-center justify-between bg-white md:bg-transparent">
                   <a href="/" class="w-[100px]" id="modalLogo">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 99 29" class="w-[100px]">
                       <g fill="#000000" clip-path="url(#header-a)">
@@ -1177,11 +1177,9 @@
                 </div>
 
                 <template x-if="previousArticle">
-                  <a :href="previousArticle.hash" @click="transitionModals(previousArticle.hash), checkIndex"
-                    class="hidden lg:block fixed left-0 z-20 p-5 -translate-y-1/2 max-w-[230px] bg-white border border-l-0 border-black top-1/2 group transition duration-500 ease-out" :class="!showModal ? '!opacity-0 !translate-x-full delay-[5s]' : ''">
+                  <a :href="previousArticle.hash" @click="transitionModals(previousArticle.hash), checkIndex" class="hidden lg:block fixed left-0 z-20 p-2 xl:p-5 -translate-y-1/2  max-w-[190px] xl:max-w-[230px] bg-white border border-l-0 border-black top-1/2 group transition duration-500 ease-out" :class="!showModal ? '!opacity-0 !translate-x-full delay-[5s]' : ''">
                     <div class="flex items-center gap-5">
-                      <svg width="35" height="35" viewBox="0 0 47 48" fill="none" xmlns="http://www.w3.org/2000/svg"
-                        class="transition duration-150 ease-out rotate-90 group-hover:-translate-x-2 shrink-0">
+                      <svg viewBox="0 0 47 48" fill="none" xmlns="http://www.w3.org/2000/svg" class="duration-150 ease-out rotate-90 group-hover:translate-x-2 shrink-0 w-[25px] xl:w-[35px]">
                         <path
                           d="M46.5455 24.7727L23.6364 47.6818L0.727271 24.7727L5.95454 19.5L19.7955 33.3409L19.7955 0.909086L27.4773 0.909086L27.4773 33.3409L41.2955 19.5L46.5455 24.7727Z" fill="black" />
                       </svg>
@@ -1267,7 +1265,7 @@
                 </template>
                 
                 <template x-if="nextArticle">
-                  <a :href="nextArticle.hash" @click="transitionModals(nextArticle.hash), checkIndex" class="hidden lg:block fixed right-0 z-20 p-5 -translate-y-1/2 max-w-[230px] bg-white border border-r-0 border-black top-1/2 group transition duration-500 ease-out" :class="!showModal ? '!opacity-0 !translate-x-full delay-[5s]' : ''">
+                  <a :href="nextArticle.hash" @click="transitionModals(nextArticle.hash), checkIndex" class="hidden lg:block fixed right-0 z-20 p-2 xl:p-5 -translate-y-1/2 max-w-[190px] xl:max-w-[230px] bg-white border border-r-0 border-black top-1/2 group transition duration-500 ease-out" :class="!showModal ? '!opacity-0 !translate-x-full delay-[5s]' : ''">
                     <div class="flex items-center gap-5">
                       <div class="flex flex-col items-start justify-start gap-[10px]">
                         <template x-if="nextArticle.icon">
@@ -1282,8 +1280,7 @@
                           <span class="font-title text-[10px]/[10px] font-normal" x-html="nextArticle.author.name"></span>
                         </template>
                       </div>
-                      <svg width="35" height="35" viewBox="0 0 47 48" fill="none" xmlns="http://www.w3.org/2000/svg"
-                        class="duration-150 ease-out -rotate-90 group-hover:translate-x-2 shrink-0">
+                      <svg viewBox="0 0 47 48" fill="none" xmlns="http://www.w3.org/2000/svg" class="duration-150 ease-out -rotate-90 group-hover:translate-x-2 shrink-0 w-[25px] xl:w-[35px]">
                         <path
                           d="M46.5455 24.7727L23.6364 47.6818L0.727271 24.7727L5.95454 19.5L19.7955 33.3409L19.7955 0.909086L27.4773 0.909086L27.4773 33.3409L41.2955 19.5L46.5455 24.7727Z"
                           fill="black" />
@@ -1354,8 +1351,6 @@
                   </a>
                 </template>
                 
-                
-                
                 <div class="origin-top" x-ref="activeModal">
                   <template x-if="$store.activeArticle && $store.activeArticle.title">
                     <div class="relative flex-col z-10 lg:flex-row inline-flex items-start lg:items-center lg:px-8 md:px-[65px] pt-[150px] md:py-[175px] lg:py-28 md:min-h-screen w-full overflow-hidden md:overflow-visible md:transition-colors duration-300 ease-out" id="modalMain" x-ref="modalHeroBackground" >
@@ -1401,7 +1396,7 @@
                               </div>
                             </template>
                             
-                            <h2 class="text-[36px]/[38px] md:text-[64px]/[64px] font-bold font-title transition duration-500 delay-200 ease-out" :class="!showContent ? 'opacity-0 -translate-x-4 !duration-100 !delay-0' : ''" x-show="showModal" x-html="$store.activeArticle.title"></h2>
+                            <h2 class="text-[36px]/[38px] md:text-[45px]/[45px] xl:text-[64px]/[64px] font-bold font-title transition duration-500 delay-200 ease-out" :class="!showContent ? 'opacity-0 -translate-x-4 !duration-100 !delay-0' : ''" x-show="showModal" x-html="$store.activeArticle.title"></h2>
                             <h3 class="font-title text-[24px]/[31px] tracking-[.48px] font-normal mt-10 md:mt-[80px] mb-10 transition duration-500 delay-300 ease-out" :class="!showContent ? 'opacity-0 -translate-x-4  !delay-0 !duration-100' : ''" x-html="$store.activeArticle.excerpt"></h3>
                             
                             <template x-if="$store.activeArticle && $store.activeArticle.modal_style == 'short'">
@@ -1412,7 +1407,7 @@
                       </div>
                       <template x-if="$store.activeArticle && $store.activeArticle.icon && !$store.activeArticle.tag">
                         <template x-if="$store.activeArticle && $store.activeArticle.icon">
-                          <div class="mt-10 md:mt-0 md:absolute bottom-0 right-0 translate-x-[10vw] w-full md:w-[55vw] lg:w-[30vw] z-[-1] origin-center transition duration-500 delay-[400ms] ease-out" :class="!showContent ? 'opacity-0  scale-90  !delay-0 !duration-100' : ''" x-ref="modalIcon" x-html="$store.activeArticle.icon.square"></div>
+                          <div class="mt-10 md:mt-0 md:absolute bottom-0 right-0 translate-x-[10vw] w-full md:w-[50vw] xl:w-[40vw] z-[-1] origin-center transition duration-500 delay-[400ms] ease-out" :class="!showContent ? 'opacity-0  scale-90  !delay-0 !duration-100' : ''" x-ref="modalIcon" x-html="$store.activeArticle.icon.square"></div>
                         </template>
                       </template>
                       <template x-if="$store.activeArticle && $store.activeArticle.tag && $store.activeArticle.tag == 'choose' || $store.activeArticle.tag == 'build'">
