@@ -1138,9 +1138,9 @@
       </section>
 
       <template x-teleport="body">
-        <div id="modal-container" class="fixed top-0 left-0 z-20 table w-full h-full transform" x-show="showModal" :class="showModal ? 'active' : ''" x-cloak x-trap.inert="showModal"        >
+        <div id="modal-container" class="fixed top-0 left-0 z-20 table w-full h-full transform" x-show="showModal" :class="showModal ? 'active' : ''" x-cloak x-trap.inert="showModal">
           <div class="absolute top-0 left-0 z-0 w-full h-full transition bg-black opacity-0 modal-background"></div>
-          <div class="relative z-20 h-screen overflow-x-hidden overflow-y-scroll transition duration-500 ease-out" :class="showModal ? 'opacity-100' : 'opacity-0'" x-ref="modal">
+          <div class="relative z-20 h-screen overflow-x-hidden overflow-y-scroll transition duration-500 ease-out" id="modal" :class="showModal ? 'opacity-100' : 'opacity-0'" x-ref="modal">
             <div class="relative bg-white modal">
               <div class="md:w-[90vw] mx-auto block text-[#111111] relative origin-top" x-ref="modalContainer" @click.outside="closeModal">
                 <!-- Modal Header -->
@@ -1175,7 +1175,7 @@
                 </div>
 
                 <template x-if="previousArticle">
-                  <a :href="previousArticle.hash" @click="checkIndex, transitionModals(previousArticle.hash)"
+                  <a :href="previousArticle.hash" @click="transitionModals(previousArticle.hash), checkIndex"
                     class="hidden lg:block fixed left-0 z-20 p-5 -translate-y-1/2 max-w-[230px] bg-white border border-l-0 border-black top-1/2 group transition duration-500 ease-out" :class="!showModal ? '!opacity-0 !translate-x-full delay-[5s]' : ''">
                     <div class="flex items-center gap-5">
                       <svg width="35" height="35" viewBox="0 0 47 48" fill="none" xmlns="http://www.w3.org/2000/svg"
@@ -1265,7 +1265,7 @@
                 </template>
                 
                 <template x-if="nextArticle">
-                  <a :href="nextArticle.hash" @click="checkIndex, transitionModals(nextArticle.hash)" class="hidden lg:block fixed right-0 z-20 p-5 -translate-y-1/2 max-w-[230px] bg-white border border-r-0 border-black top-1/2 group transition duration-500 ease-out" :class="!showModal ? '!opacity-0 !translate-x-full delay-[5s]' : ''">
+                  <a :href="nextArticle.hash" @click="transitionModals(nextArticle.hash), checkIndex" class="hidden lg:block fixed right-0 z-20 p-5 -translate-y-1/2 max-w-[230px] bg-white border border-r-0 border-black top-1/2 group transition duration-500 ease-out" :class="!showModal ? '!opacity-0 !translate-x-full delay-[5s]' : ''">
                     <div class="flex items-center gap-5">
                       <div class="flex flex-col items-start justify-start gap-[10px]">
                         <template x-if="nextArticle.icon">
@@ -1637,7 +1637,7 @@
             },
 
             checkImage() {
-              if (this.$store.activeArticle.tag === 'act' || this.$store.activeArticle.tag === 'build' || this.$store.activeArticle.tag === 'choose' || this.$store.activeArticle.author == null || this.$store.activeArticle.author.image == null) {
+              if (this.$store.activeArticle.tag || this.$store.activeArticle.author == null || this.$store.activeArticle.author.image == null) {
                 this.showAuthorImage = false;
               } else {
                 this.showAuthorImage = true;
@@ -1712,6 +1712,15 @@
               this.showContent = false;
               // get article by url
               const article = this.$store.articles.find(article => article.content.hash === url)?.content ? this.$store.articles.find(article => article.content.hash === url)?.content : this.$store.testimonies.find(article => article.content.hash === url)?.content;
+              this.$nextTick(() => {
+                if (this.$refs.modal) {
+                  this.$refs.modal.scrollTo(0, 0);
+                } else {
+                  const modal = document.getElementById('modal');
+                  modal.scrollTo(0, 0);
+                }
+              });
+              
               setTimeout(() => {
                 window.location.hash = article.hash;
                 setTimeout(() => {
