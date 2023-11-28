@@ -1177,7 +1177,7 @@
                 </div>
 
                 <template x-if="previousArticle">
-                  <a :href="previousArticle.hash" @click="transitionModals(previousArticle.hash), checkIndex" class="hidden lg:block fixed left-0 z-20 p-2 xl:p-5 -translate-y-1/2  max-w-[190px] xl:max-w-[230px] bg-white border border-l-0 border-black top-1/2 group transition duration-500 ease-out" :class="!showModal ? '!opacity-0 !translate-x-full delay-[5s]' : ''">
+                  <a :href="previousArticle.hash" @click="transitionModals(previousArticle.hash), checkIndex" class="hidden lg:block fixed left-0 z-20 p-2 xl:p-5 -translate-y-1/2  max-w-[190px] xl:max-w-[230px] bg-white border border-l-0 border-black top-1/2 group transition duration-500 ease-out delay-700" :class="!showContent ? '!opacity-0 !-translate-x-full delay-0' : ''">
                     <div class="flex items-center gap-5">
                       <svg viewBox="0 0 47 48" fill="none" xmlns="http://www.w3.org/2000/svg" class="duration-150 ease-out rotate-90 group-hover:translate-x-2 shrink-0 w-[25px] xl:w-[35px]">
                         <path
@@ -1265,7 +1265,7 @@
                 </template>
                 
                 <template x-if="nextArticle">
-                  <a :href="nextArticle.hash" @click="transitionModals(nextArticle.hash), checkIndex" class="hidden lg:block fixed right-0 z-20 p-2 xl:p-5 -translate-y-1/2 max-w-[190px] xl:max-w-[230px] bg-white border border-r-0 border-black top-1/2 group transition duration-500 ease-out" :class="!showModal ? '!opacity-0 !translate-x-full delay-[5s]' : ''">
+                  <a :href="nextArticle.hash" @click="transitionModals(nextArticle.hash), checkIndex" class="hidden lg:block fixed right-0 z-20 p-2 xl:p-5 -translate-y-1/2 max-w-[190px] xl:max-w-[230px] bg-white border border-r-0 border-black top-1/2 group transition duration-500 ease-out delay-700" :class="!showContent ? '!opacity-0 !translate-x-full delay-0' : ''">
                     <div class="flex items-center gap-5">
                       <div class="flex flex-col items-start justify-start gap-[10px]">
                         <template x-if="nextArticle.icon">
