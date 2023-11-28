@@ -935,7 +935,7 @@
         <!-- Build with Mozilla -->
         <div class="flex flex-col items-start justify-start gap-8 px-0 md:container md:px-5 md:flex-row" x-intersect.margin.-175px.once='inView = 3'>
           <div class="container md:!max-w-none md:mx-0 w-full px-5 md:px-0 md:w-1/3 lg:w-1/4 transition duration-500 ease-out" :class="inView < 3 && canAnimate ? 'opacity-0 -translate-y-5' : ''">
-            <h2 class="text-[36px]/[38px] font-title font-bold mb-[15px]"></h2>Mozilla Fellows & <br/>Rise 25 Honorees</h2>
+            <h2 class="text-[36px]/[38px] font-title font-bold mb-[15px]">Mozilla Fellows & <br/>Rise 25 Honorees</h2>
             <p class="font-body font-normal text-[16px]/[21px] tracking-[.32px]">We’re proud to highlight Mozilla Fellows and Rise 25 honorees who are activists, open-source researchers, engineers, and technology policy experts who work on the front lines of our movement.</p>
           </div>
           <div class="hidden md:w-1/3 lg:w-1/4 md:block">
@@ -946,7 +946,7 @@
                   :class="inView < 1 && canAnimate ? 'opacity-0 scale-90' : ''" :style="'transition-delay:' + index + '00ms;'">
                   <div class="flex flex-col items-start justify-start gap-8">
                     <img :src="item.author.image" :alt="item.author.name"
-                      class="object-contain object-center w-full transition duration-500 ease-out aspect-square grayscale bg-blend-darken group-hover:scale-105 group-hover:drop-shadow-lg"
+                      class="object-cover object-top w-full transition duration-500 ease-out aspect-square grayscale bg-blend-darken group-hover:scale-105 group-hover:drop-shadow-lg"
                       loading="lazy" width="200" height="200">
                     <h3 x-html="item.author.name" class="text-[24px]/[26px] tracking-[.48px] font-bold font-title"></h3>
                     <div x-cloak :href="item.hash" class="flex items-center gap-[5px]">
@@ -976,7 +976,7 @@
                   :class="inView < 1 && canAnimate ? 'opacity-0 translate-x-5' : ''" :style="'transition-delay:' + index + '00ms;'">
                   <div class="flex flex-col items-start justify-start gap-8">
                     <img :src="item.author.image" :alt="item.author.name"
-                      class="object-contain object-center w-full transition duration-500 ease-out aspect-square grayscale bg-blend-darken group-hover:scale-105 group-hover:drop-shadow-lg"
+                      class="object-cover object-top w-full transition duration-500 ease-out aspect-square grayscale bg-blend-darken group-hover:scale-105 group-hover:drop-shadow-lg"
                       loading="lazy" width="200" height="200">
                     <h3 x-html="item.author.name" class="text-[24px]/[26px] tracking-[.48px] font-bold font-title"></h3>
                     <div x-cloak class="flex items-center gap-[5px]">
