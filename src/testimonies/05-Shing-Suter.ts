@@ -4,7 +4,7 @@ export const content: object = {
   hash: '#shing-suter',
   author: {
     name: 'Shing Suter',
-    job_title: 'Job Title',
+    job_title: 'Senior Director, Technology Platforms at Mozilla Foundation',
     image: '/headshots/Shing-Suter.jpg',
   },
   lead_article: true,
