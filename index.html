@@ -29,6 +29,13 @@
       gtag('js', new Date());
 
       gtag('config', 'G-SCRM4GD0EL');
+
+      // Push to google analytics when window hash changes
+      window.addEventListener('hashchange', function () {
+        gtag('config', 'G-SCRM4GD0EL', {
+          'page_path': window.location.pathname + window.location.search + window.location.hash
+        });
+      });
     </script>
 
     <script type="text/javascript" src="https://www.youtube.com/iframe_api" defer></script>
@@ -1476,6 +1483,7 @@
             isMobile: window.innerWidth < 768 ? true : false,
 
             init() {
+              console.log(window);
               // if window.location.hash is not empty, open the modal
               if (window.location.hash) {
                 this.openModal(window.location.hash);
