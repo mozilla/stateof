@@ -1224,9 +1224,31 @@
                     <div class="relative flex-col shrink-0 lg:flex-row inline-flex items-start w-full md:px-[65px] pt-[150px] md:py-[175px] overflow-hidden" :style="'background-color:' + getSVGPath(previousArticle.icon ? previousArticle.icon.square : null)">
                       <div class="container">
                         <div class="w-full mx-auto lg:w-3/4">
-                          <div class="flex flex-col items-start w-full lg:w-3/4">
+                          <div class="flex flex-col items-start justify-start w-full lg:w-3/4">
                             <template x-if="previousArticle.author">
-                              <div class="flex items-center gap-5 mb-[48px] w-full">
+                              <div class="flex items-start gap-5 mb-[48px] w-full">
+                                <template x-if="previousArticle && previousArticle.author.multiple  && previousArticle.author.image && !previousArticle.tag">
+                                  <template x-for="image in previousArticle.author.image">
+                                    <div class="overflow-hidden bg-white rounded-full first:z-10 -mr-3 last:mr-0 w-12 md:w-[75px] shrink-0">
+                                      <div class="relative w-12 md:w-[75px] shrink-0 -mr-4 first:z-10 !bg-opacity-100"
+                                        :style="'background-color:' + getSVGPath(previousArticle.icon ? previousArticle.icon.square : null)">
+                                        <img :src="image" alt="previousArticle.author.name" width="75" height="75" loading="lazy"
+                                          class=" w-fulll mix-blend-multiply grayscale" />
+                                        <div class="absolute top-0 left-0 w-full h-full bg-black opacity-40 mix-blend-soft-light"></div>
+                                      </div>
+                                    </div>
+                                  </template>
+                                </template>
+                                <template x-if="previousArticle && previousArticle.author && previousArticle.author.image && !previousArticle.author.multiple && !previousArticle.tag">
+                                  <div class="overflow-hidden bg-white rounded-full first:z-10 w-12 md:w-[75px] shrink-0">
+                                    <div class="relative w-12 md:w-[75px] shrink-0 -mr-4 first:z-10 !bg-opacity-100"
+                                      :style="'background-color:' + getSVGPath(previousArticle.icon ? previousArticle.icon.square : null)">
+                                      <img :src="previousArticle.author.image" alt="previousArticle.author.name" width="75" height="75" loading="lazy"
+                                        class=" w-fulll mix-blend-multiply grayscale" />
+                                      <div class="absolute top-0 left-0 w-full h-full bg-black opacity-40 mix-blend-soft-light"></div>
+                                    </div>
+                                  </div>
+                                </template>
                                 <div class="flex flex-col items-start justify-start w-full">
                                   <span class="flex items-end gap-[10px] w-full">
                                     <span class="text-[16px]/[24px] tracking-[0.64px] font-semibold font-title md:shrink-0 inline-block"
@@ -1313,9 +1335,29 @@
                     <div class="relative flex-col w-full lg:flex-row inline-flex items-start shrink-0 md:px-[65px] pt-[150px] md:py-[175px] overflow-hidden" :style="'background-color:' + getSVGPath(nextArticle.icon ? nextArticle.icon.square : null)">
                       <div class="container">
                         <div class="w-full mx-auto lg:w-3/4">
-                          <div class="flex flex-col items-start w-full lg:w-3/4">
+                          <div class="flex flex-col items-start justify-start w-full lg:w-3/4">
                             <template x-if="nextArticle.author">
-                              <div class="flex items-center gap-5 mb-[48px] w-full">
+                              <div class="flex items-start gap-5 mb-[48px] w-full">
+                                <template x-if="nextArticle && nextArticle.author.multiple  && nextArticle.author.image && !nextArticle.tag">
+                                  <template x-for="image in nextArticle.author.image">
+                                    <div class="overflow-hidden bg-white rounded-full first:z-10 -mr-3 last:mr-0 w-12 md:w-[75px] shrink-0">
+                                      <div class="relative w-12 md:w-[75px] shrink-0 -mr-4 first:z-10 !bg-opacity-100" :style="'background-color:' + getSVGPath(nextArticle.icon ? nextArticle.icon.square : null)">
+                                        <img :src="image" alt="nextArticle.author.name" width="75" height="75" loading="lazy"
+                                          class=" w-fulll mix-blend-multiply grayscale" />
+                                        <div class="absolute top-0 left-0 w-full h-full bg-black opacity-40 mix-blend-soft-light"></div>
+                                      </div>
+                                    </div>
+                                  </template>
+                                </template>
+                                <template x-if="nextArticle && nextArticle.author && nextArticle.author.image && !nextArticle.author.multiple && !nextArticle.tag">
+                                  <div class="overflow-hidden bg-white rounded-full first:z-10 w-12 md:w-[75px] shrink-0">
+                                    <div class="relative w-12 md:w-[75px] shrink-0 -mr-4 first:z-10 !bg-opacity-100" :style="'background-color:' + getSVGPath(nextArticle.icon ? nextArticle.icon.square : null)">
+                                      <img :src="nextArticle.author.image" alt="nextArticle.author.name" width="75" height="75"
+                                        loading="lazy" class=" w-fulll mix-blend-multiply grayscale" />
+                                      <div class="absolute top-0 left-0 w-full h-full bg-black opacity-40 mix-blend-soft-light"></div>
+                                    </div>
+                                  </div>
+                                </template>
                                 <div class="flex flex-col items-start justify-start w-full">
                                   <span class="flex items-end gap-[10px] w-full">
                                     <span class="text-[16px]/[24px] tracking-[0.64px] font-semibold font-title md:shrink-0 inline-block"
@@ -1371,18 +1413,18 @@
                 
                 <div class="origin-top" x-ref="activeModal">
                   <template x-if="$store.activeArticle && $store.activeArticle.title">
-                    <div class="relative flex-col z-10 lg:flex-row inline-flex items-start lg:items-center lg:px-8 md:px-[65px] pt-[150px] md:py-[175px] lg:py-28 md:min-h-screen w-full overflow-hidden md:overflow-visible md:transition-colors duration-300 ease-out" id="modalMain" x-ref="modalHeroBackground" >
+                    <div class="relative flex-col z-10 lg:flex-row inline-flex items-start lg:items-center lg:px-8 md:px-[65px] pt-[150px] md:py-[175px] lg:py-28 md:min-h-screen w-full overflow-hidden md:overflow-visible md:transition-colors duration-300 ease-out" id="modalMain" x-ref="modalHeroBackground">
                       <div class="container z-10">
                         <div class="w-full mx-auto lg:w-3/4">
                           <div class="flex flex-col items-start w-full lg:w-3/4">
                             <template x-if="$store.activeArticle && $store.activeArticle.author">
-                              <div class="flex items-center gap-5 mb-[48px] w-full">
+                              <div class="flex items-start md:items-center gap-5 mb-[48px] w-full">
                                 <template x-if="$store.activeArticle && $store.activeArticle.author && showAuthorImage">
-                                  <div class="items-start hidden transition duration-500 ease-out md:flex" :class="!showContent ? 'opacity-0 -translate-x-4 !delay-0 !duration-100' : ''">
+                                  <div class="flex items-start transition duration-500 ease-out" :class="!showContent ? 'opacity-0 -translate-x-4 !delay-0 !duration-100' : ''">
                                     <template x-if="$store.activeArticle && $store.activeArticle.author.multiple">
                                       <template x-for="image in $store.activeArticle.author.image">
-                                        <div class="overflow-hidden bg-white rounded-full first:z-10 -mr-3 last:mr-0 w-[75px] shrink-0">
-                                          <div class="relative w-[75px] shrink-0 -mr-4 first:z-10 !bg-opacity-100 modal-author-image">
+                                        <div class="overflow-hidden bg-white rounded-full first:z-10 -mr-3 last:mr-0 w-12 md:w-[75px] shrink-0">
+                                          <div class="relative w-12 md:w-[75px] shrink-0 -mr-4 first:z-10 !bg-opacity-100 modal-author-image">
                                             <img :src="image" alt="$store.activeArticle.author.name" width="75" height="75" loading="lazy" class=" w-fulll mix-blend-multiply grayscale"/>
                                             <div class="absolute top-0 left-0 w-full h-full bg-black opacity-40 mix-blend-soft-light"></div>
                                           </div>
@@ -1390,8 +1432,8 @@
                                       </template>
                                     </template> 
                                     <template x-if="$store.activeArticle && $store.activeArticle.author && !$store.activeArticle.author.multiple">
-                                      <div class="overflow-hidden bg-white rounded-full first:z-10 w-[75px] shrink-0">
-                                        <div class="relative w-[75px] shrink-0 -mr-4 first:z-10 !bg-opacity-100 modal-author-image">
+                                      <div class="overflow-hidden bg-white rounded-full first:z-10 w-12 md:w-[75px] shrink-0">
+                                        <div class="relative w-12 md:w-[75px] shrink-0 -mr-4 first:z-10 !bg-opacity-100 modal-author-image">
                                           <img :src="$store.activeArticle.author.image" alt="$store.activeArticle.author.name" width="75" height="75" loading="lazy"
                                             class=" w-fulll mix-blend-multiply grayscale" />
                                           <div class="absolute top-0 left-0 w-full h-full bg-black opacity-40 mix-blend-soft-light"></div>
