@@ -1260,6 +1260,10 @@
                                 </div>
                               </div>
                             </template>
+
+                            <template x-if="!previousArticle.author">
+                              <div class="mt-[96px] md:mt-0"></div>
+                            </template>
                 
                             <h2 class="text-[36px]/[38px] md:text-[64px]/[64px] font-bold font-title transition duration-500 delay-200 ease-out"
                               :class="!showContent ? 'opacity-0 -translate-x-4 !duration-100 !delay-0' : ''" x-show="showModal"
@@ -1369,6 +1373,10 @@
                                 </div>
                               </div>
                             </template>
+
+                            <template x-if="!nextArticle.author">
+                              <div class="mt-[96px] md:mt-0"></div>
+                            </template>
                     
                             <h2 class="text-[36px]/[38px] md:text-[64px]/[64px] font-bold font-title transition duration-500 delay-200 ease-out"
                               :class="!showContent ? 'opacity-0 -translate-x-4 !duration-100 !delay-0' : ''" x-show="showModal"
@@ -1454,6 +1462,10 @@
                                   </template>
                                 </div>
                               </div>
+                            </template>
+
+                            <template x-if="!$store.activeArticle.author">
+                              <div class="mt-[96px] md:mt-0"></div>
                             </template>
                             
                             <h2 class="text-[36px]/[38px] md:text-[45px]/[45px] xl:text-[64px]/[64px] font-bold font-title transition duration-500 delay-200 ease-out" :class="!showContent ? 'opacity-0 -translate-x-4 !duration-100 !delay-0' : ''" x-show="showModal" x-html="$store.activeArticle.title"></h2>
