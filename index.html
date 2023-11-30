@@ -769,11 +769,11 @@
           
           <h2 class="font-title text-[16px]/[17px] tracking-[0.48px] sm:text-[36px]/[38px] md:tracking-[1.08px] font-bold w-5/12 sm:ml-10 md:w-4/12 md:ml-[65px] transition duration-300 ease-out delay-200 z-10" :class="!inView && canAnimate ? 'opacity-0 -translate-x-5' : ''">A message from Eric Muhlheim & Angela Plohman</h2>
 
-          <div class="w-[33vw] transition duration-500 ease-out" :class="!inView && canAnimate ? 'opacity-0 scale-90' : ''">
+          <div class="w-[33vw]">
             <div>
               <svg class="w-full" viewBox="0 0 514 514" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <rect style="mix-blend-mode:overlay" x="513.5" y="87.3018" width="338.453" height="338.453" rx="169.227" transform="rotate(90 513.5 87.3018)" fill="#EEEEEE" />
-                <path style="mix-blend-mode:multiply" fill-rule="evenodd" clip-rule="evenodd" d="M384.565 0L0 256.526L384.565 513.052L384.565 388.594L201.908 256.526L384.565 124.457L384.565 0Z" fill="#89D5FF" />
+                <rect style="mix-blend-mode:overlay" class="transition duration-500 ease-out origin-right -translate-x-[66%] " :class="!inView && canAnimate ? 'opacity-0 scale-90' : ''" x="513.5" y="87.3018" width="338.453" height="338.453" rx="169.227" fill="#EEEEEE" />
+                <path style="mix-blend-mode:multiply" class="transition duration-500 ease-out origin-center" :class="!inView && canAnimate ? 'opacity-0 scale-90' : ''" fill-rule="evenodd" clip-rule="evenodd" d="M384.565 0L0 256.526L384.565 513.052L384.565 388.594L201.908 256.526L384.565 124.457L384.565 0Z" fill="#89D5FF" />
               </svg>
             </div>
           </div>
