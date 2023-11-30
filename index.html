@@ -763,13 +763,13 @@
       </section>
 
       <!-- Video -->
-      <section class="bg-[#89D5FF] w-full aspect-[1.25] px-4 md:aspect-[1.8] lg:aspect-[2.25] flex items-center border-t-2 border-black relative z-0" x-data="video()">
+      <section class="bg-[#89D5FF] w-full aspect-[1.25] px-4 md:aspect-[1.8] lg:aspect-[2.25] flex items-center border-t-2 border-black relative z-0 overflow-hidden" x-data="video()">
         <div class="container relative flex items-center justify-between" x-ref="content" x-intersect.margin.-175px.once="inView = true">
           <div class="w-[95%] aspect-[2] lg:aspect-[3] bg-[#6fa2ff] absolute top-1/2 left-0 -translate-y-1/2 rounded-full transition duration-300 ease-out z-[-1]" :class="!inView && canAnimate ? 'opacity-0' : ''"></div>
           
           <h2 class="font-title text-[16px]/[17px] tracking-[0.48px] sm:text-[36px]/[38px] md:tracking-[1.08px] font-bold w-5/12 sm:ml-10 md:w-4/12 md:ml-[65px] transition duration-300 ease-out delay-200 z-10" :class="!inView && canAnimate ? 'opacity-0 -translate-x-5' : ''">A message from Eric Muhlheim & Angela Plohman</h2>
 
-          <div class="w-[33vw]">
+          <div class="w-[40vw] md:w-[33vw] -mr-8">
             <div>
               <svg class="w-full" viewBox="0 0 514 514" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <rect style="mix-blend-mode:overlay" class="transition duration-500 ease-out origin-right -translate-x-[66%] " :class="!inView && canAnimate ? 'opacity-0 scale-90' : ''" x="513.5" y="87.3018" width="338.453" height="338.453" rx="169.227" fill="#EEEEEE" />
