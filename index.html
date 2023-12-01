@@ -1209,10 +1209,11 @@
                           d="M46.5455 24.7727L23.6364 47.6818L0.727271 24.7727L5.95454 19.5L19.7955 33.3409L19.7955 0.909086L27.4773 0.909086L27.4773 33.3409L41.2955 19.5L46.5455 24.7727Z" fill="black" />
                       </svg>
                       <div class="flex flex-col items-start justify-start gap-[10px]">
-                        <template x-if="previousArticle && previousArticle.icon">
-                          <div class="w-[130px]" x-html="previousArticle.icon.rect"></div>
+                        <template x-if="!previousArticle.icon && previousArticle.tag != 'act'">
+                          <img class="w-[130px] h-[130px] object-cover object-top inline-block grayscale mix-blend-darken"
+                            :src="previousArticle.author.image" width="130" height="130" loading="lazy" />
                         </template>
-                        <template x-if="previousArticle && !previousArticle.icon">
+                        <template x-if="!previousArticle.icon && previousArticle.tag == 'act'">
                           <img class="w-[130px] inline-block grayscale mix-blend-darken" :src="previousArticle.author.image" width="130"
                             height="130" loading="lazy" />
                         </template>
@@ -1292,22 +1293,22 @@
                         <div class="md:absolute bottom-0 right-0 translate-x-[10vw] w-full md:w-[40vw] lg:w-[30vw] mt-10" x-html="previousArticle.icon.square"></div>
                       </template>
                       
-                      <template x-if="previousArticle.tag && previousArticle.tag == 'choose'">
+                      <template x-if="previousArticle.tag && previousArticle.tag != 'act'">
                         <div
                           class="md:absolute bottom-0 right-0 translate-x-[5vw] w-full md:w-[40vw] lg:w-[30vw] mt-10 rounded-tl-[200px] aspect-square overflow-hidden bg-white">
                           <div class="bg-[#b3dbde] w-full h-full">
                             <img :src="previousArticle.author.image" alt="previousArticle.author-title" width="100%" height="100%" loading="lazy"
-                              class="object-cover object-center w-full h-full grayscale mix-blend-multiply" />
+                              class="object-cover object-top w-full h-full grayscale mix-blend-multiply" />
                           </div>
                         </div>
                       </template>
-
+                      
                       <template x-if="previousArticle.tag && previousArticle.tag == 'act'">
                         <div
                           class="md:absolute bottom-0 right-0 translate-x-[5vw] w-full md:w-[40vw] lg:w-[30vw] mt-10 rounded-tl-[200px] aspect-square overflow-hidden bg-white">
                           <div class="bg-[#b3dbde] w-full h-full">
-                            <img :src="previousArticle.image" alt="previousArticle.author-title" width="100%" height="100%"
-                              loading="lazy" class="object-cover object-center w-full h-full grayscale mix-blend-multiply" />
+                            <img :src="previousArticle.image" alt="previousArticle.author-title" width="100%" height="100%" loading="lazy"
+                              class="object-cover object-top w-full h-full grayscale mix-blend-multiply" />
                           </div>
                         </div>
                       </template>
@@ -1322,9 +1323,13 @@
                         <template x-if="nextArticle.icon">
                           <div class="w-[130px]" x-html="nextArticle.icon.rect"></div>
                         </template>
-                        <template x-if="!nextArticle.icon">
-                          <img class="w-[130px] inline-block grayscale mix-blend-darken" :src="nextArticle.author.image" width="130" height="130"
+                        <template x-if="!nextArticle.icon && nextArticle.tag != 'act'">
+                          <img class="w-[130px] h-[130px] object-cover object-top inline-block grayscale mix-blend-darken" :src="nextArticle.author.image" width="130" height="130"
                             loading="lazy" />
+                        </template>
+                        <template x-if="!nextArticle.icon && nextArticle.tag == 'act'">
+                          <img class="w-[130px] inline-block grayscale mix-blend-darken"
+                            :src="nextArticle.author.image" width="130" height="130" loading="lazy" />
                         </template>
                         <span class="font-title text-[12px]/[12px] font-bold" x-html="nextArticle.title"></span>
                         <template x-if="nextArticle.author">
@@ -1403,12 +1408,12 @@
                       <template x-if="nextArticle.icon">
                         <div class="md:absolute bottom-0 right-0 translate-x-[10vw] w-full md:w-[40vw] lg:w-[30vw] mt-10" x-html="nextArticle.icon.square"></div>
                       </template>
-                      <template x-if="nextArticle.tag && nextArticle.tag == 'choose'">
+                      <template x-if="nextArticle.tag && nextArticle.tag != 'act'">
                         <div
                           class="md:absolute bottom-0 right-0 translate-x-[5vw] w-full md:w-[40vw] lg:w-[30vw] mt-10 rounded-tl-[200px] aspect-square overflow-hidden bg-white">
                           <div class="bg-[#b3dbde] w-full h-full">
                             <img :src="nextArticle.author.image" alt="nextArticle.author-title" width="100%" height="100%"
-                              loading="lazy" class="object-cover object-center w-full h-full grayscale mix-blend-multiply" />
+                              loading="lazy" class="object-cover object-top w-full h-full grayscale mix-blend-multiply" />
                           </div>
                         </div>
                       </template>
@@ -1418,7 +1423,7 @@
                           class="md:absolute bottom-0 right-0 translate-x-[5vw] w-full md:w-[40vw] lg:w-[30vw] mt-10 rounded-tl-[200px] aspect-square overflow-hidden bg-white">
                           <div class="bg-[#b3dbde] w-full h-full">
                             <img :src="nextArticle.image" alt="nextArticle.author-title" width="100%" height="100%" loading="lazy"
-                              class="object-cover object-center w-full h-full grayscale mix-blend-multiply" />
+                              class="object-cover object-top w-full h-full grayscale mix-blend-multiply" />
                           </div>
                         </div>
                       </template>
@@ -1492,7 +1497,7 @@
                       <template x-if="$store.activeArticle && $store.activeArticle.tag && $store.activeArticle.tag == 'choose' || $store.activeArticle.tag == 'build'">
                         <div class="mt-10 md:mt-0 md:absolute bottom-0 right-0 translate-x-[5vw] w-full md:w-[60vw] lg:w-[30vw] z-[-1] rounded-tl-[200px] aspect-square overflow-hidden bg-white origin-center transition duration-500 delay-[400ms] ease-out" :class="!showContent ? 'opacity-0  scale-90  !delay-0 !duration-100' : ''" >
                           <div class="bg-[#b3dbde] w-full h-full">
-                            <img :src="$store.activeArticle.author.image" alt="$store.activeArticle.author.name" width="100%" height="100%" loading="lazy" class="object-cover object-center w-full h-full grayscale mix-blend-multiply" />
+                            <img :src="$store.activeArticle.author.image" alt="$store.activeArticle.author.name" width="100%" height="100%" loading="lazy" class="object-cover object-top w-full h-full grayscale mix-blend-multiply" />
                           </div>
                         </div>
                       </template>
@@ -1503,7 +1508,7 @@
                           :class="!showContent ? 'opacity-0  scale-90  !delay-0 !duration-100' : ''">
                           <div class="bg-[#b3dbde] w-full h-full">
                             <img :src="$store.activeArticle.image" alt="$store.activeArticle.author.name" width="100%" height="100%"
-                              loading="lazy" class="object-cover object-center w-full h-full grayscale mix-blend-multiply" />
+                              loading="lazy" class="object-cover object-top w-full h-full grayscale mix-blend-multiply" />
                           </div>
                         </div>
                       </template>
