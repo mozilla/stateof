@@ -1209,6 +1209,9 @@
                           d="M46.5455 24.7727L23.6364 47.6818L0.727271 24.7727L5.95454 19.5L19.7955 33.3409L19.7955 0.909086L27.4773 0.909086L27.4773 33.3409L41.2955 19.5L46.5455 24.7727Z" fill="black" />
                       </svg>
                       <div class="flex flex-col items-start justify-start gap-[10px]">
+                        <template x-if="previousArticle.icon">
+                          <div class="w-[130px]" x-html="previousArticle.icon.rect"></div>
+                        </template>
                         <template x-if="!previousArticle.icon && previousArticle.tag != 'act'">
                           <img class="w-[130px] h-[130px] object-cover object-top inline-block grayscale mix-blend-darken"
                             :src="previousArticle.author.image" width="130" height="130" loading="lazy" />
@@ -1714,9 +1717,10 @@
               });
 
               // Check if the scroll position is not at the top (0)
-              if (scrollPosition !== 0) {
+              if (this.scrollPosition !== 0) {
                 // Restore the scroll position
                 window.scrollTo(0, this.scrollPosition);
+                setTimeout(() => { window.scrollTo(0, this.scrollPosition); }, 80);
               }
             },
             checkIndex() {
