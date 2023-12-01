@@ -1317,7 +1317,7 @@
                 </template>
                 
                 <template x-if="nextArticle">
-                  <a :href="nextArticle.hash" @click="transitionModals(nextArticle.hash), checkIndex" class="hidden lg:block fixed right-0 z-20 p-2 xl:p-5 -translate-y-1/2 max-w-[190px] xl:max-w-[230px] bg-white border border-r-0 border-black top-1/2 group transition duration-500 ease-out delay-700" :class="!showContent ? '!opacity-0 !translate-x-full delay-0' : ''">
+                  <a :href="nextArticle.hash" x-show="nextArticle" @click="transitionModals(nextArticle.hash), checkIndex" class="hidden lg:block fixed right-0 z-20 p-2 xl:p-5 -translate-y-1/2 max-w-[190px] xl:max-w-[230px] bg-white border border-r-0 border-black top-1/2 group transition duration-500 ease-out delay-700" :class="!showContent ? '!opacity-0 !translate-x-full delay-0' : ''">
                     <div class="flex items-center gap-5">
                       <div class="flex flex-col items-start justify-start gap-[10px]">
                         <template x-if="nextArticle.icon">
@@ -1347,7 +1347,7 @@
 
                 <!-- Mobile Next Button -->
                 <template x-if="nextArticle">
-                  <a :href="nextArticle.hash" id="nextArticle" @click="checkIndex, mobileTransitionModals('right')" x-ref="mobileNext" class="md:hidden absolute w-[100vw] scale-[.8] origin-top-left top-0 overflow-hidden h-screen opacity-50 flex items-start justify-start">
+                  <a :href="nextArticle.hash" x-show="nextArticle" id="nextArticle" @click="checkIndex, mobileTransitionModals('right')" x-ref="mobileNext" class="md:hidden absolute w-[100vw] scale-[.8] origin-top-left top-0 overflow-hidden h-screen opacity-50 flex items-start justify-start">
                     <div class="relative flex-col w-full lg:flex-row inline-flex items-start shrink-0 md:px-[65px] pt-[150px] md:py-[175px] overflow-hidden" :style="'background-color:' + getSVGPath(nextArticle.icon ? nextArticle.icon.square : null)">
                       <div class="container">
                         <div class="w-full mx-auto lg:w-3/4">
@@ -1549,7 +1549,6 @@
             isMobile: window.innerWidth < 768 ? true : false,
 
             init() {
-              console.log(window);
               // if window.location.hash is not empty, open the modal
               if (window.location.hash) {
                 this.openModal(window.location.hash);
@@ -1688,15 +1687,13 @@
                 } else if (event.key === 'ArrowRight' && this.nextArticle && this.showModal) {
                   this.transitionModals(this.nextArticle.hash);
                 }
-              });
-
-              
+              });              
             },
             closeModal() {
               this.showModal = false;
               this.$store.body.lock = false;
               window.location.hash = '';
-              this.$store.activeArticle = null;
+              this.$store.activeArticle = false;
               
               if (this.scrollPosition != 0) {
                 window.scrollTo(0, this.scrollPosition);
@@ -1811,52 +1808,56 @@
               }, 200);
             },
             mobileTransitionModals(direction) {
-              if(direction == 'left') {
-                if (this.previousArticle) {
-                  this.$refs.mobilePrev.classList.add('transitionIn');
-                  this.$refs.modalHeroBackground.classList.add('transitionInRight');
-
-                  if (this.nextArticle) {
-                    this.$refs.mobileNext.classList.add('transitionOut');
-                  }
-
-                  setTimeout(() => {
-                    this.$refs.modalHeroBackground.style.backgroundColor = this.getSVGPath(this.previousArticle.icon ? this.previousArticle.icon.square : null);
-                    window.location.hash = this.previousArticle.hash;
-                    this.$refs.mobilePrev.classList.remove('transitionIn');
-                    this.$refs.modalHeroBackground.classList.remove('transitionInRight');
-                    this.$refs.modalHeroBackground.classList.add('stopTransition');
-
-                    if (this.nextArticle) {
-                      this.$refs.mobileNext.classList.remove('transitionOut');
-                    }
-                  }, 300);
-                }
-              }
-              if (direction == 'right') {
-                if (this.nextArticle) {
-                  this.$refs.mobileNext.classList.add('transitionIn');
+              // Alpine next tick
+                if(direction == 'left') {
                   if (this.previousArticle) {
-                    this.$refs.mobilePrev.classList.add('transitionOut');
-                  }
-                  this.$refs.modalHeroBackground.classList.add('transitionInLeft');
-
-                  setTimeout(() => {
-                    this.$refs.modalHeroBackground.style.backgroundColor = this.getSVGPath(this.nextArticle.icon ? this.nextArticle.icon.square : null);
-                    window.location.hash = this.nextArticle.hash;
-                    this.$refs.mobileNext.classList.remove('transitionIn');
-                    this.$refs.modalHeroBackground.classList.remove('transitionInLeft');
-                    this.$refs.modalHeroBackground.classList.add('stopTransition');
-                    if (this.previousArticle) {
-                      this.$refs.mobilePrev.classList.remove('transitionOut');
+                    this.$refs.mobilePrev.classList.add('transitionIn');
+                    this.$refs.modalHeroBackground.classList.add('transitionInRight');
+  
+                    if (this.nextArticle) {
+                      this.$refs.mobileNext.classList.add('transitionOut');
                     }
-                  }, 300);
+  
+                    setTimeout(() => {
+                      this.$refs.modalHeroBackground.style.backgroundColor = this.getSVGPath(this.previousArticle.icon ? this.previousArticle.icon.square : null);
+                      window.location.hash = this.previousArticle.hash;
+                      this.$refs.mobilePrev.classList.remove('transitionIn');
+                      this.$refs.modalHeroBackground.classList.remove('transitionInRight');
+                      this.$refs.modalHeroBackground.classList.add('stopTransition');
+  
+                      if (this.nextArticle) {
+                        this.$refs.mobileNext.classList.remove('transitionOut');
+                      }
+                    }, 300);
+                  }
                 }
-              }
-              
-              setTimeout(() => {
-                this.$refs.modalHeroBackground.classList.remove('stopTransition');
-              }, 310);
+                if (direction == 'right') {
+                  if (this.nextArticle) {
+                    this.$refs.mobileNext.classList.add('transitionIn');
+                    if (this.previousArticle) {
+                      this.$refs.mobilePrev.classList.add('transitionOut');
+                    }
+                    
+                    if(this.$refs.modalHeroBackground) {
+                      this.$refs.modalHeroBackground.classList.add('transitionInLeft');
+                    }
+  
+                    setTimeout(() => {
+                      this.$refs.modalHeroBackground.style.backgroundColor = this.getSVGPath(this.nextArticle.icon ? this.nextArticle.icon.square : null);
+                      window.location.hash = this.nextArticle.hash;
+                      this.$refs.mobileNext.classList.remove('transitionIn');
+                      this.$refs.modalHeroBackground.classList.remove('transitionInLeft');
+                      this.$refs.modalHeroBackground.classList.add('stopTransition');
+                      if (this.previousArticle) {
+                        this.$refs.mobilePrev.classList.remove('transitionOut');
+                      }
+                    }, 300);
+                  }
+                }
+                
+                setTimeout(() => {
+                  this.$refs.modalHeroBackground.classList.remove('stopTransition');
+                }, 310);
             }
           }
         }
