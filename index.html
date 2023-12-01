@@ -1564,11 +1564,11 @@
               });
             },
             openModal(value) {
+              console.log('open modal' + value);
               // if the value is in $store.articles, set the active article to the value, as well as the nextArticle and previousArticle
               this.$store.articles.forEach((article) => {
                 if (article.content.hash === value) {
                   this.$store.activeArticle = article.content;
-                  this.checkIndex();
                 }
               });
 
@@ -1576,10 +1576,12 @@
               this.$store.testimonies.forEach((article) => {
                 if (article.content.hash === value) {
                   this.$store.activeArticle = article.content;
-                  this.checkIndex();
                 }
               });
-
+              
+              setTimeout(() => {
+                this.checkIndex();
+              }, 50);
               
               if (!this.showModal) {
                 this.scrollPosition = window.scrollY;
