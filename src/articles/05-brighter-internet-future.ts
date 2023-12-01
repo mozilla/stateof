@@ -3,7 +3,7 @@ export const content: object = {
   hash: '#enrichment',
   author: {
     name: 'Eric Muhlheim & Angela Plohman',
-    job_title: 'Chief Financial Officer & Executive Vice President',
+    job_title: 'Chief Financial Officer & Chief Operating Officer',
     multiple: true,
     image: [
       '/headshots/Eric-Muhlheim.jpeg',
