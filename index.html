@@ -1550,7 +1550,7 @@
 
             init() {
               // if window.location.hash is not empty, open the modal
-              if (window.location.hash) {
+              if (window.location.hash && window.location.hash != '#') {
                 this.openModal(window.location.hash);
                 this.checkImage();
               }
@@ -1564,7 +1564,6 @@
               });
             },
             openModal(value) {
-              console.log('open modal' + value);
               // if the value is in $store.articles, set the active article to the value, as well as the nextArticle and previousArticle
               this.$store.articles.forEach((article) => {
                 if (article.content.hash === value) {
@@ -1634,38 +1633,40 @@
                   
                   // watch scroll and change the width of the modal till it reaches 100
                   this.$refs.modal.addEventListener('scroll', (el) => {
-                    const scrollPercent = (el.target.scrollTop / (el.target.scrollHeight - el.target.clientHeight));
-                    let whiteSpace = scrollPercent * 100;
-                    this.modalWidth = .8 + scrollPercent;
-                    whiteSpace = this.modalWhiteSpace + (whiteSpace / 2);
-                    
-                    if (this.modalWidth > 1) {
-                      this.modalWidth = 1;
-                    }
-                    
-                    if (this.modalWidth < .8) {
-                      this.modalWidth = .8;
-                    }
-
-                    if (whiteSpace > 100) {
-                      whiteSpace = 100;
-                    }
-
-                    if (whiteSpace < this.modalWhiteSpace) {
-                      whiteSpace = this.modalWhiteSpace;
-                    }
+                    if(this.showModal) {
+                      const scrollPercent = (el.target.scrollTop / (el.target.scrollHeight - el.target.clientHeight));
+                      let whiteSpace = scrollPercent * 100;
+                      this.modalWidth = .8 + scrollPercent;
+                      whiteSpace = this.modalWhiteSpace + (whiteSpace / 2);
+                      
+                      if (this.modalWidth > 1) {
+                        this.modalWidth = 1;
+                      }
+                      
+                      if (this.modalWidth < .8) {
+                        this.modalWidth = .8;
+                      }
   
-                    this.$refs.activeModal.style.transform = `scale(${this.modalWidth})`;
-
-                    if(this.$refs.mobilePrev) {
-                      this.$refs.mobilePrev.style.right = `${whiteSpace}vw`;
-                    }
-
-                    if (this.$refs.mobileNext) {
-                      this.$refs.mobileNext.style.left = `${whiteSpace}vw`;
+                      if (whiteSpace > 100) {
+                        whiteSpace = 100;
+                      }
+  
+                      if (whiteSpace < this.modalWhiteSpace) {
+                        whiteSpace = this.modalWhiteSpace;
+                      }
+    
+                      this.$refs.activeModal.style.transform = `scale(${this.modalWidth})`;
+  
+                      if(this.$refs.mobilePrev) {
+                        this.$refs.mobilePrev.style.right = `${whiteSpace}vw`;
+                      }
+  
+                      if (this.$refs.mobileNext) {
+                        this.$refs.mobileNext.style.left = `${whiteSpace}vw`;
+                      }
                     }
                   });
-                }, 1);
+                }, 50);
               }
               
               this.showModal = true;
@@ -1696,6 +1697,21 @@
               this.$store.body.lock = false;
               window.location.hash = '';
               this.$store.activeArticle = false;
+
+              // stop all the listening events
+              window.removeEventListener('keydown', (event) => {
+                if (event.key === 'Escape' && this.showModal) {
+                  this.closeModal();
+                }
+              });
+
+              window.removeEventListener('keydown', (event) => {
+                if (event.key === 'ArrowLeft' && this.previousArticle && this.showModal) {
+                  this.transitionModals(this.previousArticle.hash);
+                } else if (event.key === 'ArrowRight' && this.nextArticle && this.showModal) {
+                  this.transitionModals(this.nextArticle.hash);
+                }
+              });
               
               if (this.scrollPosition != 0) {
                 window.scrollTo(0, this.scrollPosition);
@@ -1777,14 +1793,16 @@
                 }
               });
               window.addEventListener('touchend', () => {
-                if (startX !== null) {
-                  if (dist > 50) {
-                    this.mobileTransitionModals('left');
-                  } else if (dist < -50) {
-                    this.mobileTransitionModals('right');
+                if(this.showModal) {
+                  if (startX !== null) {
+                    if (dist > 50) {
+                      this.mobileTransitionModals('left');
+                    } else if (dist < -50) {
+                      this.mobileTransitionModals('right');
+                    }
+                    startX = null;
+                    dist = 0;
                   }
-                  startX = null;
-                  dist = 0;
                 }
               });
             },
