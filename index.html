@@ -1583,7 +1583,7 @@
               }, 50);
               
               if (!this.showModal) {
-                this.scrollPosition = window.scrollY;
+                this.scrollPosition = window.scrollY || window.pageYOffset;
               }
 
               // get the fill of the first path in the SVG and make it the background color of the modal hero
@@ -1712,8 +1712,10 @@
                   this.transitionModals(this.nextArticle.hash);
                 }
               });
-              
-              if (this.scrollPosition != 0) {
+
+              // Check if the scroll position is not at the top (0)
+              if (scrollPosition !== 0) {
+                // Restore the scroll position
                 window.scrollTo(0, this.scrollPosition);
               }
             },
