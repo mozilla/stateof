@@ -1239,16 +1239,18 @@
                             <template x-if="previousArticle.author">
                               <div class="flex items-start gap-5 mb-[48px] w-full">
                                 <template x-if="previousArticle && previousArticle.author.multiple  && previousArticle.author.image && !previousArticle.tag">
-                                  <template x-for="image in previousArticle.author.image">
-                                    <div class="overflow-hidden bg-white rounded-full first:z-10 -mr-3 last:mr-0 w-12 md:w-[75px] shrink-0">
-                                      <div class="relative w-12 md:w-[75px] shrink-0 -mr-4 first:z-10 !bg-opacity-100"
-                                        :style="'background-color:' + getSVGPath(previousArticle.icon ? previousArticle.icon.square : null)">
-                                        <img :src="image" alt="previousArticle.author.name" width="75" height="75" loading="lazy"
-                                          class=" w-fulll mix-blend-multiply grayscale" />
-                                        <div class="absolute top-0 left-0 w-full h-full bg-black opacity-40 mix-blend-soft-light"></div>
+                                  <div class="flex items-start">
+                                    <template x-for="image in previousArticle.author.image">
+                                      <div class="overflow-hidden bg-white rounded-full first:z-10 -mr-3 last:mr-0 w-12 md:w-[75px] shrink-0">
+                                        <div class="relative w-12 md:w-[75px] shrink-0 -mr-4 first:z-10 !bg-opacity-100"
+                                          :style="'background-color:' + getSVGPath(previousArticle.icon ? previousArticle.icon.square : null)">
+                                          <img :src="image" alt="previousArticle.author.name" width="75" height="75" loading="lazy"
+                                            class=" w-fulll mix-blend-multiply grayscale" />
+                                          <div class="absolute top-0 left-0 w-full h-full bg-black opacity-40 mix-blend-soft-light"></div>
+                                        </div>
                                       </div>
-                                    </div>
-                                  </template>
+                                    </template>
+                                  </div>
                                 </template>
                                 <template x-if="previousArticle && previousArticle.author && previousArticle.author.image && !previousArticle.author.multiple && !previousArticle.tag">
                                   <div class="overflow-hidden bg-white rounded-full first:z-10 w-12 md:w-[75px] shrink-0">
@@ -1358,15 +1360,17 @@
                             <template x-if="nextArticle.author">
                               <div class="flex items-start gap-5 mb-[48px] w-full">
                                 <template x-if="nextArticle && nextArticle.author.multiple  && nextArticle.author.image && !nextArticle.tag">
-                                  <template x-for="image in nextArticle.author.image">
-                                    <div class="overflow-hidden bg-white rounded-full first:z-10 -mr-3 last:mr-0 w-12 md:w-[75px] shrink-0">
-                                      <div class="relative w-12 md:w-[75px] shrink-0 -mr-4 first:z-10 !bg-opacity-100" :style="'background-color:' + getSVGPath(nextArticle.icon ? nextArticle.icon.square : null)">
-                                        <img :src="image" alt="nextArticle.author.name" width="75" height="75" loading="lazy"
-                                          class=" w-fulll mix-blend-multiply grayscale" />
-                                        <div class="absolute top-0 left-0 w-full h-full bg-black opacity-40 mix-blend-soft-light"></div>
+                                  <div class="flex items-start">
+                                    <template x-for="image in nextArticle.author.image">
+                                      <div class="overflow-hidden bg-white rounded-full first:z-10 -mr-3 last:mr-0 w-12 md:w-[75px] shrink-0">
+                                        <div class="relative w-12 md:w-[75px] shrink-0 -mr-4 first:z-10 !bg-opacity-100" :style="'background-color:' + getSVGPath(nextArticle.icon ? nextArticle.icon.square : null)">
+                                          <img :src="image" alt="nextArticle.author.name" width="75" height="75" loading="lazy"
+                                            class=" w-fulll mix-blend-multiply grayscale" />
+                                          <div class="absolute top-0 left-0 w-full h-full bg-black opacity-40 mix-blend-soft-light"></div>
+                                        </div>
                                       </div>
-                                    </div>
-                                  </template>
+                                    </template>
+                                  </div>
                                 </template>
                                 <template x-if="nextArticle && nextArticle.author && nextArticle.author.image && !nextArticle.author.multiple && !nextArticle.tag">
                                   <div class="overflow-hidden bg-white rounded-full first:z-10 w-12 md:w-[75px] shrink-0">
