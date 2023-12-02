@@ -56,6 +56,14 @@
     @apply underline hover:text-[#89D5FF];
   }
 
+  .modal-job-title a {
+    @apply underline hover:no-underline;
+  }
+
+  .modal-author-title a {
+    @apply underline hover:no-underline;
+  }
+
   .modal-body ul {
     @apply list-disc pl-3 mb-[35px];
   }

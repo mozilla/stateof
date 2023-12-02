@@ -1475,12 +1475,12 @@
                                 <div class="flex flex-col items-start justify-start w-full">
                                   <span class="flex items-end gap-[10px] w-full">
                                     <template x-if="$store.activeArticle && $store.activeArticle.author">
-                                      <span class="text-[16px]/[24px] tracking-[0.64px] font-semibold font-title md:shrink-0 inline-block transition duration-500 ease-out delay-100" :class="!showContent ? 'opacity-0  !delay-0 !duration-100' : ''" x-html="$store.activeArticle.author.name"></span>
+                                      <span class="text-[16px]/[24px] tracking-[0.64px] font-semibold font-title md:shrink-0 inline-block transition duration-500 ease-out delay-100 modal-author-title" :class="!showContent ? 'opacity-0  !delay-0 !duration-100' : ''" x-html="$store.activeArticle.author.name"></span>
                                     </template>
                                     <div class="hidden md:inline-block w-full h-0.5 bg-black -translate-y-1.5 transition duration-500 ease-out delay-100 origin-left" :class="!showContent ? ' scale-x-0  !delay-0 !duration-100' : ''"></div>
                                   </span>
                                   <template x-if="$store.activeArticle && $store.activeArticle.author">
-                                    <span class="text-[14px]/[21px] font-normal font-title transition duration-500 ease-out delay-150" :class="!showContent ? 'opacity-0  !delay-0 !duration-100' : ''" x-html="$store.activeArticle.author.job_title"></span>
+                                    <span class="text-[14px]/[21px] font-normal font-title transition duration-500 ease-out delay-150 modal-job-title" :class="!showContent ? 'opacity-0  !delay-0 !duration-100' : ''" x-html="$store.activeArticle.author.job_title"></span>
                                   </template>
                                 </div>
                               </div>
@@ -1494,7 +1494,7 @@
                             <h3 class="font-title text-[24px]/[31px] tracking-[.48px] font-normal mt-10 md:mt-[80px] mb-10 transition duration-500 delay-300 ease-out" :class="!showContent ? 'opacity-0 -translate-x-4  !delay-0 !duration-100' : ''" x-html="$store.activeArticle.excerpt"></h3>
                             
                             <template x-if="$store.activeArticle && $store.activeArticle.modal_style == 'short'">
-                              <div class="transition duration-500 ease-out delay-300" :class="!showContent ? 'opacity-0 -translate-x-4 !delay-0 !duration-100' : ''" x-html="$store.activeArticle.body"></div>
+                              <div class="transition duration-500 ease-out delay-300 modal-body" :class="!showContent ? 'opacity-0 -translate-x-4 !delay-0 !duration-100' : ''" x-html="$store.activeArticle.body"></div>
                             </template>
                           </div>
                         </div>
