@@ -39,7 +39,7 @@
     <script type="text/javascript" src="https://www.youtube.com/iframe_api" defer></script>
   </head>
 
-  <body class="flex flex-col font-body" x-data x-cloak :class="{ 'overflow-hidden h-screen' : $store.body.lock }">
+  <body class="flex flex-col font-body" x-data x-cloak>
     <header ref="header" class="fixed top-0 left-0 z-20 w-full transition duration-150 ease-out"  x-data="nav()" @scroll.window="revealHeader()" :class="isScrolled ? 'bg-white' : ''">
       <div class="container flex items-center justify-between gap-6 py-5 transition-opacity duration-300 md:py-9">
         <a href="/" x-cloak class="w-[100px] z-10">
@@ -1164,7 +1164,7 @@
       </section>
 
       <template x-teleport="body">
-        <div id="modal-container" class="fixed top-0 left-0 z-20 table w-full h-full transform" x-show="showModal" :class="showModal ? 'active' : ''" x-cloak x-trap.inert="showModal">
+        <div id="modal-container" class="fixed top-0 left-0 z-20 table w-full h-full transform" x-show="showModal" :class="showModal ? 'active' : ''" x-cloak x-trap.inert="showModal" x-trap.noscroll="showModal">
           <div class="absolute top-0 left-0 z-0 w-full h-full transition bg-black opacity-0 modal-background"></div>
           <div class="relative z-20 h-screen overflow-x-hidden overflow-y-scroll transition duration-500 ease-out" id="modal" :class="showModal ? 'opacity-100' : 'opacity-0'" x-ref="modal">
             <div class="relative bg-white modal">
@@ -1676,7 +1676,6 @@
               }
               
               this.showModal = true;
-              this.$store.body.lock = true;
               
               this.$nextTick(() => {
                 this.$refs.modal.focus();
