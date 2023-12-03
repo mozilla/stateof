@@ -28,6 +28,7 @@ for (const modulePath in testimonies) {
   }
 }
 
+
 interface BodyStore {
   lock: boolean;
   toggle(): void;
@@ -46,6 +47,7 @@ Alpine.store('modalType', '');
 
 Alpine.store('articles', articleContents);
 Alpine.store('testimonies', testimoniesContents);
+Alpine.store('scrollPosition', '');
 
 Alpine.store('activeArticle', {});
 

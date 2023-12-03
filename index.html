@@ -1494,7 +1494,7 @@
                       </div>
                     </div>
                     <template x-if="$store.activeArticle && $store.activeArticle.icon && !$store.activeArticle.tag">
-                      <template x-if="$store.activeArticle && $store.activeArticle.icon">
+                      <template x-if="$store.activeArticle && $store.activeArticle.icon && $store.activeArticle.icon.square">
                         <div class="mt-10 md:mt-0 md:absolute bottom-0 right-0 translate-x-[10vw] w-full md:w-[50vw] xl:w-[40vw] z-[-1] origin-center transition duration-500 delay-[400ms] ease-out" :class="!showContent ? 'opacity-0  scale-90  !delay-0 !duration-100' : ''" x-ref="modalIcon" x-html="$store.activeArticle.icon.square"></div>
                       </template>
                     </template>
@@ -1585,10 +1585,15 @@
               setTimeout(() => {
                 this.checkIndex();
               }, 50);
+
+              this.scrollPosition = window.scrollY || window.pageYOffset;
               
-              if (!this.showModal) {
-                this.scrollPosition = window.scrollY || window.pageYOffset;
+              if (this.scrollPosition > 0) {
+                this.$store.scrollPosition = window.scrollY || window.pageYOffset;
               }
+
+              console.log(this.$store.scrollPosition);
+              
 
               // get the fill of the first path in the SVG and make it the background color of the modal hero
               setTimeout(() => {
@@ -1618,7 +1623,7 @@
                     image.style.backgroundColor = '#CEEAEB';
                   });
                 }
-              }, 150);
+              }, 100);
 
               // Mobile animations
               if (this.isMobile) {
@@ -1698,7 +1703,16 @@
             closeModal() {
               this.showModal = false;
               this.$store.body.lock = false;
+              window.scrollTo(0, this.$store.scrollPosition);
               window.location.hash = '';
+              window.scrollTo(0, this.$store.scrollPosition);
+
+              if (window.scrollY < this.$store.scrollPosition) {
+                setTimeout(() => {
+                  window.scrollTo(0, this.$store.scrollPosition);
+                }, 300);
+              }
+
               this.$store.activeArticle = {
                 title: '',
                 excerpt: '',
@@ -1730,20 +1744,8 @@
                   this.transitionModals(this.nextArticle.hash);
                 }
               });
-
-              // Check if the scroll position is not at the top 0
-              // if (this.scrollPosition !== 0) {
-              //   // setInterval scroll the window to till it reaches the scrollPosition
-              //   setInterval(() => {
-              //     if (window.scrollY > this.scrollPosition) {
-              //       window.scrollTo(0, window.scrollY);
-              //     } else {
-              //       clearInterval();
-              //     }
-              //   }, 100);
-              // }
-
-              // console.log(window.scrollY, this.scrollPosition);
+              
+              this.$store.scrollPosition = '';
             },
             checkIndex() {
               this.$store.articles.forEach((article, index) => {
@@ -1760,7 +1762,6 @@
                 }
               });
             },
-
             checkImage() {
               if (this.$store.activeArticle.tag || this.$store.activeArticle.author == null || this.$store.activeArticle.author.image == null) {
                 this.showAuthorImage = false;
@@ -1821,7 +1822,7 @@
                 }
               });
               window.addEventListener('touchend', () => {
-                if(this.showModal) {
+                if(this.showModal && dist) {
                   if (startX !== null) {
                     if (dist > 50) {
                       this.mobileTransitionModals('left');
