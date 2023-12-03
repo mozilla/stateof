@@ -1164,7 +1164,7 @@
       </section>
 
       <template x-teleport="body">
-        <div id="modal-container" class="fixed top-0 left-0 z-20 table w-full h-screen transform" style="min-height: -webkit-fill-available;" x-show="showModal" :class="showModal ? 'active' : ''" x-cloak x-trap.inert="showModal" x-trap.noscroll="showModal">
+        <div id="modal-container" class="fixed top-0 left-0 z-20 table w-full h-[100dvh] transform" style="min-height: -webkit-fill-available;" x-show="showModal" :class="showModal ? 'active' : ''" x-cloak x-trap.inert="showModal" x-trap.noscroll="showModal">
           <div class="absolute top-0 left-0 z-0 w-full h-full transition bg-black opacity-0 modal-background"></div>
           <div class="relative z-20 h-screen overflow-x-hidden overflow-y-scroll transition duration-500 ease-out" id="modal" :class="showModal ? 'opacity-100' : 'opacity-0'" x-ref="modal">
             <div class="relative bg-white modal">
