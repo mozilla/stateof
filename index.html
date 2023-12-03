@@ -1164,9 +1164,9 @@
       </section>
 
       <template x-teleport="body">
-        <div id="modal-container" class="fixed top-0 left-0 z-20 table w-full h-[100dvh] transform" style="min-height: -webkit-fill-available;" x-show="showModal" :class="showModal ? 'active' : ''" x-cloak x-trap.inert="showModal" x-trap.noscroll="showModal">
+        <div id="modal-container" class="fixed top-0 left-0 z-20 table w-full h-[100dvh] transform" style="min-height: -webkit-fill-available;" x-show="showModal" :class="showModal ? 'active' : ''" x-cloak x-trap.inert="showModal">
           <div class="absolute top-0 left-0 z-0 w-full h-full transition bg-black opacity-0 modal-background"></div>
-          <div class="relative z-20 h-full overflow-x-hidden overflow-y-scroll transition duration-500 ease-out" style="min-height: -webkit-fill-available;" id="modal" :class="showModal ? 'opacity-100' : 'opacity-0'" x-ref="modal">
+          <div class="relative z-20 h-full overflow-x-hidden overflow-y-scroll transition duration-500 ease-out" x-trap.noscroll="showModal" style="min-height: -webkit-fill-available;" id="modal" :class="showModal ? 'opacity-100' : 'opacity-0'" x-ref="modal">
             <div class="relative bg-white modal">
               <div class="md:w-[90vw] mx-auto block text-[#111111] relative origin-top" x-ref="modalContainer" @click.outside="closeModal">
                 <!-- Modal Header -->
@@ -1293,7 +1293,7 @@
                           </div>
                         </div>
                       </div>
-                      <template x-if="previousArticle.icon">
+                      <template x-if="previousArticle.icon && previousArticle.icon.square">
                         <div class="md:absolute bottom-0 right-0 translate-x-[10vw] w-full md:w-[40vw] lg:w-[30vw] mt-10" x-html="previousArticle.icon.square"></div>
                       </template>
                       
@@ -1435,87 +1435,89 @@
                 </template>
                 
                 <div class="origin-top" x-ref="activeModal">
-                  <template x-if="$store.activeArticle && $store.activeArticle.title">
-                    <div class="relative flex-col z-10 lg:flex-row inline-flex items-start lg:items-center lg:px-8 md:px-[65px] pt-[150px] md:py-[175px] lg:py-28 min-h-screen w-full overflow-hidden md:overflow-visible md:transition-colors duration-300 ease-out" id="modalMain" x-ref="modalHeroBackground">
-                      <div class="container z-10">
-                        <div class="w-full mx-auto lg:w-3/4">
-                          <div class="flex flex-col items-start w-full lg:w-3/4">
-                            <template x-if="$store.activeArticle && $store.activeArticle.author">
-                              <div class="flex items-start md:items-center gap-5 mb-[48px] w-full">
-                                <template x-if="$store.activeArticle && $store.activeArticle.author && showAuthorImage">
-                                  <div class="flex items-start transition duration-500 ease-out" :class="!showContent ? 'opacity-0 -translate-x-4 !delay-0 !duration-100' : ''">
-                                    <template x-if="$store.activeArticle && $store.activeArticle.author.multiple">
-                                      <template x-for="image in $store.activeArticle.author.image">
-                                        <div class="overflow-hidden bg-white rounded-full first:z-10 -mr-3 last:mr-0 w-12 md:w-[75px] shrink-0">
-                                          <div class="relative w-12 md:w-[75px] shrink-0 -mr-4 first:z-10 !bg-opacity-100 modal-author-image">
-                                            <img :src="image" alt="$store.activeArticle.author.name" width="75" height="75" class=" w-fulll mix-blend-multiply grayscale"/>
-                                            <div class="absolute top-0 left-0 w-full h-full bg-black opacity-40 mix-blend-soft-light"></div>
-                                          </div>
+                  <div class="relative flex-col z-10 lg:flex-row inline-flex items-start lg:items-center lg:px-8 md:px-[65px] pt-[150px] md:py-[175px] lg:py-28 min-h-screen w-full overflow-hidden md:overflow-visible md:transition-colors duration-300 ease-out" id="modalMain" x-ref="modalHeroBackground">
+                    <div class="container z-10">
+                      <div class="w-full mx-auto lg:w-3/4">
+                        <div class="flex flex-col items-start w-full lg:w-3/4">
+                          <template x-if="$store.activeArticle && $store.activeArticle.author">
+                            <div class="flex items-start md:items-center gap-5 mb-[48px] w-full">
+                              <template x-if="$store.activeArticle && $store.activeArticle.author && showAuthorImage">
+                                <div class="flex items-start transition duration-500 ease-out" :class="!showContent ? 'opacity-0 -translate-x-4 !delay-0 !duration-100' : ''">
+                                  <template x-if="$store.activeArticle && $store.activeArticle.author.multiple">
+                                    <template x-for="image in $store.activeArticle.author.image">
+                                      <div class="overflow-hidden bg-white rounded-full first:z-10 -mr-3 last:mr-0 w-12 md:w-[75px] shrink-0">
+                                        <div class="relative w-12 md:w-[75px] shrink-0 -mr-4 first:z-10 !bg-opacity-100 modal-author-image">
+                                          <img :src="image" alt="$store.activeArticle.author.name" width="75" height="75" class=" w-fulll mix-blend-multiply grayscale"/>
+                                          <div class="absolute top-0 left-0 w-full h-full bg-black opacity-40 mix-blend-soft-light"></div>
                                         </div>
-                                      </template>
-                                    </template> 
-                                    <template x-if="$store.activeArticle && $store.activeArticle.author && !$store.activeArticle.author.multiple">
-                                      <div class="overflow-hidden bg-white rounded-full first:z-10 w-12 md:w-[75px] shrink-0">
+                                      </div>
+                                    </template>
+                                  </template> 
+                                  <template x-if="$store.activeArticle && $store.activeArticle.author && !$store.activeArticle.author.multiple">
+                                    <div class="overflow-hidden bg-white rounded-full first:z-10 w-12 md:w-[75px] shrink-0">
+                                      <template x-if="$store.activeArticle.author.image">
                                         <div class="relative w-12 md:w-[75px] shrink-0 -mr-4 first:z-10 !bg-opacity-100 modal-author-image">
                                           <img :src="$store.activeArticle.author.image" alt="$store.activeArticle.author.name" width="75" height="75"
                                             class=" w-fulll mix-blend-multiply grayscale" />
                                           <div class="absolute top-0 left-0 w-full h-full bg-black opacity-40 mix-blend-soft-light"></div>
                                         </div>
-                                      </div>
-                                    </template>
-                                  </div>
-                                </template>
-                                <div class="flex flex-col items-start justify-start w-full">
-                                  <span class="flex items-end gap-[10px] w-full">
-                                    <template x-if="$store.activeArticle && $store.activeArticle.author">
-                                      <span class="text-[16px]/[24px] tracking-[0.64px] font-semibold font-title md:shrink-0 inline-block transition duration-500 ease-out delay-100 modal-author-title" :class="!showContent ? 'opacity-0  !delay-0 !duration-100' : ''" x-html="$store.activeArticle.author.name"></span>
-                                    </template>
-                                    <div class="hidden md:inline-block w-full h-0.5 bg-black -translate-y-1.5 transition duration-500 ease-out delay-100 origin-left" :class="!showContent ? ' scale-x-0  !delay-0 !duration-100' : ''"></div>
-                                  </span>
-                                  <template x-if="$store.activeArticle && $store.activeArticle.author">
-                                    <span class="text-[14px]/[21px] font-normal font-title transition duration-500 ease-out delay-150 modal-job-title" :class="!showContent ? 'opacity-0  !delay-0 !duration-100' : ''" x-html="$store.activeArticle.author.job_title"></span>
+                                      </template>
+                                    </div>
                                   </template>
                                 </div>
+                              </template>
+                              <div class="flex flex-col items-start justify-start w-full">
+                                <span class="flex items-end gap-[10px] w-full">
+                                  <template x-if="$store.activeArticle && $store.activeArticle.author">
+                                    <span class="text-[16px]/[24px] tracking-[0.64px] font-semibold font-title md:shrink-0 inline-block transition duration-500 ease-out delay-100 modal-author-title" :class="!showContent ? 'opacity-0  !delay-0 !duration-100' : ''" x-html="$store.activeArticle.author.name"></span>
+                                  </template>
+                                  <div class="hidden md:inline-block w-full h-0.5 bg-black -translate-y-1.5 transition duration-500 ease-out delay-100 origin-left" :class="!showContent ? ' scale-x-0  !delay-0 !duration-100' : ''"></div>
+                                </span>
+                                <template x-if="$store.activeArticle && $store.activeArticle.author">
+                                  <span class="text-[14px]/[21px] font-normal font-title transition duration-500 ease-out delay-150 modal-job-title" :class="!showContent ? 'opacity-0  !delay-0 !duration-100' : ''" x-html="$store.activeArticle.author.job_title"></span>
+                                </template>
                               </div>
-                            </template>
+                            </div>
+                          </template>
 
-                            <template x-if="!$store.activeArticle.author">
-                              <div class="mt-[96px] md:mt-0"></div>
-                            </template>
-                            
-                            <h2 class="text-[36px]/[38px] md:text-[45px]/[45px] xl:text-[64px]/[64px] font-bold font-title transition duration-500 delay-200 ease-out" :class="!showContent ? 'opacity-0 -translate-x-4 !duration-100 !delay-0' : ''" x-show="showModal" x-html="$store.activeArticle.title"></h2>
-                            <h3 class="font-title text-[24px]/[31px] tracking-[.48px] font-normal mt-10 md:mt-[80px] mb-10 transition duration-500 delay-300 ease-out" :class="!showContent ? 'opacity-0 -translate-x-4  !delay-0 !duration-100' : ''" x-html="$store.activeArticle.excerpt"></h3>
-                            
-                            <template x-if="$store.activeArticle && $store.activeArticle.modal_style == 'short'">
-                              <div class="transition duration-500 ease-out delay-300 modal-body" :class="!showContent ? 'opacity-0 -translate-x-4 !delay-0 !duration-100' : ''" x-html="$store.activeArticle.body"></div>
-                            </template>
-                          </div>
+                          <template x-if="!$store.activeArticle.author">
+                            <div class="mt-[96px] md:mt-0"></div>
+                          </template>
+                          
+                          <h2 class="text-[36px]/[38px] md:text-[45px]/[45px] xl:text-[64px]/[64px] font-bold font-title transition duration-500 delay-200 ease-out" :class="!showContent ? 'opacity-0 -translate-x-4 !duration-100 !delay-0' : ''" x-show="showModal" x-html="$store.activeArticle.title"></h2>
+                          <h3 class="font-title text-[24px]/[31px] tracking-[.48px] font-normal mt-10 md:mt-[80px] mb-10 transition duration-500 delay-300 ease-out" :class="!showContent ? 'opacity-0 -translate-x-4  !delay-0 !duration-100' : ''" x-html="$store.activeArticle.excerpt"></h3>
+                          
+                          <template x-if="$store.activeArticle && $store.activeArticle.modal_style == 'short'">
+                            <div class="transition duration-500 ease-out delay-300 modal-body" :class="!showContent ? 'opacity-0 -translate-x-4 !delay-0 !duration-100' : ''" x-html="$store.activeArticle.body"></div>
+                          </template>
                         </div>
                       </div>
-                      <template x-if="$store.activeArticle && $store.activeArticle.icon && !$store.activeArticle.tag">
-                        <template x-if="$store.activeArticle && $store.activeArticle.icon">
-                          <div class="mt-10 md:mt-0 md:absolute bottom-0 right-0 translate-x-[10vw] w-full md:w-[50vw] xl:w-[40vw] z-[-1] origin-center transition duration-500 delay-[400ms] ease-out" :class="!showContent ? 'opacity-0  scale-90  !delay-0 !duration-100' : ''" x-ref="modalIcon" x-html="$store.activeArticle.icon.square"></div>
-                        </template>
-                      </template>
-                      <template x-if="$store.activeArticle && $store.activeArticle.tag && $store.activeArticle.tag == 'choose' || $store.activeArticle.tag == 'build'">
-                        <div class="mt-10 md:mt-0 md:absolute bottom-0 right-0 translate-x-[5vw] w-full md:w-[60vw] lg:w-[30vw] z-[-1] rounded-tl-[200px] aspect-square overflow-hidden bg-white origin-center transition duration-500 delay-[400ms] ease-out" :class="!showContent ? 'opacity-0  scale-90  !delay-0 !duration-100' : ''" >
-                          <div class="bg-[#b3dbde] w-full h-full">
-                            <img :src="$store.activeArticle.author.image" alt="$store.activeArticle.author.name" width="100%" height="100%" class="object-cover object-top w-full h-full grayscale mix-blend-multiply" />
-                          </div>
-                        </div>
-                      </template>
-
-                      <template x-if="$store.activeArticle.tag && $store.activeArticle.tag == 'act'">
-                        <div
-                          class="mt-10 md:mt-0 md:absolute bottom-0 right-0 translate-x-[5vw] w-full md:w-[60vw] lg:w-[30vw] z-[-1] rounded-tl-[200px] aspect-square overflow-hidden bg-white origin-center transition duration-500 delay-[400ms] ease-out"
-                          :class="!showContent ? 'opacity-0  scale-90  !delay-0 !duration-100' : ''">
-                          <div class="bg-[#b3dbde] w-full h-full">
-                            <img :src="$store.activeArticle.image" alt="$store.activeArticle.author.name" width="100%" height="100%" class="object-cover object-top w-full h-full grayscale mix-blend-multiply" />
-                          </div>
-                        </div>
-                      </template>
                     </div>
-                  </template>
+                    <template x-if="$store.activeArticle && $store.activeArticle.icon && !$store.activeArticle.tag">
+                      <template x-if="$store.activeArticle && $store.activeArticle.icon">
+                        <div class="mt-10 md:mt-0 md:absolute bottom-0 right-0 translate-x-[10vw] w-full md:w-[50vw] xl:w-[40vw] z-[-1] origin-center transition duration-500 delay-[400ms] ease-out" :class="!showContent ? 'opacity-0  scale-90  !delay-0 !duration-100' : ''" x-ref="modalIcon" x-html="$store.activeArticle.icon.square"></div>
+                      </template>
+                    </template>
+                    <template x-if="$store.activeArticle && $store.activeArticle.tag && $store.activeArticle.tag == 'choose' || $store.activeArticle.tag == 'build'">
+                      <div class="mt-10 md:mt-0 md:absolute bottom-0 right-0 translate-x-[5vw] w-full md:w-[60vw] lg:w-[30vw] z-[-1] rounded-tl-[200px] aspect-square overflow-hidden bg-white origin-center transition duration-500 delay-[400ms] ease-out" :class="!showContent ? 'opacity-0  scale-90  !delay-0 !duration-100' : ''" >
+                        <div class="bg-[#b3dbde] w-full h-full">
+                          <template x-if="$store.activeArticle && $store.activeArticle.author && $store.activeArticle.author.image">
+                            <img :src="$store.activeArticle.author.image" alt="$store.activeArticle.author.name" width="100%" height="100%" class="object-cover object-top w-full h-full grayscale mix-blend-multiply" />
+                          </template>
+                        </div>
+                      </div>
+                    </template>
+
+                    <template x-if="$store.activeArticle.tag && $store.activeArticle.tag == 'act'">
+                      <div
+                        class="mt-10 md:mt-0 md:absolute bottom-0 right-0 translate-x-[5vw] w-full md:w-[60vw] lg:w-[30vw] z-[-1] rounded-tl-[200px] aspect-square overflow-hidden bg-white origin-center transition duration-500 delay-[400ms] ease-out"
+                        :class="!showContent ? 'opacity-0  scale-90  !delay-0 !duration-100' : ''">
+                        <div class="bg-[#b3dbde] w-full h-full">
+                          <img :src="$store.activeArticle.image" alt="$store.activeArticle.author.name" width="100%" height="100%" class="object-cover object-top w-full h-full grayscale mix-blend-multiply" />
+                        </div>
+                      </div>
+                    </template>
+                  </div>
                   
                   <template x-if="$store.activeArticle">
                     <div>
@@ -1616,7 +1618,7 @@
                     image.style.backgroundColor = '#CEEAEB';
                   });
                 }
-              }, 100);
+              }, 150);
 
               // Mobile animations
               if (this.isMobile) {
@@ -1697,7 +1699,22 @@
               this.showModal = false;
               this.$store.body.lock = false;
               window.location.hash = '';
-              this.$store.activeArticle = false;
+              this.$store.activeArticle = {
+                title: '',
+                excerpt: '',
+                body: '',
+                author: {
+                  name: '',
+                  job_title: '',
+                  image: '',
+                  multiple: false,
+                },
+                image: '',
+                icon: {
+                  rect: '',
+                  square: '',
+                },
+              };
 
               // stop all the listening events
               window.removeEventListener('keydown', (event) => {
@@ -1714,12 +1731,19 @@
                 }
               });
 
-              // Check if the scroll position is not at the top (0)
-              if (this.scrollPosition !== 0) {
-                // Restore the scroll position
-                window.scrollTo(0, this.scrollPosition);
-                setTimeout(() => { window.scrollTo(0, this.scrollPosition); }, 80);
-              }
+              // Check if the scroll position is not at the top 0
+              // if (this.scrollPosition !== 0) {
+              //   // setInterval scroll the window to till it reaches the scrollPosition
+              //   setInterval(() => {
+              //     if (window.scrollY > this.scrollPosition) {
+              //       window.scrollTo(0, window.scrollY);
+              //     } else {
+              //       clearInterval();
+              //     }
+              //   }, 100);
+              // }
+
+              // console.log(window.scrollY, this.scrollPosition);
             },
             checkIndex() {
               this.$store.articles.forEach((article, index) => {
