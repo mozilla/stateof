@@ -1351,8 +1351,8 @@
 
                 <!-- Mobile Next Button -->
                 <template x-if="nextArticle">
-                  <a :href="nextArticle.hash" x-show="nextArticle" id="nextArticle" @click="checkIndex, mobileTransitionModals('right')" x-ref="mobileNext" class="md:hidden absolute w-[100vw] scale-[.8] origin-top-left top-0 overflow-hidden h-screen opacity-50 flex items-start justify-start">
-                    <div class="relative flex-col w-full lg:flex-row inline-flex items-start shrink-0 md:px-[65px] pt-[150px] md:py-[175px] overflow-hidden" :style="'background-color:' + getSVGPath(nextArticle.icon ? nextArticle.icon.square : null)">
+                  <a :href="nextArticle.hash" x-show="nextArticle" id="nextArticle" @click="checkIndex, mobileTransitionModals('right')" x-ref="mobileNext" class="md:hidden absolute w-[100vw] scale-[.8] origin-top-left top-0 bottom-0 min-h-[calc(100vh+85px)] overflow-hidden opacity-50 flex items-start justify-start">
+                    <div class="relative flex-col w-full h-full lg:flex-row inline-flex items-start shrink-0 md:px-[65px] pt-[150px] md:py-[175px] overflow-hidden" :style="'background-color:' + getSVGPath(nextArticle.icon ? nextArticle.icon.square : null)">
                       <div class="container">
                         <div class="w-full mx-auto lg:w-3/4">
                           <div class="flex flex-col items-start justify-start w-full lg:w-3/4">
@@ -1436,7 +1436,7 @@
                 
                 <div class="origin-top" x-ref="activeModal">
                   <template x-if="$store.activeArticle && $store.activeArticle.title">
-                    <div class="relative flex-col z-10 lg:flex-row inline-flex items-start lg:items-center lg:px-8 md:px-[65px] pt-[150px] md:py-[175px] lg:py-28 md:min-h-screen w-full overflow-hidden md:overflow-visible md:transition-colors duration-300 ease-out" id="modalMain" x-ref="modalHeroBackground">
+                    <div class="relative flex-col z-10 lg:flex-row inline-flex items-start lg:items-center lg:px-8 md:px-[65px] pt-[150px] md:py-[175px] lg:py-28 min-h-screen w-full overflow-hidden md:overflow-visible md:transition-colors duration-300 ease-out" id="modalMain" x-ref="modalHeroBackground">
                       <div class="container z-10">
                         <div class="w-full mx-auto lg:w-3/4">
                           <div class="flex flex-col items-start w-full lg:w-3/4">
