@@ -1166,7 +1166,7 @@
       <template x-teleport="body">
         <div id="modal-container" class="fixed top-0 left-0 z-20 table w-full h-[100dvh] transform" style="min-height: -webkit-fill-available;" x-show="showModal" :class="showModal ? 'active' : ''" x-cloak x-trap.inert="showModal" x-trap.noscroll="showModal">
           <div class="absolute top-0 left-0 z-0 w-full h-full transition bg-black opacity-0 modal-background"></div>
-          <div class="relative z-20 h-screen min-h-[100dvh] overflow-x-hidden overflow-y-scroll transition duration-500 ease-out" style="min-height: -webkit-fill-available;" id="modal" :class="showModal ? 'opacity-100' : 'opacity-0'" x-ref="modal">
+          <div class="relative z-20 h-[100dvh] overflow-x-hidden overflow-y-scroll transition duration-500 ease-out" style="min-height: -webkit-fill-available;" id="modal" :class="showModal ? 'opacity-100' : 'opacity-0'" x-ref="modal">
             <div class="relative bg-white modal">
               <div class="md:w-[90vw] mx-auto block text-[#111111] relative origin-top" x-ref="modalContainer" @click.outside="closeModal">
                 <!-- Modal Header -->
