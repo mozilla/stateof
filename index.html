@@ -1243,7 +1243,7 @@
                                       <div class="overflow-hidden bg-white rounded-full first:z-10 -mr-3 last:mr-0 w-12 md:w-[75px] shrink-0">
                                         <div class="relative w-12 md:w-[75px] shrink-0 -mr-4 first:z-10 !bg-opacity-100"
                                           :style="'background-color:' + getSVGPath(previousArticle.icon ? previousArticle.icon.square : null)">
-                                          <img :src="image" alt="previousArticle.author.name" width="75" height="75" loading="lazy"
+                                          <img :src="image" alt="previousArticle.author.name" width="75" height="75"
                                             class=" w-fulll mix-blend-multiply grayscale" />
                                           <div class="absolute top-0 left-0 w-full h-full bg-black opacity-40 mix-blend-soft-light"></div>
                                         </div>
@@ -1255,7 +1255,7 @@
                                   <div class="overflow-hidden bg-white rounded-full first:z-10 w-12 md:w-[75px] shrink-0">
                                     <div class="relative w-12 md:w-[75px] shrink-0 -mr-4 first:z-10 !bg-opacity-100"
                                       :style="'background-color:' + getSVGPath(previousArticle.icon ? previousArticle.icon.square : null)">
-                                      <img :src="previousArticle.author.image" alt="previousArticle.author.name" width="75" height="75" loading="lazy"
+                                      <img :src="previousArticle.author.image" alt="previousArticle.author.name" width="75" height="75"
                                         class=" w-fulll mix-blend-multiply grayscale" />
                                       <div class="absolute top-0 left-0 w-full h-full bg-black opacity-40 mix-blend-soft-light"></div>
                                     </div>
@@ -1301,7 +1301,7 @@
                         <div
                           class="md:absolute bottom-0 right-0 translate-x-[5vw] w-full md:w-[40vw] lg:w-[30vw] mt-10 rounded-tl-[200px] aspect-square overflow-hidden bg-white">
                           <div class="bg-[#b3dbde] w-full h-full">
-                            <img :src="previousArticle.author.image" alt="previousArticle.author-title" width="100%" height="100%" loading="lazy"
+                            <img :src="previousArticle.author.image" alt="previousArticle.author-title" width="100%" height="100%"
                               class="object-cover object-top w-full h-full grayscale mix-blend-multiply" />
                           </div>
                         </div>
@@ -1311,7 +1311,7 @@
                         <div
                           class="md:absolute bottom-0 right-0 translate-x-[5vw] w-full md:w-[40vw] lg:w-[30vw] mt-10 rounded-tl-[200px] aspect-square overflow-hidden bg-white">
                           <div class="bg-[#b3dbde] w-full h-full">
-                            <img :src="previousArticle.image" alt="previousArticle.author-title" width="100%" height="100%" loading="lazy"
+                            <img :src="previousArticle.image" alt="previousArticle.author-title" width="100%" height="100%"
                               class="object-cover object-top w-full h-full grayscale mix-blend-multiply" />
                           </div>
                         </div>
@@ -1363,7 +1363,7 @@
                                     <template x-for="image in nextArticle.author.image">
                                       <div class="overflow-hidden bg-white rounded-full first:z-10 -mr-3 last:mr-0 w-12 md:w-[75px] shrink-0">
                                         <div class="relative w-12 md:w-[75px] shrink-0 -mr-4 first:z-10 !bg-opacity-100" :style="'background-color:' + getSVGPath(nextArticle.icon ? nextArticle.icon.square : null)">
-                                          <img :src="image" alt="nextArticle.author.name" width="75" height="75" loading="lazy"
+                                          <img :src="image" alt="nextArticle.author.name" width="75" height="75"
                                             class=" w-fulll mix-blend-multiply grayscale" />
                                           <div class="absolute top-0 left-0 w-full h-full bg-black opacity-40 mix-blend-soft-light"></div>
                                         </div>
@@ -1374,8 +1374,7 @@
                                 <template x-if="nextArticle && nextArticle.author && nextArticle.author.image && !nextArticle.author.multiple && !nextArticle.tag">
                                   <div class="overflow-hidden bg-white rounded-full first:z-10 w-12 md:w-[75px] shrink-0">
                                     <div class="relative w-12 md:w-[75px] shrink-0 -mr-4 first:z-10 !bg-opacity-100" :style="'background-color:' + getSVGPath(nextArticle.icon ? nextArticle.icon.square : null)">
-                                      <img :src="nextArticle.author.image" alt="nextArticle.author.name" width="75" height="75"
-                                        loading="lazy" class=" w-fulll mix-blend-multiply grayscale" />
+                                      <img :src="nextArticle.author.image" alt="nextArticle.author.name" width="75" height="75" class=" w-fulll mix-blend-multiply grayscale" />
                                       <div class="absolute top-0 left-0 w-full h-full bg-black opacity-40 mix-blend-soft-light"></div>
                                     </div>
                                   </div>
@@ -1418,8 +1417,7 @@
                         <div
                           class="md:absolute bottom-0 right-0 translate-x-[5vw] w-full md:w-[40vw] lg:w-[30vw] mt-10 rounded-tl-[200px] aspect-square overflow-hidden bg-white">
                           <div class="bg-[#b3dbde] w-full h-full">
-                            <img :src="nextArticle.author.image" alt="nextArticle.author-title" width="100%" height="100%"
-                              loading="lazy" class="object-cover object-top w-full h-full grayscale mix-blend-multiply" />
+                            <img :src="nextArticle.author.image" alt="nextArticle.author-title" width="100%" height="100%" class="object-cover object-top w-full h-full grayscale mix-blend-multiply" />
                           </div>
                         </div>
                       </template>
@@ -1428,8 +1426,7 @@
                         <div
                           class="md:absolute bottom-0 right-0 translate-x-[5vw] w-full md:w-[40vw] lg:w-[30vw] mt-10 rounded-tl-[200px] aspect-square overflow-hidden bg-white">
                           <div class="bg-[#b3dbde] w-full h-full">
-                            <img :src="nextArticle.image" alt="nextArticle.author-title" width="100%" height="100%" loading="lazy"
-                              class="object-cover object-top w-full h-full grayscale mix-blend-multiply" />
+                            <img :src="nextArticle.image" alt="nextArticle.author-title" width="100%" height="100%" class="object-cover object-top w-full h-full grayscale mix-blend-multiply" />
                           </div>
                         </div>
                       </template>
@@ -1451,7 +1448,7 @@
                                       <template x-for="image in $store.activeArticle.author.image">
                                         <div class="overflow-hidden bg-white rounded-full first:z-10 -mr-3 last:mr-0 w-12 md:w-[75px] shrink-0">
                                           <div class="relative w-12 md:w-[75px] shrink-0 -mr-4 first:z-10 !bg-opacity-100 modal-author-image">
-                                            <img :src="image" alt="$store.activeArticle.author.name" width="75" height="75" loading="lazy" class=" w-fulll mix-blend-multiply grayscale"/>
+                                            <img :src="image" alt="$store.activeArticle.author.name" width="75" height="75" class=" w-fulll mix-blend-multiply grayscale"/>
                                             <div class="absolute top-0 left-0 w-full h-full bg-black opacity-40 mix-blend-soft-light"></div>
                                           </div>
                                         </div>
@@ -1460,7 +1457,7 @@
                                     <template x-if="$store.activeArticle && $store.activeArticle.author && !$store.activeArticle.author.multiple">
                                       <div class="overflow-hidden bg-white rounded-full first:z-10 w-12 md:w-[75px] shrink-0">
                                         <div class="relative w-12 md:w-[75px] shrink-0 -mr-4 first:z-10 !bg-opacity-100 modal-author-image">
-                                          <img :src="$store.activeArticle.author.image" alt="$store.activeArticle.author.name" width="75" height="75" loading="lazy"
+                                          <img :src="$store.activeArticle.author.image" alt="$store.activeArticle.author.name" width="75" height="75"
                                             class=" w-fulll mix-blend-multiply grayscale" />
                                           <div class="absolute top-0 left-0 w-full h-full bg-black opacity-40 mix-blend-soft-light"></div>
                                         </div>
@@ -1503,7 +1500,7 @@
                       <template x-if="$store.activeArticle && $store.activeArticle.tag && $store.activeArticle.tag == 'choose' || $store.activeArticle.tag == 'build'">
                         <div class="mt-10 md:mt-0 md:absolute bottom-0 right-0 translate-x-[5vw] w-full md:w-[60vw] lg:w-[30vw] z-[-1] rounded-tl-[200px] aspect-square overflow-hidden bg-white origin-center transition duration-500 delay-[400ms] ease-out" :class="!showContent ? 'opacity-0  scale-90  !delay-0 !duration-100' : ''" >
                           <div class="bg-[#b3dbde] w-full h-full">
-                            <img :src="$store.activeArticle.author.image" alt="$store.activeArticle.author.name" width="100%" height="100%" loading="lazy" class="object-cover object-top w-full h-full grayscale mix-blend-multiply" />
+                            <img :src="$store.activeArticle.author.image" alt="$store.activeArticle.author.name" width="100%" height="100%" class="object-cover object-top w-full h-full grayscale mix-blend-multiply" />
                           </div>
                         </div>
                       </template>
@@ -1513,8 +1510,7 @@
                           class="mt-10 md:mt-0 md:absolute bottom-0 right-0 translate-x-[5vw] w-full md:w-[60vw] lg:w-[30vw] z-[-1] rounded-tl-[200px] aspect-square overflow-hidden bg-white origin-center transition duration-500 delay-[400ms] ease-out"
                           :class="!showContent ? 'opacity-0  scale-90  !delay-0 !duration-100' : ''">
                           <div class="bg-[#b3dbde] w-full h-full">
-                            <img :src="$store.activeArticle.image" alt="$store.activeArticle.author.name" width="100%" height="100%"
-                              loading="lazy" class="object-cover object-top w-full h-full grayscale mix-blend-multiply" />
+                            <img :src="$store.activeArticle.image" alt="$store.activeArticle.author.name" width="100%" height="100%" class="object-cover object-top w-full h-full grayscale mix-blend-multiply" />
                           </div>
                         </div>
                       </template>
