@@ -7,7 +7,7 @@
 @layer base {
   html {
     @apply antialiased font-body;
-    scroll-behavior: smooth;
+    scroll-behavior: auto;
     -webkit-text-size-adjust: 100%;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;

@@ -56,7 +56,7 @@
           </svg>
           <span class="sr-only">Go to Mozilla.org</span>
         </a>
-        <button class="relative z-10 group lg:hidden" type="button" @click="toggleMenu(), $store.body.toggle()">
+        <button class="relative z-10 group lg:hidden" type="button" @click="toggleMenu()">
           <span class="sr-only">Toggle Menu</span>
           <div class="flex flex-col justify-between items-end lg:items-start w-[22px] h-[22px] py-[3px]">
             <span
@@ -80,7 +80,7 @@
               :class="menuOpen ? 'delay-[550ms] -rotate-45' : ''"></span>
           </div>
         </button>
-        <div class="block lg:hidden absolute top-0 left-0 transition duration-150 ease-out bg-white w-full pt-[80px] pb-[50px] px-6" x-cloak :class="!menuOpen ? '-translate-y-full' : ' shadow-2xl shadow-[rgba(0, 0, 0, .5)]'">
+        <div class="block lg:hidden absolute top-0 left-0 transition duration-150 ease-out bg-white w-full pt-[80px] pb-[50px] px-6" x-show="menuOpen" x-cloak :class="!menuOpen ? '-translate-y-full' : ' shadow-2xl shadow-[rgba(0, 0, 0, .5)]'" x-trap.noscroll="menuOpen" @click.outside="menuOpen = false">
           <div class="flex flex-col items-center justify-center gap-[45px]">
             <div class="w-full h-px bg-black"></div>
             <a href="https://www.mozilla.org/?utm_source=stateof.mozilla.org&utm_medium=referral&utm_campaign=2023" target="_blank" class="flex items-start justify-start gap-[5px] text-[16px]/[19px] font-medium hover:underline cursor-pointer font-title">
@@ -1200,7 +1200,7 @@
                   </button>
                 </div>
 
-                <template x-if="previousArticle">
+                <template x-if="previousArticle != null">
                   <a :href="previousArticle.hash" @click="transitionModals(previousArticle.hash), checkIndex" class="hidden lg:block fixed left-0 z-20 p-2 xl:p-5 -translate-y-1/2  max-w-[190px] xl:max-w-[230px] bg-white border border-l-0 border-black top-1/2 group transition duration-500 ease-out delay-700" :class="!showContent ? '!opacity-0 !-translate-x-full delay-0' : ''">
                     <div class="flex items-center gap-5">
                       <svg viewBox="0 0 47 48" fill="none" xmlns="http://www.w3.org/2000/svg" class="duration-150 ease-out rotate-90 group-hover:translate-x-2 shrink-0 w-[25px] xl:w-[35px]">
@@ -1229,7 +1229,7 @@
                 </template>
 
                 <!-- Mobile Previous Button -->
-                <template x-if="previousArticle">
+                <template x-if="previousArticle != null">
                   <a :href="previousArticle.hash" id="previousArticle" x-ref="mobilePrev" @click="checkIndex, mobileTransitionModals('left')" class="md:hidden absolute w-[100vw] scale-[.8] origin-top-right top-0 h-screen opacity-50 flex items-start justify-end">
                     <div class="relative flex-col shrink-0 lg:flex-row inline-flex items-start w-full md:px-[65px] pt-[150px] md:py-[175px] overflow-hidden" :style="'background-color:' + getSVGPath(previousArticle.icon ? previousArticle.icon.square : null)">
                       <div class="container">
@@ -1320,7 +1320,7 @@
                   </a>
                 </template>
                 
-                <template x-if="nextArticle">
+                <template x-if="nextArticle != null">
                   <a :href="nextArticle.hash" x-show="nextArticle" @click="transitionModals(nextArticle.hash), checkIndex" class="hidden lg:block fixed right-0 z-20 p-2 xl:p-5 -translate-y-1/2 max-w-[190px] xl:max-w-[230px] bg-white border border-r-0 border-black top-1/2 group transition duration-500 ease-out delay-700" :class="!showContent ? '!opacity-0 !translate-x-full delay-0' : ''">
                     <div class="flex items-center gap-5">
                       <div class="flex flex-col items-start justify-start gap-[10px]">
@@ -1350,7 +1350,7 @@
                 </template>
 
                 <!-- Mobile Next Button -->
-                <template x-if="nextArticle">
+                <template x-if="nextArticle != null">
                   <a :href="nextArticle.hash" x-show="nextArticle" id="nextArticle" @click="checkIndex, mobileTransitionModals('right')" x-ref="mobileNext" class="md:hidden absolute w-[100vw] scale-[.8] origin-top-left top-0 bottom-0 min-h-[calc(100vh+85px)] overflow-hidden opacity-50 flex items-start justify-start">
                     <div class="relative flex-col w-full h-full lg:flex-row inline-flex items-start shrink-0 md:px-[65px] pt-[150px] md:py-[175px] overflow-hidden" :style="'background-color:' + getSVGPath(nextArticle.icon ? nextArticle.icon.square : null)">
                       <div class="container">
@@ -1591,8 +1591,6 @@
               if (this.scrollPosition > 0) {
                 this.$store.scrollPosition = window.scrollY || window.pageYOffset;
               }
-
-              console.log(this.$store.scrollPosition);
               
 
               // get the fill of the first path in the SVG and make it the background color of the modal hero
@@ -1702,16 +1700,11 @@
             },
             closeModal() {
               this.showModal = false;
-              this.$store.body.lock = false;
-              window.scrollTo(0, this.$store.scrollPosition);
               window.location.hash = '';
-              window.scrollTo(0, this.$store.scrollPosition);
-
-              if (window.scrollY < this.$store.scrollPosition) {
-                setTimeout(() => {
-                  window.scrollTo(0, this.$store.scrollPosition);
-                }, 300);
-              }
+              window.scrollTo({
+                top: this.$store.scrollPosition,
+                behavior: 'instant'
+              });
 
               this.$store.activeArticle = {
                 title: '',
