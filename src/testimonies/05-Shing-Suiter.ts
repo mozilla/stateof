@@ -3,7 +3,7 @@ export const content: object = {
   tag: 'choose',
   hash: '#shing-suter',
   author: {
-    name: 'Shing Suter',
+    name: 'Shing Suiter',
     job_title: 'Senior Director, Technology Platforms at Mozilla Foundation',
     image: '/headshots/Shing-Suter.jpg',
   },
