@@ -3,7 +3,7 @@ export const content: object = {
   hash: '#advocacy',
   author: {
     name: 'Ashley Boyd',
-    job_title: 'Vice President, Advocacy & Engagement',
+    job_title: 'SVP Global Advocacy',
     image: '/headshots/Ashley-Boyd.jpeg',
   },
   lead_article: false,
