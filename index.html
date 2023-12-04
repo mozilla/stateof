@@ -1164,9 +1164,9 @@
       </section>
 
       <template x-teleport="body">
-        <div id="modal-container" class="fixed top-0 left-0 z-20 table w-full h-[100dvh] md:h-screen transform" style="min-height: -webkit-fill-available;" x-show="showModal" :class="showModal ? 'active' : ''" x-cloak x-trap.inert="showModal">
+        <div id="modal-container" class="fixed top-0 left-0 z-20 table w-full h-[100dvh] md:h-screen transform" x-show="showModal" :class="showModal ? 'active' : ''" x-cloak x-trap.inert="showModal">
           <div class="absolute top-0 left-0 z-0 w-full h-full transition bg-black opacity-0 modal-background"></div>
-          <div class="relative z-20 h-full overflow-x-hidden overflow-y-scroll transition duration-500 ease-out md:h-screen" x-trap.noscroll="showModal" style="min-height: -webkit-fill-available;" id="modal" :class="showModal ? 'opacity-100' : 'opacity-0'" x-ref="modal">
+          <div class="relative z-20 h-full overflow-x-hidden overflow-y-scroll transition duration-500 ease-out md:h-screen" x-trap.noscroll="showModal" id="modal" :class="showModal ? 'opacity-100' : 'opacity-0'" x-ref="modal">
             <div class="relative bg-white modal">
               <div class="md:w-[90vw] mx-auto block text-[#111111] relative origin-top" x-ref="modalContainer" @click.outside="closeModal">
                 <!-- Modal Header -->
@@ -1201,7 +1201,7 @@
                 </div>
 
                 <template x-if="previousArticle != null">
-                  <a :href="previousArticle.hash" @click="transitionModals(previousArticle.hash), checkIndex" class="hidden lg:block fixed left-0 z-20 p-2 xl:p-5 -translate-y-1/2  max-w-[190px] xl:max-w-[230px] bg-white border border-l-0 border-black top-1/2 group transition duration-500 ease-out delay-700" :class="!showContent ? '!opacity-0 !-translate-x-full delay-0' : ''">
+                  <a x-ref="prevDesktop" :href="previousArticle.hash" @click="transitionModals(previousArticle.hash), checkIndex" class="hidden lg:inline-block fixed left-0 z-20 p-2 xl:p-5 -translate-y-1/2  max-w-[190px] xl:max-w-[230px] bg-white border border-l-0 border-black top-[50vh] group transition duration-500 ease-out delay-[350ms]">
                     <div class="flex items-center gap-5">
                       <svg viewBox="0 0 47 48" fill="none" xmlns="http://www.w3.org/2000/svg" class="duration-150 ease-out rotate-90 group-hover:translate-x-2 shrink-0 w-[25px] xl:w-[35px]">
                         <path
@@ -1321,7 +1321,7 @@
                 </template>
                 
                 <template x-if="nextArticle != null">
-                  <a :href="nextArticle.hash" x-show="nextArticle" @click="transitionModals(nextArticle.hash), checkIndex" class="hidden lg:block fixed right-0 z-20 p-2 xl:p-5 -translate-y-1/2 max-w-[190px] xl:max-w-[230px] bg-white border border-r-0 border-black top-1/2 group transition duration-500 ease-out delay-700" :class="!showContent ? '!opacity-0 !translate-x-full delay-0' : ''">
+                  <a x-ref="nextDesktop" :href="nextArticle.hash" x-show="nextArticle" @click="transitionModals(nextArticle.hash), checkIndex" class="hidden lg:inline-block fixed right-0 z-20 p-2 xl:p-5 -translate-y-1/2 max-w-[190px] xl:max-w-[230px] bg-white border border-r-0 border-black top-[50vh] group transition duration-500 ease-out delay-[350ms]">
                     <div class="flex items-center gap-5">
                       <div class="flex flex-col items-start justify-start gap-[10px]">
                         <template x-if="nextArticle.icon">
@@ -1674,6 +1674,22 @@
                     }
                   });
                 }, 50);
+              } else {
+                setTimeout(() => {
+                  this.$refs.modal.addEventListener('scroll', (el) => {
+                    // if scroll more than the screen height
+                    if (el.target.scrollTop > window.innerHeight / 4) {
+                      
+                      this.$refs.prevDesktop.style.transform = 'translateX(-100%)';
+                      this.$refs.prevDesktop.style.transitionDelay = '0s';
+                      this.$refs.nextDesktop.style.transform = 'translateX(100%)'; 
+                      this.$refs.nextDesktop.style.transitionDelay = '0s';
+                    } else {
+                      this.$refs.prevDesktop.style.transform = 'translateX(0)';
+                      this.$refs.nextDesktop.style.transform = 'translateX(0)';
+                    }
+                  });
+                }, 100);
               }
               
               this.showModal = true;

@@ -117,11 +117,11 @@
   }
 
   #modal-container.active .modal-background {
-    animation: fadeIn .5s cubic-bezier(0.165, 0.840, 0.440, 1.000) both;
+    animation: fadeIn .3s cubic-bezier(0.165, 0.840, 0.440, 1.000) both;
   }
 
   #modal-container.active .modal {
-    animation: scaleUp .5s cubic-bezier(0.165, 0.840, 0.440, 1.000) both;
+    animation: scaleUp .3s cubic-bezier(0.165, 0.840, 0.440, 1.000) both;
     transform-origin: center;
     animation-delay: .25s;
   }
@@ -157,7 +157,7 @@
       opacity: 1;
     }
 
-    99.5% {
+    99.1% {
       transform: none;
       opacity: 1;
     }
