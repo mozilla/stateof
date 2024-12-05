@@ -5,7 +5,7 @@
     NETLIFY_NEXT_PLUGIN_SKIP = "true"
 
 [[headers]]
-  for = "/*"
+  for = "/2023/*"
   [headers.values]
     X-Content-Type-Options = "nosniff"
     X-Frame-Options = "DENY"
@@ -13,26 +13,32 @@
     Cache-Control = "public,max-age=600"
 
 [[headers]]
-  for = "/assets/*"
+  for = "/2023/assets/*"
   [headers.values]
     Cache-Control = "max-age=31536000,public,immutable"
 
 [[headers]]
-  for = "/fonts/*"
+  for = "/2023/fonts/*"
   [headers.values]
     Cache-Control = "max-age=86400,public"
 
 [[headers]]
-  for = "/headshots/*"
+  for = "/2023/headshots/*"
   [headers.values]
     Cache-Control = "max-age=86400,public"
 
 [[headers]]
-  for = "/logos/*"
+  for = "/2023/logos/*"
   [headers.values]
     Cache-Control = "max-age=86400,public"
 
 [[headers]]
-  for = "/downloads/*"
+  for = "/2023/downloads/*"
   [headers.values]
     Cache-Control = "max-age=86400,public"
+
+# Redirect requests to your subdirectory
+[[redirects]]
+  from = "/*"
+  to = "/2023/:splat"
+  status = 200
