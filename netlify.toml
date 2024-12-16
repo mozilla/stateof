@@ -37,8 +37,8 @@
   [headers.values]
     Cache-Control = "max-age=86400,public"
 
-# Redirect requests to your subdirectory
+# Redirect requests to State of Mozilla 2024
 [[redirects]]
-  from = "/*"
-  to = "/2023/:splat"
-  status = 200
+  from = "/"
+  to = "https://www.mozilla.org/foundation/annualreport/2024"
+  status = 301
