@@ -4,7 +4,7 @@ export const content: object = {
   author: {
     name: 'Moez Draief',
     job_title: 'Managing Director of <a href="https://mozilla.ai/" target="_blank">Mozilla.ai</a>',
-    image: '/headshots/Moez-Draief.jpeg',
+    image: '/2023/headshots/Moez-Draief.jpeg',
   },
   lead_article: false,
   modal_style: 'medium',

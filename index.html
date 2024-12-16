@@ -42,7 +42,7 @@
   <body class="flex flex-col font-body" x-data x-cloak>
     <header ref="header" class="fixed top-0 left-0 z-20 w-full transition duration-150 ease-out"  x-data="nav()" @scroll.window="revealHeader()" :class="isScrolled ? 'bg-white' : ''">
       <div class="container flex items-center justify-between gap-6 py-5 transition-opacity duration-300 md:py-9">
-        <a href="/" x-cloak class="w-[100px] z-10">
+        <a href="/2023/" x-cloak class="w-[100px] z-10">
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 99 29" class="w-[100px]">
             <g fill="#000000" clip-path="url(#header-a)">
               <path d="M36.9066 12.885c-1.8103 0-2.9378 1.3793-2.9378 3.7675 0 2.1956.9889 3.8842 2.9081 3.8842 1.84 0 3.0467-1.5211 3.0467-3.9401 0-2.5607-1.3453-3.7116-3.017-3.7116Zm48.5195 6.384c0 .8163.3858 1.4656 1.4539 1.4656 1.2612 0 2.6065-.928 2.6907-3.0374-.5739-.0863-1.2067-.1675-1.7855-.1675-1.2612-.0051-2.3591.36-2.3591 1.7393Z" />
@@ -360,7 +360,7 @@
         </div>
 
         <!-- Get first quote block -->
-        <div class="container" x-data="rowOne()" x-intersect.margin.-175px.once="sectionInView = true">
+        <div class="container" x-data="rowOne()" x-intersect.margin.-160px.once="sectionInView = true">
           <div class="grid grid-cols-12">
             <div class="relative z-0 hidden col-span-12 md:col-span-6 md:block">
               <a :href="firstArticle.hash" class=" z-10 no-underline group flex flex-col items-start justify-start w-full py-[65px] md:pr-[65px]">
@@ -400,7 +400,7 @@
                 </p>
                 <div class="flex items-center justify-start w-full gap-[22px] mt-[95px] transition duration-500 ease-out delay-[400ms]" :class="!sectionInView && canAnimate ? 'opacity-0' : ''">
                   <div class="bg-[#89D5FF] rounded-full">
-                    <img src="/headshots/mitchell-baker.jpg" alt="Head shot of Mitchell Baker" width="75" height="75" loading="lazy" class="w-[75px] shrink-0 mix-blend-multiply grayscale rounded-full" />
+                    <img src="/2023/headshots/mitchell-baker.jpg" alt="Head shot of Mitchell Baker" width="75" height="75" loading="lazy" class="w-[75px] shrink-0 mix-blend-multiply grayscale rounded-full" />
                   </div>
                   <div class="flex flex-col items-start justify-start w-full gap-5">
                     <div class="flex flex-col items-start justify-start w-full shrink-0">
@@ -497,7 +497,7 @@
 
         <!-- Mobile Articles -->
         <div class="block md:hidden relative border-y-2 border-black bg-[#EEEEEE] z-20" x-data="mobileRow"
-          x-intersect.margin.-175px.once="sectionInView = true">
+          x-intersect.margin.-160px.once="sectionInView = true">
           <div class="relative">
             <div class="relative flex w-full px-5 overflow-x-auto snap-x snap-mandatory no-scrollbar">
               <template x-for="(article, index) in articles" :key="index">
@@ -559,7 +559,7 @@
 
         <!-- Get second quote block -->
         <div>
-          <div class="container" x-data="lastRow()" x-intersect.margin.-175px.once="sectionInView = true">
+          <div class="container" x-data="lastRow()" x-intersect.margin.-160px.once="sectionInView = true">
             <div class="grid grid-cols-12">
               <a href="#mission" class="relative flex items-center justify-start col-span-12 py-[60px] md:py-10 md:col-span-6 no-underline group">
                 <div
@@ -579,7 +579,7 @@
                     class="flex items-center justify-start w-full gap-[22px] mt-[95px] transition duration-500 ease-out delay-[400ms] "
                     :class="!sectionInView && canAnimate ? 'opacity-0' : ''">
                     <div class="rounded-full bg-[#ddecbc]">
-                      <img src="/headshots/mark-surman.jpeg" alt="Head shot of Mark Surman" width="75" height="75" loading="lazy" class="w-[75px] shrink-0 mix-blend-multiply grayscale rounded-full" />
+                      <img src="/2023/headshots/mark-surman.jpeg" alt="Head shot of Mark Surman" width="75" height="75" loading="lazy" class="w-[75px] shrink-0 mix-blend-multiply grayscale rounded-full" />
                     </div>
                     <div class="flex flex-col items-start justify-start w-full gap-5">
                       <div class="flex flex-col items-start justify-start w-full shrink-0">
@@ -763,7 +763,7 @@
 
       <!-- Video -->
       <section class="bg-[#89D5FF] w-full aspect-[1.25] px-4 md:aspect-[1.8] lg:aspect-[2.25] flex items-center border-t-2 border-black relative z-0 overflow-hidden" x-data="video()">
-        <div class="container relative flex items-center justify-between" x-ref="content" x-intersect.margin.-175px.once="inView = true">
+        <div class="container relative flex items-center justify-between" x-ref="content" x-intersect.margin.-160px.once="inView = true">
           <div class="w-[95%] aspect-[2] lg:aspect-[3] bg-[#6fa2ff] absolute top-1/2 left-0 -translate-y-1/2 rounded-full transition duration-300 ease-out z-[-1]" :class="!inView && canAnimate ? 'opacity-0' : ''"></div>
           
           <h2 class="font-title text-[16px]/[17px] tracking-[0.48px] sm:text-[36px]/[38px] md:tracking-[1.08px] font-bold w-5/12 sm:ml-10 md:w-4/12 md:ml-[65px] transition duration-300 ease-out delay-200 z-10" :class="!inView && canAnimate ? 'opacity-0 -translate-x-5' : ''">A message from Eric Muhlheim & Angela Plohman</h2>
@@ -833,7 +833,7 @@
         </div>
 
         <!-- Choose with Mozilla -->
-        <div class="flex flex-col items-start justify-start gap-8 px-0 md:container md:px-5 md:flex-row" x-intersect.margin.-175px.once='inView = 1'>
+        <div class="flex flex-col items-start justify-start gap-8 px-0 md:container md:px-5 md:flex-row" x-intersect.margin.-160px.once='inView = 1'>
           <div class="container md:!max-w-none md:mx-0 w-full px-5 md:px-0 md:w-1/3 lg:w-1/4 transition duration-500 ease-out" :class="inView < 1 && canAnimate ? 'opacity-0 -translate-y-5' : ''">
             <h2 class="text-[36px]/[38px] font-title font-bold mb-[15px]">Why I <br/>choose Mozilla</h2>
             <p class="font-body font-normal text-[16px]/[21px] tracking-[.32px]"></p>At Mozilla, we have big ambitions for the future, we want to build impactful products that are different — that are built with more respect for the people using them and help us explore new forms of openness. It’s going to take hard work that Mozilla is uniquely suited to take on. It’s why we’re here. It’s who we are. And it’s our future.</p>
@@ -895,7 +895,7 @@
         </div>
 
         <!-- Act with Mozilla -->
-        <div class="flex flex-col items-start justify-start gap-8 px-0 md:container md:px-5 md:flex-row" x-intersect.margin.-175px.once='inView = 2'>
+        <div class="flex flex-col items-start justify-start gap-8 px-0 md:container md:px-5 md:flex-row" x-intersect.margin.-160px.once='inView = 2'>
           <div class="container md:!max-w-none md:mx-0 w-full px-5 md:px-0 md:w-1/3 lg:w-1/4 transition duration-500 ease-out" :class="inView < 2 && canAnimate ? 'opacity-0 -translate-y-5' : ''">
             <h2 class="text-[36px]/[38px] font-title font-bold mb-[15px]">Why I build <br />with Mozilla</h2>
             <p class="font-body font-normal text-[16px]/[21px] tracking-[.32px]">Building Mozilla stems from a harmonious blend of philanthropic vision and commercial acumen, embodying the balance between social impact and sustainable growth. Driven by the mission to serve the public good. Two examples are how we build through our Venture Fund and the amazing projects funded through In Real Life.</p>
@@ -959,7 +959,7 @@
         </div>
 
         <!-- Build with Mozilla -->
-        <div class="flex flex-col items-start justify-start gap-8 px-0 md:container md:px-5 md:flex-row" x-intersect.margin.-175px.once='inView = 3'>
+        <div class="flex flex-col items-start justify-start gap-8 px-0 md:container md:px-5 md:flex-row" x-intersect.margin.-160px.once='inView = 3'>
           <div class="container md:!max-w-none md:mx-0 w-full px-5 md:px-0 md:w-1/3 lg:w-1/4 transition duration-500 ease-out" :class="inView < 3 && canAnimate ? 'opacity-0 -translate-y-5' : ''">
             <h2 class="text-[36px]/[38px] font-title font-bold mb-[15px]">Mozilla Fellows & <br/>Rise 25 Honorees</h2>
             <p class="font-body font-normal text-[16px]/[21px] tracking-[.32px]">We’re proud to highlight Mozilla Fellows and Rise 25 honorees who are activists, open-source researchers, engineers, and technology policy experts who work on the front lines of our movement.</p>
@@ -1101,7 +1101,7 @@
       </section>
 
       <!-- Links -->
-      <section class="bg-[#CEC2FF] py-[100px] md:py-[150px]" x-data="links()" x-intersect.margin.-175px.once='inView = true'>
+      <section class="bg-[#CEC2FF] py-[100px] md:py-[150px]" x-data="links()" x-intersect.margin.-160px.once='inView = true'>
         <div class="container flex flex-col items-start justify-between gap-14 md:gap-20 md:flex-row">
           <div class="w-full transition duration-500 ease-out md:w-1/2" :class="!inView && canAnimate ? 'opacity-0 -translate-x-5' : ''">
             <h2 class="font-title text-[56px]/[56px] font-bold">Join us in creating a better internet</h2>
@@ -1171,7 +1171,7 @@
               <div class="md:w-[90vw] mx-auto block text-[#111111] relative origin-top" x-ref="modalContainer" @click.outside="closeModal">
                 <!-- Modal Header -->
                 <div class="container absolute top-0 z-50 w-screen md:w-full -translate-x-1/2 left-1/2 pt-[42px] pb-[20px] flex items-center justify-between bg-white md:bg-transparent">
-                  <a href="/" class="w-[100px]" id="modalLogo">
+                  <a href="/2023/" class="w-[100px]" id="modalLogo">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 99 29" class="w-[100px]">
                       <g fill="#000000" clip-path="url(#header-a)">
                         <path

@@ -4,7 +4,7 @@ export const content: object = {
   author: {
     name: 'Ashley Boyd',
     job_title: 'SVP Global Advocacy',
-    image: '/headshots/Ashley-Boyd.jpeg',
+    image: '/2023/headshots/Ashley-Boyd.jpeg',
   },
   lead_article: false,
   modal_style: 'long',

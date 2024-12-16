@@ -5,7 +5,7 @@ export const content: object = {
   author: {
     name: "Suba Vasudevan",
     job_title: "SVP of Strategy & Operations",
-    image: "headshots/Suba-Vasudevan.png",
+    image: "/2023/headshots/Suba-Vasudevan.png",
   },
   lead_article: true,
   modal_style: "medium",

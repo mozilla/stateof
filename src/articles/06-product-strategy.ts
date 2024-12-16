@@ -4,7 +4,7 @@ export const content: object = {
   author: {
     name: 'Steve Teixeira',
     job_title: 'Chief Product Officer',
-    image: '/headshots/Steve-Teixeira.png',
+    image: '/2023/headshots/steve-teixeira.png',
   },
   lead_article: false,
   modal_style: 'long',

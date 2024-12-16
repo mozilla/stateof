@@ -5,7 +5,7 @@ export const content: object = {
   author: {
     name: "Steve Azeka",
     job_title: "Program Lead",
-    image: "headshots/Steven-Azeka.jpeg",
+    image: "/2023/headshots/Steven-Azeka.jpeg",
   },
   lead_article: true,
   modal_style: "medium",
