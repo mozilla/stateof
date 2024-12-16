@@ -4,7 +4,7 @@ export const content: object = {
   author: {
     name: 'Orvile McDonald',
     job_title: 'Sr. Director of Ads Product Management',
-    image: '/headshots/Orville-McDonald.jpeg',
+    image: '/2023/headshots/Orville-McDonald.jpeg',
   },
   lead_article: false,
   modal_style: 'medium',

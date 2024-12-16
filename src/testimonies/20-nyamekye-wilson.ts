@@ -5,7 +5,7 @@ export const content: object = {
   author: {
     name: "Nyamekye Wilson",
     job_title: "Rise25 honoree & Founder and CEO of ReThink",
-    image: "headshots/nyamekye-wilson.jpg",
+    image: "/2023/headshots/nyamekye-wilson.jpg",
   },
   lead_article: true,
   modal_style: "short",

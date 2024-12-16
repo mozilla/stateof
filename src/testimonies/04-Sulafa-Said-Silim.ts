@@ -5,7 +5,7 @@ export const content: object = {
   author: {
     name: "Sulafa Said-Silim",
     job_title: "Sr. Advisor, Diversity Equity Inclusion & Belonging",
-    image: "headshots/Sulafa-Said-Silim.jpeg",
+    image: "/2023/headshots/Sulafa-Said-Silim.jpeg",
   },
   lead_article: true,
   modal_style: "medium",

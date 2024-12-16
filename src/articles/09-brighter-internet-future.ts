@@ -6,8 +6,8 @@ export const content: object = {
     job_title: 'SVP of Innovation Ecosystems and SVP of Global Programs',
     multiple: true,
     image: [
-      '/headshots/Imo-Udom.jpeg',
-      '/headshots/J-Bob-Alotta.jpeg'
+      '/2023/headshots/Imo-Udom.jpeg',
+      '/2023/headshots/J-Bob-Alotta.jpeg'
     ]
   },
   lead_article: false,

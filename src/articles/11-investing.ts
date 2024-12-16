@@ -4,7 +4,7 @@ export const content: object = {
   author: {
     name: 'Mohamed Nanabhay',
     job_title: 'Managing Partner of Mozilla Ventures',
-    image: '/headshots/Mohamed-Nanabhay.jpeg',
+    image: '/2023/headshots/Mohamed-Nanabhay.jpeg',
   },
   lead_article: false,
   modal_style: 'medium',

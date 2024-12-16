@@ -5,7 +5,7 @@ export const content: object = {
   author: {
     name: "Kathleen Siminyu",
     job_title: null,
-    image: "headshots/kathleen-siminyu.png",
+    image: "/2023/headshots/kathleen-siminyu.png",
   },
   lead_article: true,
   modal_style: "short",

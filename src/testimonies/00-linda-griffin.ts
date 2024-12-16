@@ -5,7 +5,7 @@ export const content: object = {
   author: {
     name: "Linda Griffin",
     job_title: "VP of Public Policy",
-    image: "headshots/linda-griffin.jpg",
+    image: "/2023/headshots/linda-griffin.jpg",
   },
   lead_article: true,
   modal_style: "medium",

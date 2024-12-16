@@ -5,7 +5,7 @@ export const content: object = {
   author: {
     name: "Dr. Abeba Birhane",
     job_title: null,
-    image: "headshots/abeba-birhane.png",
+    image: "/2023/headshots/abeba-birhane.png",
   },
   lead_article: true,
   modal_style: "short",

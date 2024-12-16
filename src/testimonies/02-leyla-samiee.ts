@@ -5,7 +5,7 @@ export const content: object = {
   author: {
     name: "Leyla Samiee",
     job_title: "VP of Engineering - Mozilla Social",
-    image: "headshots/Leyla-Samiee.jpeg",
+    image: "/2023/headshots/Leyla-Samiee.jpeg",
   },
   lead_article: true,
   modal_style: "medium",

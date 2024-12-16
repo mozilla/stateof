@@ -4,7 +4,7 @@ export const content: object = {
   author: {
     name: 'Mark Surman',
     job_title: 'President and Executive Director',
-    image: '/headshots/mark-surman.jpeg',
+    image: '/2023/headshots/mark-surman.jpeg',
   },
   lead_article: false,
   modal_style: 'long',

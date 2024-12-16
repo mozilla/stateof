@@ -5,7 +5,7 @@ export const content: object = {
   author: {
     name: "Shing Suiter",
     job_title: "Senior Director, Technology Platforms at Mozilla Foundation",
-    image: "headshots/Shing-Suter.jpg",
+    image: "/2023/headshots/Shing-Suter.jpg",
   },
   lead_article: true,
   modal_style: "medium",

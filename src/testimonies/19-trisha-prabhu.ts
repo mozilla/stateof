@@ -5,7 +5,7 @@ export const content: object = {
   author: {
     name: "Trisha Prabhu",
     job_title: "Rise25 honoree & Founder and CEO of ReThink",
-    image: "headshots/trisha-prabhu.jpg",
+    image: "/2023/headshots/trisha-prabhu.jpg",
   },
   lead_article: true,
   modal_style: "short",

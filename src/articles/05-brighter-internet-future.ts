@@ -6,8 +6,8 @@ export const content: object = {
     job_title: 'Chief Financial Officer & Chief Operating Officer',
     multiple: true,
     image: [
-      '/headshots/Eric-Muhlheim.jpeg',
-      '/headshots/angela-plohman.jpg'
+      '/2023/headshots/Eric-Muhlheim.jpeg',
+      '/2023/headshots/angela-plohman.jpg'
     ]
   },
   lead_article: false,

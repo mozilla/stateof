@@ -6,7 +6,7 @@ export const content: object = {
     name: "Finn Myrstad",
     job_title:
       "Rise25 honoree & director of digital policy at the Norwegian consumer council (NCC)",
-    image: "headshots/finn-myrstad.jpg",
+    image: "/2023/headshots/finn-myrstad.jpg",
   },
   lead_article: true,
   modal_style: "short",
