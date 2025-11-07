@@ -37,8 +37,18 @@
   [headers.values]
     Cache-Control = "max-age=86400,public"
 
-# Redirect requests to State of Mozilla 2024
+# Redirect requests to State of Mozilla 2025
 [[redirects]]
   from = "/"
+  to = "https://state-of-mozilla-2025.netlify.app/"
+  status = 301
+
+[[redirects]]
+  from = "/2024"
   to = "https://www.mozilla.org/foundation/annualreport/2024"
+  status = 301
+
+[[redirects]]
+  from = "/rebel"
+  to = "https://state-of-mozilla-2025.netlify.app/rebel"
   status = 301
