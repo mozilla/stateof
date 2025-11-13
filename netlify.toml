@@ -49,6 +49,11 @@
   status = 301
 
 [[redirects]]
+  from = "/2025"
+  to = "https://state-of-mozilla-2025.netlify.app/"
+  status = 301
+
+[[redirects]]
   from = "/rebel"
   to = "https://state-of-mozilla-2025.netlify.app/rebel"
   status = 301
