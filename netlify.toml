@@ -43,6 +43,12 @@
   status = 301
 
 [[redirects]]
+  # 2024 is the most recent 'archived' version so we should redirect to that by default
+  from = "/"
+  to = "https://www.mozilla.org/foundation/annualreport/2024"
+  status = 301
+
+[[redirects]]
   from = "/rebel"
   to = "https://state-of-mozilla-2025.netlify.app/rebel"
   status = 301
